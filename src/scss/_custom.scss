@@ -1,0 +1,39 @@
+// Here you can add other styles
+.labeldaninput {
+  margin: 0 20px 20px 30px;
+  width: 100%;
+}
+
+.labeldaninput .labelatas{
+  margin-bottom: 5px;
+}
+
+.radioperki {
+  margin: 0 10px 0px 15px;
+  margin-bottom : 20px;
+}
+
+.buttonperki {
+  margin-left : 20px;
+  text-align: right;
+}
+
+.prefixharga {
+  border-radius: .25rem;
+  text-align: center;
+  font-size: 1rem;
+  display:flex;
+  border-color: #ebedf2;
+  background-color: #f4f5f8;
+  color: #575962;
+  width:65px;
+  padding: .85rem 1.15rem;
+}
+
+.visibledevice {display:none;}
+.visibledesktop {display:display;}
+
+@media (max-width : 600px) {
+    .visibledevice {display:block;}
+    .visibledesktop {display:none;}
+}
