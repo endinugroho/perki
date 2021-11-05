@@ -54,7 +54,7 @@ const TheHeader = () => {
       /> */}
       <CHeaderBrand className="mx-auto">
         {/* <CIcon name="logo" height="48" alt="Logo"/> */}
-        <Image  preview={false} src="https://acsasurabaya2021.com/wp-content/plugins/perki/Logo-atas2.png" width="200px" />
+        <a href="https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/dashboard"><Image  preview={false} src="https://acsasurabaya2021.com/wp-content/plugins/perki/Logo-atas2.png" width="200px" /></a>
       </CHeaderBrand>
 
       {/* <CHeaderNav className="d-md-down-none mr-auto">

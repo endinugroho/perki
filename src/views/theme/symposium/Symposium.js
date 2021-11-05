@@ -91,7 +91,7 @@ const Colors = () => {
   const [disable,setDisable] = useState(false);
   const [simposium, setSimposium] = useState("");
   const [hari,setHari] = useState("");
-  const [meetingid1,setMeetingid1] = useState("5612879626");
+  const [meetingid1,setMeetingid1] = useState("3529375916");
   const [meetingid2,setMeetingid2] = useState("");
   const [meetingid3,setMeetingid3] = useState("");
   const [meetingid4,setMeetingid4] = useState("");
@@ -240,6 +240,7 @@ const openInNewTab = (url,meetingidku) => {
 <tr style={{border: "1px solid rgb(1,77,136)"}}>
 {/* <td style={{width: "76px"}}>&nbsp;</td>
 <td style={{width: "6px"}}>&nbsp;</td> */}
+{/* <td style={{width: "140px"}}><Button type="primary" onClick={() => openInNewTab('https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/theme/zoom/12345', meetingid1)}> Goto Zoom </Button></td> */}
 <td style={{width: "140px"}}><Button type="primary" onClick={() => openInNewTab('https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/theme/zoom/12345', meetingid1)}> Goto Zoom </Button></td>
 </tr>
 </tbody>

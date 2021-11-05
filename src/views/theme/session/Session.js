@@ -96,7 +96,7 @@ const [workshopku,setWorkshopku] = useState("");
 const [ws, setWs] = useState("-");
 const [hari, setHari] = useState("PERTAMA");
 // const []
-const [meetingid1,setMeetingid1] = useState("87819545479");
+const [meetingid1,setMeetingid1] = useState("79190715224");
 const [meetingid2,setMeetingid2] = useState("");
 const [meetingid3,setMeetingid3] = useState("");
 const [meetingid4,setMeetingid4] = useState("");
@@ -1275,7 +1275,8 @@ const pilihanku = (value) =>
 <tr style={{border: "1px solid rgb(1,77,136)"}}>
 {/* <td style={{width: "76px"}}>&nbsp;</td>
 <td style={{width: "6px"}}>&nbsp;</td> */}
-<td style={{width: "140px"}}><Button type="primary" onClick={() => openInNewTab('https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/theme/zoom/12345', meetingid1)}> Goto Zoom </Button></td>
+{/* <td style={{width: "140px"}}><Button type="primary" onClick={() => openInNewTab('https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/theme/zoom/12345', meetingid1)}> Goto Zoom </Button></td> */}
+<td style={{width: "140px"}}><Button type="primary" onClick={() => openInNewTab('http://localhost:3000/#/theme/zoom/12345', meetingid1)}> Goto Zoom </Button></td>
 </tr>
 </tbody>
 </table>

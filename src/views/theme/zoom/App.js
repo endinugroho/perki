@@ -29,15 +29,15 @@ const App = props => {
   }, []);
 
   // setup your signature endpoint here: https://github.com/zoom/meetingsdk-sample-signature-node.js
- var signatureEndpoint = ''
+  var signatureEndpoint = ''
   var apiKey = 'sw1o-LaLTtaMC0xjZ9ghdw'
   var apiSecret  = 'NDRYGCnfiSXNSosr25YEPnKOkKU4rf8ksSiF';
-  var meetingNumber = localStorage.getItem("meetingid");
+  var meetingNumber = "81474216355";//localStorage.getItem("meetingid");
   var role = 0;
   var leaveUrl = 'https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/dashboard';
   var userName = localStorage.getItem("nama");
-  // var userEmail = 'endinugroho@gamil.com'
-  // var passWord = 'Lumajang123'
+  var userEmail = 'endinugroho@gmail.com'
+  var passWord = '123456'
   // pass in the registrant's token if your meeting or webinar requires registration. More info here:
   // Meetings: https://marketplace.zoom.us/docs/sdk/native-sdks/web/build/meetings/join#join-registered
   // Webinars: https://marketplace.zoom.us/docs/sdk/native-sdks/web/build/webinars/join#join-registered-webinar
@@ -76,7 +76,7 @@ const App = props => {
 
   function startMeeting(signature) {
     document.getElementById('zmmtg-root').style.display = 'block'
-
+console.log(meetingNumber);
     ZoomMtg.init({
       leaveUrl: leaveUrl,
       success: (success) => {
@@ -88,7 +88,7 @@ const App = props => {
           userName: userName,
           apiKey: apiKey,
           // userEmail: userEmail,
-          // passWord: passWord,
+          passWord: passWord,
           tk: registrantToken,
           success: (success) => {
             console.log(success)
