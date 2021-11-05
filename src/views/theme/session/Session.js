@@ -22,7 +22,9 @@ const { Option } = Select;
 const { Search } = Input;
 const { TextArea } = Input;
 
-
+const rowsColor = "#0075BC";
+const headerColor = "#0075BC";
+const borderColor = "#0075BC";
 
 const ThemeView = () => {
   const [color, setColor] = useState('rgb(255, 255, 255)')
@@ -36,11 +38,11 @@ const ThemeView = () => {
   return (
     <table className="table w-100" ref={ref}>
       <tbody>
-      <tr style={{border: "1px solid rgb(1,77,136)"}}>
+      <tr style={{border: "none"}}>
         <td className="text-muted">HEX:</td>
         <td className="font-weight-bold">{ rgbToHex(color) }</td>
       </tr>
-      <tr style={{border: "1px solid rgb(1,77,136)"}}>
+      <tr style={{border: "none"}}>
         <td className="text-muted">RGB:</td>
         <td className="font-weight-bold">{ color }</td>
       </tr>
@@ -743,6 +745,11 @@ if (anggotast=="ANGGOTA") {
     setKotaselect(value);
   };
 
+  useEffect(() => {
+    if(ws == '-'){
+      setWs('PERTAMA')
+    }
+  },[ws])
 
   const handleChange3 = (value) => {
     console.log(`selected ${value}`);
@@ -1220,262 +1227,267 @@ const pilihanku = (value) =>
           <CRow>
           {ws=="PERTAMA" ?
           <div><p><strong>&nbsp;</strong></p>
-          <p style={{marginLeft:"30px",fontSize:"25px"}}><b>DAY-1: Friday, 10 December 2021</b></p>
-          <table width="90%" style={{marginLeft:"30px", border: "1px solid rgb(1,77,136)"}}>
+          <p style={{marginLeft:"30px", fontSize:"25px"}}><b>DAY-1: Friday, 10 December 2021</b></p>
+          <table width="90%" style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em", border: "none"}}>
           <tbody>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "#0075BC", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><b>TIME</b></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>SESSION</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>SESSION</strong></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>Warm-Up Session</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>BRAINSTROMING, A NEW PERSPECTIVE IN</strong></p>
           <p><strong>CARDIONEUROLOGY</strong></p>
           <p><em>Chairman: tba Panelist: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>DRUG INTERACTION</strong></p>
           <p><strong>&nbsp;</strong></p>
           <p><em>Chairman: tba Panelist: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(08.00 &ndash; 08.20)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Heart-Brain Axis: The Neuroscience Aspects,</strong></p>
           <p><strong>More Than Just Issues</strong></p>
           <p><em>Speaker: tba</em></p>
-          <table style={{borderCollapse:"collapse", width: "124.652px"}} border="0">
-<tbody>
-<tr style={{border: "1px solid rgb(1,77,136)"}}>
-<td style={{width: "228px"}} colspan="3"><b>Zoom data login</b></td>
-</tr>
-{/* <tr style={{border: "1px solid rgb(1,77,136)"}}>
-<td style={{width: "76px"}}>MeetingID</td>
-<td style={{width: "6px"}}>:</td>
-<td style={{width: "140px"}}><input type="text" value={meetingid1} /></td>
-</tr> */}
-{/* <tr style={{border: "1px solid rgb(1,77,136)"}}>
-<td style={{width: "67px"}}>Password</td>
-<td style={{width: "6px"}}>:</td>
-<td style={{width: "149px"}}><input type="password" value="L0hndXQ4aEx1NXlTN1FHUW9yOTJiUT09"/></td>
-</tr> */}
-<tr style={{border: "1px solid rgb(1,77,136)"}}>
-{/* <td style={{width: "76px"}}>&nbsp;</td>
-<td style={{width: "6px"}}>&nbsp;</td> */}
-<td style={{width: "140px"}}><Button type="primary" onClick={() => openInNewTab('https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/theme/zoom/12345', meetingid1)}> Goto Zoom </Button></td>
-</tr>
-</tbody>
-</table>
+          <p>
+          <b>Zoom data login</b>
+          <br/>
+          <Button type="primary" onClick={() => openInNewTab('https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/theme/zoom/12345', meetingid1)}> Goto Zoom </Button>
+          </p> 
+          {/* <table style={{borderCollapse:"collapse", width: "124.652px"}} border="0">
+            <tbody>
+              <tr style={{border: "none"}}>
+                <td style={{width: "228px"}} colspan="3"><b>Zoom data login</b></td>
+              </tr> */}
+              {/* <tr style={{border: "none"}}>
+              <td style={{width: "76px"}}>MeetingID</td>
+              <td style={{width: "6px"}}>:</td>
+              <td style={{width: "140px"}}><input type="text" value={meetingid1} /></td>
+              </tr> */}
+              {/* <tr style={{border: "none"}}>
+              <td style={{width: "67px"}}>Password</td>
+              <td style={{width: "6px"}}>:</td>
+              <td style={{width: "149px"}}><input type="password" value="L0hndXQ4aEx1NXlTN1FHUW9yOTJiUT09"/></td>
+              </tr> */}
+              {/* <tr style={{border: "none"}}> */}
+              {/* <td style={{width: "76px"}}>&nbsp;</td>
+              <td style={{width: "6px"}}>&nbsp;</td> */}
+              {/* <td style={{width: "140px"}}><Button type="primary" onClick={() => openInNewTab('https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/theme/zoom/12345', meetingid1)}> Goto Zoom </Button></td>
+              </tr>
+            </tbody>
+          </table> */}
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Most Common Cardiovascular Drugs</strong> <strong>(HF &amp; CCS)</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(08.20 &ndash; 08.40)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>New Term for Cardiologist : Hemodynamic </strong><strong>Stroke</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>How Common Drug Interaction among In- and Out- </strong><strong>Patients Is?</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(08.40 &ndash; 09.00)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Simultaneous Investigation : Arrhythmia &amp; Clot </strong><strong>Source</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>How Cardiovascular Drugs Should Be Adjusted?</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(09.00 &ndash; 09.10)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Discussion</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Discussion</strong></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p><strong>Morning Symposium</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>PLENARY: RESEARCH FINDINGS IN COVID- </strong><strong>19</strong></p>
           <p><em>Chairman: tba Panelist: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>ACUTE CORONARY SYNDROME</strong></p>
           <p><em>Chairman: tba Panelist: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(09.15 &ndash; 09.35)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>COVID-19: Genomic Variations and Clinical </strong><strong>Manifestations</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Acute Coronary Syndrome: New Insight during Pandemic</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(09.35 &ndash; 09.55)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Plasma Convalescence : Surabaya Experience</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Symptoms to balloon time</strong> <strong>has stronger impacts</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(09.55 &ndash; 10.15)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Covid &amp; Pneumonia : 2 sides of a Coin</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>No More MONACO</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(10.15 &ndash; 10.35)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Cardiac Injury in COVID-19/Arrhthymia</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Introducing A New Kind of ACS: MINOCA</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(10.35 &ndash; 10.55)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Cytokine Storm and Metabolic Problems in COVID-19</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Cath-Lab Dedicated Covid-19: Is It That Urgent?</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(10.55 &ndash; 11.05)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Discussion</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Discussion</strong></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(11.05 &ndash; 12.30)</p>
           </td>
-          <td colspan="2" width="633" style={{paddingLeft:"15px"}}>
+          <td colspan="2" width="633" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>FRIDAY PRAYER</strong></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>Lunch Symposium</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>IN-DEPTH SESSION: BASIC THINGS IN </strong><strong>COVID-19</strong></p>
           <p><em>Chairman: tba</em></p>
           <p><em>Panelist: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>STEMI: FOCUS ON REVASCULARIZATION</strong></p>
           <p><em>Chairman: tba Panelist: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(12.30 &ndash; 12.50)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Pneumonia: Classifications and Stages</strong></p>
           <p><em>Speaker:tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Immediate Thrombolysis in the ER</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(12.50 &ndash; 13.10)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Markers of Inflammation in COVID-19</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>How Thrombolysis Should be Performed?</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(13.10 &ndash; 13.30)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>The Role of Non-Invasive (Echocardiography)</strong></p>
           <p><strong>Monitoring in COVID-19 ICU</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>How To Optimize Myocardial Recovery after STEMI?</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
@@ -1484,169 +1496,169 @@ const pilihanku = (value) =>
           </table>
           <p>&nbsp;</p>
           <p><strong>&nbsp;</strong></p>
-          <table style={{marginLeft:"30px",border: "1px solid blue",width:"90%"}}>
+          <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",border: "none", width:"90%"}}>
           <tbody>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(13.30 &ndash; 13.50)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>&nbsp;</strong></p>
           <p><strong>ECMO in Covid 19 :</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>&nbsp;</strong></p>
           <p><strong>Surabaya STEMI Network</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(13.50 &ndash; 14.10)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Discussion</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Discussion</strong></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>Afternoon Symposium</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>How to Interpret Laboratory Findings: How to Recognize Troponitis Disease</strong></p>
           <p><em>Chairman: tba</em></p>
           <p><em>Panelist: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>ACUTE CARDIAC CARE &ndash; 1</strong></p>
           <p><em>Chairman: tba Panelist: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(14.15 &ndash; 14.35)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>How Actually Troponin Enters The Blood Stream?</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Valvular Disease in Acute Heart Failure</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(14.35 &ndash; 14.55)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>How The Markers Detects Its Existence and How</strong></p>
           <p><strong>Should It be Interpreted?</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Mechanical Ventilation Setting in Acute Heart Failure:</strong></p>
           <p><strong>Some Hints!</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(14.55 &ndash; 15.15)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Synchronizing with The Clinical Constellations</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Nutrition, and Diet for ICCU Patients</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(15.15 &ndash; 15.25)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Discussion</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Discussion</strong></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p><strong>Afternoon Symposium &ndash; 2</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Laboratory Findings in COVID-19: What The </strong><strong>Expert Says? &ndash; 1</strong></p>
           <p><em>Chairman: tba</em></p>
           <p><em>Panelist: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>ACUTE CARDIAC CARE &ndash; 2</strong></p>
           <p><em>Chairman: tba Panelist: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(15.30 &ndash; 15.50)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Blood Gas Analysis in COVID-19 Patients</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>The Present and Future Hope of</strong> <strong>ICCU/CVCU</strong></p>
           <p><em>Speaker : tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(15.50 &ndash; 16.10)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Laboratory FIndings in COVID-19: What Should We Aware Of?</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Post-Operative Care Management: When Anesthesiologist and Cardiologist Hold Hands</strong></p>
           <p><strong>Together</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(16.10 &ndash; 16..20)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>&nbsp;</strong></p>
           <p><strong>Discussion</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>The Present Contributionsof Chest Pain Unit &ndash;</strong></p>
           <p><strong>CVCU :</strong></p>
           <p><em>Speaker : tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(16.20 &ndash; DONE)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Closing</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Closing</strong></p>
           </td>
           </tr>
@@ -1656,272 +1668,272 @@ const pilihanku = (value) =>
           ws=="KEDUA" ?
           <div>          <p><strong>&nbsp;</strong></p>
 
-            <p style={{marginLeft:"30px",fontSize:"25px"}}><strong>DAY 2: Saturday, 11 December 2021</strong></p>
-          <table style={{marginLeft:"30px"}}>
+            <p style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",fontSize:"25px"}}><strong>DAY 2: Saturday, 11 December 2021</strong></p>
+          <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
           <tbody>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>TIME</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>SESSION</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>SESSION</strong></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>Warm-Up </strong><strong>Session</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>CARDIOMETABOLIC SESSION</strong></p>
           <p><em>Chairman: tba Panelist: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>ACUTE HEART FAILURE</strong></p>
           <p><em>Chairman: tba Panelist: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(08.00 &ndash; 08.20)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Diabetes Mellitus and Cardiovascular Outcome</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Door to Furosemide Time</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(08.20 &ndash; 08.40)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>The Metabolic Milieu in Diabetes Mellitus</strong></p>
           <p><em>Speaker:tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Help! I Can&rsquo;t Get The Fluids Out!</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(08.40 &ndash; 09.00)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Cardiometabolic Drugs</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Failure of The Right-Sided Heart</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(09.00 &ndash; 09.10)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Discussion</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Discussion</strong></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p><strong>Morning Symposium</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>PLENARY: CARDIO-ONCOLOGY- </strong><strong>IMMUNOLOGY</strong></p>
           <p><em>Chairman: tba Panelist: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>PREVENTION AND REHABILITATION</strong></p>
           <p><em>Chairman: tba Panelist: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(09.10 &ndash; 09.30)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>How The Heart is Affected?</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Preventing Coronary Artery Disease through Lifestyle Modification</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(09.30 &ndash; 09.50)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Renal Ca: A-Z</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Physical Activity as Protection of Metabolic and Immunological Functions</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(09.50 &ndash; 10.10)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Pulmonary Ca: A-Z</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Cardiovascular Rehabilitation: Current Practice and its Application during Pandemic</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(10.10 &ndash; 10.30)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Breast Cancer</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Sports Recommendations in Heart Failure</strong></p>
           <p><strong>Patients</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(10.30 &ndash; 10.50)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Lymphoma</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Sports Recommendations in Coronary Artery Disease Patients</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(10.50 &ndash; 11.10)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>BPJS: Rule and Regulations of Chemotherapy</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Sports Recommendations in Permanent Pacemaker Patients</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(11.10 &ndash; 11.30)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Discussion</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Discussion</strong></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p><strong>Mid-Day Symposium</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>IN-DEPTH SESSION IN CARDIO-ONCOLOGY</strong></p>
           <p><em>Chairman: tba Panelist: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>ECHOCARDIOGRAPHY SESSION: LUNG ULTRASOUND IN THE DAILY USE</strong></p>
           <p><em>Chairman: tba</em></p>
           <p><em>Panelist:</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(11.35 &ndash; 11.55)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Echocardiography and HS-Troponin Evaluation</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Seeing is Believing: The Next Handled </strong><strong>Diagnostic Tool</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(11.55 &ndash; 12.15)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Thrombus Burden Among Oncology Patients</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Differentiating The Etiologies and Coexistence</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(12.15 &ndash; 12.35)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Anti-Thrombotic Use in Cardio-Oncology Patients</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Lung Ultrasound (from Cardiologist Point of </strong><strong>View)</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(12.35 &ndash; 12.55)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Cardiotoxic Regiments: What to Do?</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Lung Ultrasound (from Pulmonologist Point of </strong><strong>View)</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(12.55 &ndash; 13.05)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Discussion</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Discussion</strong></p>
           </td>
           </tr>
@@ -1929,175 +1941,175 @@ const pilihanku = (value) =>
           </table>
           <p>&nbsp;</p>
           <p><strong>&nbsp;</strong></p>
-          <table style={{marginLeft:"30px"}}>
+          <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
           <tbody>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p><strong>Lunch Symposium</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>ACUTE ISCHEMIC STROKE: THE ROLE OF </strong><strong>CARDIOLOGIST</strong></p>
           <p><em>Chairman: tba Panelist: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>CORONARY INTERVENTION</strong></p>
           <p><em>Chairman: tba </em><em>Panelist tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(13.05 &ndash; 13.25)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Types of Ischemic Stroke and The Role of Anti- Thrombotics</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Anatomical vs Functional PCI (in The Current Appropriateness Era)</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(13.25 &ndash; 13.45)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Cardiac Monitoring After Ischemic Stroke: Evidence and Clinical Practice</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Left Main PCI vs By-Pass Surgery</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(13.45 &ndash; 14.05)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>How Anti-Coagulation be Given in Embolic </strong><strong>Stroke?Bridging</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Chest Pain After PCI: What are The Possible Differential Diagnosis?</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(14.05 &ndash; 14.25)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Blood Pressure Control in Acute Ischemic Stroke</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Anti-Thrombotic Drugs in Elective PCI</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(14.25 &ndash; 14.30)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Discussion</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Discussion</strong></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>Afternoon Symposium</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>ALL ABOUT STATINS</strong></p>
           <p><em>Chairman: tba Panelist: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>OUR BETA-BLOCKERS OF CHOICE</strong></p>
           <p><em>Chairman: tba Panelist: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(14.35 &ndash; 14.55)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>High Intensity Statins and Its Pleiomorphic Effects</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Cardioselectivity in Betablockers</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(14.55 &ndash; 15.15)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>The Sooner, The Better</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Beta-blockers in Pregnancy : When and Which </strong><strong>is the safest</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(15.15 &ndash; 15.35)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Hard End-Points During Hospitalization: Should We Adjust The Dose?</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>IV Metoprolol in Hypertensive Emergency</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(15.35 &ndash; 15.55)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Statin Toxicity and Nocebo Effects</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Metoprolol in Acute MI</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(15.55 &ndash; 16.10)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Discussion</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Discussion</strong></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(16.10 &ndash; DONE)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Closing</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Closing</strong></p>
           </td>
           </tr>
@@ -2105,284 +2117,284 @@ const pilihanku = (value) =>
           </table>
           <p>&nbsp;</p></div>
           : ws=="KETIGA" ?
-          <div>          <p><strong>&nbsp;</strong></p><p style={{marginLeft:"30px",fontSize:"25px"}}><strong>DAY 3: Sunday, 12 December 2021</strong></p>
-          <table style={{marginLeft:"30px"}}>
+          <div>          <p><strong>&nbsp;</strong></p><p style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",fontSize:"25px"}}><strong>DAY 3: Sunday, 12 December 2021</strong></p>
+          <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
           <tbody>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>TIME</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>SESSION</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>SESSION</strong></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p><strong>Warm-Up Session</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>EVALUATION OF CORONARY</strong></p>
           <p><strong>SYNDROME BY CARDIAC IMAGING</strong></p>
           <p><em>Chairman: Serahkan Imaging </em><em>Panelist:</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Acute Cardiac Care&ndash; 2: PPCI BY THE EXPERTS</strong></p>
           <p><em>Chairman: Dr Evit SpJP </em><em>Panelist:</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(08.00 &ndash; 08.20)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Plaque Imaging is The Beauty of Cardiac CT</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Sequences Before Treating The Lesion (Access,</strong></p>
           <p><strong>Guiding, DCA, GW)</strong></p>
           <p><em>Speaker: Dr</em> <em>Yusuf Suseno</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(08.20 &ndash; 08.40)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Implementation of New CCS Guidelines in</strong></p>
           <p><strong>Cardiac CT</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Thrombus Aspiration: How Should It be Performed,</strong></p>
           <p><strong>When to Avoid and Stop</strong></p>
           <p><em>Speaker: Dr Samuel SpJP</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(08.40 &ndash; 09.00)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Functional Test by Cardiac MR</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Stenting: Direct/Defer/Pre-dilatation and stent of </strong><strong>choice</strong></p>
           <p><em>Speaker:Dr Bambang Makssar, SpJP</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(09.00 &ndash; 09.20)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Utilization of Cardiac MR in Coronary Heart </strong><strong>Disease</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Preventive Non-IRA Stenting</strong></p>
           <p><em>Speaker:Dr Christian/Dr Hendri</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(09.20 &ndash; 09.40)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Dobutamin Stress Echo Step by Step</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Cases of Complex PPCI: The Role of Imaging &amp;</strong></p>
           <p><strong>Functional test</strong></p>
           <p><em>Speaker: Dr Fauzi</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(09.40 &ndash; 09.50)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Discussion</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Discussion</strong></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p><strong>Morning Symposium</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>ELECTROPHYSIOLOGY SESSION - 1</strong></p>
           <p><em>Chairman: tba Panelist: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Some Laboratory Findings in COVID-19: What The</strong></p>
           <p><strong>Expert Says? &ndash; 2</strong></p>
           <p><em>Chairman: Dr Wisnu SpJP </em><em>Panelist:</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(09.55 &ndash; 10.15)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Sudden Cardiac Death (SCD) Prevention:</strong></p>
           <p><strong>When to Refer for ICD?</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>HS-Troponin and Cardiac Injury</strong></p>
           <p><em>Speaker: Dr Daniel SpJP</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(10.15 &ndash; 10.35)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>NOAC in SPAF: A Practical Guideline</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>D</strong><em>-</em><strong>Dimer and Thrombosis Risks</strong></p>
           <p><em>Speaker: Prof Yusak</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(10.35 &ndash; 10.55)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>When to Implant Pacemaker in A Patient with</strong></p>
           <p><strong>Syncope?</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Anti-Coagulation and Risk of Bleeding</strong></p>
           <p><em>Speaker: Dr Nadya SpJP</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(10.55 &ndash; 11.15)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>The Future of His Bundle Pacing</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Markers of Inflammation in Critically Ill COVID-19 </strong><strong>Patients</strong></p>
           <p><em>Speaker:Dr Wahyu SpAn</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(11.15 &ndash; 11.25)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Discussion</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Discussion</strong></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p><strong>Lunch Symposium</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>ELECTROPHYSIOLOGY SESSION - 2</strong></p>
           <p><em>Chairman: tba</em></p>
           <p><em>Panelist: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>ACUTE CARDIAC CARE &ndash; 2</strong></p>
           <p><em>Chairman: Dr Aan</em></p>
           <p><em>Panelist:</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(11.30 &ndash; 11.50)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>My Patient Has A Multiple PVC: What to Do </strong><strong>Next?</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Hyperglycemia in Acute Heart Failure: Internist Cardiologist Perspective</strong></p>
           <p><em>Speaker: Dr Yongki SpPD</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(11.50 &ndash; 12.10)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Living Together with Arrythmia</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Pneumonia in Acute Heart Failure: A Very Common</strong></p>
           <p><strong>Co-Existing Finding</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(12.10 &ndash; 12.30)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>PPM Evaluation, PIP Recommendation, PVC and PAC burden</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Acute Kidney Injury and Dilemmatic Renal Shut Down in Acute Heart Failure: The Detailed Attempts</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(12.30 &ndash; 12.50)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>AF: From CC to ABC</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Electrolyte Imbalance in Acute Heart Failure: Potassium &amp; Magnesium</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(12.50 &ndash; 13.10)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Syncope Evaluation</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Fluid and Nutrition in Cardiac Intensive Care Patients</strong></p>
           </td>
           </tr>
@@ -2390,132 +2402,132 @@ const pilihanku = (value) =>
           </table>
           <p>&nbsp;</p>
           <p><strong>&nbsp;</strong></p>
-          <table style={{marginLeft:"30px"}}>
+          <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
           <tbody>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>&nbsp;</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(13.10 &ndash; 13.20)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Discussion</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Discussion</strong></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p><strong>Afternoon Symposium</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>ADULT WITH CONGENITAL HEART DISEASE DURING COVID-19 PANDEMIC</strong></p>
           <p><strong>ARE THEY REALLY AT RISK?</strong></p>
           <p><em>Chairman: tba Panelist: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>CARDIOMYOPATHY : How the Cardiologist Handle it (multiple etiology)</strong></p>
           <p><em>Chairman: tba Panelist: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(13.25 &ndash; 13.45)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Adult with Congenital Heart Disease Risk</strong></p>
           <p><strong>Stratification for Complication in Covid-19</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>ICM : Proven Intervention and Drugs</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(13.45 &ndash; 14.05)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Acute Respiratory Distress Syndrome (ARDS)</strong></p>
           <p><strong>in Covid-19 Patients</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>DCM : Etiologies do matters</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
           <p>(14.05 &ndash; 14.25)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Vaccine in Adult Congenital Heart Disease </strong><strong>Patients</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Sepsis &amp; Covid Induced CM : How often and what&rsquo;ve </strong><strong>we learned ?</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(14.25 &ndash; 14.45)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p>&nbsp;</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>ICD &amp; CRT : Risk Benefit &amp; Convenience</strong></p>
           <p><em>Speaker : tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(14.45 &ndash; 15.05)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p>&nbsp;</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>PPCM :Proven drugs and long term monitoring</strong></p>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(15.05 &ndash; 15.15)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Discussion</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Discussion</strong></p>
           </td>
           </tr>
-          <tr style={{border: "1px solid rgb(1,77,136)"}}>
-          <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="10%">
+          <tr style={{border: "none"}}>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(15.25 &ndash; 15.35)</p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Closing</strong></p>
           </td>
-          <td width="40%" style={{paddingLeft:"15px"}}>
+          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>Closing</strong></p>
           </td>
           </tr>
@@ -2525,26 +2537,26 @@ const pilihanku = (value) =>
             :
             ws=="1" ?
             <div><p><strong>&nbsp;</strong></p>
-            <table style={{marginLeft:"30px"}}>
+            <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
             <tbody>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Workshop 1</p>
             </td>
             <td colspan="2" width="496" style={{marginLeft:"15px"}}>
             <p>For Cardiologist, Obstetricians and Gynecologist</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Topic</p>
             </td>
             <td colspan="2" width="496" style={{marginLeft:"15px"}}>
             <p>Pregnancy and Heart Disease: What is the Most Common Cardiovascular Problem on It?</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Day, date</p>
             </td>
             <td colspan="2" width="496" style={{marginLeft:"15px"}}>
@@ -2552,57 +2564,57 @@ const pilihanku = (value) =>
             <p>WIB</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Course Director</p>
             </td>
             <td colspan="2" width="496" style={{marginLeft:"15px"}}>
             <p>Alisia Yuana Putri, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>PIC</p>
             </td>
             <td colspan="2" width="496" style={{marginLeft:"15px"}}>
             <p>Irma Maghfirah, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Moderator</p>
             </td>
             <td colspan="2" width="496" style={{marginLeft:"15px"}}>
             <p>Alisia Yuana Putri, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Time</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Topic</p>
             </td>
             <td width="211">
             <p>Speakers</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>07.30 &ndash; 08.00</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Registrasi</p>
             </td>
             <td width="211">
             <p>PIC &amp; Committee</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>08.00 - 08.10</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Opening by Moderator</p>
             <p>Welcome speech by Course Director</p>
             </td>
@@ -2610,11 +2622,11 @@ const pilihanku = (value) =>
             <p>Dr. Alisia Yuana Putri, Sp.JP</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>8.10-8.30</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>What the OBG/YN need to know from</p>
             <p>Cardiologist? : The Sacred Question</p>
             </td>
@@ -2622,11 +2634,11 @@ const pilihanku = (value) =>
             <p>Dr. Manggala Sp.OG (Surabaya)</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>8.30-8.50</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>From HT in Pregnancy into Pre-Eclampsia and Pulmonary Edema in Pregnancy: How to Choose</p>
             <p>the Safest Cardiovascular Drugs?</p>
             </td>
@@ -2634,11 +2646,11 @@ const pilihanku = (value) =>
             <p>Dr. Alisia Yuana Putri SpJP (Surabaya)</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>8.50-9.10</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Pregnant Woman with Arrythmia Problems:</p>
             <p>Multiple PVC and SVT, is it Dangerous? When Holter Should be Considered?</p>
             </td>
@@ -2646,66 +2658,66 @@ const pilihanku = (value) =>
             <p>Dr. Hauda SpJP (Padang)</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>9.10-9.40</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Case interactive</p>
             </td>
             <td width="211">
             <p>Dr. Irma Maghfirah SpJP</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>9.40-9.55</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Break</p>
             </td>
             <td width="211">
             <p>Panitia</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>9.55-10.15</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Fetal Dysrhythmia: What Cardiologist Should Know?</p>
             </td>
             <td width="211">
             <p>Dr. Erika Maharani SpJP (Yogyakarta)</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>10.15-10.35</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Dyspnea while Pregnant, When We Need to be Aware? : ECHO hands on Evaluate the Mother&rsquo;s Heart</p>
             </td>
             <td width="211">
             <p>Dr. Melawati Hasan SpJP (Bandung)</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>10.35-11.15</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Case interactive (2)</p>
             </td>
             <td width="211">
             <p>Dr. Alisia Yuana Putri, Sp.JP</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>11.15-11.30</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Closing by Moderator Quiz</p>
             <p>Questionnaire Doorprize</p>
             <p>Photo session</p>
@@ -2720,83 +2732,83 @@ const pilihanku = (value) =>
             :
             ws=="2" ?
             <div><p><strong>&nbsp;</strong></p>
-            <table style={{marginLeft:"30px"}}>
+            <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
             <tbody>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Workshop 2</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>For Cardiologist</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Topic</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Perioperative Cardiac Consultation</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Day, date</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Saturday, November 27<sup>th</sup> 2021 , Pk 12.30 - 15.30WIB</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Course Director</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Christian Pramudita B., MD,FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>PIC</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>-</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Moderator</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Christian Pramudita B., MD,FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Time</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Topic</p>
             </td>
             <td width="203">
             <p>Speakers</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>12.30 &ndash; 13.00</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Registration</p>
             </td>
             <td width="203">
             <p>PIC &amp; Committee</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>13.00-13.10</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Opening by Moderator</p>
             <p>Welcome speech by Course Director</p>
             </td>
@@ -2804,66 +2816,66 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>13.10 - 13.30</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Anesthesia and Cardiac Perioperative Care</p>
             </td>
             <td width="203">
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>13.30 - 13.50</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Detecting Unstable Cardiac Condition</p>
             </td>
             <td width="203">
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>13.50 &ndash; 14.10</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Perioperative Cardiac Rhythm Disturbance</p>
             </td>
             <td width="203">
             <p>Rerdin Julario. MD,FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>14.10 - 14.30</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Antiplatelet and Anticoagulation in Perioperative Periods</p>
             </td>
             <td width="203">
             <p>Yudi Her Oktaviono , MD, PhD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>14.30 -15.10</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Discussion</p>
             </td>
             <td width="203">
             <p>All speakers</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>15.10 -15.30</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Closing by Moderator</p>
             <p>Kuis Kuesioner Doorprize</p>
             <p>Photo session</p>
@@ -2878,75 +2890,75 @@ const pilihanku = (value) =>
             :
             ws=="3" ?
             <div><p><strong>&nbsp;</strong></p>
-            <table style={{marginLeft:"30px"}}>
+            <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
             <tbody>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Workshop 3</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>For General Practitioner, Cardiologist, Physiotherapist, Nurse, other Specialists</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Topic</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Stay Fit, Don't Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Day, date</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Sunday, November 28<sup>th</sup> 2021, 07.30 &ndash; 10.30 WIB</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Course Director</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Dyana Sarvasti, MD, PhD</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>PIC</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Arisya Agita, MD</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Time</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Topic</p>
             </td>
             <td width="203">
             <p>Speakers</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>07.30 &ndash; 08.00</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Registration</p>
             </td>
             <td width="203">
             <p>PIC &amp; Committee</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>08.00 - 08.10</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Opening by Moderator</p>
             <p>Welcome speech by Course Director</p>
             </td>
@@ -2954,11 +2966,11 @@ const pilihanku = (value) =>
             <p>Moderator</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>08.10 &ndash; 08.40</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>The practical impacts of exercise prescription for coronary artery disease patients on Covid-19</p>
             <p>pandemic</p>
             </td>
@@ -2966,11 +2978,11 @@ const pilihanku = (value) =>
             <p>Dyana Sarvasti, MD, PhD</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>08.40 &ndash; 09.10</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Exercise programsfor heart failure patient in the</p>
             <p>time of Covid-19</p>
             </td>
@@ -2978,11 +2990,11 @@ const pilihanku = (value) =>
             <p>Basuni Radi, MD, PhD</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>09.10 &ndash; 09.40</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Don't stop walking: Exercise programs for</p>
             <p>peripheral artery disease patients during the Covid-19 Pandemic</p>
             </td>
@@ -2990,22 +3002,22 @@ const pilihanku = (value) =>
             <p>Meity Ardiana, MD, PhD</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>09.40 &ndash; 10.10</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Case interactive and discussion</p>
             </td>
             <td width="203">
             <p>All Speakers and Moderator</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>10.10-10.30</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Closing by Moderator Quiz</p>
             <p>Questionnaire</p>
             <p>Doorprize Photo session</p>
@@ -3023,83 +3035,83 @@ const pilihanku = (value) =>
             :
             ws=="5" ?
             <div><p><strong>&nbsp;</strong></p>
-            <table style={{marginLeft:"30px"}}>
+            <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
             <tbody>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Workshop 5</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>For General Practitioner, Cardiologist</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Topic</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>AF Management in the ER, Consultant Cardiologist do their jobs</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Day, Date</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Saturday, December 4<sup>th</sup> 2021, 07.30 &ndash; 11.00 WIB</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Course Director</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>dr. Farhanah Meutia, SpJP (K)</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>PIC</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Dr. Vianney Tedjamulai, Sp. Biomed., Sp.JP</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Moderator</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>dr. Farhanah Meutia, SpJP (K)</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Time</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Topic</p>
             </td>
             <td width="203">
             <p>Speakers</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>07.30 &ndash; 08.00</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Registrasi</p>
             </td>
             <td width="203">
             <p>PIC &amp; Committee</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>08.00 - 08.10</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Opening by Moderator</p>
             <p>Welcome speech by Course Director</p>
             </td>
@@ -3107,11 +3119,11 @@ const pilihanku = (value) =>
             <p>Farhanah Meutia, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>8. 10 &ndash; 9.00</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>The underlying causes of atrial fibrillation with</p>
             <p>rapid ventricular response</p>
             </td>
@@ -3119,11 +3131,11 @@ const pilihanku = (value) =>
             <p>Andrianto, MD, PhD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>9.00 &ndash; 9.50</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>The principles of emergency management of atrial</p>
             <p>fibrillation, beyond the guidelines.</p>
             </td>
@@ -3132,11 +3144,11 @@ const pilihanku = (value) =>
             <p>FIHA, FESC</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>9.50 &ndash; 10.40</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Deeper insight of pharmacological agent for emergency ventricular rate control and</p>
             <p>cardioversion</p>
             </td>
@@ -3144,11 +3156,11 @@ const pilihanku = (value) =>
             <p>Tri Astiawati, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>10.40 &ndash; 11.00</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Closing by Moderator</p>
             <p>Quiz Questionnaire Doorprize</p>
             <p>Photo session</p>
@@ -3163,83 +3175,83 @@ const pilihanku = (value) =>
             :
             ws=="6" ?
             <div><p><strong>&nbsp;</strong></p>
-            <table style={{marginLeft:"30px"}}>
+            <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
             <tbody>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Workshop 6</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>For General Practitioner, Cardiologist</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Topic</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Cardiovascular Evaluation in Hajj Pilgrim</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Day, date</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Saturday, 4<sup>th</sup> December 2021 , 12.30 &ndash; 16.00 WIB</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Course Director</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Anindita P. Q, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>PIC</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Lenny Kartika S, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Moderator</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Anindita P. Q, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Time</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Topic</p>
             </td>
             <td width="203">
             <p>Speakers</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>12.30 &ndash; 13.00</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Registrasi</p>
             </td>
             <td width="203">
             <p>PIC &amp; Committee</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>13.00-13.10</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Opening by Moderator</p>
             <p>Welcome speech by Course Director</p>
             </td>
@@ -3247,44 +3259,44 @@ const pilihanku = (value) =>
             <p>Anindita P. Q, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>13.10-13.30</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>How screening should be performed</p>
             </td>
             <td width="203">
             <p>-</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>13.30-13.50</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>The Role of Cardiac Stress Test</p>
             </td>
             <td width="203">
             <p>Cholid Tri Tjahjono, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>13.50-14.10</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>How HF patient should be optimized</p>
             </td>
             <td width="203">
             <p>Susetyo Atmojo, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>14.10-14.30</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>How CAD should be evaluated</p>
             </td>
             <td width="203">
@@ -3292,11 +3304,11 @@ const pilihanku = (value) =>
             <p>FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>14.30-15.00</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Most common emergency Acute CV Care during</p>
             <p>Hajj</p>
             </td>
@@ -3304,11 +3316,11 @@ const pilihanku = (value) =>
             <p>Mirvat Alasnag, MD</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>15.00-15.30</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Most common cardiac sign &amp; symptoms during</p>
             <p>hajj and its recommendation</p>
             </td>
@@ -3316,22 +3328,22 @@ const pilihanku = (value) =>
             <p>Faisal, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>15.30-15.45</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Discussion</p>
             </td>
             <td width="203">
             <p>Anindita P. Q, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>15.45-16.00</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Closing by Moderator Quiz</p>
             <p>Questionnaire Doorprize Photo session</p>
             </td>
@@ -3348,83 +3360,83 @@ const pilihanku = (value) =>
             :
             ws=="8" ?
             <div><p><strong>&nbsp;</strong></p>
-            <table style={{marginLeft:"30px"}}>
+            <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
             <tbody>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Workshop 8</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>For Cardiologist</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Topic</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Practical approach to non-invasive ventilation in acute heart failure</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Day, Date</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Sunday, December 5<sup>th</sup> 2021, 12.30 &ndash; 16.35 WIB</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Course Director</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Hendri Susilo, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>PIC</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>-</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Moderator</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Hendri Susilo, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Time</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Topic</p>
             </td>
             <td width="203">
             <p>Speakers</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>12.30 - 13.00</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Registration</p>
             </td>
             <td width="203">
             <p>PIC &amp; Committee</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>13.00 - 13.10</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Opening by Moderator</p>
             <p>Welcome speech by Course Director</p>
             </td>
@@ -3432,11 +3444,11 @@ const pilihanku = (value) =>
             <p>Hendri Susilo, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>13.10 - 13.50</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Basic Principles of Noninvasive Ventilation in Acute Heart Failure: Indications,</p>
             <p>Contraindications, dan Modalities</p>
             </td>
@@ -3444,11 +3456,11 @@ const pilihanku = (value) =>
             <p>Dian Zamroni, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>13.50 -14.30</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Initial Setting of Noninvasive Ventilation: HFNC,</p>
             <p>CPAP, BIPAP</p>
             </td>
@@ -3456,11 +3468,11 @@ const pilihanku = (value) =>
             <p>Triwedya Indra Dewi, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>14.30 -15.10</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Monitoring and Weaning of Noninvasive</p>
             <p>Ventilation: Reassessment of Clinical Improvement</p>
             </td>
@@ -3468,11 +3480,11 @@ const pilihanku = (value) =>
             <p>Farhanah Meutia, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>15.10 -15.50</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Case presentations and simulations: The role of</p>
             <p>NIV in Acte HF</p>
             </td>
@@ -3480,22 +3492,22 @@ const pilihanku = (value) =>
             <p>Akhtar Fajar Muzakir, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>15.50 -16.20</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Discussion</p>
             </td>
             <td width="203">
             <p>Hendri Susilo, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>16.20 -16.35</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Closing by Moderator</p>
             <p>Quiz Questionnaire Doorprize Photo session</p>
             </td>
@@ -3509,83 +3521,83 @@ const pilihanku = (value) =>
             :
             ws=="9" ?
             <div><p><strong>&nbsp;</strong></p>
-            <table style={{marginLeft:"30px"}}>
+            <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
             <tbody>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Workshop 9</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>For GP, other specialists</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Topic</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Practical Approach in Emergency Arrythmias</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Day, date</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Friday, 10 December 2021, 07.30 &ndash; 11.15 WIB</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Course Director</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Anna Budiarti, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>PIC</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Windu Prima, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Moderator</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Anna Budiarti, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Time</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Topic</p>
             </td>
             <td width="203">
             <p>Speakers</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>07.30 - 08.00</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Administration</p>
             </td>
             <td width="203">
             <p>PIC &amp; Committee</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>08.00 - 08.15</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Opening by Moderator</p>
             <p>Welcome speech by Course Director</p>
             </td>
@@ -3593,11 +3605,11 @@ const pilihanku = (value) =>
             <p>Windu Prima, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>08.15 - 08.40</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Management of Arrhythmic Patients in the</p>
             <p>Emergency Department: General Principles</p>
             </td>
@@ -3605,44 +3617,44 @@ const pilihanku = (value) =>
             <p>M. Rafdi Amadis, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>08.40 - 09.05</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Management of Bradyarrhythmias in Emergency</p>
             </td>
             <td width="203">
             <p>Ragil Nur Rosyadi, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>09.05 - 09.15</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Discussion (QnA)</p>
             </td>
             <td width="203">
             <p>All speakers</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>09.15 - 09.40</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Supraventricular Arrhythmias in Emergency</p>
             </td>
             <td width="203">
             <p>Anna Budiarti, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>09.40 - 10.05</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Atrial Flutter and Fibrillation in the Emergency</p>
             <p>Setting</p>
             </td>
@@ -3650,11 +3662,11 @@ const pilihanku = (value) =>
             <p>Budi Baktijasa, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>10.05 - 10.30</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Wide QRS Complex Tachycardia in the</p>
             <p>Emergency Setting</p>
             </td>
@@ -3662,11 +3674,11 @@ const pilihanku = (value) =>
             <p>Rerdin Julario, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>10.30 - 10.50</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Case Interactive : Bradicardia Symptomatic and</p>
             <p>Life Threatening Arrhythmias</p>
             </td>
@@ -3674,22 +3686,22 @@ const pilihanku = (value) =>
             <p>Windu Prima, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>10.50 - 11.00</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Discussion (QnA)</p>
             </td>
             <td width="203">
             <p>All speakers</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>11.00 - 11.15</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Closing by Moderator Quiz</p>
             <p>Questionnaire Doorprize</p>
             <p>Photo session</p>
@@ -3704,18 +3716,18 @@ const pilihanku = (value) =>
             :
             ws=="10" ?
             <div><p><strong>&nbsp;</strong></p>
-            <table style={{marginLeft:"30px"}}>
+            <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
             <tbody>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Workshop 10</p>
             </td>
             <td colspan="2" width="539">
             <p>Untuk GP, Nurse</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Topik</p>
             </td>
             <td colspan="2" width="539">
@@ -3723,65 +3735,65 @@ const pilihanku = (value) =>
             <p>Terapi Trombolitik</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Hari, Tanggal</p>
             </td>
             <td colspan="2" width="539">
             <p>Jumat, 10 Desember 2021, 12.30 &ndash; 16.00 WIB</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Course Director</p>
             </td>
             <td colspan="2" width="539">
             <p>Hendri Susilo, dr., Sp.JP.</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>PIC</p>
             </td>
             <td colspan="2" width="539">
             <p>Liemena Harold A., dr., Sp.JP</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Moderator</p>
             </td>
             <td colspan="2" width="539">
             <p>R. Endang Herlianingsih, S.Kep., Ns., MM</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Waktu</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Topik</p>
             </td>
             <td width="255">
             <p>Pembicara</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>12.30 &ndash; 13.00</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Registrasi</p>
             </td>
             <td width="255">
             <p>PIC &amp; Panitia</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>13.00 &ndash; 13.10</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Opening by Moderator</p>
             <p>Welcome speech and workshop overview by Course Director</p>
             <p>Pre-test</p>
@@ -3790,22 +3802,22 @@ const pilihanku = (value) =>
             <p>R. Endang Herlianingsih, S.Kep., Ns., MM</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>13.10 &ndash; 13.40</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Memilih pasien yang tepat untuk trombolisis: indikasi, kontraindikasi, dan informasi pasien</p>
             </td>
             <td width="255">
             <p>Hendri Susilo, dr., Sp.JP</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>13.40 &ndash; 14.10</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Persiapan, pemberian, dan pemantauan</p>
             <p>trombolisis: persiapan terbaik dan waspadai komplikasinya</p>
             </td>
@@ -3813,22 +3825,22 @@ const pilihanku = (value) =>
             <p>Aang Kunaefi, S.Kep., Ns., M.Kep.</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>14.10 &ndash; 14.40</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Manajemen komplikasi (<em>adverse event</em>) selama dan pasca pemberian trombolisis</p>
             </td>
             <td width="255">
             <p>Christian Pramudhita, dr., Sp.JP</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>14.40 &ndash; 15.10</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Menilai keberhasilan trombolisis dan peran</p>
             <p>pemberian ko-terapi antitrombotik</p>
             </td>
@@ -3836,11 +3848,11 @@ const pilihanku = (value) =>
             <p>Liemena Harold Adrian, dr., Sp.JP</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>15.10 &ndash; 15.40</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Presentasikasus</p>
             <p>Diskusi</p>
             </td>
@@ -3849,11 +3861,11 @@ const pilihanku = (value) =>
             <p>Semua Pembicara</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>15.40 &ndash; 16.00</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Closingby Moderator</p>
             <p>Post-test Kuesioner Doorprize</p>
             <p>Sesi foto bersama</p>
@@ -3868,58 +3880,58 @@ const pilihanku = (value) =>
             :
             ws=="11" ?
             <div><p><strong>&nbsp;</strong></p>
-            <table style={{marginLeft:"30px"}}>
+            <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
             <tbody>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Workshop 11</p>
             </td>
             <td colspan="2" width="532">
             <p>For GP, Radiologist, Anesthesiologist</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Topic</p>
             </td>
             <td colspan="2" width="532">
             <p>Rapid Echocardiography in Emergency Setting</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Day, date</p>
             </td>
             <td colspan="2" width="532">
             <p>Saturday, 11 December 2021, 07.30 &ndash; 11.00 WIB</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Course Director</p>
             </td>
             <td colspan="2" width="532">
             <p>Ruthvi Adriana, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>PIC</p>
             </td>
             <td colspan="2" width="532">
             <p>Deasy Eka Wardhani, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Moderator</p>
             </td>
             <td colspan="2" width="532">
             <p>Deasy Eka Wardhani, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Time</p>
             </td>
             <td width="345">
@@ -3929,8 +3941,8 @@ const pilihanku = (value) =>
             <p>Speakers</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>07.30 &ndash; 08.00</p>
             </td>
             <td width="345">
@@ -3940,8 +3952,8 @@ const pilihanku = (value) =>
             <p>PIC &amp; Committee</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>08.00 &ndash; 08.10</p>
             </td>
             <td width="345">
@@ -3952,8 +3964,8 @@ const pilihanku = (value) =>
             <p>Deasy Eka Wardhani, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>08.10 &ndash; 08.25</p>
             </td>
             <td width="345">
@@ -3964,8 +3976,8 @@ const pilihanku = (value) =>
             <p>Ruthvi Adriana, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>08.25&ndash; 08.40</p>
             </td>
             <td width="345">
@@ -3975,8 +3987,8 @@ const pilihanku = (value) =>
             <p>Suryono, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>08.40&ndash; 08.55</p>
             </td>
             <td width="345">
@@ -3986,8 +3998,8 @@ const pilihanku = (value) =>
             <p>Ari Rahmawati, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>08.55&ndash; 09.15</p>
             </td>
             <td width="345">
@@ -3998,8 +4010,8 @@ const pilihanku = (value) =>
             <p>All speakers</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>09.15&ndash; 09.25</p>
             </td>
             <td width="345">
@@ -4009,8 +4021,8 @@ const pilihanku = (value) =>
             <p>All speakers</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>09.25- 09.40</p>
             </td>
             <td width="345">
@@ -4020,8 +4032,8 @@ const pilihanku = (value) =>
             <p>Sany R.Siswardana, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>09.40-10.00</p>
             </td>
             <td width="345">
@@ -4031,8 +4043,8 @@ const pilihanku = (value) =>
             <p>All speakers</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>10.00- 10.45</p>
             </td>
             <td width="345">
@@ -4042,8 +4054,8 @@ const pilihanku = (value) =>
             <p>Rosi Amrilla Fagi, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>10.45 &ndash; 11.00</p>
             </td>
             <td width="345">
@@ -4061,83 +4073,83 @@ const pilihanku = (value) =>
             :
             ws=="12" ?
             <div><p><strong>&nbsp;</strong></p>
-            <table style={{marginLeft:"30px"}}>
+            <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
             <tbody>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Workshop 12</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>For Cardiologist</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Topic</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Diagnostic Modalities in Congenital Heart Disease : Focus on VSD and TOF</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Day, date</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Saturday, December 11<sup>th</sup> 2021, Pk 07.30 &ndash; 11.30 WIB</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Course Director</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Anudya Kartika Ratri, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>PIC</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Anudya Kartika Ratri, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Moderator</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Anudya Kartika Ratri, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Time</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Topic</p>
             </td>
             <td width="203">
             <p>Speakers</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>07.30 &ndash; 08.00</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Registrasi</p>
             </td>
             <td width="203">
             <p>PIC &amp; Committee</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>08.00 - 08.10</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Opening by Moderator</p>
             <p>Welcome speech by Course Director</p>
             </td>
@@ -4145,11 +4157,11 @@ const pilihanku = (value) =>
             <p>Anudya Kartika Ratri, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>8.10-8.30</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Sequential Approach for Congenital Heart Disease Echocardiography</p>
             <p><em>Dr. dr. Mahrus A. Rahman SpA(K)</em></p>
             <p>(materi 15 menit, diskusi 5 menit)</p>
@@ -4158,11 +4170,11 @@ const pilihanku = (value) =>
             <p>Mahrus A. Rahman, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>8.30-8.50</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Echocardiographic Evaluation in VSD : Defect Size and Morphology</p>
             <p><em>dr. Agus Subagjo SpJP(K)</em></p>
             <p>(materi 15 menit, diskusi 5 menit)</p>
@@ -4171,33 +4183,33 @@ const pilihanku = (value) =>
             <p>Agus Subagjo, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>8.50-9.30</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Case Interactive-Discussion</p>
             </td>
             <td width="203">
             <p>-</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>9.30-9.45</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Break</p>
             </td>
             <td width="203">
             <p>Committee</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>9.45-10.05</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Echocardiographyin TOF : Practice Essentials</p>
             <p><em>dr. Poppy S. Roebiono SpJP(K)</em></p>
             <p>(materi 15 menit, diskusi 5 menit)</p>
@@ -4206,11 +4218,11 @@ const pilihanku = (value) =>
             <p>Poppy S. Roebiono, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>10.05-10.25</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Right and Left Heart Catheterization Pearls in CHD (Shunt quantificationand Hemodynamic Measurement)</p>
             <p><em>dr. Radityo Prakoso SpJP(K)</em></p>
             <p>(materi 15 menit, diskusi 5 menit)</p>
@@ -4219,22 +4231,22 @@ const pilihanku = (value) =>
             <p>Radityo Prakoso, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>10.25-11.05</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Case Interactive-Discussion</p>
             </td>
             <td width="203">
             <p>-</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>11.05-11.30</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Closing by Moderator Quiz</p>
             <p>Questionnaire Doorprize Photo session</p>
             </td>
@@ -4248,75 +4260,75 @@ const pilihanku = (value) =>
             :
             ws=="13" ?
             <div><p><strong>&nbsp;</strong></p>
-            <table style={{marginLeft:"30px"}}>
+            <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
             <tbody>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Workshop 13</p>
             </td>
             <td colspan="2" width="515">
             <p>For GP, other specialists</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Topic</p>
             </td>
             <td colspan="2" width="515">
             <p>Advanced in Diagnosing Acute Heart Failure</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Day, date</p>
             </td>
             <td colspan="2" width="515">
             <p>Saturday, December 11<sup>th</sup> 2021, 12.30 &ndash; 16.00 WIB</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Course Director</p>
             </td>
             <td colspan="2" width="515">
             <p>Christian Pramudita B., MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>PIC</p>
             </td>
             <td colspan="2" width="515">
             <p>Windu Prima, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Time</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Topic</p>
             </td>
             <td width="231">
             <p>Speakers</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>12.30 &ndash; 13.00</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Registration</p>
             </td>
             <td width="231">
             <p>PIC &amp; Committee</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>13.00-13.10</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Opening by Moderator</p>
             <p>Welcome speech by Course Director</p>
             </td>
@@ -4324,11 +4336,11 @@ const pilihanku = (value) =>
             <p>Christian Pramudita B., MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>13.10-13.30</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Universal Definition and Classification of Heart Failure</p>
             <p>(Usul: Devie Caroline., dr., Sp.JP, FIHA)</p>
             </td>
@@ -4336,11 +4348,11 @@ const pilihanku = (value) =>
             <p>Devie Caroline., MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>13.30-13.50</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Heart Failure: Pathophysiology From Acute to</p>
             <p>Chronic</p>
             <p>(Usul: Ahmad Surya Darma, dr., Sp.JP, FIHA)</p>
@@ -4349,22 +4361,22 @@ const pilihanku = (value) =>
             <p>Ahmad Surya Darma, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>13.50-14.10</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Principal Therapy of Acute Heart Failure Usul: Nia Dyah, dr., Sp,JP, FIHA)</p>
             </td>
             <td width="231">
             <p>Nia Dyah, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>14.10-14.30</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Management of Cardiogenic Shock</p>
             <p>(Usul: Muhammad Perdana Airlangga dr., Sp.JP, FIHA)</p>
             </td>
@@ -4372,11 +4384,11 @@ const pilihanku = (value) =>
             <p>Muhammad Perdana Airlangga, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>14.30 &ndash; 15.10</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Interactive Case:</p>
             <p>(Usul: Christian Pramudita B., dr., Sp.JP)</p>
             </td>
@@ -4384,22 +4396,22 @@ const pilihanku = (value) =>
             <p>Christian Pramudita B., MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>15.10 &ndash; 15.30</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Discussion</p>
             </td>
             <td width="231">
             <p>Moderator</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>15.30 &ndash; 16.00</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Closing by Moderator Quiz</p>
             <p>Questionnaire Doorprize</p>
             <p>Photo session</p>
@@ -4414,94 +4426,94 @@ const pilihanku = (value) =>
             :
             ws=="14" ?
             <div><p><strong>&nbsp;</strong></p>
-            <table style={{marginLeft:"30px"}}>
+            <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
             <tbody>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Workshop 14</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>For Interventional Cardiologists, General Cardiologists</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Topic</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>How to Deal with Heavy Coronary Calcified Lesion in PCI?</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Day, date</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Saturday, 5 December 2021, 12.30 &ndash; 16.25 WIB</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Course Director</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Aldhi Pradana H, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>PIC</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Suryo Ardi Hutomo, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Moderator</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Suryo Ardi Hutomo, MD, FIHA / Aldhi Pradana H, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Panelists</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>-Iswanto Pratanu</p>
             <p>-I Gde Rurus Surya wan</p>
             <p>-Doni Firman</p>
             <p>-Sodiqur Rifqi</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Time</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Topic</p>
             </td>
             <td width="203">
             <p>Speakers</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>12.30 &ndash; 13.00</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Administration</p>
             </td>
             <td width="203">
             <p>PIC &amp; Committee</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>13.00-13.10</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Opening by Moderator</p>
             <p>Welcome speech by Course Director</p>
             </td>
@@ -4509,22 +4521,22 @@ const pilihanku = (value) =>
             <p>Aldhi Pradana H, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>13.10-13.30</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Learning the Fundamental Aspects of Coronary Calcified Lesion</p>
             </td>
             <td width="203">
             <p>Yudi Her Oktaviono , MD, PhD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>13.30-13.50</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Intracoronary Imaging for Calcification Detection</p>
             <p>and Quantification</p>
             </td>
@@ -4532,11 +4544,11 @@ const pilihanku = (value) =>
             <p>Amir Aziz Alkatiri, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>13.50-14.10</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>PCI Technique to beat Calcified Lesion: from</p>
             <p>lesion prepa ration to stent delivery</p>
             </td>
@@ -4544,44 +4556,44 @@ const pilihanku = (value) =>
             <p>Teguh Santoso, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>14.10-14.40</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Discussion</p>
             </td>
             <td width="203">
             <p>Moderator</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>14.40-15.00</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Break</p>
             </td>
             <td width="203">
             <p>Committee</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>15.00-15.20</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Rotablation, when and how?</p>
             </td>
             <td width="203">
             <p>Muhammad Munawar, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>15.20-15.40</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Complications of Calcified Lesion PCI, Learning</p>
             <p>from Cases</p>
             </td>
@@ -4589,22 +4601,22 @@ const pilihanku = (value) =>
             <p>dr. Samuel Sudanawidjaya, Sp.JP</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>15.40-16.10</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Discussion</p>
             </td>
             <td width="203">
             <p>Moderator</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>16.10-16.25</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Closing by Moderator Quiz</p>
             <p>Questionnaire Doorprize Photo session</p>
             </td>
@@ -4618,83 +4630,83 @@ const pilihanku = (value) =>
             :
             ws=="15" ?
             <div><p><strong>&nbsp;</strong></p>
-            <table style={{marginLeft:"30px"}}>
+            <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
             <tbody>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Workshop 15</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>For Cardiologist and Radiologist</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Topic</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Cardiomyopathy Evaluation by Cardiac MR</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Day, date</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Sunday, 12 December 2021, 07.30 &ndash; 11.15 WIB</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Course Director</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Saskia Dyah Handari, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>PIC</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Adityo B, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Moderator</p>
             </td>
-            <td colspan="2" width="487" style={{paddingLeft:"15px"}}>
+            <td colspan="2" width="487" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Rachfita C. G. D, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Time</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Topic</p>
             </td>
             <td width="203">
             <p>Speakers</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>07.30-08.00</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Registration</p>
             </td>
             <td width="203">
             <p>PIC &amp; Committee</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>08.00-08.10</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Opening by Moderator</p>
             <p>Welcome speech by Course Director</p>
             </td>
@@ -4702,44 +4714,44 @@ const pilihanku = (value) =>
             <p>Moderator</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>08.10-08.30</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Etiology of cardiomyopathy</p>
             </td>
             <td width="203">
             <p>Saskia Dyah Handari, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>08.30-08.50</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Clinical implication of fibrosis on EP study</p>
             </td>
             <td width="203">
             <p>Rerdin Julario, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>08.50-09.10</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Right heart dysfunction evaluation</p>
             </td>
             <td width="203">
             <p>Elen, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>09.10-09.30</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>T2 mapping, the new kids on the block in Cardiac</p>
             <p>MR</p>
             </td>
@@ -4748,22 +4760,22 @@ const pilihanku = (value) =>
             <p>Clinic, Ohio, USA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>9.30-11.00</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Case discussion</p>
             </td>
             <td width="203">
             <p>All Speakers and Moderator</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>11.00-11.15</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Closing by Moderator Quiz</p>
             <p>Questionnaire Doorprize Photo session</p>
             </td>
@@ -4777,83 +4789,83 @@ const pilihanku = (value) =>
             :
             ws=="16" ?
             <div><p><strong>&nbsp;</strong></p>
-            <table style={{marginLeft:"30px"}}>
+            <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
             <tbody>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Workshop 16</p>
             </td>
             <td colspan="2" width="539">
             <p>For Cardiologist and Radiologist</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Topic</p>
             </td>
             <td colspan="2" width="539">
             <p>Cardiac CT in Coronary Artery and Beyond</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Day, Date</p>
             </td>
             <td colspan="2" width="539">
             <p>Sunday, 12 December 2021, 12.30 &ndash; 16.15 WIB</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Course Director</p>
             </td>
             <td colspan="2" width="539">
             <p>Saskia Dyah Handari, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>PIC</p>
             </td>
             <td colspan="2" width="539">
             <p>Adityo B, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Moderator</p>
             </td>
             <td colspan="2" width="539">
             <p>Anna Fuji R, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>Time</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Topic</p>
             </td>
             <td width="255">
             <p>Speakers</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>12.30-13.00</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Registration</p>
             </td>
             <td width="255">
             <p>PIC &amp; Committee</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>13.00-13.10</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Opening by Moderator</p>
             <p>Welcome speech by Course Director</p>
             </td>
@@ -4861,22 +4873,22 @@ const pilihanku = (value) =>
             <p>Anna Fuji R, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>13.10-13.30</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Calcium score as a screening tools</p>
             </td>
             <td width="255">
             <p>Endah Dewati K, MD, FIHA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>13.30-13.50</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>CT angiography post coronary procedur -</p>
             </td>
             <td width="255">
@@ -4884,22 +4896,22 @@ const pilihanku = (value) =>
             <p>London, UK</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>13.50-14.10</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>CT aorta to peripheral</p>
             </td>
             <td width="255">
             <p>dr. Cindy Sadikin, Sp. Rad, Surabaya</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>14.10-14.30</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>CT for TAVI procedure</p>
             </td>
             <td width="255">
@@ -4907,22 +4919,22 @@ const pilihanku = (value) =>
             <p>Ohio, USA</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>14.30-16.00</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Case discussion</p>
             </td>
             <td width="255">
             <p>Moderator &amp; Speaker</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
-            <td style={{backgroundColor: "rgb(1,77,136)", color:"white",paddingLeft:"15px"}} width="146">
+            <tr style={{border: "none"}}>
+            <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="146">
             <p>16.00-16.15</p>
             </td>
-            <td width="284" style={{paddingLeft:"15px"}}>
+            <td width="284" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
             <p>Closing by Moderator Quiz</p>
             <p>Questionnaire Doorprize</p>
             <p>Photo session</p>
@@ -4937,9 +4949,9 @@ const pilihanku = (value) =>
             :
             ws=="1A" ?
             <div><p>WORKSHOP I : Vein Disorders</p>
-            <table style={{marginLeft:"30px"}}>
+            <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
             <tbody>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p>Audience</p>
             </td>
@@ -4947,7 +4959,7 @@ const pilihanku = (value) =>
             <p>Cardiologist</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p>Theme</p>
             </td>
@@ -4955,7 +4967,7 @@ const pilihanku = (value) =>
             <p>Early Detection of Chronic Venous Insufficiency</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p>Day/Date</p>
             </td>
@@ -4963,7 +4975,7 @@ const pilihanku = (value) =>
             <p>Friday, December 10, 2021</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p>PIC</p>
             </td>
@@ -4971,7 +4983,7 @@ const pilihanku = (value) =>
             <p>dr. Novi Anggriyani, SpJP</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="20%">
             <p>Device</p>
             </td>
@@ -4979,7 +4991,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="20%">
             <p>Sponsor</p>
             </td>
@@ -4987,7 +4999,7 @@ const pilihanku = (value) =>
             <p>Biolitec</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="20%">
             <p>Moderator</p>
             </td>
@@ -4995,7 +5007,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p>TIME</p>
             </td>
@@ -5006,7 +5018,7 @@ const pilihanku = (value) =>
             <p>SPEAKER</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>08.00-08.20</strong></p>
             </td>
@@ -5018,7 +5030,7 @@ const pilihanku = (value) =>
             <p>Novi Kurnianingsih, dr., Sp.JP(K)</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>08.20-08.40</strong></p>
             </td>
@@ -5030,7 +5042,7 @@ const pilihanku = (value) =>
             <p>Christine Anita, dr., Sp.JP</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>08.40-09.00</strong></p>
             </td>
@@ -5042,7 +5054,7 @@ const pilihanku = (value) =>
             <p>Sidhi Laksono, Sp.JP</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>09.00-09.20</strong></p>
             </td>
@@ -5053,7 +5065,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>09.20-09.30</strong></p>
             </td>
@@ -5064,7 +5076,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p>&nbsp;</p>
             </td>
@@ -5075,7 +5087,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>09.30-09.50</strong></p>
             </td>
@@ -5087,7 +5099,7 @@ const pilihanku = (value) =>
             <p>Dr. J. Nugroho E. Putranto, dr., Sp.JP(K)</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>09.50-10.10</strong></p>
             </td>
@@ -5098,7 +5110,7 @@ const pilihanku = (value) =>
             <p>Taofan, dr., Sp.JP(K)</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>10.10-10.30</strong></p>
             </td>
@@ -5110,7 +5122,7 @@ const pilihanku = (value) =>
             <p>Nurul Rahayuningrum, dr., Sp.JP(K)</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>10.30-10.50</strong></p>
             </td>
@@ -5121,7 +5133,7 @@ const pilihanku = (value) =>
             <p>Novi Anggriyani, dr., Sp.JP(K)</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>10.50-11.15</strong></p>
             </td>
@@ -5132,7 +5144,7 @@ const pilihanku = (value) =>
             <p>M. Reza J. Pasciolly, dr., Sp.JP(K)</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>11.15-11.45</strong></p>
             </td>
@@ -5143,7 +5155,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>11.45-13.00</strong></p>
             </td>
@@ -5154,7 +5166,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p>&nbsp;</p>
             </td>
@@ -5165,7 +5177,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>13.00-13.30</strong></p>
             </td>
@@ -5176,7 +5188,7 @@ const pilihanku = (value) =>
             <p>Suci Indriani, dr., SpJP(K)</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>13.30-14.00</strong></p>
             </td>
@@ -5187,7 +5199,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>14.00-14.30</strong></p>
             </td>
@@ -5198,7 +5210,7 @@ const pilihanku = (value) =>
             <p>Vito A. Damay, dr., SpJP(K)</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>14.30-15.00</strong></p>
             </td>
@@ -5209,7 +5221,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>15.00-15.30</strong></p>
             </td>
@@ -5220,7 +5232,7 @@ const pilihanku = (value) =>
             <p>Novi Anggriyani, dr., Sp.JP(K)</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>15.30-16.00</strong></p>
             </td>
@@ -5237,9 +5249,9 @@ const pilihanku = (value) =>
             :
             ws=="1B" ?
             <div><p>WORKSHOP 2 : VASCULAR DOPPLER ULTRASOUND</p>
-            <table style={{marginLeft:"30px"}}>
+            <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
             <tbody>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="20%">
             <p>Audience</p>
             </td>
@@ -5247,7 +5259,7 @@ const pilihanku = (value) =>
             <p>Cardiologist</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="20%">
             <p>Theme</p>
             </td>
@@ -5255,7 +5267,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="20%">
             <p>Day / Date</p>
             </td>
@@ -5263,7 +5275,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="20%">
             <p>PIC</p>
             </td>
@@ -5271,7 +5283,7 @@ const pilihanku = (value) =>
             <p>dr. Suci Indriani, SpJP</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="20%">
             <p>Device</p>
             </td>
@@ -5279,7 +5291,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="20%">
             <p>Sponsor</p>
             </td>
@@ -5287,7 +5299,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="20%">
             <p>Moderator</p>
             </td>
@@ -5298,9 +5310,9 @@ const pilihanku = (value) =>
             </tbody>
             </table>
             <p>&nbsp;</p>
-            <table style={{marginLeft:"30px"}}>
+            <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
             <tbody>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="20%">
             <p>TIME</p>
             </td>
@@ -5311,7 +5323,7 @@ const pilihanku = (value) =>
             <p>SPEAKER</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>08.00-08.10</strong></p>
             </td>
@@ -5322,7 +5334,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>08.10-08.15</strong></p>
             </td>
@@ -5333,7 +5345,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>08.15-08.35</strong></p>
             </td>
@@ -5344,7 +5356,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>08.35-08.55</strong></p>
             </td>
@@ -5356,7 +5368,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>08.55-09.15</strong></p>
             </td>
@@ -5368,7 +5380,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>09.15-09.35</strong></p>
             </td>
@@ -5379,7 +5391,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>09.35-10.05</strong></p>
             </td>
@@ -5390,7 +5402,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>10.05-10.20</strong></p>
             </td>
@@ -5401,7 +5413,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p>&nbsp;</p>
             </td>
@@ -5412,7 +5424,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>10.20-10.40</strong></p>
             </td>
@@ -5423,7 +5435,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>10.40-11.00</strong></p>
             </td>
@@ -5434,7 +5446,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>11.00-11.20</strong></p>
             </td>
@@ -5445,7 +5457,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>11.20-11.40</strong></p>
             </td>
@@ -5456,7 +5468,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>11.40-12.00</strong></p>
             </td>
@@ -5467,7 +5479,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>12.00-13.00</strong></p>
             </td>
@@ -5478,7 +5490,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p>&nbsp;</p>
             </td>
@@ -5489,7 +5501,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>13.00-14.00</strong></p>
             </td>
@@ -5501,7 +5513,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>14.00-15.00</strong></p>
             </td>
@@ -5512,7 +5524,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>15.00-15.50</strong></p>
             </td>
@@ -5523,7 +5535,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>15.50-16.00</strong></p>
             </td>
@@ -5539,9 +5551,9 @@ const pilihanku = (value) =>
             <p>&nbsp;</p></div>
             : ws=="1B" ?
             <div><p>WORKSHOP 3 : PAD Management</p>
-            <table style={{marginLeft:"30px"}}>
+            <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
             <tbody>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="20%">
             <p>Audience</p>
             </td>
@@ -5549,7 +5561,7 @@ const pilihanku = (value) =>
             <p>General Practitioner</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="20%">
             <p>&nbsp;</p>
             <p>Theme</p>
@@ -5559,7 +5571,7 @@ const pilihanku = (value) =>
             <p>Therapy</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="20%">
             <p>Day / Date</p>
             </td>
@@ -5567,7 +5579,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="20%">
             <p>PIC</p>
             </td>
@@ -5575,7 +5587,7 @@ const pilihanku = (value) =>
             <p>dr. Vito Anggarino Damay, SpJP(K), M.Kes</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="20%">
             <p>Device</p>
             </td>
@@ -5583,7 +5595,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="20%">
             <p>Sponsor</p>
             </td>
@@ -5591,7 +5603,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="20%">
             <p>Moderator</p>
             </td>
@@ -5602,9 +5614,9 @@ const pilihanku = (value) =>
             </tbody>
             </table>
             <p>&nbsp;</p>
-            <table style={{marginLeft:"30px"}}>
+            <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
             <tbody>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="20%">
             <p>TIME</p>
             </td>
@@ -5615,7 +5627,7 @@ const pilihanku = (value) =>
             <p>SPEAKER</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>08.00-08.20</strong></p>
             </td>
@@ -5627,7 +5639,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>08.20-08.35</strong></p>
             </td>
@@ -5638,7 +5650,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>08.40-09.00</strong></p>
             </td>
@@ -5650,7 +5662,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>09.00-09.20</strong></p>
             </td>
@@ -5661,7 +5673,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>09.20-09.40</strong></p>
             </td>
@@ -5673,7 +5685,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>09.40-09.55</strong></p>
             </td>
@@ -5684,7 +5696,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>10.00-10.20</strong></p>
             </td>
@@ -5695,7 +5707,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>10.20-10.40</strong></p>
             </td>
@@ -5706,7 +5718,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>10.40-11.55</strong></p>
             </td>
@@ -5717,7 +5729,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>11.00-11.20</strong></p>
             </td>
@@ -5728,7 +5740,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>11.20-11.35</strong></p>
             </td>
@@ -5739,7 +5751,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>11.40-12.00</strong></p>
             </td>
@@ -5750,7 +5762,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>12.00-12.15</strong></p>
             </td>
@@ -5761,7 +5773,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>12.20-13.00</strong></p>
             </td>
@@ -5772,7 +5784,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>13.00-13.15</strong></p>
             </td>
@@ -5783,7 +5795,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>13.15-13.30</strong></p>
             </td>
@@ -5794,7 +5806,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>13.30-13.50</strong></p>
             </td>
@@ -5805,7 +5817,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>13.50-14.05</strong></p>
             </td>
@@ -5816,7 +5828,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>16.10-16.30</strong></p>
             </td>
@@ -5827,7 +5839,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>16.10-16.25</strong></p>
             </td>
@@ -5838,7 +5850,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>16.30-16.50</strong></p>
             </td>
@@ -5849,7 +5861,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>16.50-17.05</strong></p>
             </td>
@@ -5860,7 +5872,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>17.10-17.30</strong></p>
             </td>
@@ -5872,7 +5884,7 @@ const pilihanku = (value) =>
             <p>&nbsp;</p>
             </td>
             </tr>
-            <tr style={{border: "1px solid rgb(1,77,136)"}}>
+            <tr style={{border: "none"}}>
             <td width="80">
             <p><strong>17.30-17.45</strong></p>
             </td>

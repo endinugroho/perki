@@ -164,9 +164,8 @@ const Login = () => {
                 </CCardBody>
               </CCard>
             </CCardGroup>
-
             </div>
-            <Image  preview={false} src="https://acsasurabaya2021.com/images/login.jpg" />
+            <Image preview={false} src="https://acsasurabaya2021.com/images/login.jpg" />
           </CCol>
         </CRow>
       </CContainer>
