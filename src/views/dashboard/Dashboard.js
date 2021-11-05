@@ -201,8 +201,8 @@ const Dashboard = () => {
 
   const mapArea: any[] = [
     {
-      left: "31.5%",
-      top: "79.8%",
+      left: "32.2%",
+      top: "80.8%",
       height: "15%",
       width: "6.5%",
       // href: "https://detik.com",
@@ -218,7 +218,7 @@ const Dashboard = () => {
     },
     {
       left: "38%",
-      top: "79.8%",
+      top: "80.8%",
       height: "15%",
       width: "6%",
       // href: "https://google.com",
@@ -234,7 +234,7 @@ const Dashboard = () => {
     },
     {
       left: "44%",
-      top: "79.8%",
+      top: "80.8%",
       height: "15%",
       width: "6.2%",
       // href: "https://google.com",
@@ -250,7 +250,7 @@ const Dashboard = () => {
     },
     {
       left: "62.2%",
-      top: "79.8%",
+      top: "80.8%",
       height: "15%",
       width: "6.2%",
       // href: "https://google.com",
@@ -266,7 +266,7 @@ const Dashboard = () => {
     },
     {
       left: "50%",
-      top: "79.8%",
+      top: "80.8%",
       height: "15%",
       width: "6%",
       // href: "https://google.com",
@@ -279,7 +279,7 @@ const Dashboard = () => {
     },
     {
       left: "56.2%",
-      top: "79.8%",
+      top: "80.8%",
       height: "15%",
       width: "6.2%",
       // href: "https://google.com",
@@ -310,8 +310,8 @@ const Dashboard = () => {
     {
       width: "7.5%",
       height: "13%",
-      left: "31.3%",
-      top: "32%",
+      left: "31.5%",
+      top: "33%",
       // href: "https://google.com",
       style: { 
         background: "rgba(0, 0, 255, "+layar1+")", 
@@ -331,7 +331,7 @@ const Dashboard = () => {
       width: "8.8%",
       height: "13%",
       left: "45.7%",
-      top: "32%",
+      top: "33%",
       style: { background: "rgba(0, 0, 255, "+layar2+")",zIndex:"8",display:"block" },
       onMouseOver: () => {setLayar2(0.3);setLayar3(0);setLayar1(0);},
       render: (area: any, index: number) => (
@@ -342,10 +342,10 @@ const Dashboard = () => {
     },
     //workshop
     {
-      width: "7.9%",
+      width: "7.2%",
       height: "13%",
       left: "61%",
-      top: "32%",
+      top: "33%",
       // href: "https://google.com",
       style: { transform: 'rotate(-2deg)', background: "rgba(0, 0, 255, "+layar3+")",zIndex:"8",display:"block" },
       onMouseOver: () => {setLayar3(0.3);setLayar2(0);setLayar1(0);},
@@ -356,10 +356,10 @@ const Dashboard = () => {
       ),
     },
     {
-      width: "14%",
-      height: "20%",
+      width: "14.1%",
+      height: "20.5%",
       left: "43%",
-      top: "7%",
+      top: "7.2%",
       style: { background: "rgba(0, 0, 255, 0)", zIndex: "8" },
 //      href: "https://google.com",
       onMouseOver: () => console.log("map onMouseOver"),
@@ -394,7 +394,7 @@ const Dashboard = () => {
     },
     {
       left: "25.2%",
-      top: "66.2%",
+      top: "66%",
       height: "3%",
       width: "1.5%",
       // href: "https://google.com",
@@ -543,11 +543,12 @@ const Dashboard = () => {
         className="usage-map"
         src={"https://acsasurabaya2021.com/wp-content/plugins/perki/HALL_DASHBOARD.jpg"}
         map={mapArea}
-        style={{width:"70%", height: '508px',
+        style={{
+            width:"68%",             
             position: 'relative',
             left: '50%',
             zIndex: 1,
-            transform: 'translate(-50%, -5%)',}}
+            transform: 'translate(-50%, -24px)',}}
         onMapClick={onMapClick}
         />
          : (anggota && paymentstatus!="PAY") ?

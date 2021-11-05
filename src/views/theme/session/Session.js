@@ -98,7 +98,8 @@ const [workshopku,setWorkshopku] = useState("");
 const [ws, setWs] = useState("-");
 const [hari, setHari] = useState("PERTAMA");
 // const []
-const [meetingid1,setMeetingid1] = useState("87819545479");
+// const [meetingid1,setMeetingid1] = useState("79190715224");
+const [meetingid1,setMeetingid1] = useState("83601178402");
 const [meetingid2,setMeetingid2] = useState("");
 const [meetingid3,setMeetingid3] = useState("");
 const [meetingid4,setMeetingid4] = useState("");
@@ -977,11 +978,20 @@ if (pilih===1 || pilih===3 || pilih===4) simposium2=simposium;
 
 }
 
-const openInNewTab = (url,meetingidku) => {
+const openInNewTab = (meetingidku) => {
+  axios.post("https://acsasurabaya2021.com/wp-content/plugins/perki/kirimdata.php",{
+    mtd: "REQUESTAPI",
+    meetingid : meetingidku,
+  }).then((res) => {
+    console.log(res)
+    localStorage.setItem('signature', res.data.signature);
+    localStorage.setItem("meetingid", meetingidku);
+    history.push("/theme/zoom");
+  })
+  .catch((err) => console.log(err))
   // window.location.href = url;
-  localStorage.setItem("meetingid",meetingidku);
-  const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
-  if (newWindow) newWindow.opener = null
+  // const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+  // if (newWindow) newWindow.opener = null
 }
 
 
@@ -1070,9 +1080,7 @@ if (step=="Step2")
   window.scrollTo(0, 0);
 }
 
-
-  }
-
+}
 const pilihanku = (value) =>
 {
   console.log(professionselect);
@@ -1112,7 +1120,7 @@ const pilihanku = (value) =>
    }
     );
 
-     setPackageselect("");
+    setPackageselect("");
     setHargatotal(hargasimpo+hargaws);
     setHargagrandtotal(hargasimpo+hargaws);
  }
@@ -1138,106 +1146,104 @@ const pilihanku = (value) =>
   } else {
     setPilih2("seminar,workshop");
   }
-
-
-
     //  setPilih2(value);
-
 }
   return (
     <>
       <CCard>
         <CCardHeader style={{fontSize:"25px"}}>
-          Session
+          <span className="badge badge-info">
+              Session
+          </span>  
+          <img src="https://acsasurabaya2021.com/wp-content/plugins/perki/register.png" className="visible-desktop" width="300" style={{float: 'right', position: 'relative', right: '-20px', width: '250px'}}/>
         </CCardHeader>
         {/* <CCardBody style={{backgroundImage: "url('https://acsasurabaya2021.com/wp-content/plugins/perki/background3.png')"}}> */}
         <CCardBody>
           <CRow>
-          {anggota.simposium!="" ?
-
-            <div>
-            <Button type="primary" onClick={()=>setWs("PERTAMA")} style={{marginLeft:"30px"}}>Sym 1</Button>
-            <Button type="primary" onClick={()=>setWs("KEDUA")} style={{marginLeft:"2px"}}>Sym 2</Button>
-            <Button type="primary" onClick={()=>setWs("KETIGA")} style={{marginLeft:"2px"}}>Sym 3</Button>
-
-            </div>
-            :
-            null
-
-          }
+          <div className="col-lg-12 col-md-12 col-sm-12">
+            {anggota.simposium!="" ?
+              <>
+                <Button type="primary" onClick={()=>setWs("PERTAMA")} style={{marginLeft:"30px", borderRadius: '10px'}}>Sym 1</Button>
+                <Button type="primary" onClick={()=>setWs("KEDUA")} style={{marginLeft:"2px", borderRadius: '10px'}}>Sym 2</Button>
+                <Button type="primary" onClick={()=>setWs("KETIGA")} style={{marginLeft:"2px", borderRadius: '10px'}}>Sym 3</Button>            
+              </>
+              :
+              null
+            }          
           {workshopku.indexOf("WS 1 ")>-1 ?
-          <Button type="primary" onClick={()=>setWs("1")} style={{marginLeft:"2px", marginBottom:"5px"}}>WS 1</Button> : null
+          <Button type="primary" onClick={()=>setWs("1")} style={{marginLeft:"2px", borderRadius: '10px', marginBottom:"5px"}}>WS 1</Button> : null
           }
-          {/* <Button type="primary" onClick={()=>setWs("1")} style={{marginLeft:"2px", marginBottom:"5px"}}>1</Button> */}
+          {/* <Button type="primary" onClick={()=>setWs("1")} style={{marginLeft:"2px", borderRadius: '10px', marginBottom:"5px"}}>1</Button> */}
           {workshopku.indexOf("WS 2 ")>-1 ?
-          <Button type="primary" onClick={()=>setWs("2")} style={{marginLeft:"2px", marginBottom:"5px"}}>WS 2</Button> : null
+          <Button type="primary" onClick={()=>setWs("2")} style={{marginLeft:"2px", borderRadius: '10px', marginBottom:"5px"}}>WS 2</Button> : null
           }
           {workshopku.indexOf("WS 3 ")>-1 ?
-          <Button type="primary" onClick={()=>setWs("3")} style={{marginLeft:"2px", marginBottom:"5px"}}>WS 3</Button> : null
+          <Button type="primary" onClick={()=>setWs("3")} style={{marginLeft:"2px", borderRadius: '10px', marginBottom:"5px"}}>WS 3</Button> : null
         }
           {workshopku.indexOf("WS 4 ")>-1 ?
-          <Button type="primary" onClick={()=>setWs("4")} style={{marginLeft:"2px", marginBottom:"5px"}}>WS 4</Button> : null
+          <Button type="primary" onClick={()=>setWs("4")} style={{marginLeft:"2px", borderRadius: '10px', marginBottom:"5px"}}>WS 4</Button> : null
         }
           {workshopku.indexOf("WS 5 ")>-1 ?
-          <Button type="primary" onClick={()=>setWs("5")} style={{marginLeft:"2px", marginBottom:"5px"}}>WS 5</Button> : null
+          <Button type="primary" onClick={()=>setWs("5")} style={{marginLeft:"2px", borderRadius: '10px', marginBottom:"5px"}}>WS 5</Button> : null
         }
           {workshopku.indexOf("WS 6 ")>-1 ?
-          <Button type="primary" onClick={()=>setWs("6")} style={{marginLeft:"2px", marginBottom:"5px"}}>WS 6</Button> : null
+          <Button type="primary" onClick={()=>setWs("6")} style={{marginLeft:"2px", borderRadius: '10px', marginBottom:"5px"}}>WS 6</Button> : null
         }
           {workshopku.indexOf("WS 7 ")>-1 ?
-          <Button type="primary" onClick={()=>setWs("7")} style={{marginLeft:"2px", marginBottom:"5px"}}>WS 7</Button> : null
+          <Button type="primary" onClick={()=>setWs("7")} style={{marginLeft:"2px", borderRadius: '10px', marginBottom:"5px"}}>WS 7</Button> : null
         }
           {workshopku.indexOf("WS 8 ")>-1 ?
-          <Button type="primary" onClick={()=>setWs("8")} style={{marginLeft:"2px", marginBottom:"5px"}}>WS 8</Button> : null
+          <Button type="primary" onClick={()=>setWs("8")} style={{marginLeft:"2px", borderRadius: '10px', marginBottom:"5px"}}>WS 8</Button> : null
         }
           {workshopku.indexOf("WS 9 ")>-1 ?
-          <Button type="primary" onClick={()=>setWs("9")} style={{marginLeft:"2px", marginBottom:"5px"}}>WS 9</Button> : null
+          <Button type="primary" onClick={()=>setWs("9")} style={{marginLeft:"2px", borderRadius: '10px', marginBottom:"5px"}}>WS 9</Button> : null
         }
           {workshopku.indexOf("WS 10 ")>-1 ?
-          <Button type="primary" onClick={()=>setWs("10")} style={{marginLeft:"2px", marginBottom:"5px"}}>WS 10</Button> : null
+          <Button type="primary" onClick={()=>setWs("10")} style={{marginLeft:"2px", borderRadius: '10px', marginBottom:"5px"}}>WS 10</Button> : null
         }
           {workshopku.indexOf("WS 11 ")>-1 ?
-          <Button type="primary" onClick={()=>setWs("11")} style={{marginLeft:"2px", marginBottom:"5px"}}>WS 11</Button> : null
+          <Button type="primary" onClick={()=>setWs("11")} style={{marginLeft:"2px", borderRadius: '10px', marginBottom:"5px"}}>WS 11</Button> : null
         }
           {workshopku.indexOf("WS 12 ")>-1 ?
-          <Button type="primary" onClick={()=>setWs("12")} style={{marginLeft:"2px", marginBottom:"5px"}}>WS 12</Button> : null
+          <Button type="primary" onClick={()=>setWs("12")} style={{marginLeft:"2px", borderRadius: '10px', marginBottom:"5px"}}>WS 12</Button> : null
         }
           {workshopku.indexOf("WS 13 ")>-1 ?
-          <Button type="primary" onClick={()=>setWs("13")} style={{marginLeft:"2px", marginBottom:"5px"}}>WS 13</Button> : null
+          <Button type="primary" onClick={()=>setWs("13")} style={{marginLeft:"2px", borderRadius: '10px', marginBottom:"5px"}}>WS 13</Button> : null
         }
           {workshopku.indexOf("WS 14 ")>-1 ?
-          <Button type="primary" onClick={()=>setWs("14")} style={{marginLeft:"2px", marginBottom:"5px"}}>WS 14</Button> : null
+          <Button type="primary" onClick={()=>setWs("14")} style={{marginLeft:"2px", borderRadius: '10px', marginBottom:"5px"}}>WS 14</Button> : null
         }
           {workshopku.indexOf("WS 15 ")>-1 ?
-          <Button type="primary" onClick={()=>setWs("15")} style={{marginLeft:"2px", marginBottom:"5px"}}>WS 15</Button> : null
+          <Button type="primary" onClick={()=>setWs("15")} style={{marginLeft:"2px", borderRadius: '10px', marginBottom:"5px"}}>WS 15</Button> : null
         }
           {workshopku.indexOf("WS 16 ")>-1 ?
-          <Button type="primary" onClick={()=>setWs("16")} style={{marginLeft:"2px", marginBottom:"5px"}}>WS 16</Button> : null
+          <Button type="primary" onClick={()=>setWs("16")} style={{marginLeft:"2px", borderRadius: '10px', marginBottom:"5px"}}>WS 16</Button> : null
         }
           {workshopku.indexOf("WS Indovasc 1 ")>-1 ?
-          <Button type="primary" onClick={()=>setWs("1A")} style={{marginLeft:"2px", marginBottom:"5px"}}>WS Indo 1</Button> : null
+          <Button type="primary" onClick={()=>setWs("1A")} style={{marginLeft:"2px", borderRadius: '10px', marginBottom:"5px"}}>WS Indo 1</Button> : null
         }
           {workshopku.indexOf("WS Indovasc 2 ")>-1 ?
-          <Button type="primary" onClick={()=>setWs("1B")} style={{marginLeft:"2px", marginBottom:"5px"}}>WS Indo 2</Button> : null
+          <Button type="primary" onClick={()=>setWs("1B")} style={{marginLeft:"2px", borderRadius: '10px', marginBottom:"5px"}}>WS Indo 2</Button> : null
         }
           {workshopku.indexOf("WS Indovasc 3 ")>-1 ?
-          <Button type="primary" onClick={()=>setWs("1C")} style={{marginLeft:"2px", marginBottom:"5px"}}>WS Indo 3</Button> : null
-        }
+          <Button type="primary" onClick={()=>setWs("1C")} style={{marginLeft:"2px", borderRadius: '10px', marginBottom:"5px"}}>WS Indo 3</Button> : null
+          }                      
+          </div>
           </CRow>
-          <CRow>
+          <CRow style={{marginTop: '49px'}}>
           {ws=="PERTAMA" ?
-          <div><p><strong>&nbsp;</strong></p>
-          <p style={{marginLeft:"30px", fontSize:"25px"}}><b>DAY-1: Friday, 10 December 2021</b></p>
+          <div>
+          <p style={{marginLeft:"39px", fontSize:"25px"}}><b>DAY-1: Friday, 10 December 2021</b></p>
           <table width="90%" style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em", border: "none"}}>
           <tbody>
           <tr style={{border: "none"}}>
           <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><b>TIME</b></p>
           </td>
-          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
+          <td width="40%" style={{ backgroundColor: "#0075BC", color:"white", borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>SESSION</strong></p>
           </td>
-          <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
+          <td width="40%" style={{ backgroundColor: "#0075BC", color:"white", borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
           <p><strong>SESSION</strong></p>
           </td>
           </tr>
@@ -1267,7 +1273,7 @@ const pilihanku = (value) =>
           <p>
           <b>Zoom data login</b>
           <br/>
-          <Button type="primary" onClick={() => openInNewTab('https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/theme/zoom/12345', meetingid1)}> Goto Zoom </Button>
+          <Button type="primary" style={{borderRadius: '10px',}} onClick={() => openInNewTab(meetingid1)}> Watch Now </Button>
           </p> 
           {/* <table style={{borderCollapse:"collapse", width: "124.652px"}} border="0">
             <tbody>
@@ -1325,9 +1331,13 @@ const pilihanku = (value) =>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
+          </tbody></table>
+          
+          <p style={{margin: "0px"}}><strong>&nbsp;</strong></p>
+          <table width="90%" style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em", border: "none"}}>
+          <tbody>
           <tr style={{border: "none"}}>
-          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
-          <p><strong>&nbsp;</strong></p>
+          <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">          
           <p>(09.00 &ndash; 09.10)</p>
           </td>
           <td width="40%" style={{  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}}>
@@ -1337,6 +1347,11 @@ const pilihanku = (value) =>
           <p><strong>Discussion</strong></p>
           </td>
           </tr>
+          </tbody></table>
+          
+          <p style={{margin: "0px"}}><strong>&nbsp;</strong></p>
+          <table width="90%" style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em", border: "none"}}>
+          <tbody>
           <tr style={{border: "none"}}>
           <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
@@ -1418,6 +1433,11 @@ const pilihanku = (value) =>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
+          </tbody></table>
+          
+          <p style={{margin: "0px"}}><strong>&nbsp;</strong></p>
+          <table width="90%" style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em", border: "none"}}>
+          <tbody>
           <tr style={{border: "none"}}>
           <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(10.55 &ndash; 11.05)</p>
@@ -1429,6 +1449,10 @@ const pilihanku = (value) =>
           <p><strong>Discussion</strong></p>
           </td>
           </tr>
+          </tbody></table>
+          <p style={{margin: "0px"}}><strong>&nbsp;</strong></p>
+          <table width="90%" style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em", border: "none"}}>
+          <tbody>
           <tr style={{border: "none"}}>
           <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(11.05 &ndash; 12.30)</p>
@@ -1492,12 +1516,10 @@ const pilihanku = (value) =>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
-          </tbody>
-          </table>
-          <p>&nbsp;</p>
-          <p><strong>&nbsp;</strong></p>
+          {/* </tbody>
+          </table>        
           <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",border: "none", width:"90%"}}>
-          <tbody>
+          <tbody> */}
           <tr style={{border: "none"}}>
           <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
@@ -1514,6 +1536,10 @@ const pilihanku = (value) =>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
+          </tbody></table>
+          <p style={{margin: "0px"}}><strong>&nbsp;</strong></p>
+          <table width="90%" style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em", border: "none"}}>
+          <tbody>
           <tr style={{border: "none"}}>
           <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(13.50 &ndash; 14.10)</p>
@@ -1525,6 +1551,10 @@ const pilihanku = (value) =>
           <p><strong>Discussion</strong></p>
           </td>
           </tr>
+          </tbody></table>
+          <p style={{margin: "0px"}}><strong>&nbsp;</strong></p>
+          <table width="90%" style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em", border: "none"}}>
+          <tbody>
           <tr style={{border: "none"}}>
           <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>Afternoon Symposium</strong></p>
@@ -1582,6 +1612,10 @@ const pilihanku = (value) =>
           <p><em>Speaker: tba</em></p>
           </td>
           </tr>
+          </tbody></table>
+          <p style={{margin: "0px"}}><strong>&nbsp;</strong></p>
+          <table width="90%" style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em", border: "none"}}>
+          <tbody>
           <tr style={{border: "none"}}>
           <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p>(15.15 &ndash; 15.25)</p>
@@ -1593,6 +1627,10 @@ const pilihanku = (value) =>
           <p><strong>Discussion</strong></p>
           </td>
           </tr>
+          </tbody></table>
+         <p style={{margin: "0px"}}><strong>&nbsp;</strong></p>
+          <table width="90%" style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em", border: "none"}}>
+          <tbody>
           <tr style={{border: "none"}}>
           <td style={{backgroundColor: "#0075BC", color:"white",  borderRadius: "18px", boxShadow: "0px 1px 2px 0px #5a5a5a"}} width="10%">
           <p><strong>&nbsp;</strong></p>
@@ -1666,9 +1704,8 @@ const pilihanku = (value) =>
           </table></div>
           :
           ws=="KEDUA" ?
-          <div>          <p><strong>&nbsp;</strong></p>
-
-            <p style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",fontSize:"25px"}}><strong>DAY 2: Saturday, 11 December 2021</strong></p>
+          <div><p><strong>&nbsp;</strong></p>
+          <p style={{marginLeft:"30px", borderCollapse: "separate", borderSpacing: "0.5em 0.5em",fontSize:"25px"}}><strong>DAY 2: Saturday, 11 December 2021</strong></p>
           <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
           <tbody>
           <tr style={{border: "none"}}>
@@ -1939,7 +1976,7 @@ const pilihanku = (value) =>
           </tr>
           </tbody>
           </table>
-          <p>&nbsp;</p>
+          
           <p><strong>&nbsp;</strong></p>
           <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
           <tbody>
@@ -2115,9 +2152,9 @@ const pilihanku = (value) =>
           </tr>
           </tbody>
           </table>
-          <p>&nbsp;</p></div>
+          </div>
           : ws=="KETIGA" ?
-          <div>          <p><strong>&nbsp;</strong></p><p style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",fontSize:"25px"}}><strong>DAY 3: Sunday, 12 December 2021</strong></p>
+          <div><p><strong>&nbsp;</strong></p><p style={{marginLeft:"30px", borderCollapse: "separate", borderSpacing: "0.5em 0.5em",fontSize:"25px"}}><strong>DAY 3: Sunday, 12 December 2021</strong></p>
           <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
           <tbody>
           <tr style={{border: "none"}}>
@@ -2400,7 +2437,7 @@ const pilihanku = (value) =>
           </tr>
           </tbody>
           </table>
-          <p>&nbsp;</p>
+          
           <p><strong>&nbsp;</strong></p>
           <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
           <tbody>
@@ -2533,7 +2570,7 @@ const pilihanku = (value) =>
           </tr>
           </tbody>
           </table>
-          <p>&nbsp;</p></div>
+          </div>
             :
             ws=="1" ?
             <div><p><strong>&nbsp;</strong></p>

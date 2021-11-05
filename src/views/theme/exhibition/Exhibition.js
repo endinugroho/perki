@@ -93,6 +93,8 @@ const Colors = () => {
   let history = useHistory();
   const [disable,setDisable] = useState(false);
   const [simposium, setSimposium] = useState("");
+  const [layar1,setLayar1] = useState(0);
+  const [layar2,setLayar2] = useState(0);
 
   const onMapClick = (area, index: number) => {
     const tip = `click map${area.href || index + 1}`;
@@ -111,19 +113,33 @@ const Colors = () => {
 
   const mapArea: any[] = [
       {
-        left: "16.5%",
-        top: "84.8%",
-        height: "15%",
-        width: "6.5%",
+        width: "16.9%",
+        height: "32%",
+        left: "18%",
+        top: "35.8%",
         // href: "https://detik.com",
-        style: { background: "rgba(255, 0, 0, 0.00)" },
-        onMouseOver: () => console.log("map onMouseOver"),
+        style: { background: "rgba(69, 147, 255, "+layar1+")", zIndex: "8", },
+        onMouseOver: () => {setLayar1(0.3);setLayar2(0)},
         render: (area: any, index: number) => (
           <span>
            {/* <img src="https://acsasurabaya2021.com/wp-content/plugins/perki/lobby.jpg" width="100%" /> */}
            </span>
         ),
-      }
+      },
+      {
+        width: "17%",
+        height: "32%",
+        left: "65%",
+        top: "35.8%",
+        // href: "https://detik.com",
+        style: { background: "rgba(69, 147, 255, "+layar2+")", zIndex: "8", },
+        onMouseOver: () => {setLayar1(0);setLayar2(0.3)},
+        render: (area: any, index: number) => (
+          <span>
+           {/* <img src="https://acsasurabaya2021.com/wp-content/plugins/perki/lobby.jpg" width="100%" /> */}
+           </span>
+        ),
+      },
     ];
 
 
@@ -1134,22 +1150,26 @@ const pilihanku = (value) =>
 }
   return (
     <>
-      <CCard>
+      {/* <CCard>
         <CCardHeader>
           Exhibition
         </CCardHeader>
-        <CCardBody>
-          <CRow>
+        <CCardBody>           */}
           <ImageMap
-        className="usage-map"
-        src={"https://acsasurabaya2021.com/wp-content/plugins/perki/001 Gate.jpg"}
-        map={mapArea}
-        style={{width:"70%"}}
-        // onMapClick={onMapClick}
-        />
-          </CRow>
-        </CCardBody>
-      </CCard>
+              className="usage-map"
+              src={"./gate-blue-carpet.jpg"}
+              map={mapArea}
+              style={{
+              width:"75%",              
+              position: "relative",
+              zIndex: '1',
+              left: "50%",
+              transform: "translate(-50%, -23px)",
+            }}
+          />          
+        {/* </CCardBody>
+            // onMapClick={onMapClick}
+      </CCard> */}
 
 </>
   )
