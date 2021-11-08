@@ -19,15 +19,16 @@ ZoomMtg.i18n.reload('en-US');
 // var meetingNumber = localStorage.getItem("meetingid");
 // var leaveUrl = 'http://localhost:3000/#/theme/session';
 // var userName = localStorage.getItem("nama");
+// https://us02web.zoom.us/j/87189194063?pwd=V0I5c1pPNDU5RWVyTUxZRDkvQkhyUT09
 var signatureEndpoint = ''
 var apiKey = 'sw1o-LaLTtaMC0xjZ9ghdw'
 var apiSecret  = 'NDRYGCnfiSXNSosr25YEPnKOkKU4rf8ksSiF';  
-var meetingNumber = "84297698824";
+var meetingNumber = "87189194063";
 var role = 0;
 var leaveUrl = 'https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/theme/session';
 var userName = "Dani Cahya";
 var userEmail = 'random1002310@gmail.com';
-var passWord = '';
+var passWord = '944661';
 var registrantToken = ''
 // var passWord = 'RGNtNTYzbEVjNG9VZWFWSUdvQjNhZz09';
 // pass in the registrant's token if your meeting or webinar requires registration. More info here:
@@ -83,7 +84,8 @@ const App = props => {
 
   function startMeeting(signature) {
     document.getElementById('zmmtg-root').style.display = 'block'
-    ZoomMtg.init({
+    ZoomMtg.init({      
+      disablePreview: true,
       leaveUrl: leaveUrl,
       success: (success) => {
         console.log(success)
