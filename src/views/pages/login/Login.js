@@ -35,10 +35,10 @@ const Login = () => {
   const renderer = ({ hours, minutes, seconds, completed }) => {
     if (completed) {
       // Render a completed state
-      return <Completionist />;
+      // return <Completionist />;
     } else {
       // Render a countdown
-      return <div style={{width:"300px"}}>Live in {hours} hours {minutes} minutes  {seconds} seconds</div>;
+      // return <div style={{width:"300px"}}>Live in {hours} hours {minutes} minutes  {seconds} seconds</div>;
     }
   };
 
@@ -89,7 +89,7 @@ const Login = () => {
       <CContainer>
         <CRow className="justify-content-center">
           <CCol md="8">
-          <Image preview={false} src="https://acsasurabaya2021.com/wp-content/uploads/2019/05/Logo-atas.png" width="200px" />
+          <a href="https://acsasurabaya2021.com"><Image preview={false} src="https://acsasurabaya2021.com/wp-content/uploads/2019/05/Logo-atas.png" width="200px" /></a>
             <CCardGroup >
               <CCard className="p-4">
                 <CCardBody>
@@ -124,12 +124,12 @@ const Login = () => {
                     <CRow>
                       <CCol xs="6">
                         {/* <CButton color="primary" className="px-4" onClick={()=>loginklik()}>Login</CButton> */}
-                        <Countdown
-    date={Date.now() + 10000}
+                        {/* <Countdown
+    date={Date.now()+1000}
     intervalDelay={0}
     precision={3}
     renderer={renderer}
-  />
+  /> */}
                       </CCol>
                       <CCol xs="6" className="text-right">
                         {/* <CButton color="link" className="px-0">Forgot password?</CButton> */}
@@ -164,9 +164,8 @@ const Login = () => {
                 </CCardBody>
               </CCard>
             </CCardGroup>
-
             </div>
-            <Image  preview={false} src="https://acsasurabaya2021.com/images/login.jpg" />
+            <Image preview={false} src="https://acsasurabaya2021.com/images/login.jpg" />
           </CCol>
         </CRow>
       </CContainer>
