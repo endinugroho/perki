@@ -375,7 +375,7 @@ const Dashboard = () => {
       height: "15%",
       width: "6.5%",
       // href: "https://detik.com",
-      style: { background: "rgba(255, 0, 0, 0.0)",zIndex: "0" },
+      style: { background: "rgba(255, 0, 0, 0.00)",zIndex: "8",cursor: "pointer", },
       onMouseOver: () => console.log("map onMouseOver"),
       render: (area: any, index: number) => (
         <span>
@@ -391,7 +391,7 @@ const Dashboard = () => {
       height: "17%",
       width: "8.2%",
       // href: "https://google.com",
-      style: { background: "rgba(255, 0, 0, 0.0)",zIndex: "8" },
+      style: { background: "rgba(255, 0, 0, 0.0)",zIndex: "8", cursor: "pointer", },
       onMouseOver: () => setPejet("SESSION"),
       render: (area: any, index: number) => (
         <span>
@@ -407,7 +407,7 @@ const Dashboard = () => {
       height: "17%",
       width: "8.2%",
       // href: "https://google.com",
-      style: { background: "rgba(255, 0, 0, 0.0)",zIndex: "8" },
+      style: { background: "rgba(255, 0, 0, 0.0)",zIndex: "8", cursor: "pointer", },
       onMouseOver: () => setPejet("EXHIBITION"),
       render: (area: any, index: number) => (
         <span>
@@ -423,7 +423,7 @@ const Dashboard = () => {
       height: "17%",
       width: "8.1%",
       // href: "https://google.com",
-      style: { background: "rgba(255, 0, 0, 0)",zIndex: "8" },
+      style: { background: "rgba(255, 0, 0, 0.0)",zIndex: "8", cursor: "pointer", },
       onMouseOver: () => setPejet("EXIT"),
       render: (area: any, index: number) => (
         <span>
@@ -439,7 +439,7 @@ const Dashboard = () => {
       height: "17%",
       width: "8%",
       // href: "https://google.com",
-      style: { background: "rgba(255, 0, 0, 0)",zIndex: "8" },
+      style: { background: "rgba(255, 0, 0, 0.0)",zIndex: "8", cursor: "pointer", },
       onMouseOver: () => setPejet("SYMPOSIUM"),
       render: (area: any, index: number) => (
         <span>
@@ -455,7 +455,7 @@ const Dashboard = () => {
       height: "17%",
       width: "8%",
       // href: "https://google.com",
-      style: { background: "rgba(255, 0, 0, 0.0)",zIndex: "8" },
+      style: { background: "rgba(255, 0, 0, 0.0)",zIndex: "8", cursor: "pointer", },
       onMouseOver: () => setPejet("ACCOUNT"),
       render: (area: any, index: number) => (
         <span>
@@ -470,8 +470,8 @@ const Dashboard = () => {
       height: "20%",
       left: "10%",
       top: "2%",
-      style: { background: "rgba(0, 255, 0, 0)",zIndex: "8",display:jadwal },
       onMouseOver: () => console.log("map onMouseOver11"),
+      style: { background: "rgba(0, 255, 0, 0)",zIndex: "8",display:jadwal, cursor: "pointer", },
       render: (area: any, index: number) => (
         <span>
          {/* <img src="https://acsasurabaya2021.com/wp-content/plugins/perki/jadwal.png" width="100%" /> */}
@@ -489,7 +489,8 @@ const Dashboard = () => {
         background: "rgba(0, 0, 255, "+layar1+")",
         transform: 'rotate(2deg)',
         zIndex:"8",
-        display:"block"
+        display:"block",
+        cursor: "pointer",
       },
       onMouseOver: () => {setLayar1(0.3);setLayar2(0);setLayar3(0)},
       render: (area: any, index: number) => (
@@ -504,7 +505,7 @@ const Dashboard = () => {
       height: "14%",
       left: "45%",
       top: "32%",
-      style: { background: "rgba(0, 0, 255, "+layar2+")",zIndex:"8",display:"block" },
+      style: { background: "rgba(0, 0, 255, "+layar2+")",zIndex:"8",display:"block" , cursor: "pointer", },
       onMouseOver: () => {setLayar2(0.3);setLayar3(0);setLayar1(0);},
       render: (area: any, index: number) => (
         <span>
@@ -519,7 +520,7 @@ const Dashboard = () => {
       left: "62.8%",
       top: "33%",
       // href: "https://google.com",
-      style: { transform: 'rotate(-2deg)', background: "rgba(0, 0, 255, "+layar3+")",zIndex:"8",display:"block" },
+      style: { transform: 'rotate(-2deg)',cursor: "pointer", background: "rgba(0, 0, 255, "+layar3+")",zIndex:"8",display:"block" },
       onMouseOver: () => {setLayar3(0.3);setLayar2(0);setLayar1(0);},
       render: (area: any, index: number) => (
         <span>
@@ -532,7 +533,7 @@ const Dashboard = () => {
       height: "20.5%",
       left: "43%",
       top: "7.2%",
-      style: { background: "rgba(0, 0, 255, 0)", zIndex: "8" },
+      style: { background: "rgba(0, 0, 255, 0)", zIndex: "8", cursor: "pointer", },
 //      href: "https://google.com",
       onMouseOver: () => console.log("map onMouseOver"),
       render: (area: any, index: number) => (
@@ -570,7 +571,7 @@ const Dashboard = () => {
       height: "8%",
       width: "5%",
       // href: "https://google.com",
-      style: { background: "rgba(255, 255, 0, 0)",zIndex: "1"},
+      style: { background: "rgba(255, 255, 0, 0)",zIndex: "1", cursor: "pointer",},
       onMouseOver: () => {setPejet2("block");setPejet3("none");},
       render: (area: any, index: number) => (
         <span>
@@ -583,7 +584,7 @@ const Dashboard = () => {
       height: "7%",
       width: "4%",
       // href: "https://google.com",
-      style: { background: "rgba(255, 255, 255, 0)",zIndex: "1" },
+      style: { background: "rgba(255, 255, 255, 0)",zIndex: "1", cursor: "pointer", },
       onMouseOver: () => {setPejet3("block");setPejet2("none");},
       render: (area: any, index: number) => (
         <span>
@@ -599,7 +600,7 @@ const Dashboard = () => {
       height: "7%",
       width: "4%",
       // href: "https://google.com",
-      style: { background: "rgba(255, 255, 0, 0.0)",zIndex: "8" },
+      style: { background: "rgba(255, 255, 0, 0.0)",zIndex: "8", cursor: "pointer", },
       onMouseOver: () => {setPejet4("block");setPejet2("none");setPejet3("none");setPejet5("none");},
       render: (area: any, index: number) => (
         <span>
@@ -615,7 +616,7 @@ const Dashboard = () => {
       height: "5%",
       width: "5%",
       href: "https://google.com",
-      style: { background: "rgba(0, 255, 0, 0)",zIndex: "8" },
+      style: { background: "rgba(0, 255, 0, 0)",zIndex: "8", cursor: "pointer", },
       onMouseOver: () => console.log("map onMouseOver"),
       render: (area: any, index: number) => (
         <span>
@@ -631,8 +632,8 @@ const Dashboard = () => {
       height: "19%",
       width: "8.5%",
       href: "https://google.com",
-      style: { background: "rgba(0, 255, 0, 0)",zIndex: "8" },
       onMouseOver: () => setPejet("WORKSHOP"),
+      style: { background: "rgba(0, 255, 0, 0)",zIndex: "8", cursor: "pointer", },
       render: (area: any, index: number) => (
         <span>
          {pejet=="WORKSHOP" ?

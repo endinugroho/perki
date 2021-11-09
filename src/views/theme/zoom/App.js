@@ -19,6 +19,7 @@ ZoomMtg.i18n.reload('en-US');
 // var meetingNumber = localStorage.getItem("meetingid");
 // var leaveUrl = 'http://localhost:3000/#/theme/session';
 // var userName = localStorage.getItem("nama");
+// https://us02web.zoom.us/j/87189194063?pwd=V0I5c1pPNDU5RWVyTUxZRDkvQkhyUT09
 var signatureEndpoint = ''
 var apiKey = 'sw1o-LaLTtaMC0xjZ9ghdw'
 var apiSecret  = 'NDRYGCnfiSXNSosr25YEPnKOkKU4rf8ksSiF';
