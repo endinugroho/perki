@@ -174,7 +174,7 @@ const Dashboard = () => {
       history.push('/theme/symposium');
     }
 
-    if (index==14) {
+    if (index==14 || index==9) {
       history.push('/theme/faq');
     }
 
@@ -197,7 +197,7 @@ const Dashboard = () => {
 
 }
 
-  if (index==13) {
+  if (index==13 || index==11) {
       openInNewTab("https://wa.me/6282232683785");
 
   }
@@ -206,6 +206,168 @@ const Dashboard = () => {
     // alert(tip);)
   };
 
+  const mapAreamobile: any[] = [
+    {
+      left: "5.5%",
+      top: "5.8%",
+      height: "22%",
+      width: "45%",
+      // href: "https://detik.com",
+      style: { background: "rgba(255, 0, 0, 0.0)",zIndex: "0" },
+      onMouseOver: () => console.log("map onMouseOver"),
+      render: (area: any, index: number) => (
+        <span>
+         </span>
+      ),
+    },
+    {
+      left: "5.5%",
+      top: "30%",
+      height: "22%",
+      width: "44%",
+      // href: "https://detik.com",
+      style: { background: "rgba(255, 0, 0, 0.0)",zIndex: "0" },
+      onMouseOver: () => console.log("map onMouseOver"),
+      render: (area: any, index: number) => (
+        <span>
+         </span>
+      ),
+    },
+    {
+      left: "5.5%",
+      top: "55%",
+      height: "22%",
+      width: "44%",
+      // href: "https://detik.com",
+      style: { background: "rgba(255, 0, 0, 0.0)",zIndex: "0" },
+      onMouseOver: () => console.log("map onMouseOver"),
+      render: (area: any, index: number) => (
+        <span>
+         </span>
+      ),
+    },
+/////////kanan
+    {
+      left: "86.5%",
+      top: "80.8%",
+      height: "20%",
+      width: "10%",
+      // href: "https://detik.com",
+      style: { background: "rgba(255, 0, 0, 0.0)",zIndex: "0" },
+      onMouseOver: () => console.log("map onMouseOver"),
+      render: (area: any, index: number) => (
+        <span>
+        </span>
+      ),
+    },
+    {
+      left: "50.5%",
+      top: "30%",
+      height: "22%",
+      width: "44%",
+      // href: "https://detik.com",
+      style: { background: "rgba(255, 0, 0, 0.0)",zIndex: "0" },
+      onMouseOver: () => console.log("map onMouseOver"),
+      render: (area: any, index: number) => (
+        <span>
+        </span>
+      ),
+    },
+    {
+      left: "50.5%",
+      top: "55%",
+      height: "22%",
+      width: "44%",
+      // href: "https://detik.com",
+      style: { background: "rgba(255, 0, 0, 0.0)",zIndex: "0" },
+      onMouseOver: () => console.log("map onMouseOver"),
+      render: (area: any, index: number) => (
+        <span>
+        </span>
+      ),
+    },
+    {
+      left: "50.5%",
+      top: "6%",
+      height: "22%",
+      width: "44%",
+      // href: "https://detik.com",
+      style: { background: "rgba(255, 0, 0, 0.0)",zIndex: "0" },
+      onMouseOver: () => console.log("map onMouseOver"),
+      render: (area: any, index: number) => (
+        <span>
+        </span>
+      ),
+    },
+    {
+      left: "50.5%",
+      top: "6%",
+      height: "22%",
+      width: "44%",
+      // href: "https://detik.com",
+      style: { background: "rgba(255, 0, 0, 0.0)",zIndex: "0" },
+      onMouseOver: () => console.log("map onMouseOver"),
+      render: (area: any, index: number) => (
+        <span>
+        </span>
+      ),
+    },
+    {
+      left: "50.5%",
+      top: "6%",
+      height: "22%",
+      width: "44%",
+      // href: "https://detik.com",
+      style: { background: "rgba(255, 0, 0, 0.0)",zIndex: "1" },
+      onMouseOver: () => console.log("map onMouseOver"),
+      render: (area: any, index: number) => (
+        <span>
+        </span>
+      ),
+    },
+    {
+      left: "76.5%",
+      top: "80%",
+      height: "15%",
+      width: "10%",
+      // href: "https://detik.com",
+      style: { background: "rgba(255, 0, 0, 0)",zIndex: "5" },
+      onMouseOver: () => console.log("map onMouseOver"),
+      render: (area: any, index: number) => (
+        <span>
+        </span>
+      ),
+    },
+    {
+      left: "50.5%",
+      top: "6%",
+      height: "22%",
+      width: "44%",
+      // href: "https://detik.com",
+      style: { background: "rgba(255, 0, 0, 0)",zIndex: "0" },
+      onMouseOver: () => console.log("map onMouseOver"),
+      render: (area: any, index: number) => (
+        <span>
+        </span>
+      ),
+    },
+    {
+      left: "65.5%",
+      top: "80%",
+      height: "15%",
+      width: "10%",
+      // href: "https://detik.com",
+      style: { background: "rgba(255, 0, 0, 0)",zIndex: "2" },
+      onMouseOver: () => console.log("map onMouseOver"),
+      render: (area: any, index: number) => (
+        <span>
+        </span>
+      ),
+    },
+
+
+  ];
+
   const mapArea: any[] = [
     {
       left: "32.2%",
@@ -213,7 +375,7 @@ const Dashboard = () => {
       height: "15%",
       width: "6.5%",
       // href: "https://detik.com",
-      style: { background: "rgba(255, 0, 0, 0.00)",zIndex: "8" },
+      style: { background: "rgba(255, 0, 0, 0.0)",zIndex: "0" },
       onMouseOver: () => console.log("map onMouseOver"),
       render: (area: any, index: number) => (
         <span>
@@ -225,49 +387,49 @@ const Dashboard = () => {
     },
     {
       left: "28.5%",
-      top: "78%",
+      top: "76.8%",
       height: "17%",
       width: "8.2%",
       // href: "https://google.com",
       style: { background: "rgba(255, 0, 0, 0.0)",zIndex: "8" },
-      onMouseOver: () => console.log("map onMouseOver"),
+      onMouseOver: () => setPejet("SESSION"),
       render: (area: any, index: number) => (
         <span>
          {pejet=="SESSION" ?
-         <img src="https://acsasurabaya2021.com/wp-content/plugins/perki/session.jpg" width="100%" />
+         <img src="https://acsasurabaya2021.com/wp-content/plugins/perki/Session_Select.png" width="100%" />
          : null }
          </span>
       ),
     },
     {
-      left: "36.6%",
+      left: "36.9%",
       top: "76.8%",
-      height: "19%",
-      width: "9%",
+      height: "17%",
+      width: "8.2%",
       // href: "https://google.com",
       style: { background: "rgba(255, 0, 0, 0.0)",zIndex: "8" },
-      onMouseOver: () => console.log("map onMouseOver"),
+      onMouseOver: () => setPejet("EXHIBITION"),
       render: (area: any, index: number) => (
         <span>
          {pejet=="EXHIBITION" ?
-         <img src="https://acsasurabaya2021.com/wp-content/plugins/perki/exhibition.jpg" width="100%" />
+         <img src="https://acsasurabaya2021.com/wp-content/plugins/perki/Exhibition_Select.png" width="100%" />
          : null }
          </span>
       ),
     },
     {
       left: "70.2%",
-      top: "78%",
+      top: "76.8%",
       height: "17%",
       width: "8.1%",
       // href: "https://google.com",
-      style: { background: "rgba(255, 0, 0, 0.0)",zIndex: "8" },
-      onMouseOver: () => console.log("map onMouseOver"),
+      style: { background: "rgba(255, 0, 0, 0)",zIndex: "8" },
+      onMouseOver: () => setPejet("EXIT"),
       render: (area: any, index: number) => (
         <span>
-         {/* {pejet=="EXIT" ?
-         <img src="https://acsasurabaya2021.com/wp-content/plugins/perki/exit.jpg" width="100%" />
-         : null } */}
+         {pejet=="EXIT" ?
+         <img src="https://acsasurabaya2021.com/wp-content/plugins/perki/Exit_Select.png" width="100%" />
+         : null }
          </span>
       ),
     },
@@ -277,10 +439,13 @@ const Dashboard = () => {
       height: "17%",
       width: "8%",
       // href: "https://google.com",
-      style: { background: "rgba(255, 0, 0, 0.0)",zIndex: "8" },
-      onMouseOver: () => console.log("map onMouseOver"),
+      style: { background: "rgba(255, 0, 0, 0)",zIndex: "8" },
+      onMouseOver: () => setPejet("SYMPOSIUM"),
       render: (area: any, index: number) => (
         <span>
+         {pejet=="SYMPOSIUM" ?
+         <img src="https://acsasurabaya2021.com/wp-content/plugins/perki/Symposium_Select.png" width="100%" />
+         : null }
          </span>
       ),
     },
@@ -291,11 +456,11 @@ const Dashboard = () => {
       width: "8%",
       // href: "https://google.com",
       style: { background: "rgba(255, 0, 0, 0.0)",zIndex: "8" },
-      onMouseOver: () => console.log("map onMouseOver"),
+      onMouseOver: () => setPejet("ACCOUNT"),
       render: (area: any, index: number) => (
         <span>
         {pejet=="ACCOUNT" ?
-      <img src="https://acsasurabaya2021.com/wp-content/plugins/perki/account.jpg" width="100%" />
+      <img src="https://acsasurabaya2021.com/wp-content/plugins/perki/Account_Select.png" width="100%" />
       : null }
       </span>
       ),
@@ -306,7 +471,7 @@ const Dashboard = () => {
       left: "10%",
       top: "2%",
       style: { background: "rgba(0, 255, 0, 0)",zIndex: "8",display:jadwal },
-      onMouseOver: () => console.log("map onMouseOver"),
+      onMouseOver: () => console.log("map onMouseOver11"),
       render: (area: any, index: number) => (
         <span>
          {/* <img src="https://acsasurabaya2021.com/wp-content/plugins/perki/jadwal.png" width="100%" /> */}
@@ -467,9 +632,28 @@ const Dashboard = () => {
       width: "8.5%",
       href: "https://google.com",
       style: { background: "rgba(0, 255, 0, 0)",zIndex: "8" },
-      onMouseOver: () => console.log("map onMouseOver"),
+      onMouseOver: () => setPejet("WORKSHOP"),
       render: (area: any, index: number) => (
         <span>
+         {pejet=="WORKSHOP" ?
+         <img src="https://acsasurabaya2021.com/wp-content/plugins/perki/Workshop_Select.png" width="100%" />
+         : null }
+      </span>
+      )
+    },
+    {
+      left: "20.5%",
+      top: "76.8%",
+      height: "19%",
+      width: "8.3%",
+      href: "https://google.com",
+      style: { background: "rgba(0, 255, 0, 0)",zIndex: "8" },
+      onMouseOver: () => setPejet("LOBBY"),
+      render: (area: any, index: number) => (
+        <span>
+         {pejet=="LOBBY" ?
+         <img src="https://acsasurabaya2021.com/wp-content/plugins/perki/Lobby_Select.png" width="100%" />
+         : null }
       </span>
       )
     }
@@ -492,6 +676,8 @@ const Dashboard = () => {
     <>
 <div>
   {(anggota && paymentstatus=="PAY") ?
+  <div>
+<div class="visibledesktop">
       <ImageMap
         className="usage-map"
         src={"https://acsasurabaya2021.com/wp-content/plugins/perki/HALL_DASHBOARD3.jpg"}
@@ -504,8 +690,37 @@ const Dashboard = () => {
             transform: 'translate(-50%, -24px)',
           }}
         onMapClick={onMapClick}
-        />
-         : (anggota && paymentstatus!="PAY") ?
+        /></div>
+        <div class="visibledevice">
+        <ImageMap
+          className="usage-map"
+          src={"https://acsasurabaya2021.com/wp-content/plugins/perki/HALL_DASHBOARD3.jpg"}
+          // map={mapArea}
+          style={{
+              width:"100%",
+              position: 'relative',
+              // left: '50%',
+              // zIndex: 1,
+              // transform: 'translate(-50%, -24px)',
+            }}
+          onMapClick={onMapClick}
+          />
+        <ImageMap
+          className="usage-map"
+          src={"https://acsasurabaya2021.com/wp-content/plugins/perki/Mobile Button.png"}
+          map={mapAreamobile}
+          style={{
+              width:"100%",
+              position: 'relative',
+              // left: '50%',
+              // zIndex: 1,
+              // transform: 'translate(-50%, -24px)',
+            }}
+          onMapClick={onMapClick}
+          />
+
+          </div></div>
+           : (anggota && paymentstatus!="PAY") ?
          <div style={{fontSize:"25px",marginLeft:"15px"}}>Mohon klik <a href="https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/theme/sponsor">di sini</a> - Next - Pay untuk melakukan pembayaran untuk mengaktifkan akun. Klik <a href="https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/login">di sini</a> untuk exit. </div>
 
         : (!anggota) ?

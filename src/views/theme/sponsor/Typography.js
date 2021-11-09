@@ -63,11 +63,11 @@ const Typography = () => {
 
   ]);
 
-  const [workshopprice,setWorkshopprice] = useState([{profession:"Medical Student",price:"IDR 150,000"},
-  {profession:"GP",price:"IDR 300,000"},
-  {profession:"Cardiologist",price:"IDR 500,000"},
-  {profession:"Other Specialists",price:"IDR 500,000"},
-  {profession:"Nurse or Paramedics",price:"IDR 150,000"}]);
+  const [workshopprice,setWorkshopprice] = useState([{profession:"Medical Student",price:"IDR 125,000"},
+  {profession:"GP",price:"IDR 150,000"},
+  {profession:"Cardiologist",price:"IDR 400,000"},
+  {profession:"Other Specialists",price:"IDR 400,000"},
+  {profession:"Nurse or Paramedics",price:"IDR 125,000"}]);
 
     const [datas,setDatas] = useState([]);
   const [dataanggota,setDataanggota] = useState({});
