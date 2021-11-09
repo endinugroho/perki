@@ -11,12 +11,14 @@ import {
   CBreadcrumbRouter,
   CLink
 } from '@coreui/react'
+import {
+  HomeOutlined,
+} from '@ant-design/icons';
 import CIcon from '@coreui/icons-react'
 import { Image} from 'antd';
 
 // routes config
 import routes from '../routes'
-
 import {
   TheHeaderDropdown,
   TheHeaderDropdownMssg,
@@ -42,6 +44,9 @@ const TheHeader = () => {
 
   return (
     <CHeader withSubheader>
+        <a href="https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/dashboard">
+      <HomeOutlined style={{position:"absolute",fontSize:"32px",marginTop:"5px",marginLeft:"5px"}}/>
+      </a>
       {/* <CToggler
         inHeader
         className="ml-md-3 d-lg-none"
@@ -53,8 +58,9 @@ const TheHeader = () => {
         onClick={toggleSidebar}
       /> */}
       <CHeaderBrand className="mx-auto">
-        {/* <CIcon name="logo" height="48" alt="Logo"/> */}        
-          <Image  preview={false} src="https://acsasurabaya2021.com/wp-content/plugins/perki/Logo-atas2.png" width="200px" />        
+        <a href="https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/dashboard">
+          <Image  preview={false} src="https://acsasurabaya2021.com/wp-content/plugins/perki/Logo-atas2.png" width="200px" />
+        </a>
       </CHeaderBrand>
 
       {/* <CHeaderNav className="d-md-down-none mr-auto">
