@@ -11,6 +11,10 @@ import "antd/dist/antd.css";
 import { mixed } from "yup/lib/locale";
 import { useHistory } from "react-router-dom";
 import generator from "generate-password";
+import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
+import 'react-vertical-timeline-component/style.min.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 const { confirm } = Modal;
 const FormItem = Form.Item;
 const { Option } = Select;
@@ -127,6 +131,7 @@ const Colors = () => {
   );
   
   const [dataWs, setDataWs] = useState({});
+  const [dataSympo, setDataSympo] = useState({});
 
   const [workshopprice, setWorkshopprice] = useState([
     { profession: "Medical Student", price: "IDR 10,000" },
@@ -934,7 +939,7 @@ const Colors = () => {
         // var temp = data.data;
         setAnggota(data.data[0]);
         if (data.data[0].simposium != "") {
-          setWs("PERTAMA");
+          changeDataSympo(1)
         } else {
           if (data.data[0].workshop != "") {
             // setWs(data.data[0].workshop.substr(3,2).trim());
@@ -1035,12 +1040,6 @@ const Colors = () => {
 
     setKotaselect(value);
   };
-
-  // useEffect(() => {
-  //   if(ws == '-'){
-  //     setWs('PERTAMA')
-  //   }
-  // },[ws])
 
   const handleChange3 = (value) => {
     console.log(`selected ${value}`);
@@ -1577,7 +1576,7 @@ const Colors = () => {
           alert("Mohon Hubungi Admin")
         }else{
           setDataWs(res.data);
-          setWs('sympo');
+          setWs('ws');
         }              
       })
       .catch((err) => console.log(err));
@@ -1586,14 +1585,14 @@ const Colors = () => {
   const changeDataSympo = (noUrut) => {
     setVisible(!visible)
     axios
-      .get("https://acsasurabaya2021.com/wp-content/plugins/perki/PerkiAPi.php?function=getwsdetil&noUrut="+noUrut)
+      .get("https://acsasurabaya2021.com/wp-content/plugins/perki/PerkiAPi.php?function=getsympodetil&noUrut="+noUrut)
       .then((res) => {
-        // console.log(res);
+        console.log(res);
         setVisible(!visible)  
         if(res.data.status == 0 && res.data.master == null && res.data.master == []){
           alert("Mohon Hubungi Admin")
         }else{
-          setDataWs(res.data);
+          setDataSympo(res.data);
           setWs('sympo');
         }              
       })
@@ -1602,13 +1601,50 @@ const Colors = () => {
 
   const parseDate = (date) => {
     let isValidDate = Date.parse(date);        
-    let dateArticle = new Intl.DateTimeFormat("id");
+    let dateArticle = new Intl.DateTimeFormat("en", {month : 'long'});
     if (isNaN(isValidDate)) {
       return '-';
     }else{      
-      return dateArticle.format(new Date(date)) +' '+ new Date(date).getDate() +", "+new Date(date).getFullYear()      
+      return new Date(date).getDate()+' '+dateArticle.format(new Date(date)) +" "+new Date(date).getFullYear()      
     }
   }   
+
+  const componentSympo = (length, data) => {
+    console.log(length)
+    console.log(data)
+    {data.detil.map((s) => {
+      <div class={`col-lg-${length == 1 ? '12' : length > 1 && length <= 3 ? '4' : length > 3 ? '3' : '12'} col-md-${length == 1 ? '12' : length > 1 && length <= 3 ? '4' : length > 3 ? '3' : '12'} col-sm-12 col-xs-12`}>
+        <VerticalTimeline>
+          {
+            data.detil.map((row, i) => {
+                return(
+                    <VerticalTimelineElement
+                        className="vertical-timeline-element--work"
+                        contentStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+                        contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
+                        date={row.time_range}
+                        iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}                
+                    >
+                    {
+                        row.tipe == "Activity" ? (
+                            <h4 className="vertical-timeline-element-title">{row.topic}</h4>                       
+                        ) : (
+                            <>
+                                <h3 className="vertical-timeline-element-title">{row.topic}</h3>                       
+                                <Button type="primary" style={{ borderRadius: "10px" }} onClick="">
+                                    Wacth Now
+                                </Button>
+                            </>
+                        )
+                    }                                
+                    </VerticalTimelineElement>   
+                )
+            })
+          }
+        </VerticalTimeline>
+      </div>      
+    })} 
+  }
 
   return (
     <>
@@ -1638,14 +1674,20 @@ const Colors = () => {
                 <>
                   <Button
                     type="primary"
-                    onClick={() => setWs("PERTAMA")}
+                    onClick={() => {
+                      setWs("PERTAMA")
+                      changeDataSympo(1);
+                    }}
                     style={{ marginLeft: "30px", borderRadius: "10px" }}
                   >
                     Sym 1
                   </Button>
                   <Button
                     type="primary"
-                    onClick={() => setWs("KEDUA")}
+                    onClick={() => {
+                      setWs("KEDUA")
+                      changeDataSympo(2);
+                    }}
                     style={{ marginLeft: "2px", borderRadius: "10px" }}
                   >
                     Sym 2
@@ -1654,7 +1696,7 @@ const Colors = () => {
                     type="primary"
                     onClick={() => {
                       setWs("KETIGA")
-                      changeDataSympo(3)  
+                      changeDataSympo(3);  
                     }}
                     style={{ marginLeft: "2px", borderRadius: "10px" }}
                   >
@@ -1961,1560 +2003,54 @@ const Colors = () => {
           </CRow>
           <CRow style={{ marginTop: "30px" }} className="jsutify-content-center">
             {ws == "sympo" ? (
-              <div>
-                <p style={{ marginLeft: "39px", fontSize: "25px" }}>
-                  <b>DAY-1: Friday, 10 December 2021</b>
-                </p>
-                <table
-                  width="90%"
-                  style={{
-                    marginLeft: "30px",
-                    borderCollapse: "separate",
-                    textAlign: "center",
-                    borderSpacing: "0.5em 0.5em",
-                    border: "none",
-                  }}
-                >
-                  <tbody>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        {/* <p>
-                          <b>TIME</b>
-                        </p> */}
-                        
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>SESSION</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>SESSION</strong>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>Warm-Up Session</p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>BRAINSTROMING, A NEW PERSPECTIVE IN</strong>
-                        </p>
-                        <p>
-                          <strong>CARDIONEUROLOGY</strong>
-                        </p>
-                        <p>
-                          <em>Chairman: tba Panelist: tba</em>
-                        </p>
-                        <p>
-                          {/* <br/> */}
-                          <Button
-                            type="primary"
-                            style={{ borderRadius: "10px" }}
-                            onClick={() => openInNewTab(meetingid1)}
-                          >
-                            {" "}
-                            Watch Now{" "}
-                          </Button>
-                        </p>
-                        {/* <DateCountdown dateTo={tanggalmeeting} callback={()=>alert('Hello')}  /> */}
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>DRUG INTERACTION</strong>
-                        </p>
-                        <p>
-                          <strong>&nbsp;</strong>
-                        </p>
-                        <p>
-                          <em>Chairman: tba Panelist: tba</em>
-                        </p>
-                        <p>
-                          {/* <br/> */}
-                          <Button
-                            type="primary"
-                            style={{ borderRadius: "10px" }}
-                            onClick={() => openInNewTab(meetingid1)}
-                          >
-                            {" "}
-                            Watch Now{" "}
-                          </Button>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>(08.00 &ndash; 08.20)</p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>
-                            Heart-Brain Axis: The Neuroscience Aspects,
-                          </strong>
-                        </p>
-                        <p>
-                          <strong>More Than Just Issues</strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-
-                        {/* <table style={{borderCollapse:"collapse", width: "124.652px"}} border="0">
-                <tbody>
-                  <tr style={{border: "none"}}>
-                    <td style={{width: "228px"}} colspan="3"><b>Zoom data login</b></td>
-                  </tr> */}
-                            {/* <tr style={{border: "none"}}>
-                  <td style={{width: "76px"}}>MeetingID</td>
-                  <td style={{width: "6px"}}>:</td>
-                  <td style={{width: "140px"}}><input type="text" value={meetingid1} /></td>
-                  </tr> */}
-                            {/* <tr style={{border: "none"}}>
-                  <td style={{width: "67px"}}>Password</td>
-                  <td style={{width: "6px"}}>:</td>
-                  <td style={{width: "149px"}}><input type="password" value="L0hndXQ4aEx1NXlTN1FHUW9yOTJiUT09"/></td>
-                  </tr> */}
-                            {/* <tr style={{border: "none"}}> */}
-                            {/* <td style={{width: "76px"}}>&nbsp;</td>
-                  <td style={{width: "6px"}}>&nbsp;</td> */}
-                            {/* <td style={{width: "140px"}}><Button type="primary" onClick={() => openInNewTab('https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/theme/zoom/12345', meetingid1)}> Goto Zoom </Button></td>
-                  </tr>
-                </tbody>
-                </table> */}
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>Most Common Cardiovascular Drugs</strong>{" "}
-                          <strong>(HF &amp; CCS)</strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>
-                          <strong>&nbsp;</strong>
-                        </p>
-                        <p>(08.20 &ndash; 08.40)</p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>
-                            New Term for Cardiologist : Hemodynamic{" "}
-                          </strong>
-                          <strong>Stroke</strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>
-                            How Common Drug Interaction among In- and Out-{" "}
-                          </strong>
-                          <strong>Patients Is?</strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>
-                          <strong>&nbsp;</strong>
-                        </p>
-                        <p>(08.40 &ndash; 09.00)</p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>
-                            Simultaneous Investigation : Arrhythmia &amp; Clot{" "}
-                          </strong>
-                          <strong>Source</strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>
-                            How Cardiovascular Drugs Should Be Adjusted?
-                          </strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-
-                <p style={{ margin: "0px" }}>
-                  <strong>&nbsp;</strong>
-                </p>
-                <table
-                  width="90%"
-                  style={{
-                    marginLeft: "30px",
-                    borderCollapse: "separate",
-                    textAlign: "center",
-                    borderSpacing: "0.5em 0.5em",
-                    border: "none",
-                  }}
-                >
-                  <tbody>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>(09.00 &ndash; 09.10)</p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>Discussion</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>Discussion</strong>
-                        </p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-
-                <p style={{ margin: "0px" }}>
-                  <strong>&nbsp;</strong>
-                </p>
-                <table
-                  width="90%"
-                  style={{
-                    marginLeft: "30px",
-                    borderCollapse: "separate",
-                    textAlign: "center",
-                    borderSpacing: "0.5em 0.5em",
-                    border: "none",
-                  }}
-                >
-                  <tbody>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>
-                          <strong>&nbsp;</strong>
-                        </p>
-                        <p>
-                          <strong>Morning Symposium</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          backgroundColor: "#E6F2FF",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>PLENARY: RESEARCH FINDINGS IN COVID- </strong>
-                          <strong>19</strong>
-                        </p>
-                        <p>
-                          <em>Chairman: tba Panelist: tba</em>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          backgroundColor: "#E6F2FF",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>ACUTE CORONARY SYNDROME</strong>
-                        </p>
-                        <p>
-                          <em>Chairman: tba Panelist: tba</em>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>
-                          <strong>&nbsp;</strong>
-                        </p>
-                        <p>(09.15 &ndash; 09.35)</p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          backgroundColor: "#E6F2FF",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>
-                            COVID-19: Genomic Variations and Clinical{" "}
-                          </strong>
-                          <strong>Manifestations</strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          backgroundColor: "#E6F2FF",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>
-                            Acute Coronary Syndrome: New Insight during Pandemic
-                          </strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>(09.35 &ndash; 09.55)</p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          backgroundColor: "#E6F2FF",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>
-                            Plasma Convalescence : Surabaya Experience
-                          </strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          backgroundColor: "#E6F2FF",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>Symptoms to balloon time</strong>{" "}
-                          <strong>has stronger impacts</strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>(09.55 &ndash; 10.15)</p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          backgroundColor: "#E6F2FF",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>
-                            Covid &amp; Pneumonia : 2 sides of a Coin
-                          </strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          backgroundColor: "#E6F2FF",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>No More MONACO</strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>(10.15 &ndash; 10.35)</p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          backgroundColor: "#E6F2FF",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>Cardiac Injury in COVID-19/Arrhthymia</strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          backgroundColor: "#E6F2FF",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>Introducing A New Kind of ACS: MINOCA</strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>
-                          <strong>&nbsp;</strong>
-                        </p>
-                        <p>(10.35 &ndash; 10.55)</p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          backgroundColor: "#E6F2FF",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>
-                            Cytokine Storm and Metabolic Problems in COVID-19
-                          </strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          backgroundColor: "#E6F2FF",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>
-                            Cath-Lab Dedicated Covid-19: Is It That Urgent?
-                          </strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-
-                <p style={{ margin: "0px" }}>
-                  <strong>&nbsp;</strong>
-                </p>
-                <table
-                  width="90%"
-                  style={{
-                    marginLeft: "30px",
-                    borderCollapse: "separate",
-                    textAlign: "center",
-                    borderSpacing: "0.5em 0.5em",
-                    border: "none",
-                  }}
-                >
-                  <tbody>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>(10.55 &ndash; 11.05)</p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          backgroundColor: "#E6F2FF",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>Discussion</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          backgroundColor: "#E6F2FF",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>Discussion</strong>
-                        </p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <p style={{ margin: "0px" }}>
-                  <strong>&nbsp;</strong>
-                </p>
-                <table
-                  width="90%"
-                  style={{
-                    marginLeft: "30px",
-                    borderCollapse: "separate",
-                    textAlign: "center",
-                    borderSpacing: "0.5em 0.5em",
-                    border: "none",
-                  }}
-                >
-                  <tbody>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>(11.05 &ndash; 12.30)</p>
-                      </td>
-                      <td
-                        colspan="2"
-                        width="633"
-                        style={{
-                          backgroundColor: "#E6F2FF",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>FRIDAY PRAYER</strong>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>
-                          <strong>Lunch Symposium</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>IN-DEPTH SESSION: BASIC THINGS IN </strong>
-                          <strong>COVID-19</strong>
-                        </p>
-                        <p>
-                          <em>Chairman: tba</em>
-                        </p>
-                        <p>
-                          <em>Panelist: tba</em>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>STEMI: FOCUS ON REVASCULARIZATION</strong>
-                        </p>
-                        <p>
-                          <em>Chairman: tba Panelist: tba</em>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>(12.30 &ndash; 12.50)</p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>Pneumonia: Classifications and Stages</strong>
-                        </p>
-                        <p>
-                          <em>Speaker:tba</em>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>Immediate Thrombolysis in the ER</strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>(12.50 &ndash; 13.10)</p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>Markers of Inflammation in COVID-19</strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>How Thrombolysis Should be Performed?</strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>
-                          <strong>&nbsp;</strong>
-                        </p>
-                        <p>(13.10 &ndash; 13.30)</p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>
-                            The Role of Non-Invasive (Echocardiography)
-                          </strong>
-                        </p>
-                        <p>
-                          <strong>Monitoring in COVID-19 ICU</strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>
-                            How To Optimize Myocardial Recovery after STEMI?
-                          </strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                    </tr>
-                    {/* </tbody>
-                </table>
-                <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",border: "none", width:"90%"}}>
-                <tbody> */}
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>
-                          <strong>&nbsp;</strong>
-                        </p>
-                        <p>(13.30 &ndash; 13.50)</p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>&nbsp;</strong>
-                        </p>
-                        <p>
-                          <strong>ECMO in Covid 19 :</strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>&nbsp;</strong>
-                        </p>
-                        <p>
-                          <strong>Surabaya STEMI Network</strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <p style={{ margin: "0px" }}>
-                  <strong>&nbsp;</strong>
-                </p>
-                <table
-                  width="90%"
-                  style={{
-                    marginLeft: "30px",
-                    borderCollapse: "separate",
-                    textAlign: "center",
-                    borderSpacing: "0.5em 0.5em",
-                    border: "none",
-                  }}
-                >
-                  <tbody>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>(13.50 &ndash; 14.10)</p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>Discussion</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>Discussion</strong>
-                        </p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <p style={{ margin: "0px" }}>
-                  <strong>&nbsp;</strong>
-                </p>
-                <table
-                  width="90%"
-                  style={{
-                    marginLeft: "30px",
-                    borderCollapse: "separate",
-                    textAlign: "center",
-                    borderSpacing: "0.5em 0.5em",
-                    border: "none",
-                  }}
-                >
-                  <tbody>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>
-                          <strong>Afternoon Symposium</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          backgroundColor: "#E6F2FF",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>
-                            How to Interpret Laboratory Findings: How to
-                            Recognize Troponitis Disease
-                          </strong>
-                        </p>
-                        <p>
-                          <em>Chairman: tba</em>
-                        </p>
-                        <p>
-                          <em>Panelist: tba</em>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          backgroundColor: "#E6F2FF",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>ACUTE CARDIAC CARE &ndash; 1</strong>
-                        </p>
-                        <p>
-                          <em>Chairman: tba Panelist: tba</em>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>
-                          <strong>&nbsp;</strong>
-                        </p>
-                        <p>(14.15 &ndash; 14.35)</p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          backgroundColor: "#E6F2FF",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>
-                            How Actually Troponin Enters The Blood Stream?
-                          </strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          backgroundColor: "#E6F2FF",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>
-                            Valvular Disease in Acute Heart Failure
-                          </strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>
-                          <strong>&nbsp;</strong>
-                        </p>
-                        <p>(14.35 &ndash; 14.55)</p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          backgroundColor: "#E6F2FF",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>
-                            How The Markers Detects Its Existence and How
-                          </strong>
-                        </p>
-                        <p>
-                          <strong>Should It be Interpreted?</strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          backgroundColor: "#E6F2FF",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>
-                            Mechanical Ventilation Setting in Acute Heart
-                            Failure:
-                          </strong>
-                        </p>
-                        <p>
-                          <strong>Some Hints!</strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>(14.55 &ndash; 15.15)</p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          backgroundColor: "#E6F2FF",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>
-                            Synchronizing with The Clinical Constellations
-                          </strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          backgroundColor: "#E6F2FF",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>Nutrition, and Diet for ICCU Patients</strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <p style={{ margin: "0px" }}>
-                  <strong>&nbsp;</strong>
-                </p>
-                <table
-                  width="90%"
-                  style={{
-                    marginLeft: "30px",
-                    borderCollapse: "separate",
-                    textAlign: "center",
-                    borderSpacing: "0.5em 0.5em",
-                    border: "none",
-                  }}
-                >
-                  <tbody>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>(15.15 &ndash; 15.25)</p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          backgroundColor: "#E6F2FF",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>Discussion</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          backgroundColor: "#E6F2FF",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>Discussion</strong>
-                        </p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <p style={{ margin: "0px" }}>
-                  <strong>&nbsp;</strong>
-                </p>
-                <table
-                  width="90%"
-                  style={{
-                    marginLeft: "30px",
-                    borderCollapse: "separate",
-                    textAlign: "center",
-                    borderSpacing: "0.5em 0.5em",
-                    border: "none",
-                  }}
-                >
-                  <tbody>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>
-                          <strong>&nbsp;</strong>
-                        </p>
-                        <p>
-                          <strong>Afternoon Symposium &ndash; 2</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>
-                            Laboratory Findings in COVID-19: What The{" "}
-                          </strong>
-                          <strong>Expert Says? &ndash; 1</strong>
-                        </p>
-                        <p>
-                          <em>Chairman: tba</em>
-                        </p>
-                        <p>
-                          <em>Panelist: tba</em>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>ACUTE CARDIAC CARE &ndash; 2</strong>
-                        </p>
-                        <p>
-                          <em>Chairman: tba Panelist: tba</em>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>(15.30 &ndash; 15.50)</p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>
-                            Blood Gas Analysis in COVID-19 Patients
-                          </strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>The Present and Future Hope of</strong>{" "}
-                          <strong>ICCU/CVCU</strong>
-                        </p>
-                        <p>
-                          <em>Speaker : tba</em>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>
-                          <strong>&nbsp;</strong>
-                        </p>
-                        <p>(15.50 &ndash; 16.10)</p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>
-                            Laboratory FIndings in COVID-19: What Should We
-                            Aware Of?
-                          </strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>
-                            Post-Operative Care Management: When
-                            Anesthesiologist and Cardiologist Hold Hands
-                          </strong>
-                        </p>
-                        <p>
-                          <strong>Together</strong>
-                        </p>
-                        <p>
-                          <em>Speaker: tba</em>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>
-                          <strong>&nbsp;</strong>
-                        </p>
-                        <p>(16.10 &ndash; 16..20)</p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>&nbsp;</strong>
-                        </p>
-                        <p>
-                          <strong>Discussion</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>
-                            The Present Contributionsof Chest Pain Unit &ndash;
-                          </strong>
-                        </p>
-                        <p>
-                          <strong>CVCU :</strong>
-                        </p>
-                        <p>
-                          <em>Speaker : tba</em>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                        width="10%"
-                      >
-                        <p>(16.20 &ndash; DONE)</p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>Closing</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="40%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>Closing</strong>
-                        </p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              <>                
+                <h2 style={{margin: '0 auto', position: 'relative', width: '95%', marginBottom: '25px', color: '#4e4e4e'}}>
+                  {`DAY-${dataSympo.master[0].serial_number} : ${dataSympo.master[0].day}, ${parseDate(dataSympo.master[0].date)}`}
+                </h2>
+                {dataSympo.detil.map((s, index1) => {
+                  return (                                         
+                    <div key={index1} class={`col-lg-${dataSympo.detil.length == 1 ? '12' : dataSympo.detil.length > 1 && dataSympo.detil.length >= 2 ? '6' : dataSympo.detil.length > 2 && dataSympo.detil.length <= 3 ? '4' : dataSympo.detil.length > 3 ? '3' : '12'} col-md-${dataSympo.detil.length == 1 ? '12' : dataSympo.detil.length > 1 && dataSympo.detil.length <= 3 ? '4' : dataSympo.detil.length > 3 ? '3' : '12'} col-sm-12 col-xs-12`}>
+                      <h4 style={{color: '#4e4e4e', margin: '0 auto', position: 'relative', width: '95%'}}>{`Ballroom ${index1 + 1}`}</h4>
+                      <VerticalTimeline layout="1-column-left">
+                        {
+                          dataSympo.detil[index1].map((row, index2) => {
+                              return(
+                                  <VerticalTimelineElement
+                                      key={index2}                                      
+                                      className="vertical-timeline-element--work"
+                                      style={{margin: "10px 0"}}
+                                      contentStyle={{ background: 'rgb(33, 150, 243)', color: '#fff', textAlign: 'center' }}
+                                      contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
+                                      date={row.time_range}
+                                      iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}                
+                                      icon={<i style={{position: 'relative', left: "50%", top: '50%', transform: 'translate(-50%, -50%)', fontSize: '25px'}} class="far fa-calendar-alt"></i>}
+                                  >                                  
+                                  {
+                                      row.tipe == "Activity" ? (
+                                        <>
+                                          <h5 className="text-white vertical-timeline-element-title">{row.topic}</h5>                       
+                                          <p>Speaker: {row.speaker ?? 'tba'}</p>                                          
+                                        </>
+                                      ) : (
+                                          <>
+                                              <h5 className="text-white vertical-timeline-element-title">{row.topic}</h5>                       
+                                              <p>Chairman: {row.chairman ?? 'tba'} <br/> Panelist: {row.panelist ?? 'tba'}</p>
+                                              <br/>
+                                              <Button type="primary" style={{ borderRadius: "10px", background: "#2a3d9f", position: 'absolute', right: '15px', bottom: '16px' }} onClick="">
+                                                  Wacth Now
+                                              </Button>                                              
+                                          </>
+                                      )
+                                  }                                  
+                                  </VerticalTimelineElement>   
+                              )
+                          })
+                        }
+                      </VerticalTimeline>
+                    </div>                          
+                  )
+                })} 
+              </>
             ) : ws == "ws" ? (  
               <>     
                 {/* Tabel Master */}

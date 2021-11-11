@@ -205,20 +205,7 @@ const Dashboard = () => {
     // alert(tip);)
   };
 
-  const mapAreamobile: any[] = [
-    {
-      left: "5.5%",
-      top: "5.8%",
-      height: "22%",
-      width: "45%",
-      // href: "https://detik.com",
-      style: { background: "rgba(255, 0, 0, 0.0)",zIndex: "0" },
-      onMouseOver: () => console.log("map onMouseOver"),
-      render: (area: any, index: number) => (
-        <span>
-         </span>
-      ),
-    },
+  const mapAreamobile: any[] = [    
     {
       left: "5.5%",
       top: "30%",
@@ -364,26 +351,9 @@ const Dashboard = () => {
       ),
     },
 
-
   ];
 
-  const mapArea: any[] = [
-    {
-      left: "32.2%",
-      top: "80.8%",
-      height: "15%",
-      width: "6.5%",
-      // href: "https://detik.com",
-      style: { background: "rgba(255, 0, 0, 0.00)",zIndex: "8",cursor: "pointer", },
-      onMouseOver: () => console.log("map onMouseOver"),
-      render: (area: any, index: number) => (
-        <span>
-         {pejet=="LOBBY" ?
-         <img src="https://acsasurabaya2021.com/wp-content/plugins/perki/Lobby_Select.png" width="100%" />
-         : null }
-         </span>
-      ),
-    },
+  const mapArea: any[] = [    
     {
       left: "28.5%",
       top: "76.8%",
