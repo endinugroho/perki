@@ -192,7 +192,7 @@ const Dashboard = () => {
       history.push('/theme/symposium');
 
     }
-  if (index==15) {
+  if (index==15 || index==9) {
     history.push('/theme/workshop');
 
 }

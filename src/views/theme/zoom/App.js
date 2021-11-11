@@ -23,12 +23,12 @@ ZoomMtg.i18n.reload('en-US');
 var signatureEndpoint = ''
 var apiKey = 'sw1o-LaLTtaMC0xjZ9ghdw'
 var apiSecret  = 'NDRYGCnfiSXNSosr25YEPnKOkKU4rf8ksSiF';
-var meetingNumber = "84989296911";
+var meetingNumber = "87692281345";
 var role = 0;
 var leaveUrl = 'https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/theme/session';
-var userName = "Dani Cahya";
+var userName = localStorage.getItem("nama");
 var userEmail = 'random1002310@gmail.com';
-var passWord = '443674';
+var passWord = '263137';
 var registrantToken = ''
 // var passWord = 'RGNtNTYzbEVjNG9VZWFWSUdvQjNhZz09';
 // pass in the registrant's token if your meeting or webinar requires registration. More info here:
