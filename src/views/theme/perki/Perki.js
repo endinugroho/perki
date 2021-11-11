@@ -89,11 +89,11 @@ const Colors = () => {
   const [disable,setDisable] = useState(false);
   const [simposium, setSimposium] = useState("");
 
-  const [workshopprice,setWorkshopprice] = useState([{profession:"Medical Student",price:"IDR 150,000"},
-  {profession:"GP",price:"IDR 300,000"},
-  {profession:"Cardiologist",price:"IDR 500,000"},
-  {profession:"Other Specialists",price:"IDR 500,000"},
-  {profession:"Nurse or Paramedics",price:"IDR 150,000"}]);
+  const [workshopprice,setWorkshopprice] = useState([{profession:"Medical Student",price:"IDR 125,000"},
+  {profession:"GP",price:"IDR 150,000"},
+  {profession:"Cardiologist",price:"IDR 400,000"},
+  {profession:"Other Specialists",price:"IDR 400,000"},
+  {profession:"Nurse or Paramedics",price:"IDR 125,000"}]);
 
   const [kota,setKota] = useState([{propinsi:"Nanggroe Aceh Darussalam (NAD)",kota:"Aceh Barat"},
   {propinsi:"Nanggroe Aceh Darussalam (NAD)",kota:"Aceh Barat Daya"},
@@ -782,8 +782,10 @@ useEffect(() => {
       }
       if (value.length>jumlahworkshop)
       {
-        setHargatambahan((value.length-jumlahworkshop)*hargaworkshop);
-        setHargagrandtotal(parseInt(hargatotal.replace("IDR ","").replace(",","").replace(",",""))+(value.length-jumlahworkshop)*hargaworkshop);
+        alert("Jumlah workshop anda melebihi, silakan disesuiakan");
+
+        // setHargatambahan((value.length-jumlahworkshop)*hargaworkshop);
+        // setHargagrandtotal(parseInt(hargatotal.replace("IDR ","").replace(",","").replace(",",""))+(value.length-jumlahworkshop)*hargaworkshop);
       } else
       {
         setHargatambahan(0);
@@ -1000,8 +1002,18 @@ if (step=="Step1")
 
 if (step=="Step2")
 {
-  if (jumlahworkshop>jumlahworkshopdipilih) {
-    alert("You must select more workshop");return;
+  if (pilih==0) {
+    alert("Silakan pilih profesi dahulu");return;
+
+  }
+if (pilih==3) {
+    if (jumlahworkshop>jumlahworkshopdipilih) {
+      alert("You must select more workshop");return;
+    }
+    if (jumlahworkshopdipilih>jumlahworkshop) {
+      alert("Workshop anda terlalu banyak");return;
+    }
+
   }
   if ((macamworkshop.indexOf("WS Indovasc 2 (Vascular Doppler US)")>-1) && (macamworkshop.indexOf("WS 12 (Diagnostic Modalities in Congenital Heart Disease : Focus on VSD and TOF)")>-1)) {
     alert("Ws 12 and WS Indovac 2 run in same time");return;
@@ -1260,12 +1272,12 @@ activeStep={1} style={{width:"100%"}}
       </div>
       {/* jumlah={jumlahworkshopdipilih-packageselect.split("#")[2]}
       hargaws={hargaworkshop} */}
-      {(jumlahworkshopdipilih>packageselect.split("#")[2]) ?
+      {/* {(jumlahworkshopdipilih>packageselect.split("#")[2]) ?
       <div class="labeldaninput">
           <div class="labelatas" style={{display:"flex"}}>Package price additional</div>
           <Input addonBefore="IDR" placeholder="harga package tambahan" value={hargatambahan} />
       </div>
-      : null }
+      : null } */}
       <div style={{width:"100%",textAlign:"right",paddingRight:"15px"}}>
       {/* {hargatotal},{hargatambahan} */}
       <Button type="primary" onClick={()=>klikStep1()} disabled={disable}>Continue</Button>
