@@ -52,7 +52,8 @@ const Login = () => {
       mtd:"SIGNIN"
     }
     axios({
-      url: "https://acsasurabaya2021.com/wp-content/plugins/perki/kirimdata.php",
+      // url: "https://acsasurabaya2021.com/wp-content/plugins/perki/kirimdata.php",
+      url: "http://localhost/PHP-Native/kirimdata.php",
       // url: "http://localhost/perki/kirimdata.php",
       data: payload,
       contentType: "application/json",

@@ -2,7 +2,21 @@ import React, { useEffect, useState, createRef } from "react";
 import classNames from "classnames";
 import axios from "axios";
 import DateCountdown from "react-date-countdown-timer";
-import { CRow, CCol, CCard, CCardHeader, CSpinner, CCardBody, CModal, CModalHeader, CModalTitle, CModalBody, CModalFooter } from "@coreui/react";
+import {
+  CRow,
+  CCol,
+  CCard,
+  CCardHeader,
+  CSpinner,
+  CCardBody,
+  CModal,
+  CTabs,
+  CNav,
+  CNavItem,
+  CNavLink,
+  CTabContent,
+  CTabPane,
+} from "@coreui/react";
 import { rgbToHex } from "@coreui/utils";
 import { DocsLink } from "src/reusable";
 import { Stepper } from "react-form-stepper";
@@ -11,9 +25,12 @@ import "antd/dist/antd.css";
 import { mixed } from "yup/lib/locale";
 import { useHistory } from "react-router-dom";
 import generator from "generate-password";
-import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
-import 'react-vertical-timeline-component/style.min.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  VerticalTimeline,
+  VerticalTimelineElement,
+} from "react-vertical-timeline-component";
+import "react-vertical-timeline-component/style.min.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const { confirm } = Modal;
 const FormItem = Form.Item;
@@ -114,7 +131,7 @@ const Colors = () => {
   const [workshopku, setWorkshopku] = useState("");
   const [ws, setWs] = useState("-");
   const [hari, setHari] = useState("PERTAMA");
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(false);
   // const [meetingid1,setMeetingid1] = useState("79190715224");
   const [meetingid1, setMeetingid1] = useState("83601178402");
   const [meetingid2, setMeetingid2] = useState("");
@@ -129,7 +146,7 @@ const Colors = () => {
   const [tanggalmeeting, setTanggalmeeting] = useState(
     "'January 01, 2022 00:00:00 GMT+03:00'"
   );
-  
+
   const [dataWs, setDataWs] = useState({});
   const [dataSympo, setDataSympo] = useState({});
 
@@ -939,7 +956,7 @@ const Colors = () => {
         // var temp = data.data;
         setAnggota(data.data[0]);
         if (data.data[0].simposium != "") {
-          changeDataSympo(1)
+          changeDataSympo(1);
         } else {
           if (data.data[0].workshop != "") {
             // setWs(data.data[0].workshop.substr(3,2).trim());
@@ -1368,25 +1385,11 @@ const Colors = () => {
     //   });
   };
 
-  const openInNewTab = (meetingidku) => {
-    axios
-      .post(
-        "https://acsasurabaya2021.com/wp-content/plugins/perki/kirimdata.php",
-        {
-          mtd: "REQUESTAPI",
-          meetingid: meetingidku,
-        }
-      )
-      .then((res) => {
-        console.log(res);
-        localStorage.setItem("signature", res.data.signature);
-        localStorage.setItem("meetingid", meetingidku);
-        history.push("/theme/zoom");
-      })
-      .catch((err) => console.log(err));
-    // window.location.href = url;
-    // const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
-    // if (newWindow) newWindow.opener = null
+  const WacthZoom = (meetingId, passcode = null) => {          
+    console.log(meetingId, passcode)
+      localStorage.setItem("meetingid", meetingId);
+      localStorage.setItem("passcode", passcode);
+      history.push("/theme/zoom");          
   };
 
   const handleKlik = (value) => {
@@ -1566,90 +1569,74 @@ const Colors = () => {
   };
 
   const changeDataWS = (noUrut) => {
-    setVisible(!visible)
+    setVisible(!visible);
     axios
-      .get("https://acsasurabaya2021.com/wp-content/plugins/perki/PerkiAPi.php?function=getwsdetil&noUrut="+noUrut)
+      .get(
+        "https://acsasurabaya2021.com/wp-content/plugins/perki/PerkiAPi.php?function=getwsdetil&noUrut=" +
+          noUrut
+      )
       .then((res) => {
         // console.log(res);
-        setVisible(!visible)  
-        if(res.data.status == 0 && res.data.master == null && res.data.master == []){
-          alert("Mohon Hubungi Admin")
-        }else{
+        setVisible(!visible);
+        if (
+          res.data.status == 0 &&
+          res.data.master == null &&
+          res.data.master == []
+        ) {
+          alert("Mohon Hubungi Admin");
+        } else {
           setDataWs(res.data);
-          setWs('ws');
-        }              
+          setWs("ws");
+        }
       })
       .catch((err) => console.log(err));
-  }
+  };
 
   const changeDataSympo = (noUrut) => {
-    setVisible(!visible)
+    setVisible(!visible);
     axios
-      .get("https://acsasurabaya2021.com/wp-content/plugins/perki/PerkiAPi.php?function=getsympodetil&noUrut="+noUrut)
+      .get(
+        "https://acsasurabaya2021.com/wp-content/plugins/perki/PerkiAPi.php?function=getsympodetil&noUrut=" +
+          noUrut
+      )
       .then((res) => {
         console.log(res);
-        setVisible(!visible)  
-        if(res.data.status == 0 && res.data.master == null && res.data.master == []){
-          alert("Mohon Hubungi Admin")
-        }else{
+        setVisible(!visible);
+        if (
+          res.data.status == 0 &&
+          res.data.master == null &&
+          res.data.master == []
+        ) {
+          alert("Mohon Hubungi Admin");
+        } else {
           setDataSympo(res.data);
-          setWs('sympo');
-        }              
+          setWs("sympo");
+        }
       })
       .catch((err) => console.log(err));
-  }
+  };
 
   const parseDate = (date) => {
-    let isValidDate = Date.parse(date);        
-    let dateArticle = new Intl.DateTimeFormat("en", {month : 'long'});
+    let isValidDate = Date.parse(date);
+    let dateArticle = new Intl.DateTimeFormat("en", { month: "long" });
     if (isNaN(isValidDate)) {
-      return '-';
-    }else{      
-      return new Date(date).getDate()+' '+dateArticle.format(new Date(date)) +" "+new Date(date).getFullYear()      
+      return "-";
+    } else {
+      return (
+        new Date(date).getDate() +
+        " " +
+        dateArticle.format(new Date(date)) +
+        " " +
+        new Date(date).getFullYear()
+      );
     }
-  }   
-
-  const componentSympo = (length, data) => {
-    console.log(length)
-    console.log(data)
-    {data.detil.map((s) => {
-      <div class={`col-lg-${length == 1 ? '12' : length > 1 && length <= 3 ? '4' : length > 3 ? '3' : '12'} col-md-${length == 1 ? '12' : length > 1 && length <= 3 ? '4' : length > 3 ? '3' : '12'} col-sm-12 col-xs-12`}>
-        <VerticalTimeline>
-          {
-            data.detil.map((row, i) => {
-                return(
-                    <VerticalTimelineElement
-                        className="vertical-timeline-element--work"
-                        contentStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
-                        contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
-                        date={row.time_range}
-                        iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}                
-                    >
-                    {
-                        row.tipe == "Activity" ? (
-                            <h4 className="vertical-timeline-element-title">{row.topic}</h4>                       
-                        ) : (
-                            <>
-                                <h3 className="vertical-timeline-element-title">{row.topic}</h3>                       
-                                <Button type="primary" style={{ borderRadius: "10px" }} onClick="">
-                                    Wacth Now
-                                </Button>
-                            </>
-                        )
-                    }                                
-                    </VerticalTimelineElement>   
-                )
-            })
-          }
-        </VerticalTimeline>
-      </div>      
-    })} 
-  }
+  };
+  
 
   return (
     <>
       <CModal visible={visible} onClose={() => setVisible(false)}>
-          <CSpinner color="primary"/>          
+        <CSpinner color="primary" />
       </CModal>
       <CCard>
         <CCardHeader style={{ fontSize: "25px" }}>
@@ -1666,3433 +1653,3696 @@ const Colors = () => {
             }}
           />
         </CCardHeader>
-        {/* <CCardBody style={{backgroundImage: "url('https://acsasurabaya2021.com/wp-content/plugins/perki/background3.png')"}}> */}
-        <CCardBody>
-          <CRow>
-            <div className="col-lg-12 col-md-12 col-sm-12">
-              {anggota.simposium != "" ? (
-                <>
-                  <Button
-                    type="primary"
-                    onClick={() => {
-                      setWs("PERTAMA")
-                      changeDataSympo(1);
-                    }}
-                    style={{ marginLeft: "30px", borderRadius: "10px" }}
-                  >
-                    Sym 1
-                  </Button>
-                  <Button
-                    type="primary"
-                    onClick={() => {
-                      setWs("KEDUA")
-                      changeDataSympo(2);
-                    }}
-                    style={{ marginLeft: "2px", borderRadius: "10px" }}
-                  >
-                    Sym 2
-                  </Button>
-                  <Button
-                    type="primary"
-                    onClick={() => {
-                      setWs("KETIGA")
-                      changeDataSympo(3);  
-                    }}
-                    style={{ marginLeft: "2px", borderRadius: "10px" }}
-                  >
-                    Sym 3
-                  </Button>
-                </>
-              ) : null}
-              {workshopku.indexOf("WS 1 ") > -1 ? (
-                <Button
-                  type="primary"
-                  onClick={() => {
-                    setWs("1")
-                    changeDataWS(1)
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
+        <CTabs activeTab="acsa">
+          <CNav variant="tabs" style={{padding: '11px'}}>
+            <CNavItem>
+              <CNavLink data-tab="acsa" style={{border: 'none'}}>ACSA</CNavLink>
+            </CNavItem>
+            <CNavItem>
+              <CNavLink data-tab="indoviscular" style={{border: 'none'}}>INDOVISCULAR</CNavLink>
+            </CNavItem>
+          </CNav>
+          <CTabContent>
+            <CTabPane data-tab="acsa">
+              <CCardBody>
+                <CRow>
+                  <div className="col-lg-12 col-md-12 col-sm-12 text-center">
+                    {anggota.simposium != "" ? (
+                      <>
+                        <Button
+                          type="primary"
+                          onClick={() => {
+                            setWs("PERTAMA");
+                            changeDataSympo(1);
+                          }}
+                          style={{borderRadius: "10px" }}
+                        >
+                          Sym 1
+                        </Button>
+                        <Button
+                          type="primary"
+                          onClick={() => {
+                            setWs("KEDUA");
+                            changeDataSympo(2);
+                          }}
+                          style={{ marginLeft: "2px", borderRadius: "10px" }}
+                        >
+                          Sym 2
+                        </Button>
+                        <Button
+                          type="primary"
+                          onClick={() => {
+                            setWs("KETIGA");
+                            changeDataSympo(3);
+                          }}
+                          style={{ marginLeft: "2px", borderRadius: "10px" }}
+                        >
+                          Sym 3
+                        </Button>
+                      </>
+                    ) : null}
+                    {workshopku.indexOf("WS 1 ") > -1 ? (
+                      <Button
+                        type="primary"
+                        onClick={() => {
+                          setWs("1");
+                          changeDataWS(1);
+                        }}
+                        style={{
+                          marginLeft: "2px",
+                          borderRadius: "10px",
+                          marginBottom: "5px",
+                        }}
+                      >
+                        WS 1
+                      </Button>
+                    ) : null}
+                    {workshopku.indexOf("WS 2 ") > -1 ? (
+                      <Button
+                        type="primary"
+                        onClick={() => {
+                          setWs("2");
+                          changeDataWS(2);
+                        }}
+                        style={{
+                          marginLeft: "2px",
+                          borderRadius: "10px",
+                          marginBottom: "5px",
+                        }}
+                      >
+                        WS 2
+                      </Button>
+                    ) : null}
+                    {workshopku.indexOf("WS 3 ") > -1 ? (
+                      <Button
+                        type="primary"
+                        onClick={() => {
+                          setWs("3");
+                          changeDataWS(3);
+                        }}
+                        style={{
+                          marginLeft: "2px",
+                          borderRadius: "10px",
+                          marginBottom: "5px",
+                        }}
+                      >
+                        WS 3
+                      </Button>
+                    ) : null}
+                    {workshopku.indexOf("WS 4 ") > -1 ? (
+                      <Button
+                        type="primary"
+                        onClick={() => {
+                          setWs("4");
+                          changeDataWS(4);
+                        }}
+                        style={{
+                          marginLeft: "2px",
+                          borderRadius: "10px",
+                          marginBottom: "5px",
+                        }}
+                      >
+                        WS 4
+                      </Button>
+                    ) : null}
+                    {workshopku.indexOf("WS 5 ") > -1 ? (
+                      <Button
+                        type="primary"
+                        onClick={() => {
+                          setWs("5");
+                          changeDataWS(5);
+                        }}
+                        style={{
+                          marginLeft: "2px",
+                          borderRadius: "10px",
+                          marginBottom: "5px",
+                        }}
+                      >
+                        WS 5
+                      </Button>
+                    ) : null}
+                    {workshopku.indexOf("WS 6 ") > -1 ? (
+                      <Button
+                        type="primary"
+                        onClick={() => {
+                          setWs("6");
+                          changeDataWS(6);
+                        }}
+                        style={{
+                          marginLeft: "2px",
+                          borderRadius: "10px",
+                          marginBottom: "5px",
+                        }}
+                      >
+                        WS 6
+                      </Button>
+                    ) : null}
+                    {workshopku.indexOf("WS 7 ") > -1 ? (
+                      <Button
+                        type="primary"
+                        onClick={() => {
+                          setWs("7");
+                          changeDataWS(7);
+                        }}
+                        style={{
+                          marginLeft: "2px",
+                          borderRadius: "10px",
+                          marginBottom: "5px",
+                        }}
+                      >
+                        WS 7
+                      </Button>
+                    ) : null}
+                    {workshopku.indexOf("WS 8 ") > -1 ? (
+                      <Button
+                        type="primary"
+                        onClick={() => {
+                          setWs("8");
+                          changeDataWS(8);
+                        }}
+                        style={{
+                          marginLeft: "2px",
+                          borderRadius: "10px",
+                          marginBottom: "5px",
+                        }}
+                      >
+                        WS 8
+                      </Button>
+                    ) : null}
+                    {workshopku.indexOf("WS 9 ") > -1 ? (
+                      <Button
+                        type="primary"
+                        onClick={() => {
+                          setWs("9");
+                          changeDataWS(7);
+                        }}
+                        style={{
+                          marginLeft: "2px",
+                          borderRadius: "10px",
+                          marginBottom: "5px",
+                        }}
+                      >
+                        WS 9
+                      </Button>
+                    ) : null}
+                    {workshopku.indexOf("WS 10 ") > -1 ? (
+                      <Button
+                        type="primary"
+                        onClick={() => {
+                          setWs("10");
+                          changeDataWS(10);
+                        }}
+                        style={{
+                          marginLeft: "2px",
+                          borderRadius: "10px",
+                          marginBottom: "5px",
+                        }}
+                      >
+                        WS 10
+                      </Button>
+                    ) : null}
+                    {workshopku.indexOf("WS 11 ") > -1 ? (
+                      <Button
+                        type="primary"
+                        onClick={() => {
+                          setWs("11");
+                          changeDataWS(10);
+                        }}
+                        style={{
+                          marginLeft: "2px",
+                          borderRadius: "10px",
+                          marginBottom: "5px",
+                        }}
+                      >
+                        WS 11
+                      </Button>
+                    ) : null}
+                    {workshopku.indexOf("WS 12 ") > -1 ? (
+                      <Button
+                        type="primary"
+                        onClick={() => {
+                          setWs("12");
+                          changeDataWS(12);
+                        }}
+                        style={{
+                          marginLeft: "2px",
+                          borderRadius: "10px",
+                          marginBottom: "5px",
+                        }}
+                      >
+                        WS 12
+                      </Button>
+                    ) : null}
+                    {workshopku.indexOf("WS 13 ") > -1 ? (
+                      <Button
+                        type="primary"
+                        onClick={() => {
+                          setWs("13");
+                          changeDataWS(13);
+                        }}
+                        style={{
+                          marginLeft: "2px",
+                          borderRadius: "10px",
+                          marginBottom: "5px",
+                        }}
+                      >
+                        WS 13
+                      </Button>
+                    ) : null}
+                    {workshopku.indexOf("WS 14 ") > -1 ? (
+                      <Button
+                        type="primary"
+                        onClick={() => {
+                          setWs("14");
+                          changeDataWS(14);
+                        }}
+                        style={{
+                          marginLeft: "2px",
+                          borderRadius: "10px",
+                          marginBottom: "5px",
+                        }}
+                      >
+                        WS 14
+                      </Button>
+                    ) : null}
+                    {workshopku.indexOf("WS 15 ") > -1 ? (
+                      <Button
+                        type="primary"
+                        onClick={() => {
+                          setWs("15");
+                          changeDataWS(15);
+                        }}
+                        style={{
+                          marginLeft: "2px",
+                          borderRadius: "10px",
+                          marginBottom: "5px",
+                        }}
+                      >
+                        WS 15
+                      </Button>
+                    ) : null}
+                    {workshopku.indexOf("WS 16 ") > -1 ? (
+                      <Button
+                        type="primary"
+                        onClick={() => {
+                          setWs("16");
+                          changeDataWS(16);
+                        }}
+                        style={{
+                          marginLeft: "2px",
+                          borderRadius: "10px",
+                          marginBottom: "5px",
+                        }}
+                      >
+                        WS 16
+                      </Button>
+                    ) : null}                    
+                  </div>
+                </CRow>
+                <CRow
+                  style={{ marginTop: "30px" }}
+                  className="jsutify-content-center"
                 >
-                  WS 1
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 2 ") > -1 ? (
-                <Button
-                  type="primary"
-                  onClick={() => {
-                    setWs("2")
-                    changeDataWS(2)
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  WS 2
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 3 ") > -1 ? (
-                <Button
-                  type="primary"
-                  onClick={() => {
-                    setWs("3")
-                    changeDataWS(3)
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  WS 3
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 4 ") > -1 ? (
-                <Button
-                  type="primary"
-                  onClick={() =>{ 
-                    setWs("4")
-                    changeDataWS(4)
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  WS 4
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 5 ") > -1 ? (
-                <Button
-                  type="primary"
-                  onClick={() => {
-                    setWs("5")
-                    changeDataWS(5)
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  WS 5
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 6 ") > -1 ? (
-                <Button
-                  type="primary"
-                  onClick={() => {
-                    setWs("6")
-                    changeDataWS(6)
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  WS 6
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 7 ") > -1 ? (
-                <Button
-                  type="primary"
-                  onClick={() => {
-                    setWs("7")
-                    changeDataWS(7)
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  WS 7
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 8 ") > -1 ? (
-                <Button
-                  type="primary"
-                  onClick={() => {
-                    setWs("8")
-                    changeDataWS(8)
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  WS 8
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 9 ") > -1 ? (
-                <Button
-                  type="primary"
-                  onClick={() => {
-                    setWs("9")
-                    changeDataWS(7)
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  WS 9
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 10 ") > -1 ? (
-                <Button
-                  type="primary"
-                  onClick={() => {
-                    setWs("10")
-                    changeDataWS(10)
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  WS 10
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 11 ") > -1 ? (
-                <Button
-                  type="primary"
-                  onClick={() => {
-                    setWs("11")
-                    changeDataWS(10)
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  WS 11
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 12 ") > -1 ? (
-                <Button
-                  type="primary"
-                  onClick={() => {
-                    setWs("12")
-                    changeDataWS(12)
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  WS 12
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 13 ") > -1 ? (
-                <Button
-                  type="primary"
-                  onClick={() => {
-                    setWs("13")
-                    changeDataWS(13)
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  WS 13
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 14 ") > -1 ? (
-                <Button
-                  type="primary"
-                  onClick={() => {
-                    setWs("14")
-                    changeDataWS(14)
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  WS 14
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 15 ") > -1 ? (
-                <Button
-                  type="primary"
-                  onClick={() => {
-                    setWs("15")
-                    changeDataWS(15)
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  WS 15
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 16 ") > -1 ? (
-                <Button
-                  type="primary"
-                  onClick={() => {
-                    setWs("16")
-                    changeDataWS(16)
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  WS 16
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS Indovasc 1 ") > -1 ? (
-                <Button
-                  type="primary"
-                  onClick={() => setWs("1A")}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  WS Indo 1
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS Indovasc 2 ") > -1 ? (
-                <Button
-                  type="primary"
-                  onClick={() => setWs("1B")}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  WS Indo 2
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS Indovasc 3 ") > -1 ? (
-                <Button
-                  type="primary"
-                  onClick={() => setWs("1C")}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  WS Indo 3
-                </Button>
-              ) : null}
-            </div>
-          </CRow>
-          <CRow style={{ marginTop: "30px" }} className="jsutify-content-center">
-            {ws == "sympo" ? (
-              <>                
-                <h2 style={{margin: '0 auto', position: 'relative', width: '95%', marginBottom: '25px', color: '#4e4e4e'}}>
-                  {`DAY-${dataSympo.master[0].serial_number} : ${dataSympo.master[0].day}, ${parseDate(dataSympo.master[0].date)}`}
-                </h2>
-                {dataSympo.detil.map((s, index1) => {
-                  return (                                         
-                    <div key={index1} class={`col-lg-${dataSympo.detil.length == 1 ? '12' : dataSympo.detil.length > 1 && dataSympo.detil.length >= 2 ? '6' : dataSympo.detil.length > 2 && dataSympo.detil.length <= 3 ? '4' : dataSympo.detil.length > 3 ? '3' : '12'} col-md-${dataSympo.detil.length == 1 ? '12' : dataSympo.detil.length > 1 && dataSympo.detil.length <= 3 ? '4' : dataSympo.detil.length > 3 ? '3' : '12'} col-sm-12 col-xs-12`}>
-                      <h4 style={{color: '#4e4e4e', margin: '0 auto', position: 'relative', width: '95%'}}>{`Ballroom ${index1 + 1}`}</h4>
-                      <VerticalTimeline layout="1-column-left">
-                        {
-                          dataSympo.detil[index1].map((row, index2) => {
-                              return(
+                  {ws == "sympo" ? (
+                    <>
+                      <h2
+                        style={{
+                          margin: "0 auto",
+                          position: "relative",
+                          width: "95%",
+                          marginBottom: "25px",
+                          color: "#4e4e4e",
+                        }}
+                      >
+                        {`DAY-${dataSympo.master[0].serial_number} : ${
+                          dataSympo.master[0].day
+                        }, ${parseDate(dataSympo.master[0].date)}`}
+                      </h2>
+                      {dataSympo.detil.map((s, index1) => {
+                        return (
+                          <div
+                            key={index1}
+                            class={`col-lg-${
+                              dataSympo.detil.length == 1
+                                ? "12"
+                                : dataSympo.detil.length > 1 &&
+                                  dataSympo.detil.length >= 2
+                                ? "6"
+                                : dataSympo.detil.length > 2 &&
+                                  dataSympo.detil.length <= 3
+                                ? "4"
+                                : dataSympo.detil.length > 3
+                                ? "3"
+                                : "12"
+                            } col-md-${
+                              dataSympo.detil.length == 1
+                                ? "12"
+                                : dataSympo.detil.length > 1 &&
+                                  dataSympo.detil.length <= 3
+                                ? "4"
+                                : dataSympo.detil.length > 3
+                                ? "3"
+                                : "12"
+                            } col-sm-12 col-xs-12`}
+                          >
+                            <h4
+                              style={{
+                                color: "#4e4e4e",
+                                margin: "0 auto",
+                                position: "relative",
+                                width: "95%",
+                              }}
+                            >{`Ballroom ${index1 + 1}`}</h4>
+                            <VerticalTimeline layout="1-column-left">
+                              {dataSympo.detil[index1].map((row, index2) => {
+                                return (
                                   <VerticalTimelineElement
-                                      key={index2}                                      
-                                      className="vertical-timeline-element--work"
-                                      style={{margin: "10px 0"}}
-                                      contentStyle={{ background: 'rgb(33, 150, 243)', color: '#fff', textAlign: 'center' }}
-                                      contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
-                                      date={row.time_range}
-                                      iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}                
-                                      icon={<i style={{position: 'relative', left: "50%", top: '50%', transform: 'translate(-50%, -50%)', fontSize: '25px'}} class="far fa-calendar-alt"></i>}
-                                  >                                  
-                                  {
-                                      row.tipe == "Activity" ? (
-                                        <>
-                                          <h5 className="text-white vertical-timeline-element-title">{row.topic}</h5>                       
-                                          <p>Speaker: {row.speaker ?? 'tba'}</p>                                          
-                                        </>
-                                      ) : (
-                                          <>
-                                              <h5 className="text-white vertical-timeline-element-title">{row.topic}</h5>                       
-                                              <p>Chairman: {row.chairman ?? 'tba'} <br/> Panelist: {row.panelist ?? 'tba'}</p>
-                                              <br/>
-                                              <Button type="primary" style={{ borderRadius: "10px", background: "#2a3d9f", position: 'absolute', right: '15px', bottom: '16px' }} onClick="">
-                                                  Wacth Now
-                                              </Button>                                              
-                                          </>
-                                      )
-                                  }                                  
-                                  </VerticalTimelineElement>   
-                              )
-                          })
-                        }
-                      </VerticalTimeline>
-                    </div>                          
-                  )
-                })} 
-              </>
-            ) : ws == "ws" ? (  
-              <>     
-                {/* Tabel Master */}
-                <table
-                  width="70%"
-                  style={{
-                    marginLeft: "30px",                                        
-                    textAlign: 'center',
-                    boxShadow: '0px 2px 16px -8px #000000',
-                    borderRadius: '18px',
-                    boxSizing: 'border-box',                        
-                    overflow: 'hidden', 
-                    position: 'relative',
-                    left: '50%',
-                    transform: 'translate(-54%, 10px)',                     
-                  }}                    
-                >
-                  <tbody>
-                    <tr style={{ border: '1px solid #c2c2c2', }}>
-                      <td                        
-                        width="146"
-                        style={{background: "#0075bc", color: '#fff'}}
+                                    key={index2}
+                                    className="vertical-timeline-element--work"
+                                    style={{ margin: "10px 0" }}
+                                    contentStyle={{
+                                      background: "rgb(33, 150, 243)",
+                                      color: "#fff",
+                                      textAlign: "center",
+                                    }}
+                                    contentArrowStyle={{
+                                      borderRight:
+                                        "7px solid  rgb(33, 150, 243)",
+                                    }}
+                                    date={row.time_range}
+                                    iconStyle={{
+                                      background: "rgb(33, 150, 243)",
+                                      color: "#fff",
+                                    }}
+                                    icon={
+                                      <i
+                                        style={{
+                                          position: "relative",
+                                          left: "50%",
+                                          top: "50%",
+                                          transform: "translate(-50%, -50%)",
+                                          fontSize: "25px",
+                                        }}
+                                        class="far fa-calendar-alt"
+                                      ></i>
+                                    }
+                                  >
+                                    {row.tipe == "Activity" ? (
+                                      <>
+                                        <h5 className="text-white vertical-timeline-element-title">
+                                          {row.topic}
+                                        </h5>
+                                        <p>Speaker: {row.speaker ?? "tba"}</p>
+                                      </>
+                                    ) : (
+                                      <>
+                                        <h5 className="text-white vertical-timeline-element-title">
+                                          {row.topic}
+                                        </h5>
+                                        <p>
+                                          Chairman: {row.chairman ?? "tba"}{" "}
+                                          <br /> Panelist:{" "}
+                                          {row.panelist ?? "tba"}
+                                        </p>                                        
+                                        <Button
+                                          type="primary"
+                                          style={{
+                                            borderRadius: "10px",
+                                            background: "#2a3d9f",
+                                            position: "absolute",
+                                            right: "15px",
+                                            bottom: "16px",
+                                          }}
+                                          onClick={() => {WacthZoom(row.zoom_room_id, row.passcode)}}
+                                        >
+                                          Wacth Now
+                                        </Button>
+                                      </>
+                                    )}
+                                  </VerticalTimelineElement>
+                                );
+                              })}
+                            </VerticalTimeline>
+                          </div>
+                        );
+                      })}
+                    </>
+                  ) : ws == "ws" ? (
+                    <>
+                      {/* Tabel Master */}
+                      <table
+                        width="70%"
+                        style={{
+                          marginLeft: "30px",
+                          textAlign: "center",
+                          boxShadow: "0px 2px 16px -8px #000000",
+                          borderRadius: "18px",
+                          boxSizing: "border-box",
+                          overflow: "hidden",
+                          position: "relative",
+                          left: "50%",
+                          transform: "translate(-54%, 10px)",
+                        }}
                       >
-                        <p><b>Workshop {dataWs.master.serial_number}</b></p>
-                      </td>
-                      <td
-                        colspan="2"
-                        width="487"                        
-                        style={{background: "#0075bc", color: '#fff'}}
-                      >
-                        <p>                          
-                          <b>{dataWs.master.title}</b>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: '1px solid #c2c2c2', }}>
-                      <td                        
-                        width="146"
-                        style={{background: "#0075bc", color: '#fff'}}
-                      >
-                        <p>
-                          <b>
-                            Topic
-                          </b>
-                        </p>
-                      </td>
-                      <td
-                        colspan="2"
-                        width="487"                        
-                      >
-                        <p>
-                          <b>
-                            {dataWs.master.topic}
-                          </b>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: '1px solid #c2c2c2', }}>
-                      <td                        
-                        width="146"
-                        style={{background: "#0075bc", color: '#fff'}}
-                      >
-                        <p>
-                          <b>
-                            Day, date
-                          </b>
-                        </p>
-                      </td>
-                      <td
-                        colspan="2"
-                        width="487"                        
-                      >
-                        <p>
-                          <b>
-                            {dataWs.master.day}, {parseDate(dataWs.master.date)}, Pk {dataWs.master.time_range}
-                            {/* Saturday, November 27<sup>th</sup> 2021 , Pk 12.30 -
-                            15.30WIB */}
-                          </b>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: '1px solid #c2c2c2', }}>
-                      <td                        
-                        width="146"
-                        style={{background: "#0075bc", color: '#fff'}}
-                      >
-                        <p>
-                          <b>
-                            Course Director
-                          </b>
-                        </p>
-                      </td>
-                      <td
-                        colspan="2"
-                        width="487"                        
-                      >
-                        <p>
-                          <b>
-                            {dataWs.master.course_director}
-                          </b>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: '1px solid #c2c2c2', }}>
-                      <td                        
-                        width="146"
-                        style={{background: "#0075bc", color: '#fff'}}
-                      >
-                        <p>
-                         <b>
-                            PIC
-                          </b>
-                        </p>
-                      </td>
-                      <td
-                        colspan="2"
-                        width="487"                        
-                      >
-                        <p><b>{dataWs.master.pic}</b></p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: '1px solid #c2c2c2', }}>
-                      <td                        
-                        width="146"
-                        style={{background: "#0075bc", color: '#fff'}}
-                      >
-                        <p><b>Moderator</b></p>
-                      </td>
-                      <td
-                        colspan="2"
-                        width="487"                        
-                      >
-                        <p><b>{dataWs.master.moderator}</b></p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>         
-
-                {/* Tabel Detil Aktifitas */}
-                <table
-                  width="80%"
-                  style={{
-                    marginTop: "25px",
-                    marginLeft: "30px",
-                    borderCollapse: "separate",
-                    textAlign: "center",
-                    borderSpacing: "0.5em 0.5em",
-                    position: 'relative',
-                    left: '50%',
-                    transform: 'translate(-54%, 10px)',                     
-                  }}                  
-                >
-                  <tbody>
-                    {
-                      dataWs.data && (                        
-                        <>
-                          <tr style={{ border: "none" }}>
+                        <tbody>
+                          <tr style={{ border: "1px solid #c2c2c2" }}>
                             <td
-                              style={{
-                                backgroundColor: "#0075BC",
-                                color: "white",
-                                borderRadius: "18px",
-                                boxShadow: "0px 1px 2px 0px #5a5a5a",
-                              }}
                               width="146"
-                            >
-                              <b>TIME</b>
-                            </td>
-                            <td
-                              width="284"
-                              style={{
-                                backgroundColor: "#0075BC",
-                                color: "white",
-                                borderRadius: "18px",
-                                boxShadow: "0px 1px 2px 0px #5a5a5a",
-                              }}
+                              style={{ background: "#0075bc", color: "#fff" }}
                             >
                               <p>
-                                <strong>
-                                  Topic
-                                </strong>
+                                <b>Workshop {dataWs.master.serial_number}</b>
                               </p>
                             </td>
                             <td
-                              width="203"
-                              style={{
-                                backgroundColor: "#0075BC",
-                                color: "white",
-                                borderRadius: "18px",
-                                boxShadow: "0px 1px 2px 0px #5a5a5a",
-                              }}
-                            >                          
+                              colspan="2"
+                              width="487"
+                              style={{ background: "#0075bc", color: "#fff" }}
+                            >
                               <p>
-                                <strong>
-                                  Speakers
-                                </strong>
+                                <b>{dataWs.master.title}</b>
                               </p>
                             </td>
                           </tr>
-                          {
-                            dataWs.data.map((row, i) => {
-                              return (
-                                <tr style={{ border: "none" }} key={i}>
-                                  <td
-                                    style={{
-                                      backgroundColor: "#0075BC",
-                                      color: "white",
-                                      borderRadius: "18px",
-                                      boxShadow: "0px 1px 2px 0px #5a5a5a",
+                          <tr style={{ border: "1px solid #c2c2c2" }}>
+                            <td
+                              width="146"
+                              style={{ background: "#0075bc", color: "#fff" }}
+                            >
+                              <p>
+                                <b>Topic</b>
+                              </p>
+                            </td>
+                            <td colspan="2" width="487">
+                              <p>
+                                <b>{dataWs.master.topic}</b>
+                              </p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "1px solid #c2c2c2" }}>
+                            <td
+                              width="146"
+                              style={{ background: "#0075bc", color: "#fff" }}
+                            >
+                              <p>
+                                <b>Day, date</b>
+                              </p>
+                            </td>
+                            <td colspan="2" width="487">
+                              <p>
+                                <b>
+                                  {dataWs.master.day},{" "}
+                                  {parseDate(dataWs.master.date)}, Pk{" "}
+                                  {dataWs.master.time_range}
+                                  {/* Saturday, November 27<sup>th</sup> 2021 , Pk 12.30 -
+                            15.30WIB */}
+                                </b>
+                              </p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "1px solid #c2c2c2" }}>
+                            <td
+                              width="146"
+                              style={{ background: "#0075bc", color: "#fff" }}
+                            >
+                              <p>
+                                <b>Course Director</b>
+                              </p>
+                            </td>
+                            <td colspan="2" width="487">
+                              <p>
+                                <b>{dataWs.master.course_director}</b>
+                              </p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "1px solid #c2c2c2" }}>
+                            <td
+                              width="146"
+                              style={{ background: "#0075bc", color: "#fff" }}
+                            >
+                              <p>
+                                <b>PIC</b>
+                              </p>
+                            </td>
+                            <td colspan="2" width="487">
+                              <p>
+                                <b>{dataWs.master.pic}</b>
+                              </p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "1px solid #c2c2c2" }}>
+                            <td
+                              width="146"
+                              style={{ background: "#0075bc", color: "#fff" }}
+                            >
+                              <p>
+                                <b>Moderator</b>
+                              </p>
+                            </td>
+                            <td colspan="2" width="487">
+                              <p>
+                                <b>{dataWs.master.moderator}</b>
+                              </p>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      {/* Tabel Detil Aktifitas */}
+                      <table
+                        width="80%"
+                        style={{
+                          marginTop: "25px",
+                          marginLeft: "30px",
+                          borderCollapse: "separate",
+                          textAlign: "center",
+                          borderSpacing: "0.5em 0.5em",
+                          position: "relative",
+                          left: "50%",
+                          transform: "translate(-54%, 10px)",
+                        }}
+                      >
+                        <tbody>
+                          {dataWs.data && (
+                            <>
+                              <tr style={{ border: "none" }}>
+                                <td
+                                  style={{
+                                    backgroundColor: "#0075BC",
+                                    color: "white",
+                                    borderRadius: "18px",
+                                    boxShadow: "0px 1px 2px 0px #5a5a5a",
+                                  }}
+                                  width="146"
+                                >
+                                  <b>TIME</b>
+                                </td>
+                                <td
+                                  width="284"
+                                  style={{
+                                    backgroundColor: "#0075BC",
+                                    color: "white",
+                                    borderRadius: "18px",
+                                    boxShadow: "0px 1px 2px 0px #5a5a5a",
+                                  }}
+                                >
+                                  <p>
+                                    <strong>Topic</strong>
+                                  </p>
+                                </td>
+                                <td
+                                  width="203"
+                                  style={{
+                                    backgroundColor: "#0075BC",
+                                    color: "white",
+                                    borderRadius: "18px",
+                                    boxShadow: "0px 1px 2px 0px #5a5a5a",
+                                  }}
+                                >
+                                  <p>
+                                    <strong>Speakers</strong>
+                                  </p>
+                                </td>
+                              </tr>
+                              {dataWs.data.map((row, i) => {
+                                return (
+                                  <tr style={{ border: "none" }} key={i}>
+                                    <td
+                                      style={{
+                                        backgroundColor: "#0075BC",
+                                        color: "white",
+                                        borderRadius: "18px",
+                                        boxShadow: "0px 1px 2px 0px #5a5a5a",
+                                      }}
+                                      width="146"
+                                    >
+                                      <p>{row.time_range}</p>
+                                    </td>
+                                    <td
+                                      width="284"
+                                      style={{
+                                        borderRadius: "18px",
+                                        boxShadow: "0px 1px 2px 0px #5a5a5a",
+                                      }}
+                                    >
+                                      <p>{row.topic}</p>
+                                    </td>
+                                    <td
+                                      width="203"
+                                      style={{
+                                        borderRadius: "18px",
+                                        boxShadow: "0px 1px 2px 0px #5a5a5a",
+                                      }}
+                                    >
+                                      <p>{row.speaker}</p>
+                                    </td>
+                                  </tr>
+                                );
+                              })}
+                            </>
+                          )}
+                        </tbody>
+                      </table>
+                      <p>&nbsp;</p>
+                    </>
+                  ) : null}
+                </CRow>
+              </CCardBody>
+            </CTabPane>
+            <CTabPane data-tab="indoviscular">
+              <CCardBody>
+                <CRow>
+                  <div className="col-lg-12 col-md-12 col-sm-12 text-center">
+                    {anggota.simposium != "" ? (
+                      <>
+                        <Button
+                          type="primary"
+                          onClick={() => {
+                            setWs("PERTAMA");
+                            changeDataSympo(1);
+                          }}
+                          style={{ marginLeft: "30px", borderRadius: "10px" }}
+                        >
+                          Sym 1
+                        </Button>
+                        <Button
+                          type="primary"
+                          onClick={() => {
+                            setWs("KEDUA");
+                            changeDataSympo(2);
+                          }}
+                          style={{ marginLeft: "2px", borderRadius: "10px" }}
+                        >
+                          Sym 2
+                        </Button>
+                        <Button
+                          type="primary"
+                          onClick={() => {
+                            setWs("KETIGA");
+                            changeDataSympo(3);
+                          }}
+                          style={{ marginLeft: "2px", borderRadius: "10px" }}
+                        >
+                          Sym 3
+                        </Button>
+                      </>
+                    ) : null}                    
+                    {workshopku.indexOf("WS Indovasc 1 ") > -1 ? (
+                      <Button
+                        type="primary"
+                        onClick={() => setWs("1A")}
+                        style={{
+                          marginLeft: "2px",
+                          borderRadius: "10px",
+                          marginBottom: "5px",
+                        }}
+                      >
+                        WS Indo 1
+                      </Button>
+                    ) : null}
+                    {workshopku.indexOf("WS Indovasc 2 ") > -1 ? (
+                      <Button
+                        type="primary"
+                        onClick={() => setWs("1B")}
+                        style={{
+                          marginLeft: "2px",
+                          borderRadius: "10px",
+                          marginBottom: "5px",
+                        }}
+                      >
+                        WS Indo 2
+                      </Button>
+                    ) : null}
+                    {workshopku.indexOf("WS Indovasc 3 ") > -1 ? (
+                      <Button
+                        type="primary"
+                        onClick={() => setWs("1C")}
+                        style={{
+                          marginLeft: "2px",
+                          borderRadius: "10px",
+                          marginBottom: "5px",
+                        }}
+                      >
+                        WS Indo 3
+                      </Button>
+                    ) : null}
+                  </div>
+                </CRow>
+                <CRow
+                  style={{ marginTop: "30px" }}
+                  className="jsutify-content-center"
+                >
+                  {ws == "sympo" ? (
+                    <>
+                      <h2
+                        style={{
+                          margin: "0 auto",
+                          position: "relative",
+                          width: "95%",
+                          marginBottom: "25px",
+                          color: "#4e4e4e",
+                        }}
+                      >
+                        {`DAY-${dataSympo.master[0].serial_number} : ${
+                          dataSympo.master[0].day
+                        }, ${parseDate(dataSympo.master[0].date)}`}
+                      </h2>
+                      {dataSympo.detil.map((s, index1) => {
+                        return (
+                          <div
+                            key={index1}
+                            class={`col-lg-${
+                              dataSympo.detil.length == 1
+                                ? "12"
+                                : dataSympo.detil.length > 1 &&
+                                  dataSympo.detil.length >= 2
+                                ? "6"
+                                : dataSympo.detil.length > 2 &&
+                                  dataSympo.detil.length <= 3
+                                ? "4"
+                                : dataSympo.detil.length > 3
+                                ? "3"
+                                : "12"
+                            } col-md-${
+                              dataSympo.detil.length == 1
+                                ? "12"
+                                : dataSympo.detil.length > 1 &&
+                                  dataSympo.detil.length <= 3
+                                ? "4"
+                                : dataSympo.detil.length > 3
+                                ? "3"
+                                : "12"
+                            } col-sm-12 col-xs-12`}
+                          >
+                            <h4
+                              style={{
+                                color: "#4e4e4e",
+                                margin: "0 auto",
+                                position: "relative",
+                                width: "95%",
+                              }}
+                            >{`Ballroom ${index1 + 1}`}</h4>
+                            <VerticalTimeline layout="1-column-left">
+                              {dataSympo.detil[index1].map((row, index2) => {
+                                return (
+                                  <VerticalTimelineElement
+                                    key={index2}
+                                    className="vertical-timeline-element--work"
+                                    style={{ margin: "10px 0" }}
+                                    contentStyle={{
+                                      background: "rgb(33, 150, 243)",
+                                      color: "#fff",
+                                      textAlign: "center",
                                     }}
-                                    width="146"
-                                  >
-                                    <p>{row.time_range}</p>
-                                  </td>
-                                  <td
-                                    width="284"
-                                    style={{
-                                      borderRadius: "18px",
-                                      boxShadow: "0px 1px 2px 0px #5a5a5a",
+                                    contentArrowStyle={{
+                                      borderRight:
+                                        "7px solid  rgb(33, 150, 243)",
                                     }}
-                                  >
-                                    <p>{row.topic}</p>
-                                  </td>
-                                  <td
-                                    width="203"
-                                    style={{
-                                      borderRadius: "18px",
-                                      boxShadow: "0px 1px 2px 0px #5a5a5a",
+                                    date={row.time_range}
+                                    iconStyle={{
+                                      background: "rgb(33, 150, 243)",
+                                      color: "#fff",
                                     }}
+                                    icon={
+                                      <i
+                                        style={{
+                                          position: "relative",
+                                          left: "50%",
+                                          top: "50%",
+                                          transform: "translate(-50%, -50%)",
+                                          fontSize: "25px",
+                                        }}
+                                        class="far fa-calendar-alt"
+                                      ></i>
+                                    }
                                   >
-                                    <p>{row.speaker}</p>
-                                  </td>
-                                </tr>           
-                              )
-                            })
-                          }  
-                        </>                        
-                      )
-                    }                                      
-                  </tbody>
-                </table>
-                <p>&nbsp;</p>
-              </>
-            ) : ws == "1A" ? (
-              <div>
-                <p>WORKSHOP I : Vein Disorders</p>
-                <table
-                  style={{
-                    marginLeft: "30px",
-                    borderCollapse: "separate",
-                    textAlign: "center",
-                    borderSpacing: "0.5em 0.5em",
-                  }}
-                >
-                  <tbody>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Audience</p>
-                      </td>
-                      <td
-                        colspan="2"
-                        width="585"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Cardiologist</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Theme</p>
-                      </td>
-                      <td
-                        colspan="2"
-                        width="585"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Early Detection of Chronic Venous Insufficiency</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Day/Date</p>
-                      </td>
-                      <td
-                        colspan="2"
-                        width="585"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Friday, December 10, 2021</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>PIC</p>
-                      </td>
-                      <td
-                        colspan="2"
-                        width="585"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>dr. Novi Anggriyani, SpJP</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="20%"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Device</p>
-                      </td>
-                      <td
-                        colspan="2"
-                        width="70%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="20%"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Sponsor</p>
-                      </td>
-                      <td
-                        colspan="2"
-                        width="70%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Biolitec</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="20%"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Moderator</p>
-                      </td>
-                      <td
-                        colspan="2"
-                        width="70%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>TIME</p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>TOPIK</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>SPEAKER</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>08.00-08.20</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          Lower Extremity Veins Anatomy &amp; Pathophysiology in
-                          Chronic
-                        </p>
-                        <p>Venous Insufficiency</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Novi Kurnianingsih, dr., Sp.JP(K)</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>08.20-08.40</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          How to Identify, Stratify and Diagnosis Chronic Venous
-                        </p>
-                        <p>Insufficiency</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Christine Anita, dr., Sp.JP</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>08.40-09.00</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          Management of CVI with Lifestyle Modification, Medical
-                          &amp;
-                        </p>
-                        <p>Compression Therapy</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Sidhi Laksono, Sp.JP</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>09.00-09.20</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Discussion</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>09.20-09.30</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Coffee Break</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>09.30-09.50</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          Modalities in Management in Chronic Venous
-                          Insufficiency: Focusing in the Safety and Efficacy of
-                          Endovenous Laser
-                        </p>
-                        <p>Ablation</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Dr. J. Nugroho E. Putranto, dr., Sp.JP(K)</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>09.50-10.10</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>What and How EVLT Works : From A to Z</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Taofan, dr., Sp.JP(K)</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>10.10-10.30</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          Case 1 : CVI Manageable with Lifestyle Modification
-                          &amp;
-                        </p>
-                        <p>Compression Therapy</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Nurul Rahayuningrum, dr., Sp.JP(K)</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>10.30-10.50</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Case 2 : CVI with Complication of Venous Ulcer</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Novi Anggriyani, dr., Sp.JP(K)</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>10.50-11.15</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          Case 3 : EVLT in CVI with Accessories Veins as the
-                          Culprit
-                        </p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>M. Reza J. Pasciolly, dr., Sp.JP(K)</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>11.15-11.45</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Discussion</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>11.45-13.00</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Lunch Break &amp; Friday Praying</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>13.00-13.30</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          How to prepare patient, operator and device (Video)
-                        </p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Suci Indriani, dr., SpJP(K)</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>13.30-14.00</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Discussion</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>14.00-14.30</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>All about EVLT procedure</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Vito A. Damay, dr., SpJP(K)</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>14.30-15.00</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Discussion</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>15.00-15.30</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>All about post procedure EVLT</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Novi Anggriyani, dr., Sp.JP(K)</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>15.30-16.00</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Discussion</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <p>&nbsp;</p>
-              </div>
-            ) : ws == "1B" ? (
-              <div>
-                <p>WORKSHOP 2 : VASCULAR DOPPLER ULTRASOUND</p>
-                <table
-                  style={{
-                    marginLeft: "30px",
-                    borderCollapse: "separate",
-                    textAlign: "center",
-                    borderSpacing: "0.5em 0.5em",
-                  }}
-                >
-                  <tbody>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="20%"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Audience</p>
-                      </td>
-                      <td
-                        width="70%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Cardiologist</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="20%"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Theme</p>
-                      </td>
-                      <td
-                        width="70%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="20%"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Day / Date</p>
-                      </td>
-                      <td
-                        width="70%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="20%"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>PIC</p>
-                      </td>
-                      <td
-                        width="70%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>dr. Suci Indriani, SpJP</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="20%"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Device</p>
-                      </td>
-                      <td
-                        width="70%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="20%"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Sponsor</p>
-                      </td>
-                      <td
-                        width="70%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="20%"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Moderator</p>
-                      </td>
-                      <td
-                        width="70%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <p>&nbsp;</p>
-                <table
-                  style={{
-                    marginLeft: "30px",
-                    borderCollapse: "separate",
-                    textAlign: "center",
-                    borderSpacing: "0.5em 0.5em",
-                  }}
-                >
-                  <tbody>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="20%"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>TIME</p>
-                      </td>
-                      <td
-                        width="35%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>TOPIK</p>
-                      </td>
-                      <td
-                        width="35%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>SPEAKER</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>08.00-08.10</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Re-registration, pretest</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>08.10-08.15</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Opening and Introduction</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>08.15-08.35</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Basic Principals of Vascular Doppler Ultrasound</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>08.35-08.55</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          How to Diagnose Lower Peripheral Arterial Disease
-                          Using
-                        </p>
-                        <p>Doppler Ultrasound</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>08.55-09.15</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          Evaluation Chronic Venous Insufficiency Using Doppler
-                        </p>
-                        <p>Ultrasound</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>09.15-09.35</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Deep Vein vs Superficial Vein Thrombosis</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>09.35-10.05</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Discussion</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>10.05-10.20</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Coffee Break</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>10.20-10.40</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          Evaluation of Upper Extremities Pathology ( Arteries
-                          &amp; Vein)
-                        </p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>10.40-11.00</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          AV Fistula Assessment (preparation &amp; surveillance)
-                        </p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>11.00-11.20</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          Evaluation of Carotid Artery Using Doppler Ultrasound
-                        </p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>11.20-11.40</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Pseudoaneurysm vs AV Fistula Assessment</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>11.40-12.00</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Discussion</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>12.00-13.00</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>LUNCH BREAK &amp; FRIDAY PRAYING</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>13.00-14.00</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          Video and Discussion : Lower Artery and Vein Doppler
-                        </p>
-                        <p>Ultrasound</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>14.00-15.00</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Video and Discussion : Carotid Doppler Ultrasound</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>15.00-15.50</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Video and Discussion : AV Fistula</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>15.50-16.00</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Post test and closing</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <p>&nbsp;</p>
-              </div>
-            ) : ws == "1C" ? (
-              <div>
-                <p>WORKSHOP 3 : PAD Management</p>
-                <table
-                  style={{
-                    marginLeft: "30px",
-                    borderCollapse: "separate",
-                    textAlign: "center",
-                    borderSpacing: "0.5em 0.5em",
-                  }}
-                >
-                  <tbody>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="20%"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Audience</p>
-                      </td>
-                      <td
-                        width="70%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>General Practitioner</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="20%"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                        <p>Theme</p>
-                      </td>
-                      <td
-                        width="70%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          A - Z Peripheral Management : From Patient Selection
-                          to
-                        </p>
-                        <p>Therapy</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="20%"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Day / Date</p>
-                      </td>
-                      <td
-                        width="70%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="20%"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>PIC</p>
-                      </td>
-                      <td
-                        width="70%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>dr. Vito Anggarino Damay, SpJP(K), M.Kes</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="20%"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Device</p>
-                      </td>
-                      <td
-                        width="70%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="20%"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Sponsor</p>
-                      </td>
-                      <td
-                        width="70%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="20%"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Moderator</p>
-                      </td>
-                      <td
-                        width="70%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <p>&nbsp;</p>
-                <table
-                  style={{
-                    marginLeft: "30px",
-                    borderCollapse: "separate",
-                    textAlign: "center",
-                    borderSpacing: "0.5em 0.5em",
-                  }}
-                >
-                  <tbody>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="20%"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>TIME</p>
-                      </td>
-                      <td
-                        width="35%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>TOPIK</p>
-                      </td>
-                      <td
-                        width="35%"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>SPEAKER</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>08.00-08.20</strong>
-                        </p>
-                      </td>
-                      <td width="364">
-                        <p>
-                          Practical Aspect of Peripheral Artery Disease :
-                          Spectrum and
-                        </p>
-                        <p>Definition</p>
-                      </td>
-                      <td width="221">
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>08.20-08.35</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Interactive Discussion</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>08.40-09.00</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          Clinical Anatomy and Pathomechanism of Most Common
-                          PAD:
-                        </p>
-                        <p>From Basic to Bedside</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>09.00-09.20</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Interactive Discussion</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>09.20-09.40</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Updated PAD Treatment: How about Cilostazol, Oral</p>
-                        <p>Thrombolytic and " PAD Cocktails"</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>09.40-09.55</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Interactive Discussion</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>10.00-10.20</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Coffee Break</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>10.20-10.40</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          Managing Claudicatio Intermitten in Clinical Practice
-                        </p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>10.40-11.55</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Interactive Discussion</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>11.00-11.20</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          Imaging Interpretation of Lower and Upper Extremity AD
-                        </p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>11.20-11.35</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Interactive Discussion</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>11.40-12.00</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          The Role of Peripheral Intervention in PAD with
-                          Chronic Ulcer
-                        </p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>12.00-12.15</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Interactive Discussion</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>12.20-13.00</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Lunch Break</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>13.00-13.15</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          Case Presentation: Peripheral Artery Disease in
-                          Pandemic Era
-                        </p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>13.15-13.30</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Interactive Discussion</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>13.30-13.50</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Managing Critical Limb Ischemia in Daily Practice</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>13.50-14.05</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Interactive Discussion</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>16.10-16.30</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>UPDATE management on ALI</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>16.10-16.25</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Interactive Discussion</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>16.30-16.50</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Periprocedure Management of Limb Threatening PAD</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>16.50-17.05</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>Interactive Discussion</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>17.10-17.30</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          Recorded Case on PAD Intervention or Interactive PTA
-                          CASE
-                        </p>
-                        <p>Presentation</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: "none" }}>
-                      <td
-                        width="80"
-                        style={{
-                          backgroundColor: "#0075BC",
-                          color: "white",
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>
-                          <strong>17.30-17.45</strong>
-                        </p>
-                      </td>
-                      <td
-                        width="364"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>All speaker "Take Home Message"</p>
-                      </td>
-                      <td
-                        width="221"
-                        style={{
-                          borderRadius: "18px",
-                          boxShadow: "0px 1px 2px 0px #5a5a5a",
-                        }}
-                      >
-                        <p>&nbsp;</p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <p>&nbsp;</p>
-              </div>
-            ) : null}
-          </CRow>
-        </CCardBody>
+                                    {row.tipe == "Activity" ? (
+                                      <>
+                                        <h5 className="text-white vertical-timeline-element-title">
+                                          {row.topic}
+                                        </h5>
+                                        <p>Speaker: {row.speaker ?? "tba"}</p>
+                                      </>
+                                    ) : (
+                                      <>
+                                        <h5 className="text-white vertical-timeline-element-title">
+                                          {row.topic}
+                                        </h5>
+                                        <p>
+                                          Chairman: {row.chairman ?? "tba"}{" "}
+                                          <br /> Panelist:{" "}
+                                          {row.panelist ?? "tba"}
+                                        </p>
+                                        <br />
+                                        <Button
+                                          type="primary"
+                                          style={{
+                                            borderRadius: "10px",
+                                            background: "#2a3d9f",
+                                            position: "absolute",
+                                            right: "15px",
+                                            bottom: "16px",
+                                          }}
+                                          onClick=""
+                                        >
+                                          Wacth Now
+                                        </Button>
+                                      </>
+                                    )}
+                                  </VerticalTimelineElement>
+                                );
+                              })}
+                            </VerticalTimeline>
+                          </div>
+                        );
+                      })}
+                    </>
+                  ) : ws == "1A" ? (
+                    <div>
+                      <p>WORKSHOP I : Vein Disorders</p>
+                      <table
+                        style={{
+                          marginLeft: "30px",
+                          borderCollapse: "separate",
+                          textAlign: "center",
+                          borderSpacing: "0.5em 0.5em",
+                        }}
+                      >
+                        <tbody>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Audience</p>
+                            </td>
+                            <td
+                              colspan="2"
+                              width="585"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Cardiologist</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Theme</p>
+                            </td>
+                            <td
+                              colspan="2"
+                              width="585"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                Early Detection of Chronic Venous Insufficiency
+                              </p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Day/Date</p>
+                            </td>
+                            <td
+                              colspan="2"
+                              width="585"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Friday, December 10, 2021</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>PIC</p>
+                            </td>
+                            <td
+                              colspan="2"
+                              width="585"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>dr. Novi Anggriyani, SpJP</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="20%"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Device</p>
+                            </td>
+                            <td
+                              colspan="2"
+                              width="70%"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="20%"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Sponsor</p>
+                            </td>
+                            <td
+                              colspan="2"
+                              width="70%"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Biolitec</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="20%"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Moderator</p>
+                            </td>
+                            <td
+                              colspan="2"
+                              width="70%"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>TIME</p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>TOPIK</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>SPEAKER</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>08.00-08.20</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                Lower Extremity Veins Anatomy &amp;
+                                Pathophysiology in Chronic
+                              </p>
+                              <p>Venous Insufficiency</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Novi Kurnianingsih, dr., Sp.JP(K)</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>08.20-08.40</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                How to Identify, Stratify and Diagnosis Chronic
+                                Venous
+                              </p>
+                              <p>Insufficiency</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Christine Anita, dr., Sp.JP</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>08.40-09.00</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                Management of CVI with Lifestyle Modification,
+                                Medical &amp;
+                              </p>
+                              <p>Compression Therapy</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Sidhi Laksono, Sp.JP</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>09.00-09.20</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Discussion</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>09.20-09.30</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Coffee Break</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>09.30-09.50</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                Modalities in Management in Chronic Venous
+                                Insufficiency: Focusing in the Safety and
+                                Efficacy of Endovenous Laser
+                              </p>
+                              <p>Ablation</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Dr. J. Nugroho E. Putranto, dr., Sp.JP(K)</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>09.50-10.10</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>What and How EVLT Works : From A to Z</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Taofan, dr., Sp.JP(K)</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>10.10-10.30</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                Case 1 : CVI Manageable with Lifestyle
+                                Modification &amp;
+                              </p>
+                              <p>Compression Therapy</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Nurul Rahayuningrum, dr., Sp.JP(K)</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>10.30-10.50</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                Case 2 : CVI with Complication of Venous Ulcer
+                              </p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Novi Anggriyani, dr., Sp.JP(K)</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>10.50-11.15</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                Case 3 : EVLT in CVI with Accessories Veins as
+                                the Culprit
+                              </p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>M. Reza J. Pasciolly, dr., Sp.JP(K)</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>11.15-11.45</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Discussion</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>11.45-13.00</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Lunch Break &amp; Friday Praying</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>13.00-13.30</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                How to prepare patient, operator and device
+                                (Video)
+                              </p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Suci Indriani, dr., SpJP(K)</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>13.30-14.00</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Discussion</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>14.00-14.30</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>All about EVLT procedure</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Vito A. Damay, dr., SpJP(K)</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>14.30-15.00</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Discussion</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>15.00-15.30</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>All about post procedure EVLT</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Novi Anggriyani, dr., Sp.JP(K)</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>15.30-16.00</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Discussion</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <p>&nbsp;</p>
+                    </div>
+                  ) : ws == "1B" ? (
+                    <div>
+                      <p>WORKSHOP 2 : VASCULAR DOPPLER ULTRASOUND</p>
+                      <table
+                        style={{
+                          marginLeft: "30px",
+                          borderCollapse: "separate",
+                          textAlign: "center",
+                          borderSpacing: "0.5em 0.5em",
+                        }}
+                      >
+                        <tbody>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="20%"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Audience</p>
+                            </td>
+                            <td
+                              width="70%"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Cardiologist</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="20%"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Theme</p>
+                            </td>
+                            <td
+                              width="70%"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="20%"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Day / Date</p>
+                            </td>
+                            <td
+                              width="70%"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="20%"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>PIC</p>
+                            </td>
+                            <td
+                              width="70%"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>dr. Suci Indriani, SpJP</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="20%"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Device</p>
+                            </td>
+                            <td
+                              width="70%"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="20%"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Sponsor</p>
+                            </td>
+                            <td
+                              width="70%"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="20%"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Moderator</p>
+                            </td>
+                            <td
+                              width="70%"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <p>&nbsp;</p>
+                      <table
+                        style={{
+                          marginLeft: "30px",
+                          borderCollapse: "separate",
+                          textAlign: "center",
+                          borderSpacing: "0.5em 0.5em",
+                        }}
+                      >
+                        <tbody>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="20%"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>TIME</p>
+                            </td>
+                            <td
+                              width="35%"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>TOPIK</p>
+                            </td>
+                            <td
+                              width="35%"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>SPEAKER</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>08.00-08.10</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Re-registration, pretest</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>08.10-08.15</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Opening and Introduction</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>08.15-08.35</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                Basic Principals of Vascular Doppler Ultrasound
+                              </p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>08.35-08.55</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                How to Diagnose Lower Peripheral Arterial
+                                Disease Using
+                              </p>
+                              <p>Doppler Ultrasound</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>08.55-09.15</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                Evaluation Chronic Venous Insufficiency Using
+                                Doppler
+                              </p>
+                              <p>Ultrasound</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>09.15-09.35</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Deep Vein vs Superficial Vein Thrombosis</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>09.35-10.05</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Discussion</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>10.05-10.20</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Coffee Break</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>10.20-10.40</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                Evaluation of Upper Extremities Pathology (
+                                Arteries &amp; Vein)
+                              </p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>10.40-11.00</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                AV Fistula Assessment (preparation &amp;
+                                surveillance)
+                              </p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>11.00-11.20</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                Evaluation of Carotid Artery Using Doppler
+                                Ultrasound
+                              </p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>11.20-11.40</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Pseudoaneurysm vs AV Fistula Assessment</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>11.40-12.00</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Discussion</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>12.00-13.00</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>LUNCH BREAK &amp; FRIDAY PRAYING</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>13.00-14.00</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                Video and Discussion : Lower Artery and Vein
+                                Doppler
+                              </p>
+                              <p>Ultrasound</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>14.00-15.00</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                Video and Discussion : Carotid Doppler
+                                Ultrasound
+                              </p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>15.00-15.50</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Video and Discussion : AV Fistula</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>15.50-16.00</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Post test and closing</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <p>&nbsp;</p>
+                    </div>
+                  ) : ws == "1C" ? (
+                    <div>
+                      <p>WORKSHOP 3 : PAD Management</p>
+                      <table
+                        style={{
+                          marginLeft: "30px",
+                          borderCollapse: "separate",
+                          textAlign: "center",
+                          borderSpacing: "0.5em 0.5em",
+                        }}
+                      >
+                        <tbody>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="20%"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Audience</p>
+                            </td>
+                            <td
+                              width="70%"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>General Practitioner</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="20%"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                              <p>Theme</p>
+                            </td>
+                            <td
+                              width="70%"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                A - Z Peripheral Management : From Patient
+                                Selection to
+                              </p>
+                              <p>Therapy</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="20%"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Day / Date</p>
+                            </td>
+                            <td
+                              width="70%"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="20%"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>PIC</p>
+                            </td>
+                            <td
+                              width="70%"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>dr. Vito Anggarino Damay, SpJP(K), M.Kes</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="20%"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Device</p>
+                            </td>
+                            <td
+                              width="70%"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="20%"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Sponsor</p>
+                            </td>
+                            <td
+                              width="70%"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="20%"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Moderator</p>
+                            </td>
+                            <td
+                              width="70%"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <p>&nbsp;</p>
+                      <table
+                        style={{
+                          marginLeft: "30px",
+                          borderCollapse: "separate",
+                          textAlign: "center",
+                          borderSpacing: "0.5em 0.5em",
+                        }}
+                      >
+                        <tbody>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="20%"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>TIME</p>
+                            </td>
+                            <td
+                              width="35%"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>TOPIK</p>
+                            </td>
+                            <td
+                              width="35%"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>SPEAKER</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>08.00-08.20</strong>
+                              </p>
+                            </td>
+                            <td width="364">
+                              <p>
+                                Practical Aspect of Peripheral Artery Disease :
+                                Spectrum and
+                              </p>
+                              <p>Definition</p>
+                            </td>
+                            <td width="221">
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>08.20-08.35</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Interactive Discussion</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>08.40-09.00</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                Clinical Anatomy and Pathomechanism of Most
+                                Common PAD:
+                              </p>
+                              <p>From Basic to Bedside</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>09.00-09.20</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Interactive Discussion</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>09.20-09.40</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                Updated PAD Treatment: How about Cilostazol,
+                                Oral
+                              </p>
+                              <p>Thrombolytic and " PAD Cocktails"</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>09.40-09.55</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Interactive Discussion</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>10.00-10.20</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Coffee Break</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>10.20-10.40</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                Managing Claudicatio Intermitten in Clinical
+                                Practice
+                              </p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>10.40-11.55</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Interactive Discussion</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>11.00-11.20</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                Imaging Interpretation of Lower and Upper
+                                Extremity AD
+                              </p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>11.20-11.35</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Interactive Discussion</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>11.40-12.00</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                The Role of Peripheral Intervention in PAD with
+                                Chronic Ulcer
+                              </p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>12.00-12.15</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Interactive Discussion</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>12.20-13.00</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Lunch Break</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>13.00-13.15</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                Case Presentation: Peripheral Artery Disease in
+                                Pandemic Era
+                              </p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>13.15-13.30</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Interactive Discussion</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>13.30-13.50</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                Managing Critical Limb Ischemia in Daily
+                                Practice
+                              </p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>13.50-14.05</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Interactive Discussion</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>16.10-16.30</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>UPDATE management on ALI</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>16.10-16.25</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Interactive Discussion</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>16.30-16.50</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                Periprocedure Management of Limb Threatening PAD
+                              </p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>16.50-17.05</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>Interactive Discussion</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>17.10-17.30</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                Recorded Case on PAD Intervention or Interactive
+                                PTA CASE
+                              </p>
+                              <p>Presentation</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                          <tr style={{ border: "none" }}>
+                            <td
+                              width="80"
+                              style={{
+                                backgroundColor: "#0075BC",
+                                color: "white",
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>
+                                <strong>17.30-17.45</strong>
+                              </p>
+                            </td>
+                            <td
+                              width="364"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>All speaker "Take Home Message"</p>
+                            </td>
+                            <td
+                              width="221"
+                              style={{
+                                borderRadius: "18px",
+                                boxShadow: "0px 1px 2px 0px #5a5a5a",
+                              }}
+                            >
+                              <p>&nbsp;</p>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <p>&nbsp;</p>
+                    </div>
+                  ) : null}
+                </CRow>
+              </CCardBody>
+            </CTabPane>
+          </CTabContent>
+        </CTabs>
       </CCard>
     </>
   );
