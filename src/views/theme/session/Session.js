@@ -2001,7 +2001,7 @@ const Colors = () => {
               ) : null}
             </div>
           </CRow>
-          <CRow style={{ marginTop: "30px" }} className="jsutify-content-center">
+          <CRow style={{ marginTop: "30px" }} className="justify-content-center">
             {ws == "sympo" ? (
               <>                
                 <h2 style={{margin: '0 auto', position: 'relative', width: '95%', marginBottom: '25px', color: '#4e4e4e'}}>
@@ -2009,7 +2009,7 @@ const Colors = () => {
                 </h2>
                 {dataSympo.detil.map((s, index1) => {
                   return (                                         
-                    <div key={index1} class={`col-lg-${dataSympo.detil.length == 1 ? '12' : dataSympo.detil.length > 1 && dataSympo.detil.length >= 2 ? '6' : dataSympo.detil.length > 2 && dataSympo.detil.length <= 3 ? '4' : dataSympo.detil.length > 3 ? '3' : '12'} col-md-${dataSympo.detil.length == 1 ? '12' : dataSympo.detil.length > 1 && dataSympo.detil.length <= 3 ? '4' : dataSympo.detil.length > 3 ? '3' : '12'} col-sm-12 col-xs-12`}>
+                    <div key={index1} class={`col-lg-${dataSympo.detil.length == 1 ? '12' : dataSympo.detil.length == 2 ? '6' : dataSympo.detil.length == 3 ? '4' : dataSympo.detil.length > 3 ? '3' : '12'} col-md-${dataSympo.detil.length == 1 ? '12' : dataSympo.detil.length > 1 && dataSympo.detil.length <= 3 ? '4' : dataSympo.detil.length > 3 ? '3' : '12'} col-sm-12 col-xs-12`}>
                       <h4 style={{color: '#4e4e4e', margin: '0 auto', position: 'relative', width: '95%'}}>{`Ballroom ${index1 + 1}`}</h4>
                       <VerticalTimeline layout="1-column-left">
                         {
@@ -2051,249 +2051,52 @@ const Colors = () => {
                   )
                 })} 
               </>
+                
             ) : ws == "ws" ? (  
               <>     
                 {/* Tabel Master */}
-                <table
-                  width="70%"
-                  style={{
-                    marginLeft: "30px",                                        
-                    textAlign: 'center',
-                    boxShadow: '0px 2px 16px -8px #000000',
-                    borderRadius: '18px',
-                    boxSizing: 'border-box',                        
-                    overflow: 'hidden', 
-                    position: 'relative',
-                    left: '50%',
-                    transform: 'translate(-54%, 10px)',                     
-                  }}                    
-                >
-                  <tbody>
-                    <tr style={{ border: '1px solid #c2c2c2', }}>
-                      <td                        
-                        width="146"
-                        style={{background: "#0075bc", color: '#fff'}}
-                      >
-                        <p><b>Workshop {dataWs.master.serial_number}</b></p>
-                      </td>
-                      <td
-                        colspan="2"
-                        width="487"                        
-                        style={{background: "#0075bc", color: '#fff'}}
-                      >
-                        <p>                          
-                          <b>{dataWs.master.title}</b>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: '1px solid #c2c2c2', }}>
-                      <td                        
-                        width="146"
-                        style={{background: "#0075bc", color: '#fff'}}
-                      >
-                        <p>
-                          <b>
-                            Topic
-                          </b>
-                        </p>
-                      </td>
-                      <td
-                        colspan="2"
-                        width="487"                        
-                      >
-                        <p>
-                          <b>
-                            {dataWs.master.topic}
-                          </b>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: '1px solid #c2c2c2', }}>
-                      <td                        
-                        width="146"
-                        style={{background: "#0075bc", color: '#fff'}}
-                      >
-                        <p>
-                          <b>
-                            Day, date
-                          </b>
-                        </p>
-                      </td>
-                      <td
-                        colspan="2"
-                        width="487"                        
-                      >
-                        <p>
-                          <b>
-                            {dataWs.master.day}, {parseDate(dataWs.master.date)}, Pk {dataWs.master.time_range}
-                            {/* Saturday, November 27<sup>th</sup> 2021 , Pk 12.30 -
-                            15.30WIB */}
-                          </b>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: '1px solid #c2c2c2', }}>
-                      <td                        
-                        width="146"
-                        style={{background: "#0075bc", color: '#fff'}}
-                      >
-                        <p>
-                          <b>
-                            Course Director
-                          </b>
-                        </p>
-                      </td>
-                      <td
-                        colspan="2"
-                        width="487"                        
-                      >
-                        <p>
-                          <b>
-                            {dataWs.master.course_director}
-                          </b>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: '1px solid #c2c2c2', }}>
-                      <td                        
-                        width="146"
-                        style={{background: "#0075bc", color: '#fff'}}
-                      >
-                        <p>
-                         <b>
-                            PIC
-                          </b>
-                        </p>
-                      </td>
-                      <td
-                        colspan="2"
-                        width="487"                        
-                      >
-                        <p><b>{dataWs.master.pic}</b></p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: '1px solid #c2c2c2', }}>
-                      <td                        
-                        width="146"
-                        style={{background: "#0075bc", color: '#fff'}}
-                      >
-                        <p><b>Moderator</b></p>
-                      </td>
-                      <td
-                        colspan="2"
-                        width="487"                        
-                      >
-                        <p><b>{dataWs.master.moderator}</b></p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>         
 
-                {/* Tabel Detil Aktifitas */}
-                <table
-                  width="80%"
-                  style={{
-                    marginTop: "25px",
-                    marginLeft: "30px",
-                    borderCollapse: "separate",
-                    textAlign: "center",
-                    borderSpacing: "0.5em 0.5em",
-                    position: 'relative',
-                    left: '50%',
-                    transform: 'translate(-54%, 10px)',                     
-                  }}                  
-                >
-                  <tbody>
-                    {
-                      dataWs.data && (                        
-                        <>
-                          <tr style={{ border: "none" }}>
-                            <td
-                              style={{
-                                backgroundColor: "#0075BC",
-                                color: "white",
-                                borderRadius: "18px",
-                                boxShadow: "0px 1px 2px 0px #5a5a5a",
-                              }}
-                              width="146"
-                            >
-                              <b>TIME</b>
-                            </td>
-                            <td
-                              width="284"
-                              style={{
-                                backgroundColor: "#0075BC",
-                                color: "white",
-                                borderRadius: "18px",
-                                boxShadow: "0px 1px 2px 0px #5a5a5a",
-                              }}
-                            >
-                              <p>
-                                <strong>
-                                  Topic
-                                </strong>
-                              </p>
-                            </td>
-                            <td
-                              width="203"
-                              style={{
-                                backgroundColor: "#0075BC",
-                                color: "white",
-                                borderRadius: "18px",
-                                boxShadow: "0px 1px 2px 0px #5a5a5a",
-                              }}
-                            >                          
-                              <p>
-                                <strong>
-                                  Speakers
-                                </strong>
-                              </p>
-                            </td>
-                          </tr>
-                          {
-                            dataWs.data.map((row, i) => {
-                              return (
-                                <tr style={{ border: "none" }} key={i}>
-                                  <td
-                                    style={{
-                                      backgroundColor: "#0075BC",
-                                      color: "white",
-                                      borderRadius: "18px",
-                                      boxShadow: "0px 1px 2px 0px #5a5a5a",
-                                    }}
-                                    width="146"
-                                  >
-                                    <p>{row.time_range}</p>
-                                  </td>
-                                  <td
-                                    width="284"
-                                    style={{
-                                      borderRadius: "18px",
-                                      boxShadow: "0px 1px 2px 0px #5a5a5a",
-                                    }}
-                                  >
-                                    <p>{row.topic}</p>
-                                  </td>
-                                  <td
-                                    width="203"
-                                    style={{
-                                      borderRadius: "18px",
-                                      boxShadow: "0px 1px 2px 0px #5a5a5a",
-                                    }}
-                                  >
-                                    <p>{row.speaker}</p>
-                                  </td>
-                                </tr>           
-                              )
-                            })
-                          }  
-                        </>                        
-                      )
-                    }                                      
-                  </tbody>
-                </table>
-                <p>&nbsp;</p>
+                      <div className="col-lg-8 col-md-10 col-sm-12 col-xs-12"> 
+                      <div class="card" style={{borderRadius:'10px'}}>
+                      <div class="card-header" style={{ background: 'rgb(33, 150, 243)', color: '#fff', margin: '10px auto', position: 'relative', width: '100%'}}>  
+                      <h4>Workshop <p style={{textAlign:'center'}}>{dataWs.master.title}</p></h4>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                     <li class="list-group-item">Topic : {dataWs.master.topic}</li>
+                     <li class="list-group-item">Day,Date : {dataWs.master.day}, {dataWs.master.date}</li>
+                     <li class="list-group-item">Course Director : {dataWs.master.course_director}</li>
+                     <li class="list-group-item">PIC : {dataWs.master.pic}</li>
+                     <li class="list-group-item">Moderator : {dataWs.master.moderator}</li>
+
+                     </ul>
+                      </div>
+                      <VerticalTimeline layout="1-column-left">                  
+                      {dataWs.data.map((s, index1) => {
+                        return (
+                                  <VerticalTimelineElement
+                                      key={index1}                                      
+                                      className="vertical-timeline-element--work"
+                                      style={{margin: "10px 0"}}
+                                      contentStyle={{ background: 'rgb(33, 150, 243)', color: '#fff', textAlign: 'center' }}
+                                      contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
+                                      date={s.time_range}
+                                      iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}                
+                                      icon={<i style={{position: 'relative', left: "50%", top: '50%', transform: 'translate(-50%, -50%)', fontSize: '25px'}} class="far fa-calendar-alt"></i>}
+                                  >   
+                                   <h5 className="text-white vertical-timeline-element-title">{s.topic}</h5>                       
+                                    <p>Speakers: {s.speaker ?? 'tba'}</p>                                                              
+                                  </VerticalTimelineElement>           
+                  )
+                })} </VerticalTimeline>
+                    </div>                          
               </>
+                
+            
+              
+                
+                // {/* Tabel Detil Aktifitas */}
+                        
+              
             ) : ws == "1A" ? (
               <div>
                 <p>WORKSHOP I : Vein Disorders</p>
