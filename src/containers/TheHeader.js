@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from "react-router-dom";
 import {
   CHeader,
   CToggler,
@@ -13,6 +14,7 @@ import {
 } from '@coreui/react'
 import {
   HomeOutlined,
+  RollbackOutlined
 } from '@ant-design/icons';
 import CIcon from '@coreui/icons-react'
 import { Image} from 'antd';
@@ -31,6 +33,7 @@ const TheHeader = () => {
   const asideShow = useSelector(state => state.asideShow)
   const darkMode = useSelector(state => state.darkMode)
   const sidebarShow = useSelector(state => state.sidebarShow)
+  let history = useHistory();
 
   const toggleSidebar = () => {
     const val = [true, 'responsive'].includes(sidebarShow) ? false : 'responsive'
@@ -45,8 +48,8 @@ const TheHeader = () => {
   return (
     <CHeader withSubheader>
         <a href="https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/dashboard">
-      <HomeOutlined style={{position:"absolute",fontSize:"32px",marginTop:"5px",marginLeft:"5px"}}/>
-      </a>
+          <HomeOutlined style={{position:"absolute",fontSize:"32px",marginTop:"11px",marginLeft:"30px"}}/>
+        </a>
       {/* <CToggler
         inHeader
         className="ml-md-3 d-lg-none"
@@ -114,8 +117,8 @@ const TheHeader = () => {
             <CLink className="c-subheader-nav-link" href="#">
               <CIcon name="cil-settings" alt="Settings" />&nbsp;Settings
             </CLink>
-          </div>
-      </CSubheader> */}
+          </div>          
+      </CSubheader> */}              
     </CHeader>
   )
 }

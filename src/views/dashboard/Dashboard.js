@@ -565,19 +565,7 @@ const Dashboard = () => {
       //      href: "https://google.com",
       onMouseOver: () => console.log("map onMouseOver"),
       render: (area: any, index: number) => (
-        <span>
-          {/* <Player
-          playsInline
-          playing
-          loop
-          autoPlay={false}
-          volume={0.113}
-          poster="/assets/poster.png"
-          src="https://acsasurabaya2021.com/wp-content/plugins/perki/hall3.mp4"
-          fluid={false}
-          width={"100%"}
-          height={"100%"}
-        ><ControlBar autoHide={true} className="my-class" /></Player> */}
+        <span>         
           <ReactPlayer
             className="react-player"
             url="https://acsasurabaya2021.com/wp-content/uploads/2021/10/movie.mp4"
@@ -585,10 +573,10 @@ const Dashboard = () => {
             height="100%"
             volume="0.2"
             playsInline
-            playing
+            playing={false}
             loop
             controls={true}
-            autoPlay={true}
+            autoPlay={false}
           />
         </span>
       ),
