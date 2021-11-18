@@ -26,41 +26,37 @@
     {
         "img" : "./mitsubisi.jpg",        
         "phase" : "MISTUBISHI"        
-    },
+    },    
     {
-        "img" : "./servier.jpg",        
-        "phase" : "SERVIER"        
-    },
-    {
-        "img" : "./servier.jpg",        
+        "img" : "./Booth/booth_indovascular.jpg",        
         "phase" : "VASCULAR"        
     },
     {
-        "img" : "./servier.jpg",        
+        "img" : "./Booth/booth_yayasan.jpg",        
         "phase" : "YKMA"        
     },
     {
-        "img" : "./servier.jpg",        
+        "img" : "./Booth/booth_ikatanalumny.jpg",        
         "phase" : "IAKAS"        
     },
     {
-        "img" : "./servier.jpg",        
+        "img" : "./Booth/booth_idi.jpg",        
         "phase" : "IDI"        
     },
     {
-        "img" : "./servier.jpg",        
+        "img" : "./Booth/booth_unair.jpg",        
         "phase" : "UNAIR"        
     },
     {
-        "img" : "./servier.jpg",        
+        "img" : "./Booth/booth_drsutomo.jpg",        
         "phase" : "DRSUTOMO"        
     },
     {
-        "img" : "./servier.jpg",        
+        "img" : "./Booth/booth_Cardiology.jpg",        
         "phase" : "UADCVM"        
     },
     {
-        "img" : "./servier.jpg",        
+        "img" : "./Booth/booth_perki.jpg",        
         "phase" : "PERKI"        
     }
 ]
