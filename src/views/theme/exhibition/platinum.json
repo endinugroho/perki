@@ -1,0 +1,66 @@
+[
+    {
+        "img" : "./astra.jpg",        
+        "phase" : "ASTRA"        
+    },
+    {
+        "img" : "./boston.jpg",        
+        "phase" : "BOSTON"        
+    },
+    {
+        "img" : "./meril.jpg",        
+        "phase" : "MERIL"        
+    },
+    {
+        "img" : "./novartis.jpg",        
+        "phase" : "NOVARTIS"        
+    },
+    {
+        "img" : "./otsuka.jpg",        
+        "phase" : "OTSUKA"        
+    },
+    {
+        "img" : "./servier.jpg",        
+        "phase" : "SERVIER"        
+    },
+    {
+        "img" : "./mitsubisi.jpg",        
+        "phase" : "MISTUBISHI"        
+    },
+    {
+        "img" : "./servier.jpg",        
+        "phase" : "SERVIER"        
+    },
+    {
+        "img" : "./servier.jpg",        
+        "phase" : "VASCULAR"        
+    },
+    {
+        "img" : "./servier.jpg",        
+        "phase" : "YKMA"        
+    },
+    {
+        "img" : "./servier.jpg",        
+        "phase" : "IAKAS"        
+    },
+    {
+        "img" : "./servier.jpg",        
+        "phase" : "IDI"        
+    },
+    {
+        "img" : "./servier.jpg",        
+        "phase" : "UNAIR"        
+    },
+    {
+        "img" : "./servier.jpg",        
+        "phase" : "DRSUTOMO"        
+    },
+    {
+        "img" : "./servier.jpg",        
+        "phase" : "UADCVM"        
+    },
+    {
+        "img" : "./servier.jpg",        
+        "phase" : "PERKI"        
+    }
+]

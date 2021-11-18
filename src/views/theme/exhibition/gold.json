@@ -1,0 +1,10 @@
+[
+    {
+        "img" : "./abbot.jpg",        
+        "phase" : "ABBOT"        
+    },
+    {
+        "img" : "./pfizer.jpg",        
+        "phase" : "PFIZER"        
+    }
+]

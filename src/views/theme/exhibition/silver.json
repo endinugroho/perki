@@ -1,0 +1,46 @@
+[
+    {
+        "img" : "./darya.jpg",        
+        "phase" : "DARYA"        
+    },
+    {
+        "img" : "./bayer.jpg",        
+        "phase" : "BAYER"        
+    },
+    {
+        "img" : "./prodia.jpg",        
+        "phase" : "PRODIA"        
+    },
+    {
+        "img" : "./indomed.jpg",        
+        "phase" : "INDOMED"        
+    },
+    {
+        "img" : "./upjon.jpg",        
+        "phase" : "UPJOHN"        
+    },
+    {
+        "img" : "./terumo.jpg",        
+        "phase" : "TERUMO"        
+    },
+    {
+        "img" : "./idsmed.jpg",        
+        "phase" : "IDSMED"        
+    },
+    {
+        "img" : "./ferron.jpg",        
+        "phase" : "FERRON"        
+    },
+    {
+        "img" : "./siemens.jpg",        
+        "phase" : "SIEMENS"        
+    },
+    {
+        "img" : "./medtronik.jpg",        
+        "phase" : "MEDTRONIK"        
+    },
+    {
+        "img" : "./merck.jpg",        
+        "phase" : "MERCK"        
+    }
+]

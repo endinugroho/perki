@@ -280,7 +280,7 @@ const changeDataIndoSympo = (noUrut) => {
             </CNavItem>
             <CNavItem>
               <CNavLink data-tab="indoviscular" style={{ border: "none" }}>
-                INDOVISCULAR
+                INDOVASCULAR
               </CNavLink>
             </CNavItem>
           </CNav>
@@ -417,7 +417,7 @@ const changeDataIndoSympo = (noUrut) => {
                                             );
                                           }}
                                         >
-                                          Wacth Now
+                                          Watch Now
                                         </Button>
                                       </>
                                     )}
@@ -547,7 +547,7 @@ const changeDataIndoSympo = (noUrut) => {
                                             );
                                           }}
                                         >
-                                          Wacth Now
+                                          Watch Now
                                         </Button>
                                       </>
                                     )}
@@ -675,7 +675,7 @@ const changeDataIndoSympo = (noUrut) => {
                                             );
                                           }}
                                         >
-                                          Wacth Now
+                                          Watch Now
                                         </Button>
                                       </>
                                     )}
@@ -822,7 +822,7 @@ const changeDataIndoSympo = (noUrut) => {
                                             );
                                           }}
                                         >
-                                          Wacth Now
+                                          Watch Now
                                         </Button>
                                       </>
                                     )}
@@ -952,7 +952,7 @@ const changeDataIndoSympo = (noUrut) => {
                                             );
                                           }}
                                         >
-                                          Wacth Now
+                                          Watch Now
                                         </Button>
                                       </>
                                     )}

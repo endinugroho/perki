@@ -803,7 +803,7 @@ const pilihanku = (value) =>
             </CNavItem>
             <CNavItem>
               <CNavLink data-tab="indoviscular" style={{ border: "none" }}>
-                INDOVISCULAR
+                INDOVASCULAR
               </CNavLink>
             </CNavItem>
           </CNav>

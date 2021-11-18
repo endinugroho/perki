@@ -1662,7 +1662,7 @@ const Colors = () => {
             </CNavItem>
             <CNavItem>
               <CNavLink data-tab="indoviscular" style={{ border: "none" }}>
-                INDOVISCULAR
+                INDOVASCULAR
               </CNavLink>
             </CNavItem>
           </CNav>
@@ -2084,7 +2084,7 @@ const Colors = () => {
                                             );
                                           }}
                                         >
-                                          Wacth Now
+                                          Watch Now
                                         </Button>
                                       </>
                                     )}
@@ -2379,7 +2379,7 @@ const Colors = () => {
                                           }}
                                           onClick=""
                                         >
-                                          Wacth Now
+                                          Watch Now
                                         </Button>
                                       </>
                                     )}
