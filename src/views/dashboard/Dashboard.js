@@ -118,7 +118,7 @@ const Dashboard = () => {
   }, []);
 
   const openInNewTab = (url) => {
-    window.location.href = url;
+    window.open(url);
     // const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
     // if (newWindow) newWindow.opener = null
   };
@@ -127,30 +127,20 @@ const Dashboard = () => {
     setJadwal(value);
   };
 
-  const onMapClick = (area, index: number) => {
-    const tip = `click map${area.href || index + 1}`;
-    // console.log(area.href);
-    // if (index==16)
-    // {
-    //   openInNewTab("https://wa.me/6282232683785");
-    // }
-
-    // if (index==15)
-    // {
-    //   openInNewTab("https://wa.me/628165421216");
-    // }
-
-    // if (index==11)
-    // {
-    //   openInNewTab("https://wa.me/6281213030359");
-    // }
-
-    console.log(index);
-
+  const onClikHall = (area, index: number) => {    
     if (index == 0) {
-      setPejet("LOBBY");
-      console.log("lobby");
+      console.log("exhibition");
+      history.push("/theme/exhibition");
+    }    
+    if (index == 1) {
+      history.push("/theme/symposium");
     }
+    if (index == 2) {
+      history.push("/theme/workshop");
+    }    
+  };
+
+  const onClikMenu = (area, index: number) => {            
     if (index == 1) {
       setPejet("SESSION");
       history.push("/theme/session");
@@ -161,34 +151,33 @@ const Dashboard = () => {
     }
     if (index == 3) {
       setPejet("EXIT");
-      history.push("/theme/login");
+      history.push("/theme/login");      
     }
     if (index == 4) {
       setPejet("SYMPOSIUM");      
-      history.push("/theme/symposium");
+      history.push("/theme/symposium");      
     }
     if (index == 5) {
       setPejet("ACCOUNT");
       console.log("akun");
       history.push("/theme/sponsor");
     }
-    if (index == 7) {
-      console.log("exhibition");
-      history.push("/theme/exhibition");
-    }    
-    if (index == 8) {
-      history.push("/theme/symposium");
-    }
-    if (index == 9) {
+    if (index == 6) {
+      setPejet("WORKSHOP");
       history.push("/theme/workshop");
-    }
-    if (index == 13 || index == 11) {
-      openInNewTab("https://wa.me/6282232683785");
-    }
-    if (index == 15 || index == 14) {
+    }     
+  };
+
+  const onClikFaq = (area, index: number) => {    
+    if (index == 0) {
       history.push("/theme/faq");
     }
-    // alert(tip);)
+  };
+
+  const onClikWa = (area, index: number) => {    
+    if (index == 0) {
+      openInNewTab("https://wa.me/6282232683785");
+    }    
   };
 
   const mapAreamobile: any[] = [
@@ -315,174 +304,14 @@ const Dashboard = () => {
     },
   ];
 
-  const mapArea: any[] = [
+  const mapAreaHall: any[] = [       
     //0
-    {
-      left: "20.5%",
-      top: "76.8%",
-      height: "19%",
-      width: "8.3%",
-      href: "https://google.com",
-      style: { background: "rgba(0, 255, 0, 0)", zIndex: "8" },
-      onMouseOver: () => setPejet("LOBBY"),
-      render: (area: any, index: number) => (
-        <span>
-          {pejet == "LOBBY" ? (
-            <img
-              src="https://acsasurabaya2021.com/wp-content/plugins/perki/Lobby_Select.png"
-              width="100%"
-            />
-          ) : null}
-        </span>
-      ),
-    },
-    //1
-    {
-      left: "28.5%",
-      top: "76.8%",
-      height: "17%",
-      width: "8.2%",
-      // href: "https://google.com",
-      style: {
-        background: "rgba(255, 0, 0, 0.0)",
-        zIndex: "8",
-        cursor: "pointer",
-      },
-      onMouseOver: () => setPejet("SESSION"),
-      render: (area: any, index: number) => (
-        <span>
-          {pejet == "SESSION" ? (
-            <img
-              src="https://acsasurabaya2021.com/wp-content/plugins/perki/Session_Select.png"
-              width="100%"
-            />
-          ) : null}
-        </span>
-      ),
-    },
-    //2
-    {
-      left: "36.9%",
-      top: "76.8%",
-      height: "17%",
-      width: "8.2%",
-      // href: "https://google.com",
-      style: {
-        background: "rgba(255, 0, 0, 0.0)",
-        zIndex: "8",
-        cursor: "pointer",
-      },
-      onMouseOver: () => setPejet("EXHIBITION"),
-      render: (area: any, index: number) => (
-        <span>
-          {pejet == "EXHIBITION" ? (
-            <img
-              src="https://acsasurabaya2021.com/wp-content/plugins/perki/Exhibition_Select.png"
-              width="100%"
-            />
-          ) : null}
-        </span>
-      ),
-    },
-    //3
-    {
-      left: "70.2%",
-      top: "76.8%",
-      height: "17%",
-      width: "8.1%",
-      // href: "https://google.com",
-      style: {
-        background: "rgba(255, 0, 0, 0.0)",
-        zIndex: "8",
-        cursor: "pointer",
-      },
-      onMouseOver: () => setPejet("EXIT"),
-      render: (area: any, index: number) => (
-        <span>
-          {pejet == "EXIT" ? (
-            <img
-              src="https://acsasurabaya2021.com/wp-content/plugins/perki/Exit_Select.png"
-              width="100%"
-            />
-          ) : null}
-        </span>
-      ),
-    },
-    //4
-    {
-      left: "45.5%",
-      top: "77.7%",
-      height: "17%",
-      width: "8%",
-      // href: "https://google.com",
-      style: {
-        background: "rgba(255, 0, 0, 0.0)",
-        zIndex: "8",
-        cursor: "pointer",
-      },
-      onMouseOver: () => setPejet("SYMPOSIUM"),
-      render: (area: any, index: number) => (
-        <span>
-          {pejet == "SYMPOSIUM" ? (
-            <img
-              src="https://acsasurabaya2021.com/wp-content/plugins/perki/Symposium_Select.png"
-              width="100%"
-            />
-          ) : null}
-        </span>
-      ),
-    },
-    //5
-    {
-      left: "62.2%",
-      top: "77.7%",
-      height: "17%",
-      width: "8%",
-      // href: "https://google.com",
-      style: {
-        background: "rgba(255, 0, 0, 0.0)",
-        zIndex: "8",
-        cursor: "pointer",
-      },
-      onMouseOver: () => setPejet("ACCOUNT"),
-      render: (area: any, index: number) => (
-        <span>
-          {pejet == "ACCOUNT" ? (
-            <img
-              src="https://acsasurabaya2021.com/wp-content/plugins/perki/Account_Select.png"
-              width="100%"
-            />
-          ) : null}
-        </span>
-      ),
-    },
-    //6
-    {
-      width: "70%",
-      height: "20%",
-      left: "10%",
-      top: "2%",
-      onMouseOver: () => console.log("map onMouseOver11"),
-      style: {
-        background: "rgba(0, 255, 0, 0)",
-        zIndex: "8",
-        display: jadwal,
-        cursor: "pointer",
-      },
-      render: (area: any, index: number) => (
-        <span>
-          {/* <img src="https://acsasurabaya2021.com/wp-content/plugins/perki/jadwal.png" width="100%" /> */}
-        </span>
-      ),
-    },
-    //7
     //exhibition
     {
-      width: "8.8%",
-      height: "13%",
-      left: "28%",
-      top: "33%",
-      // href: "https://google.com",
+      width: "8.6%",
+      height: "15.5%",
+      left: "27.8%",
+      top: "26%",      
       style: {
         background: "rgba(0, 0, 255, " + layar1 + ")",
         transform: "rotate(2deg)",
@@ -496,18 +325,17 @@ const Dashboard = () => {
         setLayar3(0);
       },
       render: (area: any, index: number) => (
-        <span>
-          {/* <img src="https://acsasurabaya2021.com/wp-content/plugins/perki/jadwal.png" width="100%" /> */}
+        <span>         
         </span>
       ),
     },
-    //8
+    //1
     //simposium
     {
-      width: "10%",
-      height: "14%",
-      left: "45%",
-      top: "32%",
+      width: "10.7%",
+      height: "15.5%",
+      left: "44.5%",
+      top: "25.5%",
       style: {
         background: "rgba(0, 0, 255, " + layar2 + ")",
         zIndex: "8",
@@ -520,19 +348,17 @@ const Dashboard = () => {
         setLayar1(0);
       },
       render: (area: any, index: number) => (
-        <span>
-          {/* <img src="https://acsasurabaya2021.com/wp-content/plugins/perki/jadwal.png" width="100%" /> */}
+        <span>          
         </span>
       ),
     },
-    //9
+    //2
     //workshop
     {
-      width: "9.1%",
-      height: "13%",
-      left: "62.8%",
-      top: "33%",
-      // href: "https://google.com",
+      width: "9%",
+      height: "16%",
+      left: "63.4%",
+      top: "25.8%",    
       style: {
         transform: "rotate(-2deg)",
         cursor: "pointer",
@@ -546,17 +372,16 @@ const Dashboard = () => {
         setLayar1(0);
       },
       render: (area: any, index: number) => (
-        <span>
-          {/* <img src="https://acsasurabaya2021.com/wp-content/plugins/perki/jadwal.png" width="100%" /> */}
+        <span>          
         </span>
       ),
     },
-    //10
+    //3
     {
       width: "14.1%",
       height: "20.5%",
       left: "43%",
-      top: "7.2%",
+      top: "-3.8%",
       style: {
         background: "rgba(0, 0, 255, 0)",
         zIndex: "8",
@@ -580,107 +405,154 @@ const Dashboard = () => {
           />
         </span>
       ),
-    },
-    //11
+    }
+  ];
+
+  const mapAreaMenu: any[] = [
+    //0
     {
-      left: "23.5%",
-      top: "60%",
-      height: "8%",
-      width: "5%",
-      // href: "https://google.com",
-      style: {
-        background: "rgba(255, 255, 0, 0)",
-        zIndex: "1",
-        cursor: "pointer",
-      },
-      onMouseOver: () => {
-        setPejet2("block");
-        setPejet3("none");
-      },
-      render: (area: any, index: number) => <span></span>,
-    },
-    //12
-    {
-      left: "30.2%",
-      top: "60.2%",
-      height: "7%",
-      width: "4%",
-      // href: "https://google.com",
-      style: {
-        background: "rgba(255, 255, 255, 0)",
-        zIndex: "1",
-        cursor: "pointer",
-      },
-      onMouseOver: () => {
-        setPejet3("block");
-        setPejet2("none");
-      },
-      render: (area: any, index: number) => (
-        <span>
-          {/* {pejet=="ACCOUNT" ?
-      <img src="https://acsasurabaya2021.com/wp-content/plugins/perki/account.jpg" width="100%" />
-      : null } */}
-        </span>
-      ),
-    },
-    //13
-    {
-      left: "24%",
-      top: "60%",
-      height: "7%",
-      width: "4%",
-      // href: "https://google.com",
-      style: {
-        background: "rgba(255, 255, 0, 0.0)",
-        zIndex: "8",
-        cursor: "pointer",
-      },
-      onMouseOver: () => {
-        setPejet4("block");
-        setPejet2("none");
-        setPejet3("none");
-        setPejet5("none");
-      },
-      render: (area: any, index: number) => (
-        <span>
-          <div style={{ display: pejet2 }}>
-            <img
-              src="https://acsasurabaya2021.com/wp-content/plugins/perki/WA_Select.png"
-              width="100%"
-            />
-          </div>
-        </span>
-      ),
-    },
-    //14
-    {
-      left: "28.7%",
-      top: "60.2%",
-      height: "5%",
-      width: "5%",
+      left: "20.7%",
+      top: "-136px",
+      height: "100%",
+      width: "8.3%",
       href: "https://google.com",
-      style: {
-        background: "rgba(0, 255, 0, 0)",
-        zIndex: "8",
-        cursor: "pointer",
-      },
-      onMouseOver: () => console.log("map onMouseOver"),
+      style: { background: "rgba(0, 255, 0, 0)", zIndex: "8" },
+      onMouseOver: () => setPejet("LOBBY"),
       render: (area: any, index: number) => (
         <span>
-          <div style={{ display: pejet3 }}>
+          {pejet == "LOBBY" ? (
             <img
-              src="https://acsasurabaya2021.com/wp-content/plugins/perki/FAQ_Select.png"
+              src="https://acsasurabaya2021.com/wp-content/plugins/perki/Lobby_Select.png"
               width="100%"
             />
-          </div>
+          ) : null}
         </span>
       ),
     },
+    //1
+    {
+      left: "29.2%",
+      top: "-136px",
+      height: "100%",
+      width: "8.2%",
+      // href: "https://google.com",
+      style: {
+        background: "rgba(255, 0, 0, 0.0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => setPejet("SESSION"),
+      render: (area: any, index: number) => (
+        <span>
+          {pejet == "SESSION" ? (
+            <img
+              src="https://acsasurabaya2021.com/wp-content/plugins/perki/Session_Select.png"
+              width="100%"
+            />
+          ) : null}
+        </span>
+      ),
+    },
+    //2
+    {
+      left: "37.5%",
+      top: "-136px",
+      height: "100%",
+      width: "8.2%",
+      // href: "https://google.com",
+      style: {
+        background: "rgba(255, 0, 0, 0.0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => setPejet("EXHIBITION"),
+      render: (area: any, index: number) => (
+        <span>
+          {pejet == "EXHIBITION" ? (
+            <img
+              src="https://acsasurabaya2021.com/wp-content/plugins/perki/Exhibition_Select.png"
+              width="100%"
+            />
+          ) : null}
+        </span>
+      ),
+    },
+    //3
+    {
+      left: "71.2%",
+      top: "-136px",
+      height: "100%",
+      width: "8.1%",      
+      style: {
+        background: "rgba(255, 0, 0, 0.0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => setPejet("EXIT"),
+      render: (area: any, index: number) => (
+        <span>
+          {pejet == "EXIT" ? (
+            <img
+              src="https://acsasurabaya2021.com/wp-content/plugins/perki/Exit_Select.png"
+              width="100%"
+            />
+          ) : null}
+        </span>
+      ),
+    },
+    //4
+    {
+      left: "46%",
+      top: "-136px",
+      height: "100%",
+      width: "8%",
+      // href: "https://google.com",
+      style: {
+        background: "rgba(255, 0, 0, 0.0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => setPejet("SYMPOSIUM"),
+      render: (area: any, index: number) => (
+        <span>
+          {pejet == "SYMPOSIUM" ? (
+            <img
+              src="https://acsasurabaya2021.com/wp-content/plugins/perki/Symposium_Select.png"
+              width="100%"
+            />
+          ) : null}
+        </span>
+      ),
+    },
+    //5
+    {
+      left: "62.7%",
+      top: "-136px",
+      height: "100%",
+      width: "8%",
+      // href: "https://google.com",
+      style: {
+        background: "rgba(255, 0, 0, 0.0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => setPejet("ACCOUNT"),
+      render: (area: any, index: number) => (
+        <span>
+          {pejet == "ACCOUNT" ? (
+            <img
+              src="https://acsasurabaya2021.com/wp-content/plugins/perki/Account_Select.png"
+              width="100%"
+            />
+          ) : null}
+        </span>
+      ),
+    },         
     //15
     {
-      left: "53.7%",
-      top: "76.8%",
-      height: "19%",
+      left: "54%",
+      top: "-136px",
+      height: "100%",
       width: "8.5%",
       href: "https://google.com",
       onMouseOver: () => setPejet("WORKSHOP"),
@@ -702,76 +574,144 @@ const Dashboard = () => {
     },
   ];
 
-  const ImageMapComponent = React.useMemo(
-    () => (
-      <ImageMap
-        className="usage-map"
-        src={
-          "https://acsasurabaya2021.com/wp-content/plugins/perki/HALL_DASHBOARD.jpg"
-        }
-        map={mapArea}
-        onMapClick={onMapClick}
-      />
-    )
-    // ["https://acsasurabaya2021.com/wp-content/plugins/perki/hallnew.jpg"]
-    // [img]
-  );
+  const mapAreaWa: any[] = [
+    //0
+    {
+      width: "9.1%",
+      height: "91%",
+      left: "7.7%",
+      top: "-262px",      
+      style: { background: "rgba(0, 255, 0, 0)", zIndex: "8" },
+      onMouseOver: () => setPejet("WA"),
+      render: (area: any, index: number) => (
+        <span>
+          {pejet == "WA" ? (
+            <img
+              src="./00_BUTTON/WA_Select.png"
+              width="100%"
+            />
+          ) : null}
+        </span>
+      ),
+    }   
+  ];
+
+  const mapAreaFAQ: any[] = [
+    //0
+    {
+      width: "10%",
+      height: "91%",
+      left: "82.4%",
+      top: "-365px",      
+      style: { background: "rgba(0, 255, 0, 0)", zIndex: "8" },
+      onMouseOver: () => setPejet("FAQ"),
+      render: (area: any, index: number) => (
+        <span>
+          {pejet == "FAQ" ? (
+            <img
+              src="./00_BUTTON/FAQ_Select.png"
+              width="100%"
+            />
+          ) : null}
+        </span>
+      ),
+    }   
+  ];
+
 
   return (
     <>
       <div>
         {anggota && paymentstatus == "PAY" ? (
-          <div>
-            <div class="visibledesktop">
-              <ImageMap
-                className="usage-map"
-                src={
-                  "https://acsasurabaya2021.com/wp-content/plugins/perki/HALL_DASHBOARD3.jpg"
-                }
-                map={mapArea}
-                style={{
-                  width: "90%",
-                  position: "relative",
-                  left: "50%",
-                  zIndex: 1,
-                  transform: "translate(-50%, -24px)",
-                }}
-                onMapClick={onMapClick}
-              />
-            </div>
-            <div class="visibledevice">
-              <ImageMap
-                className="usage-map"
-                src={
-                  "https://acsasurabaya2021.com/wp-content/plugins/perki/HALL_DASHBOARD3.jpg"
-                }
-                // map={mapArea}
-                style={{
-                  width: "100%",
-                  position: "relative",
-                  // left: '50%',
-                  // zIndex: 1,
-                  // transform: 'translate(-50%, -24px)',
-                }}
-                onMapClick={onMapClick}
-              />
-              <ImageMap
-                className="usage-map"
-                src={
-                  "https://acsasurabaya2021.com/wp-content/plugins/perki/Mobile Button.png"
-                }
-                map={mapAreamobile}
-                style={{
-                  width: "100%",
-                  position: "relative",
-                  // left: '50%',
-                  // zIndex: 1,
-                  // transform: 'translate(-50%, -24px)',
-                }}
-                onMapClick={onMapClick}
-              />
-            </div>
+        <div>
+          <div class="visibledesktop" style={{height: '86vh', overflow: 'hidden', marginTop: '-23px'}}>
+            <ImageMap
+              className="usage-map"
+              src={
+                "./00_BUTTON/Hall4K_rev4_edit.png"
+              }
+              map={mapAreaHall}
+              style={{
+                width: "90%",
+                position: "relative",
+                left: "50%",
+                zIndex: 1,
+                transform: "translate(-50%, -24px)",
+              }}
+              onMapClick={onClikHall}
+            />
+            <ImageMap
+              className="usage-map"
+              src={
+                "./00_BUTTON/MAIN_BUTTON copy.png"
+              }
+              map={mapAreaMenu}
+              style={{
+                width: "59.5%",
+                position: "relative",
+                left: "50%",
+                zIndex: 1,
+                transform: "translate(-50%, -144px)",
+              }}
+              onMapClick={onClikMenu}
+            />
+            <ImageMap
+              className="usage-map"
+              src={
+                "./00_BUTTON/WA_Button.png"
+              }
+              map={mapAreaWa}
+              style={{
+                width: "9%",
+                position: "relative",
+                left: "7.8%",
+                bottom: "262px",
+                zIndex: 1,                  
+              }}
+              onMapClick={onClikWa}
+            />
+            <ImageMap
+              className="usage-map"
+              src={
+                "./00_BUTTON/FAQ_Button.png"
+              }
+              map={mapAreaFAQ}
+              style={{
+                width: "10%",
+                position: "relative",
+                left: "82.4%",
+                bottom: "365px",
+                zIndex: 1,                  
+              }}
+              onMapClick={onClikFaq}
+            />
           </div>
+          <div class="visibledevice">
+            <ImageMap
+              className="usage-map"
+              src={
+                "./00_BUTTON/Hall4K_rev3_edit.jpg"
+              }              
+              style={{
+                width: "100%",
+                position: "relative",                
+              }}
+              onMapClick={onClikHall}
+            />
+            <ImageMap
+              className="usage-map"
+              src={
+                "https://acsasurabaya2021.com/wp-content/plugins/perki/Mobile Button.png"
+              }
+              map={mapAreamobile}
+              style={{
+                width: "100%",
+                position: "relative",                
+              }}
+              onMapClick={onClikHall}
+            />
+          </div>
+        </div>
         ) : anggota && paymentstatus != "PAY" ? (
           <div style={{ fontSize: "25px", marginLeft: "15px" }}>
             Mohon klik{" "}
@@ -798,33 +738,7 @@ const Dashboard = () => {
             untuk exit.
           </div>
         ) : null}
-
-        {/* <div style={{height:"26%", width:"21%",position:"absolute",left:"39.6%",top:"26.5%"}}>
-  <Player
-    playsInline
-    playing
-    loop
-    poster="/assets/poster.png"
-    src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
-    fluid={false}
-    width={"100%"}
-    height={"100%"}
-  />
-</div> */}
-      </div>
-      {/* <Player
-    playsInline
-    poster="/assets/poster.png"
-    src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
-    fluid={false}
-    width={"100%"}
-    height={"100%"}
-  /> */}
-      {/* </div> */}
-      {/* <img src="/hall.jpg" style={{width:"100%"}} usemap="#workmap" />
-    <map id="map" name="workmap">
-  <area shape="rect" coords="225,221,321,308" alt="Computer" onClick={()=>alert("Exebition")} href="https://detik.com" />
-</map> */}
+      </div>     
     </>
   );
 };

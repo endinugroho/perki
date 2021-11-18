@@ -47,7 +47,7 @@ const TheHeader = () => {
 
   return (
     <CHeader withSubheader>
-        <a href="https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/dashboard">
+        <a onClick={() => history.push('/dashboard')}>
           <HomeOutlined style={{position:"absolute",fontSize:"32px",marginTop:"11px",marginLeft:"30px"}}/>
         </a>
       {/* <CToggler
@@ -61,7 +61,7 @@ const TheHeader = () => {
         onClick={toggleSidebar}
       /> */}
       <CHeaderBrand className="mx-auto">
-        <a href="https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/dashboard">
+        <a onClick={() => history.push('/dashboard')}>
           <Image  preview={false} src="https://acsasurabaya2021.com/wp-content/plugins/perki/Logo-atas2.png" width="200px" />
         </a>
       </CHeaderBrand>

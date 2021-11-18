@@ -170,9 +170,9 @@ const Colors = () => {
 
   const mapArea: any[] = [
     {
-      width: "16.9%",
-      height: "32%",
-      left: "18%",
+      width: "16%",
+      height: "30%",
+      left: "20.5%",
       top: "35.8%",
       // href: "https://detik.com",
       style: { background: "rgba(69, 147, 255, " + layar1 + ")", zIndex: "8" },
@@ -187,10 +187,10 @@ const Colors = () => {
       ),
     },
     {
-      width: "17%",
-      height: "32%",
-      left: "65%",
-      top: "35.8%",
+      width: "16%",
+      height: "30%",
+      left: "63.6%",
+      top: "36%",
       // href: "https://detik.com",
       style: { background: "rgba(69, 147, 255, " + layar2 + ")", zIndex: "8" },
       onMouseOver: () => {
@@ -959,7 +959,7 @@ const Colors = () => {
       {phase == "GATE" ? (
         <ImageMap
           className="usage-map"
-          src={"./gate-blue-carpet.jpg"}
+          src={"./New Img/002 Gate (1).jpg"}
           map={mapArea}
           onMapClick={onMapClick}
           style={{
@@ -973,7 +973,7 @@ const Colors = () => {
       ) : phase == "PLATINUM" ? (
         <ImageMap
           className="usage-map"
-          src={"./001 Booth Venue platinum.jpg"}
+          src={"./New Img/001 Booth Venue platinum.jpg"}
           map={mapArea2}
           onMapClick={onMapClick2}
           style={{
@@ -987,7 +987,7 @@ const Colors = () => {
       ) : phase == "SILVER" ? (
         <ImageMap
           className="usage-map"
-          src={"./hall silver.jpg"}
+          src={"./New Img/001 Booth Venue silver.jpg"}
           map={mapAreasilver}
           onMapClick={onMapClick3}
           style={{
