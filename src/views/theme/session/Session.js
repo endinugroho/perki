@@ -533,7 +533,7 @@ const Colors = () => {
                         type="primary"
                         onClick={() => {
                           setWs("9");
-                          changeDataWS(7);
+                          changeDataWS(9);
                         }}
                         style={{
                           marginLeft: "2px",
@@ -565,7 +565,7 @@ const Colors = () => {
                         type="primary"
                         onClick={() => {
                           setWs("11");
-                          changeDataWS(10);
+                          changeDataWS(11);
                         }}
                         style={{
                           marginLeft: "2px",
