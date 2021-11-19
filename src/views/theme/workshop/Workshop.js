@@ -6,7 +6,14 @@ import {
   CCol,
   CCard,
   CCardHeader,
-  CCardBody
+  CCardBody,
+  CModal,
+  CTabs,
+  CNav,
+  CNavItem,
+  CNavLink,
+  CTabContent,
+  CTabPane,
 } from '@coreui/react'
 import { rgbToHex } from '@coreui/utils'
 import { DocsLink } from 'src/reusable'
@@ -16,6 +23,12 @@ import 'antd/dist/antd.css';
 import { mixed } from 'yup/lib/locale'
 import { useHistory } from "react-router-dom";
 import generator from "generate-password";
+import {
+  VerticalTimeline,
+  VerticalTimelineElement,
+} from "react-vertical-timeline-component";
+import "react-vertical-timeline-component/style.min.css";
+
 const { confirm } = Modal;
 const FormItem = Form.Item;
 const { Option } = Select;
@@ -89,6 +102,7 @@ const Colors = () => {
   const [disable,setDisable] = useState(false);
   const [simposium, setSimposium] = useState("");
   const [ws, setWs] = useState("");
+
   const [workshopprice,setWorkshopprice] = useState([{profession:"Medical Student",price:"IDR 10,000"},
 
   {profession:"GP",price:"IDR 300,000"},
@@ -101,6 +115,7 @@ const Colors = () => {
   const [anggota,setAnggota] = useState("");
   const [workshopku,setWorkshopku] = useState("");
   const [dataWs, setDataWs] = useState({});
+  const [dataIndoWs,setDataIndoWs] = useState({});
   const [visible, setVisible] = useState(false);
 
   const changeDataWS = (noUrut) => {
@@ -115,11 +130,34 @@ const Colors = () => {
         }else{
           setDataWs(res.data);
           setWs('ws');
+          console.log(ws);
         }
       })
       .catch((err) => console.log(err));
   }
 
+
+ const changeDataIndows = (noUrut) => {
+    setVisible(!visible)
+    axios
+      .get("https://acsasurabaya2021.com/wp-content/plugins/perki/PerkiAPi.php?function=getwsvasculardetil&noUrut="+noUrut)
+      .then((res) => {
+        console.log(res);
+        setVisible(!visible)
+        if(res.data.status == 0 && res.data.master == null && res.data.master == []){
+          alert("Mohon Hubungi Admin")
+        }else{
+          setDataWs(res.data);
+          // setDataWs(res.data);
+
+          setWs("ws");
+          // console.log(dataIndoWs);
+          console.log(ws);
+
+        }
+      })
+      .catch((err) => console.log(err));
+  }
   const parseDate = (date) => {
     let isValidDate = Date.parse(date);
     let dateArticle = new Intl.DateTimeFormat("id");
@@ -237,6 +275,9 @@ if (anggotast=="ANGGOTA") {
       setWorkshopku(data.data[0].workshop);
       if (data.data[0].workshop!="")
       {
+
+        // setWs("1A");
+        return;
         if (data.data[0].workshop.indexOf("WS 1 ")>-1)
         {
           setWs("1");
@@ -320,6 +361,7 @@ if (anggotast=="ANGGOTA") {
         if (data.data[0].workshop.indexOf("WS Indovasc 1 ")>-1)
         {
           setWs("1A");
+         // changeDataIndows(1); 
           return;
         }
         if (data.data[0].workshop.indexOf("WS Indovasc 2 ")>-1)
@@ -752,6 +794,22 @@ const pilihanku = (value) =>
           </span>
           <img src="https://acsasurabaya2021.com/wp-content/plugins/perki/register.png" className="visible-desktop" width="300" style={{float: 'right', position: 'relative', right: '-20px', width: '250px'}}/>
         </CCardHeader>
+        <CTabs activeTab="acsa">
+          <CNav variant="tabs" style={{ padding: "11px" }}>
+            <CNavItem>
+              <CNavLink data-tab="acsa" style={{ border: "none" }}>
+                ACSA
+              </CNavLink>
+            </CNavItem>
+            <CNavItem>
+              <CNavLink data-tab="indoviscular" style={{ border: "none" }}>
+                INDOVASCULAR
+              </CNavLink>
+            </CNavItem>
+          </CNav>
+          <CTabContent>
+            <CTabPane data-tab="acsa">
+        
         <CCardBody>
           <CRow>
           {/* <Button type="primary" onClick={()=>setWs("1")} style={{marginLeft:"2px", marginBottom:"5px"}}>1</Button>
@@ -870,8 +928,8 @@ const pilihanku = (value) =>
             changeDataWS(16);
           }} style={{marginLeft:"2px", marginBottom:"5px"}}>WS 16</Button> : null
         }
-          {workshopku.indexOf("WS Indovasc 1 ")>-1 ?
-          <Button type="primary" onClick={()=>setWs("1A")} style={{marginLeft:"2px", marginBottom:"5px"}}>WS Indo 1</Button> : null
+        {workshopku.indexOf("WS Indovasc 1 ")>-1 ?
+          <Button type="primary" onClick={()=> changeDataIndows(1)} style={{marginLeft:"2px", marginBottom:"5px"}}>WS Indo 1</Button> : null
         }
           {workshopku.indexOf("WS Indovasc 2 ")>-1 ?
           <Button type="primary" onClick={()=>setWs("1B")} style={{marginLeft:"2px", marginBottom:"5px"}}>WS Indo 2</Button> : null
@@ -879,1211 +937,240 @@ const pilihanku = (value) =>
           {workshopku.indexOf("WS Indovasc 3 ")>-1 ?
           <Button type="primary" onClick={()=>setWs("1C")} style={{marginLeft:"2px", marginBottom:"5px"}}>WS Indo 3</Button> : null
         }
+          
           </CRow>
-          <CRow>
+          <CRow
+          style={{ marginTop: "30px" }}
+                  className="justify-content-center">
           { ws == "ws" ? (
               <>
-                {/* Tabel Master */}
-                <table
-                  width="70%"
-                  style={{
-                    marginLeft: "30px",
-                    textAlign: 'center',
-                    boxShadow: '0px 2px 16px -8px #000000',
-                    borderRadius: '18px',
-                    boxSizing: 'border-box',
-                    overflow: 'hidden',
-                    position: 'relative',
-                    left: '50%',
-                    transform: 'translate(-54%, 10px)',
-                  }}
-                >
-                  <tbody>
-                    <tr style={{ border: '1px solid #c2c2c2', }}>
-                      <td
-                        width="146"
-                        style={{background: "#0075bc", color: '#fff'}}
-                      >
-                        <p><b>Workshop {dataWs.master.serial_number}</b></p>
-                      </td>
-                      <td
-                        colspan="2"
-                        width="487"
-                        style={{background: "#0075bc", color: '#fff'}}
-                      >
-                        <p>
-                          <b>{dataWs.master.title}</b>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: '1px solid #c2c2c2', }}>
-                      <td
-                        width="146"
-                        style={{background: "#0075bc", color: '#fff'}}
-                      >
-                        <p>
-                          <b>
-                            Topic
-                          </b>
-                        </p>
-                      </td>
-                      <td
-                        colspan="2"
-                        width="487"
-                      >
-                        <p>
-                          <b>
-                            {dataWs.master.topic}
-                          </b>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: '1px solid #c2c2c2', }}>
-                      <td
-                        width="146"
-                        style={{background: "#0075bc", color: '#fff'}}
-                      >
-                        <p>
-                          <b>
-                            Day, date
-                          </b>
-                        </p>
-                      </td>
-                      <td
-                        colspan="2"
-                        width="487"
-                      >
-                        <p>
-                          <b>
-                            {dataWs.master.day}, {parseDate(dataWs.master.date)}, Pk {dataWs.master.time_range}
-                            {/* Saturday, November 27<sup>th</sup> 2021 , Pk 12.30 -
-                            15.30WIB */}
-                          </b>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: '1px solid #c2c2c2', }}>
-                      <td
-                        width="146"
-                        style={{background: "#0075bc", color: '#fff'}}
-                      >
-                        <p>
-                          <b>
-                            Course Director
-                          </b>
-                        </p>
-                      </td>
-                      <td
-                        colspan="2"
-                        width="487"
-                      >
-                        <p>
-                          <b>
-                            {dataWs.master.course_director}
-                          </b>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: '1px solid #c2c2c2', }}>
-                      <td
-                        width="146"
-                        style={{background: "#0075bc", color: '#fff'}}
-                      >
-                        <p>
-                         <b>
-                            PIC
-                          </b>
-                        </p>
-                      </td>
-                      <td
-                        colspan="2"
-                        width="487"
-                      >
-                        <p><b>{dataWs.master.pic}</b></p>
-                      </td>
-                    </tr>
-                    <tr style={{ border: '1px solid #c2c2c2', }}>
-                      <td
-                        width="146"
-                        style={{background: "#0075bc", color: '#fff'}}
-                      >
-                        <p><b>Moderator</b></p>
-                      </td>
-                      <td
-                        colspan="2"
-                        width="487"
-                      >
-                        <p><b>{dataWs.master.moderator}</b></p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-
-                {/* Tabel Detil Aktifitas */}
-                <table
-                  width="80%"
-                  style={{
-                    marginTop: "25px",
-                    marginLeft: "30px",
-                    borderCollapse: "separate",
-                    textAlign: "center",
-                    borderSpacing: "0.5em 0.5em",
-                    position: 'relative',
-                    left: '50%',
-                    transform: 'translate(-54%, 10px)',
-                  }}
-                >
-                  <tbody>
-                    {
-                      dataWs.data && (
-                        <>
-                          <tr style={{ border: "none" }}>
-                            <td
-                              style={{
-                                backgroundColor: "#0075BC",
-                                color: "white",
-                                borderRadius: "18px",
-                                boxShadow: "0px 1px 2px 0px #5a5a5a",
-                              }}
-                              width="146"
-                            >
-                              <b>TIME</b>
-                            </td>
-                            <td
-                              width="284"
-                              style={{
-                                backgroundColor: "#0075BC",
-                                color: "white",
-                                borderRadius: "18px",
-                                boxShadow: "0px 1px 2px 0px #5a5a5a",
-                              }}
-                            >
-                              <p>
-                                <strong>
-                                  Topic
-                                </strong>
+                      <div className="col-lg-8 col-md-10 col-sm-12 col-xs-12">
+                        <div class="card" style={{ borderRadius: "10px" }}>
+                          <div
+                            class="card-header"
+                            style={{
+                              background: "rgb(33, 150, 243)",
+                              color: "#fff",
+                              margin: "10px auto",
+                              position: "relative",
+                              width: "100%",
+                            }}
+                          >
+                            <h4>
+                              Workshop{" "}
+                              <p style={{ textAlign: "center" }}>
+                                {dataWs.master.title}
                               </p>
-                            </td>
-                            <td
-                              width="203"
-                              style={{
-                                backgroundColor: "#0075BC",
-                                color: "white",
-                                borderRadius: "18px",
-                                boxShadow: "0px 1px 2px 0px #5a5a5a",
-                              }}
-                            >
-                              <p>
-                                <strong>
-                                  Speakers
-                                </strong>
-                              </p>
-                            </td>
-                          </tr>
-                          {
-                            dataWs.data.map((row, i) => {
-                              return (
-                                <tr style={{ border: "none" }} key={i}>
-                                  <td
+                            </h4>
+                          </div>
+                          <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                              Topic : {dataWs.master.topic}
+                            </li>
+                            <li class="list-group-item">
+                              Day,Date : {dataWs.master.day},{" "}
+                              {dataWs.master.date}
+                            </li>
+                            <li class="list-group-item">
+                              Course Director : {dataWs.master.course_director}
+                            </li>
+                            <li class="list-group-item">
+                              PIC : {dataWs.master.pic}
+                            </li>
+                            <li class="list-group-item">
+                              Moderator : {dataWs.master.moderator}
+                            </li>
+                          </ul>
+                        </div>
+                        <VerticalTimeline layout="1-column-left">
+                          {dataWs.data.map((s, index1) => {
+                            return (
+                              <VerticalTimelineElement
+                                key={index1}
+                                className="vertical-timeline-element--work"
+                                style={{ margin: "10px 0" }}
+                                contentStyle={{
+                                  background: "rgb(33, 150, 243)",
+                                  color: "#fff",
+                                  textAlign: "center",
+                                }}
+                                contentArrowStyle={{
+                                  borderRight: "7px solid  rgb(33, 150, 243)",
+                                }}
+                                date={s.time_range}
+                                iconStyle={{
+                                  background: "rgb(33, 150, 243)",
+                                  color: "#fff",
+                                }}
+                                icon={
+                                  <i
                                     style={{
-                                      backgroundColor: "#0075BC",
-                                      color: "white",
-                                      borderRadius: "18px",
-                                      boxShadow: "0px 1px 2px 0px #5a5a5a",
+                                      position: "relative",
+                                      left: "50%",
+                                      top: "50%",
+                                      transform: "translate(-50%, -50%)",
+                                      fontSize: "25px",
                                     }}
-                                    width="146"
-                                  >
-                                    <p>{row.time_range}</p>
-                                  </td>
-                                  <td
-                                    width="284"
-                                    style={{
-                                      borderRadius: "18px",
-                                      boxShadow: "0px 1px 2px 0px #5a5a5a",
-                                    }}
-                                  >
-                                    <p>{row.topic}</p>
-                                  </td>
-                                  <td
-                                    width="203"
-                                    style={{
-                                      borderRadius: "18px",
-                                      boxShadow: "0px 1px 2px 0px #5a5a5a",
-                                    }}
-                                  >
-                                    <p>{row.speaker}</p>
-                                  </td>
-                                </tr>
-                              )
-                            })
-                          }
-                        </>
-                      )
-                    }
-                  </tbody>
-                </table>
-                <p>&nbsp;</p>
-              </>
-          ) : ''}
-          {ws=="1A" ?
-            <div><p>WORKSHOP I : Vein Disorders</p>
-            <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
-            <tbody>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p>Audience</p>
-            </td>
-            <td colspan="2" width="585">
-            <p>Cardiologist</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p>Theme</p>
-            </td>
-            <td colspan="2" width="585">
-            <p>Early Detection of Chronic Venous Insufficiency</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p>Day/Date</p>
-            </td>
-            <td colspan="2" width="585">
-            <p>Friday, December 10, 2021</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p>PIC</p>
-            </td>
-            <td colspan="2" width="585">
-            <p>dr. Novi Anggriyani, SpJP</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="20%">
-            <p>Device</p>
-            </td>
-            <td colspan="2" width="70%">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="20%">
-            <p>Sponsor</p>
-            </td>
-            <td colspan="2" width="70%">
-            <p>Biolitec</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="20%">
-            <p>Moderator</p>
-            </td>
-            <td colspan="2" width="70%">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p>TIME</p>
-            </td>
-            <td width="364">
-            <p>TOPIK</p>
-            </td>
-            <td width="221">
-            <p>SPEAKER</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>08.00-08.20</strong></p>
-            </td>
-            <td width="364">
-            <p>Lower Extremity Veins Anatomy &amp; Pathophysiology in Chronic</p>
-            <p>Venous Insufficiency</p>
-            </td>
-            <td width="221">
-            <p>Novi Kurnianingsih, dr., Sp.JP(K)</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>08.20-08.40</strong></p>
-            </td>
-            <td width="364">
-            <p>How to Identify, Stratify and Diagnosis Chronic Venous</p>
-            <p>Insufficiency</p>
-            </td>
-            <td width="221">
-            <p>Christine Anita, dr., Sp.JP</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>08.40-09.00</strong></p>
-            </td>
-            <td width="364">
-            <p>Management of CVI with Lifestyle Modification, Medical &amp;</p>
-            <p>Compression Therapy</p>
-            </td>
-            <td width="221">
-            <p>Sidhi Laksono, Sp.JP</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>09.00-09.20</strong></p>
-            </td>
-            <td width="364">
-            <p>Discussion</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>09.20-09.30</strong></p>
-            </td>
-            <td width="364">
-            <p>Coffee Break</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p>&nbsp;</p>
-            </td>
-            <td width="364">
-            <p>&nbsp;</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>09.30-09.50</strong></p>
-            </td>
-            <td width="364">
-            <p>Modalities in Management in Chronic Venous Insufficiency: Focusing in the Safety and Efficacy of Endovenous Laser</p>
-            <p>Ablation</p>
-            </td>
-            <td width="221">
-            <p>Dr. J. Nugroho E. Putranto, dr., Sp.JP(K)</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>09.50-10.10</strong></p>
-            </td>
-            <td width="364">
-            <p>What and How EVLT Works : From A to Z</p>
-            </td>
-            <td width="221">
-            <p>Taofan, dr., Sp.JP(K)</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>10.10-10.30</strong></p>
-            </td>
-            <td width="364">
-            <p>Case 1 : CVI Manageable with Lifestyle Modification &amp;</p>
-            <p>Compression Therapy</p>
-            </td>
-            <td width="221">
-            <p>Nurul Rahayuningrum, dr., Sp.JP(K)</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>10.30-10.50</strong></p>
-            </td>
-            <td width="364">
-            <p>Case 2 : CVI with Complication of Venous Ulcer</p>
-            </td>
-            <td width="221">
-            <p>Novi Anggriyani, dr., Sp.JP(K)</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>10.50-11.15</strong></p>
-            </td>
-            <td width="364">
-            <p>Case 3 : EVLT in CVI with Accessories Veins as the Culprit</p>
-            </td>
-            <td width="221">
-            <p>M. Reza J. Pasciolly, dr., Sp.JP(K)</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>11.15-11.45</strong></p>
-            </td>
-            <td width="364">
-            <p>Discussion</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>11.45-13.00</strong></p>
-            </td>
-            <td width="364">
-            <p>Lunch Break &amp; Friday Praying</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p>&nbsp;</p>
-            </td>
-            <td width="364">
-            <p>&nbsp;</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>13.00-13.30</strong></p>
-            </td>
-            <td width="364">
-            <p>How to prepare patient, operator and device (Video)</p>
-            </td>
-            <td width="221">
-            <p>Suci Indriani, dr., SpJP(K)</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>13.30-14.00</strong></p>
-            </td>
-            <td width="364">
-            <p>Discussion</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>14.00-14.30</strong></p>
-            </td>
-            <td width="364">
-            <p>All about EVLT procedure</p>
-            </td>
-            <td width="221">
-            <p>Vito A. Damay, dr., SpJP(K)</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>14.30-15.00</strong></p>
-            </td>
-            <td width="364">
-            <p>Discussion</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>15.00-15.30</strong></p>
-            </td>
-            <td width="364">
-            <p>All about post procedure EVLT</p>
-            </td>
-            <td width="221">
-            <p>Novi Anggriyani, dr., Sp.JP(K)</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>15.30-16.00</strong></p>
-            </td>
-            <td width="364">
-            <p>Discussion</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            </tbody>
-            </table>
-            <p>&nbsp;</p></div>
-            :
-            ws=="1B" ?
-            <div><p>WORKSHOP 2 : VASCULAR DOPPLER ULTRASOUND</p>
-            <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
-            <tbody>
-            <tr style={{border: "none"}}>
-            <td width="20%">
-            <p>Audience</p>
-            </td>
-            <td width="70%">
-            <p>Cardiologist</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="20%">
-            <p>Theme</p>
-            </td>
-            <td width="70%">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="20%">
-            <p>Day / Date</p>
-            </td>
-            <td width="70%">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="20%">
-            <p>PIC</p>
-            </td>
-            <td width="70%">
-            <p>dr. Suci Indriani, SpJP</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="20%">
-            <p>Device</p>
-            </td>
-            <td width="70%">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="20%">
-            <p>Sponsor</p>
-            </td>
-            <td width="70%">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="20%">
-            <p>Moderator</p>
-            </td>
-            <td width="70%">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            </tbody>
-            </table>
-            <p>&nbsp;</p>
-            <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
-            <tbody>
-            <tr style={{border: "none"}}>
-            <td width="20%">
-            <p>TIME</p>
-            </td>
-            <td width="35%">
-            <p>TOPIK</p>
-            </td>
-            <td width="35%">
-            <p>SPEAKER</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>08.00-08.10</strong></p>
-            </td>
-            <td width="364">
-            <p>Re-registration, pretest</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>08.10-08.15</strong></p>
-            </td>
-            <td width="364">
-            <p>Opening and Introduction</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>08.15-08.35</strong></p>
-            </td>
-            <td width="364">
-            <p>Basic Principals of Vascular Doppler Ultrasound</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>08.35-08.55</strong></p>
-            </td>
-            <td width="364">
-            <p>How to Diagnose Lower Peripheral Arterial Disease Using</p>
-            <p>Doppler Ultrasound</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>08.55-09.15</strong></p>
-            </td>
-            <td width="364">
-            <p>Evaluation Chronic Venous Insufficiency Using Doppler</p>
-            <p>Ultrasound</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>09.15-09.35</strong></p>
-            </td>
-            <td width="364">
-            <p>Deep Vein vs Superficial Vein Thrombosis</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>09.35-10.05</strong></p>
-            </td>
-            <td width="364">
-            <p>Discussion</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>10.05-10.20</strong></p>
-            </td>
-            <td width="364">
-            <p>Coffee Break</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p>&nbsp;</p>
-            </td>
-            <td width="364">
-            <p>&nbsp;</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>10.20-10.40</strong></p>
-            </td>
-            <td width="364">
-            <p>Evaluation of Upper Extremities Pathology ( Arteries &amp; Vein)</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>10.40-11.00</strong></p>
-            </td>
-            <td width="364">
-            <p>AV Fistula Assessment (preparation &amp; surveillance)</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>11.00-11.20</strong></p>
-            </td>
-            <td width="364">
-            <p>Evaluation of Carotid Artery Using Doppler Ultrasound</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>11.20-11.40</strong></p>
-            </td>
-            <td width="364">
-            <p>Pseudoaneurysm vs AV Fistula Assessment</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>11.40-12.00</strong></p>
-            </td>
-            <td width="364">
-            <p>Discussion</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>12.00-13.00</strong></p>
-            </td>
-            <td width="364">
-            <p>LUNCH BREAK &amp; FRIDAY PRAYING</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p>&nbsp;</p>
-            </td>
-            <td width="364">
-            <p>&nbsp;</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>13.00-14.00</strong></p>
-            </td>
-            <td width="364">
-            <p>Video and Discussion : Lower Artery and Vein Doppler</p>
-            <p>Ultrasound</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>14.00-15.00</strong></p>
-            </td>
-            <td width="364">
-            <p>Video and Discussion : Carotid Doppler Ultrasound</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>15.00-15.50</strong></p>
-            </td>
-            <td width="364">
-            <p>Video and Discussion : AV Fistula</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>15.50-16.00</strong></p>
-            </td>
-            <td width="364">
-            <p>Post test and closing</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            </tbody>
-            </table>
-            <p>&nbsp;</p></div>
-            : ws=="1C" ?
-            <div><p>WORKSHOP 3 : PAD Management</p>
-            <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
-            <tbody>
-            <tr style={{border: "none"}}>
-            <td width="20%">
-            <p>Audience</p>
-            </td>
-            <td width="70%">
-            <p>General Practitioner</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="20%">
-            <p>&nbsp;</p>
-            <p>Theme</p>
-            </td>
-            <td width="70%">
-            <p>A - Z Peripheral Management : From Patient Selection to</p>
-            <p>Therapy</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="20%">
-            <p>Day / Date</p>
-            </td>
-            <td width="70%">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="20%">
-            <p>PIC</p>
-            </td>
-            <td width="70%">
-            <p>dr. Vito Anggarino Damay, SpJP(K), M.Kes</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="20%">
-            <p>Device</p>
-            </td>
-            <td width="70%">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="20%">
-            <p>Sponsor</p>
-            </td>
-            <td width="70%">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="20%">
-            <p>Moderator</p>
-            </td>
-            <td width="70%">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            </tbody>
-            </table>
-            <p>&nbsp;</p>
-            <table style={{marginLeft:"30px", borderCollapse: "separate", textAlign: "center", borderSpacing: "0.5em 0.5em",}}>
-            <tbody>
-            <tr style={{border: "none"}}>
-            <td width="20%">
-            <p>TIME</p>
-            </td>
-            <td width="35%">
-            <p>TOPIK</p>
-            </td>
-            <td width="35%">
-            <p>SPEAKER</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>08.00-08.20</strong></p>
-            </td>
-            <td width="364">
-            <p>Practical Aspect of Peripheral Artery Disease : Spectrum and</p>
-            <p>Definition</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>08.20-08.35</strong></p>
-            </td>
-            <td width="364">
-            <p>Interactive Discussion</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>08.40-09.00</strong></p>
-            </td>
-            <td width="364">
-            <p>Clinical Anatomy and Pathomechanism of Most Common PAD:</p>
-            <p>From Basic to Bedside</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>09.00-09.20</strong></p>
-            </td>
-            <td width="364">
-            <p>Interactive Discussion</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>09.20-09.40</strong></p>
-            </td>
-            <td width="364">
-            <p>Updated PAD Treatment: How about Cilostazol, Oral</p>
-            <p>Thrombolytic and " PAD Cocktails"</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>09.40-09.55</strong></p>
-            </td>
-            <td width="364">
-            <p>Interactive Discussion</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>10.00-10.20</strong></p>
-            </td>
-            <td width="364">
-            <p>Coffee Break</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>10.20-10.40</strong></p>
-            </td>
-            <td width="364">
-            <p>Managing Claudicatio Intermitten in Clinical Practice</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>10.40-11.55</strong></p>
-            </td>
-            <td width="364">
-            <p>Interactive Discussion</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>11.00-11.20</strong></p>
-            </td>
-            <td width="364">
-            <p>Imaging Interpretation of Lower and Upper Extremity AD</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>11.20-11.35</strong></p>
-            </td>
-            <td width="364">
-            <p>Interactive Discussion</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>11.40-12.00</strong></p>
-            </td>
-            <td width="364">
-            <p>The Role of Peripheral Intervention in PAD with Chronic Ulcer</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>12.00-12.15</strong></p>
-            </td>
-            <td width="364">
-            <p>Interactive Discussion</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>12.20-13.00</strong></p>
-            </td>
-            <td width="364">
-            <p>Lunch Break</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>13.00-13.15</strong></p>
-            </td>
-            <td width="364">
-            <p>Case Presentation: Peripheral Artery Disease in Pandemic Era</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>13.15-13.30</strong></p>
-            </td>
-            <td width="364">
-            <p>Interactive Discussion</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>13.30-13.50</strong></p>
-            </td>
-            <td width="364">
-            <p>Managing Critical Limb Ischemia in Daily Practice</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>13.50-14.05</strong></p>
-            </td>
-            <td width="364">
-            <p>Interactive Discussion</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>16.10-16.30</strong></p>
-            </td>
-            <td width="364">
-            <p>UPDATE management on ALI</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>16.10-16.25</strong></p>
-            </td>
-            <td width="364">
-            <p>Interactive Discussion</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>16.30-16.50</strong></p>
-            </td>
-            <td width="364">
-            <p>Periprocedure Management of Limb Threatening PAD</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>16.50-17.05</strong></p>
-            </td>
-            <td width="364">
-            <p>Interactive Discussion</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>17.10-17.30</strong></p>
-            </td>
-            <td width="364">
-            <p>Recorded Case on PAD Intervention or Interactive PTA CASE</p>
-            <p>Presentation</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            <tr style={{border: "none"}}>
-            <td width="80">
-            <p><strong>17.30-17.45</strong></p>
-            </td>
-            <td width="364">
-            <p>All speaker "Take Home Message"</p>
-            </td>
-            <td width="221">
-            <p>&nbsp;</p>
-            </td>
-            </tr>
-            </tbody>
-            </table>
-            <p>&nbsp;</p></div> : null
-           }
+                                    class="far fa-calendar-alt"
+                                  ></i>
+                                }
+                              >
+                                <h5 className="text-white vertical-timeline-element-title">
+                                  {s.topic}
+                                </h5>
+                                <p>Speakers: {s.speaker ?? "tba"}</p>
+                              </VerticalTimelineElement>
+                            );
+                          })}{" "}
+                        </VerticalTimeline>
+                      </div>
+                    </>
 
+          ) : null}
           </CRow>
         </CCardBody>
+        </CTabPane>
+        <CTabPane data-tab="indoviscular">
+        
+        <CCardBody>
+          <CRow>
+          {/* <Button type="primary" onClick={()=>setWs("1")} style={{marginLeft:"2px", marginBottom:"5px"}}>1</Button>
+          <Button type="primary" onClick={()=>setWs("2")} style={{marginLeft:"2px", marginBottom:"5px"}}>2</Button>
+          <Button type="primary" onClick={()=>setWs("3")} style={{marginLeft:"2px", marginBottom:"5px"}}>3</Button>
+          <Button type="primary" onClick={()=>setWs("4")} style={{marginLeft:"2px", marginBottom:"5px"}}>4</Button>
+          <Button type="primary" onClick={()=>setWs("5")} style={{marginLeft:"2px", marginBottom:"5px"}}>5</Button>
+          <Button type="primary" onClick={()=>setWs("6")} style={{marginLeft:"2px", marginBottom:"5px"}}>6</Button>
+          <Button type="primary" onClick={()=>setWs("7")} style={{marginLeft:"2px", marginBottom:"5px"}}>7</Button>
+          <Button type="primary" onClick={()=>setWs("8")} style={{marginLeft:"2px", marginBottom:"5px"}}>8</Button>
+          <Button type="primary" onClick={()=>setWs("9")} style={{marginLeft:"2px", marginBottom:"5px"}}>9</Button>
+          <Button type="primary" onClick={()=>setWs("10")} style={{marginLeft:"2px", marginBottom:"5px"}}>A</Button>
+          <Button type="primary" onClick={()=>setWs("11")} style={{marginLeft:"2px", marginBottom:"5px"}}>B</Button>
+          <Button type="primary" onClick={()=>setWs("12")} style={{marginLeft:"2px", marginBottom:"5px"}}>C</Button>
+          <Button type="primary" onClick={()=>setWs("13")} style={{marginLeft:"2px", marginBottom:"5px"}}>D</Button>
+          <Button type="primary" onClick={()=>setWs("14")} style={{marginLeft:"2px", marginBottom:"5px"}}>E</Button>
+          <Button type="primary" onClick={()=>setWs("15")} style={{marginLeft:"2px", marginBottom:"5px"}}>F</Button>
+          <Button type="primary" onClick={()=>setWs("16")} style={{marginLeft:"2px", marginBottom:"5px"}}>G</Button>
+          <Button type="primary" onClick={()=>setWs("1A")} style={{marginLeft:"2px", marginBottom:"5px"}}>1A</Button>
+          <Button type="primary" onClick={()=>setWs("1B")} style={{marginLeft:"2px", marginBottom:"5px"}}>1B</Button>
+          <Button type="primary" onClick={()=>setWs("1C")} style={{marginLeft:"2px", marginBottom:"5px"}}>1C</Button> */}
+          {workshopku.indexOf("WS 2 ")>-1 ?
+          <Button type="primary" onClick={()=>{
+            setWs("2")
+            changeDataIndows(1)
+          }} style={{marginLeft:"2px", marginBottom:"5px"}}>WS Indo 1</Button> : null
+          }
+          {workshopku.indexOf("WS 5 ")>-1 ?
+          <Button type="primary" onClick={()=>{
+            setWs("5");
+            changeDataIndows(2);
+          }} style={{marginLeft:"2px", marginBottom:"5px"}}>WS Indo 2</Button> : null
+        }
+          
+          {workshopku.indexOf("WS 7 ")>-1 ?
+          <Button type="primary" onClick={()=>{
+            setWs("7");
+            changeDataIndows(3);
+          }} style={{marginLeft:"2px", marginBottom:"5px"}}>WS Indo 3</Button> : null
+        }
+          </CRow>
+          <CRow
+          style={{ marginTop: "30px" }}
+                  className="justify-content-center">
+          { ws == "ws" ? (
+              <>
+                      <div className="col-lg-8 col-md-10 col-sm-12 col-xs-12">
+                        <div class="card" style={{ borderRadius: "10px" }}>
+                          <div
+                            class="card-header"
+                            style={{
+                              background: "rgb(33, 150, 243)",
+                              color: "#fff",
+                              margin: "10px auto",
+                              position: "relative",
+                              width: "100%",
+                            }}
+                          >
+                            <h4>
+                              Workshop{" "}
+                              <p style={{ textAlign: "center" }}>
+                                {dataWs.master.title}
+                              </p>
+                            </h4>
+                          </div>
+                          <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                              Topic : {dataWs.master.topic}
+                            </li>
+                            <li class="list-group-item">
+                              Day,Date : {dataWs.master.day},{" "}
+                              {dataWs.master.date}
+                            </li>
+                            <li class="list-group-item">
+                              Course Director : {dataWs.master.course_director}
+                            </li>
+                            <li class="list-group-item">
+                              PIC : {dataWs.master.pic}
+                            </li>
+                            <li class="list-group-item">
+                              Moderator : {dataWs.master.moderator}
+                            </li>
+                          </ul>
+                        </div>
+                        <VerticalTimeline layout="1-column-left">
+                          {dataWs.data.map((s, index1) => {
+                            return (
+                              <VerticalTimelineElement
+                                key={index1}
+                                className="vertical-timeline-element--work"
+                                style={{ margin: "10px 0" }}
+                                contentStyle={{
+                                  background: "rgb(33, 150, 243)",
+                                  color: "#fff",
+                                  textAlign: "center",
+                                }}
+                                contentArrowStyle={{
+                                  borderRight: "7px solid  rgb(33, 150, 243)",
+                                }}
+                                date={s.time_range}
+                                iconStyle={{
+                                  background: "rgb(33, 150, 243)",
+                                  color: "#fff",
+                                }}
+                                icon={
+                                  <i
+                                    style={{
+                                      position: "relative",
+                                      left: "50%",
+                                      top: "50%",
+                                      transform: "translate(-50%, -50%)",
+                                      fontSize: "25px",
+                                    }}
+                                    class="far fa-calendar-alt"
+                                  ></i>
+                                }
+                              >
+                                <h5 className="text-white vertical-timeline-element-title">
+                                  {s.topic}
+                                </h5>
+                                <p>Speakers: {s.speaker ?? "tba"}</p>
+                              </VerticalTimelineElement>
+                            );
+                          })}{" "}
+                        </VerticalTimeline>
+                      </div>
+                    </>
+
+          ) : null}
+          </CRow>
+        </CCardBody>
+        </CTabPane>
+
+        </CTabContent>
+        </CTabs>
       </CCard>
 
 </>
-  )
-}
+  );
+};
 
 export default Colors
