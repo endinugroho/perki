@@ -42,13 +42,13 @@ const Colors = () => {
       fetchDataBooth("BOOTH007", "MISTUBISHI");
     }
     if (index == 1) {
-      fetchDataBooth("CODE", "VASCULAR");      
+      fetchDataBooth("BOOTH009", "VASCULAR");      
     }
     if (index == 2) {
-      fetchDataBooth("CODE", "YKMA");            
+      fetchDataBooth("BOOTH014", "YKMA");            
     }
     if (index == 3) {
-      fetchDataBooth("CODE", "IAKAS");                  
+      fetchDataBooth("BOOTH010", "IAKAS");                  
     }
     if (index == 4) {
       fetchDataBooth("BOOTH003", "MERIL");                              
@@ -69,58 +69,58 @@ const Colors = () => {
       fetchDataBooth("BOOTH006", "SERVIER");      
     }
     if (index == 10) {
-      fetchDataBooth("CODE", "PERKI");      
+      fetchDataBooth("BOOTH011", "PERKI");      
     }
     if (index == 11) {
-      fetchDataBooth("CODE", "IDI");      
+      fetchDataBooth("BOOTH012", "IDI");      
     }
     if (index == 12) {
-      fetchDataBooth("CODE", "UNAIR");            
+      fetchDataBooth("BOOTH013", "UNAIR");            
     }
     if (index == 13) {
-      fetchDataBooth("CODE", "UADCVM");            
+      fetchDataBooth("BOOTH016", "UADCVM");            
     }
     if (index == 14) {
-      fetchDataBooth("CODE", "DRSUTOMO");                  
+      fetchDataBooth("BOOTH015", "DRSUTOMO");                  
     }
   };
 
   const onMapSilverAndGold = (area, index) => {   
     if (index == 0) {      
-      fetchDataBooth("CODE", "DARYA");
+      fetchDataBooth("BASIC001", "DARYA");
     }
     if (index == 1) {
-      fetchDataBooth("CODE", "BAYER");      
+      fetchDataBooth("BASIC002", "BAYER");      
     }
     if (index == 2) {
-      fetchDataBooth("CODE", "PRODIA");      
+      fetchDataBooth("BASIC003", "PRODIA");      
     }
     if (index == 3) {
-      fetchDataBooth("CODE", "INDOMED");            
+      fetchDataBooth("BASIC004", "INDOMED");            
     }
     if (index == 4) {
-      fetchDataBooth("CODE", "UPJOHN");            
+      fetchDataBooth("BASIC005", "UPJOHN");            
     }
     if (index == 5) {
-      fetchDataBooth("CODE", "TERUMO");            
+      fetchDataBooth("BASIC006", "TERUMO");            
     }
     if (index == 6) {
-      fetchDataBooth("CODE", "IDSMED");                  
+      fetchDataBooth("BASIC007", "IDSMED");                  
     }
     if (index == 7) {
-      fetchDataBooth("CODE", "FERRON");                  
+      fetchDataBooth("BASIC008", "FERRON");                  
     }
     if (index == 8) {
-      fetchDataBooth("CODE", "SIEMENS");                  
+      fetchDataBooth("BASIC009", "SIEMENS");                  
     }
     if (index == 9) {
-      fetchDataBooth("CODE", "MEDTRONIK");                        
+      fetchDataBooth("BASIC010", "MEDTRONIK");                        
     }
     if (index == 10) {
-      fetchDataBooth("CODE", "MERCK");                        
+      fetchDataBooth("BASIC011", "MERCK");                        
     }
     if (index == 11) {
-      fetchDataBooth("CODE", "ABBOT");                        
+      fetchDataBooth("BOOTH017", "ABBOT");                        
     }
     if (index == 12) {
       fetchDataBooth("BOOTH008", "PFIZER");                        

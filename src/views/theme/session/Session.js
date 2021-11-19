@@ -312,6 +312,31 @@ const Colors = () => {
       .catch((err) => console.log(err));
   };
 
+ const changeDataIndoSympo = (noUrut) => {
+    setVisible(!visible);
+    axios
+      .get(
+        "https://acsasurabaya2021.com/wp-content/plugins/perki/PerkiAPi.php?function=getsympovasculardetil&noUrut=" +
+          noUrut
+      )
+      .then((res) => {
+        console.log(res);
+        setVisible(!visible);
+        if (
+          res.data.status == 0 &&
+          res.data.master == null &&
+          res.data.master == []
+        ) {
+          alert("Mohon Hubungi Admin");
+        } else {
+          setDataSympo(res.data);
+          setWs("PERTAMA");
+          console.log(dataSympo);
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
   const parseDate = (date) => {
     let isValidDate = Date.parse(date);
     let dateArticle = new Intl.DateTimeFormat("en", { month: "long" });
@@ -888,31 +913,20 @@ const Colors = () => {
                           type="primary"
                           onClick={() => {
                             setWs("PERTAMA");
-                            changeDataSympo(1);
+                            changeDataIndoSympo(1);
                           }}
                           style={{ marginLeft: "30px", borderRadius: "10px" }}
                         >
-                          Sym 1
-                        </Button>
+                         Indovasc Sympo 1                        </Button>
                         <Button
                           type="primary"
                           onClick={() => {
                             setWs("KEDUA");
-                            changeDataSympo(2);
+                            changeDataIndoSympo(2);
                           }}
                           style={{ marginLeft: "2px", borderRadius: "10px" }}
                         >
-                          Sym 2
-                        </Button>
-                        <Button
-                          type="primary"
-                          onClick={() => {
-                            setWs("KETIGA");
-                            changeDataSympo(3);
-                          }}
-                          style={{ marginLeft: "2px", borderRadius: "10px" }}
-                        >
-                          Sym 3
+                          Indovasc Sympo 2
                         </Button>
                       </>
                     ) : null}
@@ -961,7 +975,7 @@ const Colors = () => {
                   style={{ marginTop: "30px" }}
                   className="jsutify-content-center"
                 >
-                  {ws == "sympo" ? (
+                  {ws == "PERTAMA" ? (
                     <>
                       <h2
                         style={{
