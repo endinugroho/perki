@@ -138,7 +138,7 @@ const Login = () => {
                   </CForm>
                 </CCardBody>
               </CCard>
-              <CCard className="text-white py-5 d-md-down-none" style={{ width: '44%',backgroundColor:"rgb(0,70,129)" }}>
+              {/* <CCard className="text-white py-5 d-md-down-none" style={{ width: '44%',backgroundColor:"rgb(0,70,129)" }}>
                 <CCardBody className="text-center">
                   <div style={{backgroundColor:"rgb(0,70,129)"}}>
                     <h2 style={{color:"white"}}>Sign up</h2>
@@ -148,10 +148,10 @@ const Login = () => {
                     </Link>
                   </div>
                 </CCardBody>
-              </CCard>
+              </CCard> */}
             </CCardGroup>
             <div class="visibledevice">
-            <CCardGroup >
+            {/* <CCardGroup >
               <CCard className="text-white py-5" style={{ width: '100%',backgroundColor:"rgb(0,70,129)" }}>
                 <CCardBody className="text-center">
                   <div style={{backgroundColor:"rgb(0,70,129)"}}>
@@ -163,7 +163,7 @@ const Login = () => {
                   </div>
                 </CCardBody>
               </CCard>
-            </CCardGroup>
+            </CCardGroup> */}
             </div>
             <Image preview={false} src="https://acsasurabaya2021.com/images/login.jpg" />
           </CCol>

@@ -24,6 +24,7 @@ const Typography = () => {
     {profession:"GP",name:"WS 10 (Asuhan Medis dan Keperawatan pada Kegawatan Kardiovaskulardi Lini Terdepan: Fokus pada Terapi Trombolitik)"},
     {profession:"GP",name:"WS 11 (Rapid Echocardiography in Emergency Setting)"},
     {profession:"GP",name:"WS 13 (Advanced in Diagnosing Acute Heart Failure)"},
+    {profession:"GP",name:"WS Indovasc 3 (A - Z Peripheral Management : From Patient Selection to Therapy)"},
     {profession:"Cardiologist",name:"WS 1 (Pregnancy and Heart Disease: What is the Most Common Cardiovascular Problem on It?)"},
     {profession:"Cardiologist",name:"WS 2 (Perioperative Cardiac Consultation)"},
     {profession:"Cardiologist",name:"WS 3 (Stay Fit, Dont Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
@@ -88,8 +89,30 @@ const Typography = () => {
   const [macamworkshop, setMacamworkshop] = useState([]);
   const [halaman, setHalaman] = useState("HAL1");
   const [width, setWidth] = useState(window.innerWidth);
-
-
+  const [diskonsimpo,setDiskonsimpo] = useState(0);
+  const [diskonws,setDiskonws] = useState(0);
+  const [diskonwscar,setDiskonwscar] = useState(0);
+  const [diskonwsos,setDiskonwsos] = useState(0);
+  const [diskonsimpomhs,setDiskonsimpomhs] = useState(0);
+  const [diskonwsmhs,setDiskonwsmhs] = useState(0);
+  const [jumlahsimpo1,setJumlahsimpo1] = useState(0);
+  const [jumlahws1,setJumlahws1] = useState(0);
+  const [jumlahwscar1,setJumlahwscar1] = useState(0);
+  const [jumlahwsos1,setJumlahwsos1] = useState(0);
+  const [jumlahsimpomhs1,setJumlahsimpomhs1] = useState(0);
+  const [jumlahwsmhs1,setJumlahwsmhs1] = useState(0);
+  const [hargasimpo,setHargasimpo] = useState(0);
+  const [hargaws, setHargaws] = useState(0);
+  const [hargawscar,setHargawscar] = useState(0);
+  const [hargawsos,setHargawsos]= useState(0);
+  const [hargasimpomhs,setHargasimpomhs]= useState(0);
+  const [hargawsmhs,setHargawsmhs]= useState(0);
+  const [orderidsimpo,setOrderidsimpo] = useState("");
+  const [orderidws,setOrderidws] = useState("");
+  const [orderidwscar,setOrderidwscar] = useState("");
+  const [orderidwsos,setOrderidwsos] = useState("");
+  const [orderidsimpomhs,setOrderidsimpomhs] = useState("");
+  const [orderidwsmhs,setOrderidwsmhs] = useState("");
   function handleWindowSizeChange() {
           setWidth(window.innerWidth);
       }
@@ -155,8 +178,124 @@ const Typography = () => {
           setBelumterbayar(belumbayar);
           setOrderidbelumterbayar(orderid);
           workshopprice.filter(ch => ch.profession === data.data[0].profession).map((item) =>
-          setHargaworkshop(item.price.replace("IDR ","").replace(",",""))
-        );
+            setHargaworkshop(item.price.replace("IDR ","").replace(",",""))
+          );
+
+          // if (anggotast=="ANGGOTA") {
+            var hargaku=0;orderid="";
+            var jumlahsimpo = data.data.filter(data => ((data.pilih=="simposium" || data.pilih=="seminar,workshop" )&& (data.paymentstatus!='PAY'))).length;
+            data.data.filter(data => ((data.pilih=="simposium" || data.pilih=="seminar,workshop" )&& (data.paymentstatus!='PAY'))).map((item)=> {
+              hargaku=hargaku+parseInt(item.total);
+              orderid=orderid+item.orderid+",";
+            });
+            setHargasimpo(hargaku);setOrderidsimpo(orderid);
+
+            hargaku=0;orderid="";
+            var jumlahwscar = data.data.filter(data => ((data.pilih=="workshop" || data.pilih=="seminar,workshop" ) && (data.profession=="Cardiologist") && (data.paymentstatus!='PAY'))).length;
+            data.data.filter(data => ((data.pilih=="workshop" || data.pilih=="seminar,workshop" ) && (data.profession=="Cardiologist") && (data.paymentstatus!='PAY'))).map((item)=> {
+              hargaku=hargaku+parseInt(item.total);
+              orderid=orderid+item.orderid+",";
+            });
+            setHargawscar(hargaku);setOrderidwscar(orderid);
+
+            hargaku=0;orderid="";
+            var jumlahwsos = data.data.filter(data => ((data.pilih=="workshop" || data.pilih=="seminar,workshop" ) && (data.profession=="Other Specialist") && (data.paymentstatus!='PAY'))).length;
+            data.data.filter(data => ((data.pilih=="workshop" || data.pilih=="seminar,workshop" ) && (data.profession=="Other Specialist") && (data.paymentstatus!='PAY'))).map((item)=> {
+              hargaku=hargaku+parseInt(item.total);
+              orderid=orderid+item.orderid+",";
+            });
+            setHargawsos(hargaku);setOrderidwsos(orderid);
+
+            hargaku=0;orderid="";
+            var jumlahws = data.data.filter(data => ((data.pilih=="workshop" || data.pilih=="seminar,workshop" ) && (data.profession=="GP" || data.profession=="Medical Student" || data.profession=="Nurse or Paramedics") && (data.paymentstatus!='PAY'))).length;
+            data.data.filter(data => ((data.pilih=="workshop" || data.pilih=="seminar,workshop" ) && (data.profession=="GP" || data.profession=="Medical Student" || data.profession=="Nurse or Paramedics") && (data.paymentstatus!='PAY'))).map((item)=> {
+              hargaku=hargaku+parseInt(item.total);
+              orderid=orderid+item.orderid+",";
+            });
+            setHargaws(hargaku);setOrderidws(orderid);
+
+            hargaku=0;orderid="";
+            var jumlahsimpomhs = data.data.filter(data => ((data.pilih=="simposium" || data.pilih=="seminar,workshop" ) && (data.profession=="Medical Student") && (data.paymentstatus!='PAY'))).length;
+            data.data.filter(data => ((data.pilih=="simposium" || data.pilih=="seminar,workshop" ) && (data.profession=="Medical Student") && (data.paymentstatus!='PAY'))).map((item)=> {
+              hargaku=hargaku+parseInt(item.total);
+              orderid=orderid+item.orderid+",";
+            });
+            setHargasimpomhs(hargaku);setOrderidsimpomhs(orderid);
+
+            hargaku=0;orderid="";
+            var jumlahwsmhs = data.data.filter(data => ((data.pilih=="workshop" || data.pilih=="seminar,workshop" ) && (data.profession=="Medical Student") && (data.paymentstatus!='PAY'))).length;
+            data.data.filter(data => ((data.pilih=="workshop" || data.pilih=="seminar,workshop" ) && (data.profession=="Medical Student") && (data.paymentstatus!='PAY'))).map((item)=> {
+              hargaku=hargaku+parseInt(item.total);
+              orderid=orderid+item.orderid+",";
+            });
+            setHargawsmhs(hargaku);setOrderidwsmhs(orderid);
+            console.log("wsmhs"+jumlahwsmhs);
+            setJumlahsimpo1(jumlahsimpo);
+            setJumlahwscar1(jumlahwscar);
+            setJumlahwsos1(jumlahwsos);
+            setJumlahws1(jumlahws);
+            setJumlahsimpomhs1(jumlahsimpomhs);
+            setJumlahwsmhs1(jumlahwsmhs);
+            if (jumlahsimpo>=12 && jumlahsimpo<20)
+            {
+              setDiskonsimpo(50);
+            }
+            if (jumlahsimpo>=20 && jumlahsimpo<30)
+            {
+              setDiskonsimpo(65);
+            }
+            if (jumlahsimpo>=30 )
+            {
+              setDiskonsimpo(70);
+            }
+            if (jumlahwscar>=10 && jumlahwscar<20)
+            {
+              setDiskonwscar(50);
+            }
+            if (jumlahwscar>=20)
+            {
+              setDiskonwscar(70);
+            }
+
+            if (jumlahwsos>=10 && jumlahwsos<20)
+            {
+              setDiskonwsos(50);
+            }
+            if (jumlahwsos>=20)
+            {
+              setDiskonwsos(70);
+            }
+
+            if (jumlahws>=12 && jumlahws<20)
+            {
+              setDiskonws(60);
+            }
+            if (jumlahws>=20)
+            {
+              setDiskonws(75);
+            }
+            if (jumlahsimpomhs>=12 && jumlahsimpomhs<20) {
+                setDiskonsimpomhs(50)
+            }
+
+            if (jumlahsimpomhs>=20 && jumlahsimpomhs<50) {
+              setDiskonsimpomhs(75)
+
+            }
+            if (jumlahsimpomhs>=50) {
+              setDiskonsimpomhs(83)
+
+            }
+            if (jumlahwsmhs>=12 && jumlahwsmhs<20) {
+              setDiskonwsmhs(50)
+
+            }
+            if (jumlahwsmhs>=20) {
+              setDiskonwsmhs(75)
+
+            }
+
+          // }
 
         })
         .catch(() => {
@@ -444,21 +583,82 @@ const mapArea3: any[] = [
   },
 ];
 
-const bulkpay = () => {
+const bulkpay = (tipebayar,total) => {
+  console.log("tb="+tipebayar);
+  console.log("total="+total);
   const current = new Date();
   const idkirim = "bulk"+paddy(current.getDate(),2)+paddy(current.getMonth()+1,2)+paddy(current.getFullYear(),4)+paddy(current.getHours(),2)+paddy(current.getMinutes(),2)+paddy(current.getSeconds(),2)+parseInt(Math.random()*100);
-  var orderidbelumterbayar2=orderidbelumterbayar.substring(0,orderidbelumterbayar.length-1);
-  var re = new RegExp('SP-'+idsponsor+'-A-', 'g');
-  var re2 = new RegExp(',', 'g');
-  orderidbelumterbayar2 = orderidbelumterbayar2.replace(re, '');
-  orderidbelumterbayar2="'"+orderidbelumterbayar2+"'";
-  orderidbelumterbayar2 = orderidbelumterbayar2.replace(re2,"','");
-  console.log(orderidbelumterbayar2);
+  var idmass ="";
+//  var belumterbayarnew = 0;
+  if (tipebayar=="PERTAMA") {
+    var orderidbelumterbayar2=orderidbelumterbayar.substring(0,orderidbelumterbayar.length-1);
+    var re = new RegExp('SP-'+idsponsor+'-A-', 'g');
+    var re2 = new RegExp(',', 'g');
+    orderidbelumterbayar2 = orderidbelumterbayar2.replace(re, '');
+    orderidbelumterbayar2="'"+orderidbelumterbayar2+"'";
+    orderidbelumterbayar2 = orderidbelumterbayar2.replace(re2,"','");
+    idmass=orderidbelumterbayar2;
+  }
+  if (tipebayar=="SIMPO") {
+    var orderidbelumterbayar2=orderidsimpo.substring(0,orderidsimpo.length-1);
+    var re = new RegExp('SP-'+idsponsor+'-A-', 'g');
+    var re2 = new RegExp(',', 'g');
+    orderidbelumterbayar2 = orderidbelumterbayar2.replace(re, '');
+    orderidbelumterbayar2="'"+orderidbelumterbayar2+"'";
+    orderidbelumterbayar2 = orderidbelumterbayar2.replace(re2,"','");
+    idmass=orderidbelumterbayar2;
+  }
+  if (tipebayar=="WSCAR") {
+    var orderidbelumterbayar2=orderidwscar.substring(0,orderidwscar.length-1);
+    var re = new RegExp('SP-'+idsponsor+'-A-', 'g');
+    var re2 = new RegExp(',', 'g');
+    orderidbelumterbayar2 = orderidbelumterbayar2.replace(re, '');
+    orderidbelumterbayar2="'"+orderidbelumterbayar2+"'";
+    orderidbelumterbayar2 = orderidbelumterbayar2.replace(re2,"','");
+    idmass=orderidbelumterbayar2;
+  }
+  if (tipebayar=="WSOS") {
+    var orderidbelumterbayar2=orderidwsos.substring(0,orderidwsos.length-1);
+    var re = new RegExp('SP-'+idsponsor+'-A-', 'g');
+    var re2 = new RegExp(',', 'g');
+    orderidbelumterbayar2 = orderidbelumterbayar2.replace(re, '');
+    orderidbelumterbayar2="'"+orderidbelumterbayar2+"'";
+    orderidbelumterbayar2 = orderidbelumterbayar2.replace(re2,"','");
+    idmass=orderidbelumterbayar2;
+  }
+  if (tipebayar=="WS") {
+    var orderidbelumterbayar2=orderidws.substring(0,orderidws.length-1);
+    var re = new RegExp('SP-'+idsponsor+'-A-', 'g');
+    var re2 = new RegExp(',', 'g');
+    orderidbelumterbayar2 = orderidbelumterbayar2.replace(re, '');
+    orderidbelumterbayar2="'"+orderidbelumterbayar2+"'";
+    orderidbelumterbayar2 = orderidbelumterbayar2.replace(re2,"','");
+    idmass=orderidbelumterbayar2;
+  }
+  if (tipebayar=="SIMPOMHS") {
+    var orderidbelumterbayar2=orderidsimpomhs.substring(0,orderidsimpomhs.length-1);
+    var re = new RegExp('SP-'+idsponsor+'-A-', 'g');
+    var re2 = new RegExp(',', 'g');
+    orderidbelumterbayar2 = orderidbelumterbayar2.replace(re, '');
+    orderidbelumterbayar2="'"+orderidbelumterbayar2+"'";
+    orderidbelumterbayar2 = orderidbelumterbayar2.replace(re2,"','");
+    idmass=orderidbelumterbayar2;
+  }
+  if (tipebayar=="WSMHS") {
+    var orderidbelumterbayar2=orderidwsmhs.substring(0,orderidwsmhs.length-1);
+    var re = new RegExp('SP-'+idsponsor+'-A-', 'g');
+    var re2 = new RegExp(',', 'g');
+    orderidbelumterbayar2 = orderidbelumterbayar2.replace(re, '');
+    orderidbelumterbayar2="'"+orderidbelumterbayar2+"'";
+    orderidbelumterbayar2 = orderidbelumterbayar2.replace(re2,"','");
+    idmass=orderidbelumterbayar2;
+  }
+  console.log(idmass);
   console.log(idkirim);
   axios({
     url: "https://acsasurabaya2021.com/wp-content/plugins/perki/kirimdata.php",
     // url: "http://localhost/perki/kirimdata.php",
-    data: {mtd:'UPDATEBULKCODE',kode:idkirim,idku:orderidbelumterbayar2},
+    data: {mtd:'UPDATEBULKCODE',kode:idkirim,idku:idmass},
     contentType: "application/json",
     method: 'POST',
   })
@@ -466,7 +666,7 @@ const bulkpay = () => {
       console.log(data);
       if (data.data.sukses=="OK") {
 
-        openInNewTab('https://acsasurabaya2021.com/wp-content/plugins/perki/midtrans/examples/snap/checkout-process2.php?orderid='+idkirim+'&total='+belumterbayar+'&judul='+orderidbelumterbayar)
+        openInNewTab('https://acsasurabaya2021.com/wp-content/plugins/perki/midtrans/examples/snap/checkout-process2.php?orderid='+idkirim+'&total='+total+'&judul='+idmass)
 
       }
     })
@@ -672,77 +872,12 @@ const columns = [
           </div>
       </div>
       </div>
-         //         <div>
-//         <div style={{textAlign:"right"}}><a href={'https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/theme/edit/'+dataanggota.id} ><Button type="primary">Edit Data</Button></a> {dataanggota.paymentstatus!="PAY" ? <Button onClick={() => openInNewTab('https://acsasurabaya2021.com/wp-content/plugins/perki/midtrans/examples/snap/checkout-process.php?orderid='+dataanggota.orderid+'&total='+dataanggota.total+'&judul='+dataanggota.firstname+'-'+dataanggota.profession+'-'+dataanggota.pilih+'-'+dataanggota.mobilephone)} type="primary">Pay</Button> : null }
-// </div>
-//          <div class="labeldaninput" style={{marginLeft:"15px"}}>
-//          <div class="labelatas">Full Name Cert</div>
-//           <b>{dataanggota.fullnamecert}</b>
-//           {/* {JSON.stringify(dataanggota)} */}
-//          </div>
-//          <div class="labeldaninput" style={{marginLeft:"15px"}}>
-//          <div class="labelatas">Mobile Phone</div>
-//           <b>{dataanggota.mobilephone}</b>
-//          </div>
-//          <div class="labeldaninput" style={{marginLeft:"15px"}}>
-//          <div class="labelatas">Address</div>
-//           <b>{dataanggota.address}</b>
-//          </div>
-//          <div class="labeldaninput" style={{marginLeft:"15px"}}>
-//          <div class="labelatas">Email</div>
-//           <b>{dataanggota.email}</b>
-//          </div>
-//          <div class="labeldaninput" style={{marginLeft:"15px"}}>
-//          <div class="labelatas">Profession</div>
-//          <b>{dataanggota.profession}</b>
-//          </div>
-//          <div class="labeldaninput" style={{marginLeft:"15px"}}>
-//          <div class="labelatas">Category</div>
-//          <b>{dataanggota.pilih}</b>
-//          </div>
-//          <div class="labeldaninput" style={{marginLeft:"15px"}}>
-//          <div class="labelatas">Simposium</div>
-//          <b>{dataanggota.simposium}</b>
-//          </div>
-//          <div class="labeldaninput" style={{marginLeft:"15px"}}>
-//          <div class="labelatas">Workshop</div>
-//          <b>{JSON.stringify(dataanggota.workshop)}</b>
-//           </div>
-//          <div class="labeldaninput" style={{marginLeft:"15px"}}>
-//          <div class="labelatas">Total</div>
-//           <b>{"Rp"+currencyFormat(parseInt(dataanggota.total))}</b>
-//          </div>
-//          <div class="labeldaninput" style={{marginLeft:"15px"}}>
-//          <div class="labelatas">Payment Status</div>
-//          <b>{dataanggota.paymentstatus=="PAY" ? "PAID" : "NOT YET PAID"}</b>
-//          </div>
-//         {dataanggota.totaltambahan==null ?
-//          <div class="labeldaninput" style={{marginLeft:"15px"}}>
-//           <Button type="primary" onClick={()=>setIsModalVisible(true)}>Add Workshop</Button>
-//          </div>
-//           : null }
-//          <div class="labeldaninput" style={{marginLeft:"15px"}}>
-//          <div class="labelatas">Additional Workshop</div>
-//          <b>{dataanggota.tambahanworkshop}</b>
-//          </div>
-//          <div class="labeldaninput" style={{marginLeft:"15px"}}>
-//          <div class="labelatas">Addtional Total</div>
-//           <b>{dataanggota.totaltambahan==null ? "Rp0":"Rp"+currencyFormat(parseInt(dataanggota.totaltambahan))}</b>
-//          </div>
-//          <div class="labeldaninput" style={{marginLeft:"15px"}}>
-//          <div class="labelatas">Payment Status Additional Workshop</div>
-//           <b>{dataanggota.paymentstatustambahan=="PAY" ? "PAID":"NOT YET PAID"}</b>
-//          </div>
-//          {dataanggota.paymentstatustambahan=="PAY" || dataanggota.totaltambahan==null ? null:
-//          <Button onClick={() => openInNewTab('https://acsasurabaya2021.com/wp-content/plugins/perki/midtrans/examples/snap/checkout-process.php?orderid='+dataanggota.orderid+"-TAMBAHAN"+'&total='+dataanggota.total+'&judul='+dataanggota.firstname+'-'+dataanggota.profession+'-'+dataanggota.pilih+'-'+dataanggota.mobilephone)} type="primary">Pay Additional Workshop</Button>
-//         }
-//        </div>
 
       }
          {!anggota ?
         <div>
         <Space>
-        <div>Unpaid : {"Rp"+currencyFormat(parseInt(belumterbayar))}</div><Button onClick={() => bulkpay()} type="primary" disabled={belumterbayar===0} >Pay</Button>
+        <div>Unpaid : {"Rp"+currencyFormat(parseInt(belumterbayar))}</div><Button onClick={() => bulkpay("PERTAMA")} type="primary" disabled={belumterbayar===0} >Pay</Button>
         </Space>
         <div>Total GP, Nurse or Paramedic, Medical Student (for claim bonus)</div>
         <Space style={{marginBottom:"5px"}}>
@@ -769,8 +904,23 @@ datas.filter(ch => ch.pilih == "packagesilver" && (ch.profession=="GP" || ch.pro
         </div>
         : null }
 
+{!anggota ?
+        <div>
+        <Space>
+        <b>Promo Pembayaran Diskon untuk semua profesi</b>
+        </Space>
+        <div>Total GP, Nurse or Paramedic, Medical Student (for claim bonus)</div>
+        <Space style={{marginBottom:"5px"}} direction="vertical">
+      <div>Total Simposium: <b>{jumlahsimpo1}</b>, diskon : {diskonsimpo}% x Rp{currencyFormat(hargasimpo)} = Rp{currencyFormat((100-diskonsimpo)*hargasimpo/100)} {jumlahsimpo1==0 ? <Button disabled type="primary">Pay</Button> : <Button type="primary" onClick={()=>bulkpay("SIMPO",(100-diskonsimpo)*hargasimpo/100)}>Pay</Button> } </div>
+        <div>Total Workshop GP/MS/MP: <b>{jumlahws1}</b>, diskon : {diskonws}% x Rp{currencyFormat(hargaws)} = Rp{currencyFormat((100-diskonws)*hargaws/100)} {jumlahws1==0 ? <Button disabled type="primary">Pay</Button> : <Button type="primary" onClick={()=>bulkpay("WS",(100-diskonws)*hargaws/100)}>Pay</Button> } </div>
+        <div>Total WS Cardiology: <b>{jumlahwscar1}</b>, diskon : {diskonwscar}% x Rp{currencyFormat(hargawscar)} = Rp{currencyFormat((100-diskonwscar)*hargawscar/100)} {jumlahwscar1==0 ? <Button disabled type="primary">Pay</Button> : <Button type="primary" onClick={()=>bulkpay("WSCAR",(100-diskonwscar)*hargawscar/100)}>Pay</Button> } </div>
+        <div>Total WS Other Specialist: <b>{jumlahwsos1}</b>, diskon : {diskonwsos}% x Rp{currencyFormat(hargawsos)} = Rp{currencyFormat((100-diskonwsos)*hargawsos/100)} {jumlahwsos1==0 ? <Button disabled type="primary">Pay</Button> : <Button type="primary" onClick={()=>bulkpay("WSOS",(100-diskonwsos)*hargawsos/100)}>Pay</Button> } </div>
+        <div>Total Simposium MS : <b>{jumlahsimpomhs1}</b>, diskon : {diskonsimpomhs}% x Rp{currencyFormat(hargasimpomhs)} = Rp{currencyFormat((100-diskonsimpomhs)*hargasimpomhs/100)} {jumlahsimpomhs1==0 ? <Button disabled type="primary">Pay</Button> : <Button type="primary" onClick={()=>bulkpay("SIMPOMHS",(100-diskonsimpomhs)*hargasimpomhs/100)}>Pay</Button> } </div>
+        <div>Total Workshop MS : <b>{jumlahwsmhs1}</b>, diskon : {diskonwsmhs}% x Rp{currencyFormat(hargawsmhs)} = Rp{currencyFormat((100-diskonwsmhs)*hargawsmhs/100)} {jumlahwsmhs1==0 ? <Button disabled type="primary">Pay</Button> : <Button type="primary" onClick={()=>bulkpay("WSMHS",(100-diskonwsmhs)*hargawsmhs/100)}>Pay</Button> } </div>
 
-
+        </Space>
+        </div>
+        : null }
 
         {/* <div>Bonus 1 : 10 get 1 for GP Nurse Medical Student take workshop / simposium, current total : <b>{datas.filter(ch => (ch.pilih == "simposium" || ch.pilih == "workshop") && (ch.profession=="GP" || ch.profession=="Medical Student" || ch.profession=="Nurse or Paramedics") ).length}</b></div>
         <div>Bonus 2 : 5 get 1 for GP Nurse Medical Student take package, current total <b>{datas.filter(ch => (ch.pilih == "package") && (ch.profession=="GP" || ch.profession=="Medical Student" || ch.profession=="Nurse or Paramedics") ).length}</b> </div> */}

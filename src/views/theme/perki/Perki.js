@@ -79,7 +79,7 @@ const Colors = () => {
   // const [hargatotal,setHargatotal] = useState('');
   const [macamworkshop,setMacamworkshop] = useState([]);
   const [jumlahworkshop,setJumlahworkshop] = useState(0);
-  const [hargaworkshop,setHargaworkshop] = useState("500000");
+  const [hargaworkshop,setHargaworkshop] = useState("400000");
   const [jumlahworkshopdipilih,setJumlahworkshopdipilih] = useState(0);
   const [pilih,setPilih] = useState(0);
   const [pilih2,setPilih2] = useState(0);
@@ -92,7 +92,7 @@ const Colors = () => {
   const [workshopprice,setWorkshopprice] = useState([{profession:"Medical Student",price:"IDR 125,000"},
   {profession:"GP",price:"IDR 150,000"},
   {profession:"Cardiologist",price:"IDR 400,000"},
-  {profession:"Other Specialists",price:"IDR 400,000"},
+  {profession:"Other Specialist",price:"IDR 400,000"},
   {profession:"Nurse or Paramedics",price:"IDR 125,000"}]);
 
   const [kota,setKota] = useState([{propinsi:"Nanggroe Aceh Darussalam (NAD)",kota:"Aceh Barat"},
@@ -626,19 +626,20 @@ const Colors = () => {
   {profession:"Nurse or Paramedics",package:"Silver (Symposium+2 workshop*)",price:"IDR 225,000",jumlah:2}]);
 
   const [workshopprof,setWorkshopprof] = useState([
-  {profession:"GP",name:"WS 3 (Stay Fit, Dont Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
-  {profession:"GP",name:"WS 5 (AF Management in the ER, Consultant Cardiologist do their jobs)"},
+  {profession:"GP",name:"WS 3 (Stay Fit Dont Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
+  {profession:"GP",name:"WS 5 (AF Management in the ER Consultant Cardiologist do their jobs)"},
   {profession:"GP",name:"WS 6 (Cardiovascular Evaluation in Hajj Pilgrim)"},
   {profession:"GP",name:"WS 7 (Comprehensive CV Risk Stratification)"},
   {profession:"GP",name:"WS 9 (Practical Approach in Emergency Arrythmias)"},
   {profession:"GP",name:"WS 10 (Asuhan Medis dan Keperawatan pada Kegawatan Kardiovaskulardi Lini Terdepan: Fokus pada Terapi Trombolitik)"},
   {profession:"GP",name:"WS 11 (Rapid Echocardiography in Emergency Setting)"},
   {profession:"GP",name:"WS 13 (Advanced in Diagnosing Acute Heart Failure)"},
+  {profession:"GP",name:"WS Indovasc 3 (A - Z Peripheral Management : From Patient Selection to Therapy)"},
   {profession:"Cardiologist",name:"WS 1 (Pregnancy and Heart Disease: What is the Most Common Cardiovascular Problem on It?)"},
   {profession:"Cardiologist",name:"WS 2 (Perioperative Cardiac Consultation)"},
-  {profession:"Cardiologist",name:"WS 3 (Stay Fit, Dont Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
+  {profession:"Cardiologist",name:"WS 3 (Stay Fit Dont Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
   {profession:"Cardiologist",name:"WS 4 (Cardiac Injury in Chemotherapy Patient)"},
-  {profession:"Cardiologist",name:"WS 5 (AF Management in the ER, Consultant Cardiologist do their jobs)"},
+  {profession:"Cardiologist",name:"WS 5 (AF Management in the ER Consultant Cardiologist do their jobs)"},
   {profession:"Cardiologist",name:"WS 6 (Cardiovascular Evaluation in Hajj Pilgrim)"},
   {profession:"Cardiologist",name:"WS 7 (Comprehensive CV Risk Stratification)"},
   {profession:"Cardiologist",name:"WS 8 (Practical approach to non-invasive ventilation in acute heart failure)"},
@@ -650,7 +651,7 @@ const Colors = () => {
   {profession:"Cardiologist",name:"WS Indovasc 2 (Vascular Doppler US)"},
   {profession:"Cardiologist",name:"WS Indovasc 3 (A - Z Peripheral Management : From Patient Selection to Therapy)"},
   {profession:"Other Specialist",name:"WS 1 (Pregnancy and Heart Disease: What is the Most Common Cardiovascular Problem on It?)"},
-  {profession:"Other Specialist",name:"WS 3 (Stay Fit, Dont Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
+  {profession:"Other Specialist",name:"WS 3 (Stay Fit Dont Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
   {profession:"Other Specialist",name:"WS 4 (Cardiac Injury in Chemotherapy Patient)"},
   {profession:"Other Specialist",name:"WS 7 (Comprehensive CV Risk Stratification)"},
   {profession:"Other Specialist",name:"WS 8 (Practical approach to non-invasive ventilation in acute heart failure)"},
@@ -659,10 +660,10 @@ const Colors = () => {
   {profession:"Other Specialist",name:"WS 13 (Advanced in Diagnosing Acute Heart Failure)"},
   {profession:"Other Specialist",name:"WS 15 (Cardiomyopathy Evaluation by Cardiac MR)"},
   {profession:"Other Specialist",name:"WS 16 (Cardiac CT in Coronary Artery and Beyond)"},
-  {profession:"Nurse or Paramedics",name:"Ws 3 (Stay Fit, Dont Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
+  {profession:"Nurse or Paramedics",name:"Ws 3 (Stay Fit Dont Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
   {profession:"Nurse or Paramedics",name:"WS 10 (Asuhan Medis dan Keperawatan pada Kegawatan Kardiovaskular di Lini Terdepan: Fokus pada Terapi Trombolitik)"},
-  {profession:"Medical Student",name:"WS 3 (Stay Fit, Dont Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
-  {profession:"Medical Student",name:"WS 5 (AF Management in the ER, Consultant Cardiologist do their jobs)"},
+  {profession:"Medical Student",name:"WS 3 (Stay Fit Dont Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
+  {profession:"Medical Student",name:"WS 5 (AF Management in the ER Consultant Cardiologist do their jobs)"},
   {profession:"Medical Student",name:"WS 6 (Cardiovascular Evaluation in Hajj Pilgrim)"},
   {profession:"Medical Student",name:"WS 7 (Comprehensive CV Risk Stratification)"},
   {profession:"Medical Student",name:"WS 9 (Practical Approach in Emergency Arrythmias)"},
@@ -808,6 +809,7 @@ useEffect(() => {
         alert("Ws 16 and WS Indovac 3 run in same time");
       }
       setHargatotal(value.length*hargaworkshop);
+      console.log(value.length*hargaworkshop);
       setHargagrandtotal(value.length*hargaworkshop);
     }
 

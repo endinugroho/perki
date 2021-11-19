@@ -518,15 +518,64 @@ const Edit = () => {
   {propinsi:"Papua",kota:"Yahukimo"},
   {propinsi:"Papua",kota:"Yalimo"},
   {propinsi:"DI Yogyakarta",kota:"Yogyakarta"}]);
+  const [workshopprof,setWorkshopprof] = useState([
+    {profession:"GP",name:"WS 3 (Stay Fit, Dont Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
+    {profession:"GP",name:"WS 5 (AF Management in the ER, Consultant Cardiologist do their jobs)"},
+    {profession:"GP",name:"WS 6 (Cardiovascular Evaluation in Hajj Pilgrim)"},
+    {profession:"GP",name:"WS 7 (Comprehensive CV Risk Stratification)"},
+    {profession:"GP",name:"WS 9 (Practical Approach in Emergency Arrythmias)"},
+    {profession:"GP",name:"WS 10 (Asuhan Medis dan Keperawatan pada Kegawatan Kardiovaskulardi Lini Terdepan: Fokus pada Terapi Trombolitik)"},
+    {profession:"GP",name:"WS 11 (Rapid Echocardiography in Emergency Setting)"},
+    {profession:"GP",name:"WS 13 (Advanced in Diagnosing Acute Heart Failure)"},
+    {profession:"GP",name:"WS Indovasc 3 (A - Z Peripheral Management : From Patient Selection to Therapy)"},
+    {profession:"Cardiologist",name:"WS 1 (Pregnancy and Heart Disease: What is the Most Common Cardiovascular Problem on It?)"},
+    {profession:"Cardiologist",name:"WS 2 (Perioperative Cardiac Consultation)"},
+    {profession:"Cardiologist",name:"WS 3 (Stay Fit, Dont Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
+    {profession:"Cardiologist",name:"WS 4 (Cardiac Injury in Chemotherapy Patient)"},
+    {profession:"Cardiologist",name:"WS 5 (AF Management in the ER, Consultant Cardiologist do their jobs)"},
+    {profession:"Cardiologist",name:"WS 6 (Cardiovascular Evaluation in Hajj Pilgrim)"},
+    {profession:"Cardiologist",name:"WS 7 (Comprehensive CV Risk Stratification)"},
+    {profession:"Cardiologist",name:"WS 8 (Practical approach to non-invasive ventilation in acute heart failure)"},
+    {profession:"Cardiologist",name:"WS 12 (Diagnostic Modalities in Congenital Heart Disease : Focus on VSD and TOF)"},
+    {profession:"Cardiologist",name:"WS 14 (How to Deal with Heavy Coronary Calcified Lesion in PCI?)"},
+    {profession:"Cardiologist",name:"WS 15 (Cardiomyopathy Evaluation by Cardiac MR)"},
+    {profession:"Cardiologist",name:"WS 16 (Cardiac CT in Coronary Artery and Beyond)"},
+    {profession:"Cardiologist",name:"WS Indovasc 1 (Early Detection of Chronic Venous Insufficiency)"},
+    {profession:"Cardiologist",name:"WS Indovasc 2 (Vascular Doppler US)"},
+    {profession:"Cardiologist",name:"WS Indovasc 3 (A - Z Peripheral Management : From Patient Selection to Therapy)"},
+    {profession:"Other Specialist",name:"WS 1 (Pregnancy and Heart Disease: What is the Most Common Cardiovascular Problem on It?)"},
+    {profession:"Other Specialist",name:"WS 3 (Stay Fit, Dont Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
+    {profession:"Other Specialist",name:"WS 4 (Cardiac Injury in Chemotherapy Patient)"},
+    {profession:"Other Specialist",name:"WS 7 (Comprehensive CV Risk Stratification)"},
+    {profession:"Other Specialist",name:"WS 8 (Practical approach to non-invasive ventilation in acute heart failure)"},
+    {profession:"Other Specialist",name:"WS 9 (Practical Approach in Emergency Arrythmias)"},
+    {profession:"Other Specialist",name:"WS 11 (Rapid Echocardiography in Emergency Setting)"},
+    {profession:"Other Specialist",name:"WS 13 (Advanced in Diagnosing Acute Heart Failure)"},
+    {profession:"Other Specialist",name:"WS 15 (Cardiomyopathy Evaluation by Cardiac MR)"},
+    {profession:"Other Specialist",name:"WS 16 (Cardiac CT in Coronary Artery and Beyond)"},
+    {profession:"Nurse or Paramedics",name:"Ws 3 (Stay Fit, Dont Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
+    {profession:"Nurse or Paramedics",name:"WS 10 (Asuhan Medis dan Keperawatan pada Kegawatan Kardiovaskular di Lini Terdepan: Fokus pada Terapi Trombolitik)"},
+    {profession:"Medical Student",name:"WS 3 (Stay Fit, Dont Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
+    {profession:"Medical Student",name:"WS 5 (AF Management in the ER, Consultant Cardiologist do their jobs)"},
+    {profession:"Medical Student",name:"WS 6 (Cardiovascular Evaluation in Hajj Pilgrim)"},
+    {profession:"Medical Student",name:"WS 7 (Comprehensive CV Risk Stratification)"},
+    {profession:"Medical Student",name:"WS 9 (Practical Approach in Emergency Arrythmias)"},
+    {profession:"Medical Student",name:"WS 10 (Asuhan Medis dan Keperawatan pada Kegawatan Kardiovaskulardi Lini Terdepan: Fokus pada Terapi Trombolitik)"},
+    {profession:"Medical Student",name:"WS 11 (Rapid Echocardiography in Emergency Setting)"},
+    {profession:"Medical Student",name:"WS 13 (Advanced in Diagnosing Acute Heart Failure)"},
+  ]);
+
 
   const [myform, setMyform] = useState({address:"",lastname:"",fullname:"",gender:"",placedob:"",dob:"",county:"Indonesia",province:"Jawa Timur",city:"Surabaya",email:"",emailconfirm:"",password:"",mobile:"",affliliation:"",officeph:""});
   const [step, setStep] = useState('Step1');
   const [idsponsor, setIdsponsor] = useState('');
   const [propinsiselect, setPropinsiselect] = useState('Jawa Timur');
   const [kotaselect, setKotaselect] = useState('Surabaya');
+  const [professionselect, setProfessionselect] = useState('Cardiologist');
   const { id } = useParams();
   let history = useHistory();
-
+  const [macamworkshop,setMacamworkshop] = useState([]);
+  const [totalws,setTotalws] = useState(0);
   useEffect(() => {
     console.log("id=",id);
     var idsponsor = localStorage.getItem("loginid");
@@ -542,6 +591,9 @@ const Edit = () => {
         // var temp = data.data;
         console.log(data.data);
         setMyform({address:data.data[0].address,lastname:data.data[0].lastname,fullname:data.data[0].fullnamecert,gender:data.data[0].gender,placedob:data.data[0].placedob,dob:data.data[0].dob,county:data.data[0].county,province:data.data[0].province,city:data.data[0].city,email:data.data[0].email,emailconfirm:data.data[0].email,password:data.data[0].password,mobile:data.data[0].mobilephone,affiliation:data.data[0].affiliation,officeph:data.data[0].officeph});
+        setProfessionselect(data.data[0].profession);
+        setMacamworkshop(data.data[0].workshop.split(","));
+        setTotalws(data.data[0].workshop.split(",").length);
         // setDatas(data.data);
         // var belumbayar=0;
         // // var temp = [];
@@ -571,6 +623,24 @@ const Edit = () => {
 
   }, []);
 
+  const handleChange5 = (value) => {
+    console.log(`selected ${value}`);
+    setMacamworkshop(value);
+
+    if (value.length>totalws) {
+
+      alert("Workshop yang dipilih melebihi, silakan dikurangi");
+    } else {
+      setMyform({...myform,workshop:value});
+    }
+    // setPackageselect(value);
+    // setHargatotal(value.split("#")[1]);
+
+    // setHargatotal
+
+  };
+
+
   const handleChange = (value) => {
     console.log(`selected ${value}`);
 
@@ -590,7 +660,12 @@ const Edit = () => {
     console.log(step);
     if (step=="Step1")
     {
-        if (myform.firstname==="") emptytext=emptytext+"first name,";
+
+      if (macamworkshop.length>totalws) {
+        alert("Workshop yang dipilih melebihi, silakan dikurangi");return;
+      }
+
+      if (myform.firstname==="") emptytext=emptytext+"first name,";
           if (myform.address==="") emptytext=emptytext+"address,";
         if (myform.fullname==="") emptytext=emptytext+"full name,";
         if (myform.gender==="") emptytext=emptytext+"gender,";
@@ -613,12 +688,12 @@ const Edit = () => {
           return;
 
         }
-        console.log({"id":id,"firstname":myform.firstname,"lastname":myform.lastname,"fullnamecert":myform.fullname,"gender":myform.gender,"placedob":myform.pob,"address":"","country":myform.county,"province":myform.province,"city":myform.city,"email":myform.email,"password":myform.password,"mobilephone":myform.mobile,"affiliation":myform.affiliation,"officemobilephone":myform.officeph,"mtd":'EDITANGGOTA'});
+        console.log({"id":id,"address":myform.address,"lastname":myform.lastname,"fullnamecert":myform.fullname,"gender":myform.gender,"placedob":myform.pob,"country":myform.county,"province":myform.province,"city":myform.city,"email":myform.email,"password":myform.password,"mobilephone":myform.mobile,"workshop":macamworkshop.toString(),"affiliation":myform.affiliation,"officemobilephone":myform.officeph,"mtd":'EDITANGGOTA'});
         axios({
           method: "POST",
           url: "https://acsasurabaya2021.com/wp-content/plugins/perki/kirimdata.php",
           // url: "http://localhost/perki/kirimdata.php",
-          data: {"id":id,"address":myform.address,"lastname":myform.lastname,"fullnamecert":myform.fullname,"gender":myform.gender,"placedob":myform.pob,"country":myform.county,"province":myform.province,"city":myform.city,"email":myform.email,"password":myform.password,"mobilephone":myform.mobile,"affiliation":myform.affiliation,"officemobilephone":myform.officeph,"mtd":'EDITANGGOTA'},
+          data: {"id":id,"address":myform.address,"lastname":myform.lastname,"fullnamecert":myform.fullname,"gender":myform.gender,"placedob":myform.pob,"country":myform.county,"province":myform.province,"city":myform.city,"email":myform.email,"password":myform.password,"mobilephone":myform.mobile,"workshop":macamworkshop.toString(),"affiliation":myform.affiliation,"officemobilephone":myform.officeph,"mtd":'EDITANGGOTA'},
           contentType: "application/json",
         })
           .then((data) => {
@@ -691,9 +766,21 @@ const Edit = () => {
           <Input placeholder="Affiliation" value={myform.affiliation} onChange={(e)=>setMyform({...myform,affliliation:e.target.value})} />
       </div>
       <div class="labeldaninput" style={{marginLeft:"15px"}}>
-          <div class="labelatas">Office phone number </div>
+          <div class="labelatas">Office phone number1 </div>
           <Input placeholder="Office phone number" value={myform.officeph} onChange={(e)=>setMyform({...myform,officeph:e.target.value})} />
       </div>
+      <div class="labeldaninput" style={{marginLeft:"15px"}}>
+          <div class="labelatas">Macam Workshop{professionselect}-{macamworkshop}-{totalws}</div>
+        <Select mode="multiple"  style={{width:"100%"}} onChange={(e)=>handleChange5(e)} value={macamworkshop}>
+         {workshopprof.filter(ch => ch.profession === professionselect).map((item) =>(
+          <Option value={item.name}>{item.name}</Option>
+
+         ))  }
+
+        </Select>
+        </div>
+
+
       <div style={{width:"100%",textAlign:"right",paddingRight:"15px"}}>
       <Button type="primary" onClick={()=>klikStep1()}>Simpan</Button>
       </div>

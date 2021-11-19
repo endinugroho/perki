@@ -636,6 +636,7 @@ const Colors = () => {
   {profession:"GP",name:"WS 10 (Asuhan Medis dan Keperawatan pada Kegawatan Kardiovaskulardi Lini Terdepan: Fokus pada Terapi Trombolitik)"},
   {profession:"GP",name:"WS 11 (Rapid Echocardiography in Emergency Setting)"},
   {profession:"GP",name:"WS 13 (Advanced in Diagnosing Acute Heart Failure)"},
+  {profession:"GP",name:"WS Indovasc 3 (A - Z Peripheral Management : From Patient Selection to Therapy)"},
   {profession:"Cardiologist",name:"WS 1 (Pregnancy and Heart Disease: What is the Most Common Cardiovascular Problem on It?)"},
   {profession:"Cardiologist",name:"WS 2 (Perioperative Cardiac Consultation)"},
   {profession:"Cardiologist",name:"WS 3 (Stay Fit, Don't Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
