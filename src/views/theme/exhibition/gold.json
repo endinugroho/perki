@@ -1,10 +1,10 @@
 [
     {
-        "img" : "./abbot.jpg",        
+        "img" : "./Booth/Booth Silver _ Gold/Booth Gold/booth_Abbot.jpg",        
         "phase" : "ABBOT"        
     },
     {
-        "img" : "./pfizer.jpg",        
+        "img" : "./Booth/Booth Silver _ Gold/Booth Gold/booth_Pfizer.jpg",        
         "phase" : "PFIZER"        
     }
 ]

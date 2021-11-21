@@ -132,7 +132,7 @@ const Colors = () => {
   const [ws, setWs] = useState("-");
   const [hari, setHari] = useState("PERTAMA");
   const [visible, setVisible] = useState(false);
-  // const [meetingid1,setMeetingid1] = useState("79190715224"); 
+  // const [meetingid1,setMeetingid1] = useState("79190715224");
   const [tanggalmeeting, setTanggalmeeting] = useState(
     "'January 01, 2022 00:00:00 GMT+03:00'"
   );
@@ -256,11 +256,20 @@ const Colors = () => {
       });
   }, []);
 
-  const WacthZoom = (meetingId, passcode = null) => {
-    console.log(meetingId, passcode);
-    localStorage.setItem("meetingid", meetingId);
-    localStorage.setItem("passcode", passcode);
-    history.push("/theme/zoom");
+  const WacthZoom = (meetingId, passcode = null, type = null) => {
+    if(meetingId == "" || passcode == ""){
+      alert("This feature is not active")
+    }else{
+      // if(type == 'sympo'){
+      //   localStorage.setItem("meetingid", meetingId);
+      //   localStorage.setItem("passcode", passcode);
+      //   history.push("/livestream");
+      // }else{
+        localStorage.setItem("meetingid", meetingId);
+        localStorage.setItem("passcode", passcode);
+        history.push("/theme/zoom");
+      // }      
+    }    
   };
 
   const changeDataWS = (noUrut) => {
@@ -312,7 +321,7 @@ const Colors = () => {
       .catch((err) => console.log(err));
   };
 
- const changeDataIndoSympo = (noUrut) => {
+  const changeDataIndoSympo = (noUrut) => {
     setVisible(!visible);
     axios
       .get(
@@ -330,8 +339,32 @@ const Colors = () => {
           alert("Mohon Hubungi Admin");
         } else {
           setDataSympo(res.data);
-          setWs("PERTAMA");
+          setWs("sympoIndo");
           console.log(dataSympo);
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const changeDataIndoWS = (noUrut) => {
+    setVisible(!visible);
+    axios
+      .get(
+        "https://acsasurabaya2021.com/wp-content/plugins/perki/PerkiAPi.php?function=getwsvasculardetil&noUrut=" +
+          noUrut
+      )
+      .then((res) => {
+        // console.log(res);
+        setVisible(!visible);
+        if (
+          res.data.status == 0 &&
+          res.data.master == null &&
+          res.data.master == []
+        ) {
+          alert("Mohon Hubungi Admin");
+        } else {
+          setDataWs(res.data);
+          setWs("wsIndo");
         }
       })
       .catch((err) => console.log(err));
@@ -391,40 +424,42 @@ const Colors = () => {
               <CCardBody>
                 <CRow>
                   <div className="col-lg-12 col-md-12 col-sm-12 text-center">
+                    <b>Symposium</b>
+                    <br/>
                     {anggota.simposium != "" ? (
                       <>
                         <Button
                           type="primary"
-                          onClick={() => {
-                            setWs("PERTAMA");
+                          onClick={() => {                            
                             changeDataSympo(1);
                           }}
                           style={{ borderRadius: "10px" }}
                         >
-                          Sym 1
+                          Day 1
                         </Button>
                         <Button
                           type="primary"
-                          onClick={() => {
-                            setWs("KEDUA");
+                          onClick={() => {                            
                             changeDataSympo(2);
                           }}
                           style={{ marginLeft: "2px", borderRadius: "10px" }}
                         >
-                          Sym 2
+                          Day 2
                         </Button>
                         <Button
                           type="primary"
-                          onClick={() => {
-                            setWs("KETIGA");
+                          onClick={() => {                            
                             changeDataSympo(3);
                           }}
                           style={{ marginLeft: "2px", borderRadius: "10px" }}
                         >
-                          Sym 3
+                          Day 3
                         </Button>
                       </>
                     ) : null}
+                    <hr style={{width: '50%'}} />
+                    <b>Workshop</b>
+                    <br/>
                     {workshopku.indexOf("WS 1 ") > -1 ? (
                       <Button
                         type="primary"
@@ -796,13 +831,20 @@ const Colors = () => {
                                             position: "absolute",
                                             right: "15px",
                                             bottom: "16px",
+                                            color: "#fff",
                                           }}
                                           onClick={() => {
                                             WacthZoom(
                                               row.zoom_room_id,
-                                              row.passcode
+                                              row.passcode, 
+                                              'sympo'                                              
                                             );
                                           }}
+                                          disabled={
+                                            row.status == "Active"
+                                              ? false
+                                              : true
+                                          }
                                         >
                                           Watch Now
                                         </Button>
@@ -853,6 +895,29 @@ const Colors = () => {
                             </li>
                             <li class="list-group-item">
                               Moderator : {dataWs.master.moderator}
+                            </li>
+                            <li class="list-group-item text-center">
+                              <Button
+                                type="primary"
+                                style={{
+                                  borderRadius: "10px",
+                                  background: "#2a3d9f",
+                                  color: "#fff",
+                                }}
+                                onClick={() => {
+                                  WacthZoom(
+                                    dataWs.master.zoom_room_id,
+                                    dataWs.master.passcode
+                                  );
+                                }}
+                                disabled={
+                                  dataWs.master.status == "Active"
+                                    ? false
+                                    : true
+                                }
+                              >
+                                Watch Now
+                              </Button>
                             </li>
                           </ul>
                         </div>
@@ -907,75 +972,79 @@ const Colors = () => {
               <CCardBody>
                 <CRow>
                   <div className="col-lg-12 col-md-12 col-sm-12 text-center">
+                    <b>Symposium</b>
+                    <br/>
                     {anggota.simposium != "" ? (
                       <>
                         <Button
                           type="primary"
                           onClick={() => {
-                            setWs("PERTAMA");
                             changeDataIndoSympo(1);
                           }}
                           style={{ marginLeft: "30px", borderRadius: "10px" }}
                         >
-                         Indovasc Sympo 1                        </Button>
+                          Day 1{" "}
+                        </Button>
                         <Button
                           type="primary"
                           onClick={() => {
-                            setWs("KEDUA");
                             changeDataIndoSympo(2);
                           }}
                           style={{ marginLeft: "2px", borderRadius: "10px" }}
                         >
-                          Indovasc Sympo 2
+                          Day 2
                         </Button>
                       </>
                     ) : null}
+                    <hr style={{width: '50%'}} />
+                    <b>Workshop</b>
+                    <br/>
                     {workshopku.indexOf("WS Indovasc 1 ") > -1 ? (
                       <Button
                         type="primary"
-                        onClick={() => setWs("1A")}
+                        onClick={() => changeDataIndoWS(1)}
                         style={{
                           marginLeft: "2px",
                           borderRadius: "10px",
                           marginBottom: "5px",
                         }}
                       >
-                        WS Indo 1
+                        Indovasc WS 1
                       </Button>
                     ) : null}
                     {workshopku.indexOf("WS Indovasc 2 ") > -1 ? (
                       <Button
                         type="primary"
-                        onClick={() => setWs("1B")}
+                        onClick={() => changeDataIndoWS(2)}
                         style={{
                           marginLeft: "2px",
                           borderRadius: "10px",
                           marginBottom: "5px",
                         }}
                       >
-                        WS Indo 2
+                        Indovasc WS 2
                       </Button>
                     ) : null}
                     {workshopku.indexOf("WS Indovasc 3 ") > -1 ? (
                       <Button
                         type="primary"
-                        onClick={() => setWs("1C")}
+                        onClick={() => changeDataIndoWS(3)}
                         style={{
                           marginLeft: "2px",
                           borderRadius: "10px",
                           marginBottom: "5px",
                         }}
                       >
-                        WS Indo 3
+                        Indovasc WS 3
                       </Button>
                     ) : null}
                   </div>
                 </CRow>
                 <CRow
                   style={{ marginTop: "30px" }}
-                  className="jsutify-content-center"
+                  className="justify-content-center"
                 >
-                  {ws == "PERTAMA" ? (
+                  {ws == "sympoIndo" ? (
                     <>
                       <h2
                         style={{
@@ -984,7 +1053,8 @@ const Colors = () => {
                           width: "95%",
                           marginBottom: "25px",
                           color: "#4e4e4e",
-                        }}
+                          textAlign: "center"
+                        }} 
                       >
                         {`DAY-${dataSympo.master[0].serial_number} : ${
                           dataSympo.master[0].day
@@ -996,7 +1066,7 @@ const Colors = () => {
                             key={index1}
                             class={`col-lg-${
                               dataSympo.detil.length == 1
-                                ? "12"
+                                ? "8"
                                 : dataSympo.detil.length > 1 &&
                                   dataSympo.detil.length >= 2
                                 ? "6"
@@ -1005,16 +1075,16 @@ const Colors = () => {
                                 ? "4"
                                 : dataSympo.detil.length > 3
                                 ? "3"
-                                : "12"
+                                : "8"
                             } col-md-${
                               dataSympo.detil.length == 1
-                                ? "12"
+                                ? "8"
                                 : dataSympo.detil.length > 1 &&
                                   dataSympo.detil.length <= 3
                                 ? "4"
                                 : dataSympo.detil.length > 3
                                 ? "3"
-                                : "12"
+                                : "8"
                             } col-sm-12 col-xs-12`}
                           >
                             <h4
@@ -1085,8 +1155,19 @@ const Colors = () => {
                                             position: "absolute",
                                             right: "15px",
                                             bottom: "16px",
+                                            color: "#fff",
                                           }}
-                                          onClick=""
+                                          onClick={() => {
+                                            WacthZoom(
+                                              row.zoom_room_id,
+                                              row.passcode
+                                            );
+                                          }}
+                                          disabled={
+                                            row.status == "Active"
+                                              ? false
+                                              : true
+                                          }
                                         >
                                           Watch Now
                                         </Button>
@@ -1100,9 +1181,9 @@ const Colors = () => {
                         );
                       })}
                     </>
-                  ) : ws == "1A" ? (
-                   <> 
-                     <div className="col-lg-8 col-md-10 col-sm-12 col-xs-12">
+                  ) : ws == "wsIndo" ? (
+                    <>
+                      <div className="col-lg-8 col-md-10 col-sm-12 col-xs-12">
                         <div class="card" style={{ borderRadius: "10px" }}>
                           <div
                             class="card-header"
@@ -1137,6 +1218,29 @@ const Colors = () => {
                             </li>
                             <li class="list-group-item">
                               Moderator : {dataWs.master.moderator}
+                            </li>
+                            <li class="list-group-item text-center">
+                              <Button
+                                type="primary"
+                                style={{
+                                  borderRadius: "10px",
+                                  background: "#2a3d9f",
+                                  color: "#fff",
+                                }}
+                                onClick={() => {
+                                  WacthZoom(
+                                    dataWs.master.zoom_room_id,
+                                    dataWs.master.passcode
+                                  );
+                                }}
+                                disabled={
+                                  dataWs.master.status == "Active"
+                                    ? false
+                                    : true
+                                }
+                              >
+                                Watch Now
+                              </Button>
                             </li>
                           </ul>
                         </div>
@@ -1182,174 +1286,7 @@ const Colors = () => {
                           })}{" "}
                         </VerticalTimeline>
                       </div>
-                   </>  
-                 ) : ws == "1B" ? (
-                    <> 
-                     <div className="col-lg-8 col-md-10 col-sm-12 col-xs-12">
-                        <div class="card" style={{ borderRadius: "10px" }}>
-                          <div
-                            class="card-header"
-                            style={{
-                              background: "rgb(33, 150, 243)",
-                              color: "#fff",
-                              margin: "10px auto",
-                              position: "relative",
-                              width: "100%",
-                            }}
-                          >
-                            <h4>
-                              Workshop{" "}
-                              <p style={{ textAlign: "center" }}>
-                                {dataWs.master.title}
-                              </p>
-                            </h4>
-                          </div>
-                          <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                              Topic : {dataWs.master.topic}
-                            </li>
-                            <li class="list-group-item">
-                              Day,Date : {dataWs.master.day},{" "}
-                              {dataWs.master.date}
-                            </li>
-                            <li class="list-group-item">
-                              Course Director : {dataWs.master.course_director}
-                            </li>
-                            <li class="list-group-item">
-                              PIC : {dataWs.master.pic}
-                            </li>
-                            <li class="list-group-item">
-                              Moderator : {dataWs.master.moderator}
-                            </li>
-                          </ul>
-                        </div>
-                        <VerticalTimeline layout="1-column-left">
-                          {dataWs.data.map((s, index1) => {
-                            return (
-                              <VerticalTimelineElement
-                                key={index1}
-                                className="vertical-timeline-element--work"
-                                style={{ margin: "10px 0" }}
-                                contentStyle={{
-                                  background: "rgb(33, 150, 243)",
-                                  color: "#fff",
-                                  textAlign: "center",
-                                }}
-                                contentArrowStyle={{
-                                  borderRight: "7px solid  rgb(33, 150, 243)",
-                                }}
-                                date={s.time_range}
-                                iconStyle={{
-                                  background: "rgb(33, 150, 243)",
-                                  color: "#fff",
-                                }}
-                                icon={
-                                  <i
-                                    style={{
-                                      position: "relative",
-                                      left: "50%",
-                                      top: "50%",
-                                      transform: "translate(-50%, -50%)",
-                                      fontSize: "25px",
-                                    }}
-                                    class="far fa-calendar-alt"
-                                  ></i>
-                                }
-                              >
-                                <h5 className="text-white vertical-timeline-element-title">
-                                  {s.topic}
-                                </h5>
-                                <p>Speakers: {s.speaker ?? "tba"}</p>
-                              </VerticalTimelineElement>
-                            );
-                          })}{" "}
-                        </VerticalTimeline>
-                      </div>
-                   </>  
-                   
-                  ) : ws == "1C" ? (
-                      <> 
-                     <div className="col-lg-8 col-md-10 col-sm-12 col-xs-12">
-                        <div class="card" style={{ borderRadius: "10px" }}>
-                          <div
-                            class="card-header"
-                            style={{
-                              background: "rgb(33, 150, 243)",
-                              color: "#fff",
-                              margin: "10px auto",
-                              position: "relative",
-                              width: "100%",
-                            }}
-                          >
-                            <h4>
-                              Workshop{" "}
-                              <p style={{ textAlign: "center" }}>
-                                {dataWs.master.title}
-                              </p>
-                            </h4>
-                          </div>
-                          <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                              Topic : {dataWs.master.topic}
-                            </li>
-                            <li class="list-group-item">
-                              Day,Date : {dataWs.master.day},{" "}
-                              {dataWs.master.date}
-                            </li>
-                            <li class="list-group-item">
-                              Course Director : {dataWs.master.course_director}
-                            </li>
-                            <li class="list-group-item">
-                              PIC : {dataWs.master.pic}
-                            </li>
-                            <li class="list-group-item">
-                              Moderator : {dataWs.master.moderator}
-                            </li>
-                          </ul>
-                        </div>
-                        <VerticalTimeline layout="1-column-left">
-                          {dataWs.data.map((s, index1) => {
-                            return (
-                              <VerticalTimelineElement
-                                key={index1}
-                                className="vertical-timeline-element--work"
-                                style={{ margin: "10px 0" }}
-                                contentStyle={{
-                                  background: "rgb(33, 150, 243)",
-                                  color: "#fff",
-                                  textAlign: "center",
-                                }}
-                                contentArrowStyle={{
-                                  borderRight: "7px solid  rgb(33, 150, 243)",
-                                }}
-                                date={s.time_range}
-                                iconStyle={{
-                                  background: "rgb(33, 150, 243)",
-                                  color: "#fff",
-                                }}
-                                icon={
-                                  <i
-                                    style={{
-                                      position: "relative",
-                                      left: "50%",
-                                      top: "50%",
-                                      transform: "translate(-50%, -50%)",
-                                      fontSize: "25px",
-                                    }}
-                                    class="far fa-calendar-alt"
-                                  ></i>
-                                }
-                              >
-                                <h5 className="text-white vertical-timeline-element-title">
-                                  {s.topic}
-                                </h5>
-                                <p>Speakers: {s.speaker ?? "tba"}</p>
-                              </VerticalTimelineElement>
-                            );
-                          })}{" "}
-                        </VerticalTimeline>
-                      </div>
-                   </>  
+                    </>
                   ) : null}
                 </CRow>
               </CCardBody>

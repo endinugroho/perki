@@ -5,18 +5,13 @@ import { useParams } from "react-router-dom";
 import "./App.css";
 const crypto = require("crypto");
 
-ZoomMtg.setZoomJSLib("https://source.zoom.us/1.9.9/lib", "/av");
-ZoomMtg.preLoadWasm();
-ZoomMtg.prepareWebSDK();
-ZoomMtg.i18n.load("en-US");
-ZoomMtg.i18n.reload("en-US");
-
 var signatureEndpoint = "";
 var apiKey = "sw1o-LaLTtaMC0xjZ9ghdw";
 var apiSecret = "NDRYGCnfiSXNSosr25YEPnKOkKU4rf8ksSiF";
 var meetingNumber = localStorage.getItem("meetingid");
 var role = 0;
-var leaveUrl = "https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/theme/session";
+var leaveUrl =
+  "https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/theme/session";
 var userName = localStorage.getItem("nama");
 var userEmail = localStorage.getItem("email") ?? "random1002310@gmail.com";
 var passWord = localStorage.getItem("passcode") ?? "";
@@ -31,7 +26,7 @@ const App = (props) => {
     }
   }, [isOpen]);
 
-  function generateSignature(apiKey, apiSecret, meetingNumber, role) {    
+  function generateSignature(apiKey, apiSecret, meetingNumber, role) {
     const timestamp = new Date().getTime() - 30000;
     const msg = Buffer.from(apiKey + meetingNumber + timestamp + role).toString(
       "base64"
@@ -49,9 +44,16 @@ const App = (props) => {
 
   function startMeeting(signature) {
     document.getElementById("zmmtg-root").style.display = "block";
+    ZoomMtg.setZoomJSLib("https://source.zoom.us/1.9.9/lib", "/av");
+    ZoomMtg.preLoadWasm();
+    ZoomMtg.prepareWebSDK();
+    ZoomMtg.i18n.load("en-US");
+    ZoomMtg.i18n.reload("en-US");
+
     ZoomMtg.init({
       disablePreview: true,
       leaveUrl: leaveUrl,
+      isSupportAV: true,
       success: (success) => {
         console.log(success);
         ZoomMtg.join({
@@ -79,7 +81,23 @@ const App = (props) => {
     });
   }
 
-  return "";
+  function leave() {
+    ZoomMtg.leaveMeeting({
+      leaveUrl: "/index.html",
+      success: function (response) {
+        console.log(response);
+      },
+      error: function (err) {
+        console.log(err);
+      },
+    });
+  }
+
+  return (
+    <button onClick={leave} className="btn btn-info">
+        Leave
+    </button>
+  );
 };
 
 export default App;

@@ -1,46 +1,46 @@
 [
     {
-        "img" : "./darya.jpg",        
+        "img" : "./Booth/Booth Silver _ Gold/Booth Silver/booth_Daria.jpg",        
         "phase" : "DARYA"        
     },
     {
-        "img" : "./bayer.jpg",        
+        "img" : "./Booth/Booth Silver _ Gold/Booth Silver/booth_Bayer.jpg",        
         "phase" : "BAYER"        
     },
     {
-        "img" : "./prodia.jpg",        
+        "img" : "./Booth/Booth Silver _ Gold/Booth Silver/booth_Prodia.jpg",        
         "phase" : "PRODIA"        
     },
     {
-        "img" : "./indomed.jpg",        
+        "img" : "./Booth/Booth Silver _ Gold/Booth Silver/booth_Indomed.jpg",        
         "phase" : "INDOMED"        
     },
     {
-        "img" : "./upjon.jpg",        
+        "img" : "./Booth/Booth Silver _ Gold/Booth Silver/booth_Upjhon.jpg",        
         "phase" : "UPJOHN"        
     },
     {
-        "img" : "./terumo.jpg",        
+        "img" : "./Booth/Booth Silver _ Gold/Booth Silver/booth_Teruno.jpg",        
         "phase" : "TERUMO"        
     },
     {
-        "img" : "./idsmed.jpg",        
+        "img" : "./Booth/Booth Silver _ Gold/Booth Silver/booth_IDSmed.jpg",        
         "phase" : "IDSMED"        
     },
     {
-        "img" : "./ferron.jpg",        
+        "img" : "./Booth/Booth Silver _ Gold/Booth Silver/booth_Feron.jpg",        
         "phase" : "FERRON"        
     },
     {
-        "img" : "./siemens.jpg",        
+        "img" : "./Booth/Booth Silver _ Gold/Booth Silver/001_booth siemens.jpg",        
         "phase" : "SIEMENS"        
     },
     {
-        "img" : "./medtronik.jpg",        
+        "img" : "./Booth/Booth Silver _ Gold/Booth Silver/booth_Medtronik.jpg",        
         "phase" : "MEDTRONIK"        
     },
     {
-        "img" : "./merck.jpg",        
+        "img" : "./Booth/Booth Silver _ Gold/Booth Silver/booth_Merck.jpg",        
         "phase" : "MERCK"        
     }
 ]

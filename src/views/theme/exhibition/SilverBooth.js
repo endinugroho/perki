@@ -14,17 +14,17 @@ import {
   CButton,
 } from "@coreui/react";
 import styles from "./Button.module.css";
-import DataSliver from './silver.json'
-import DataGold from './gold.json'
+import DataSliver from "./silver.json";
+import DataGold from "./gold.json";
 
 // const dirFile = "https://acsasurabaya2021.com/files/";
-const dirFile = "https://admin.acsasurabaya2021.com/files/"
+const dirFile = "https://admin.acsasurabaya2021.com/files/";
 
-const SilverBooth = ({phase, dataBooth}) => {    
+const SilverBooth = ({ phase, dataBooth }) => {
   const [visibleModal, setVisibleModal] = useState(false);
   const [visibleViewModal, setVisibleViewModal] = useState(false);
   const [fileView, setFileView] = useState(null);
-  const [viewType, setViewType] = useState(null);  
+  const [viewType, setViewType] = useState(null);
 
   const mapAreSilver = [
     {
@@ -32,27 +32,26 @@ const SilverBooth = ({phase, dataBooth}) => {
       height: "6.5%",
       left: "61%",
       top: "10%",
-      style: { background: "rgba(69, 147, 255, 0)", zIndex: "8", cursor: "pointer" },
-      onMouseOver: () => {
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
       },
-      render: (area, index) => (
-        <span>       
-        </span>
-      ),
+      onMouseOver: () => {},
+      render: (area, index) => <span></span>,
     },
     {
       width: "8.4%",
       height: "35.5%",
       left: "58%",
       top: "34%",
-      style: { background: "rgba(69, 147, 255, 0)", zIndex: "8", cursor: "pointer" },
-      onMouseOver: () => {        
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
       },
-      render: (area, index) => (
-        <span>
-
-        </span>
-      ),
+      onMouseOver: () => {},
+      render: (area, index) => <span></span>,
     },
   ];
 
@@ -60,63 +59,62 @@ const SilverBooth = ({phase, dataBooth}) => {
     {
       width: "2.4%",
       height: "6.5%",
-      left: "40%",
-      top: "1%",
-      style: { background: "rgba(69, 147, 255, 0)", zIndex: "8", cursor: "pointer" },
-      onMouseOver: () => {
+      left: "40.7%",
+      top: "2.5%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
       },
-      render: (area, index) => (
-        <span>       
-        </span>
-      ),
+      onMouseOver: () => {},
+      render: (area, index) => <span></span>,
     },
     {
-      width: "9.3%",
-      height: "14.5%",
-      left: "34%",
-      top: "32%",
-      style: { background: "rgba(69, 147, 255, 0)", zIndex: "8", cursor: "pointer" },
-      onMouseOver: () => {        
+      width: "8.5%",
+      height: "14%",
+      left: "34.4%",
+      top: "30.5%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
       },
-      render: (area, index) => (
-        <span>
-
-        </span>
-      ),
+      onMouseOver: () => {},
+      render: (area, index) => <span></span>,
     },
     {
-      width: "9.2%",
-      height: "14.5%",
-      left: "45%",
-      top: "32%",
-      style: { background: "rgba(69, 147, 255, 0)", zIndex: "8", cursor: "pointer" },
-      onMouseOver: () => {        
+      width: "8.6%",
+      height: "13.4%",
+      left: "45.3%",
+      top: "31%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
       },
-      render: (area, index) => (
-        <span>
-
-        </span>
-      ),
+      onMouseOver: () => {},
+      render: (area, index) => <span></span>,
     },
     {
       width: "9.7%",
-      height: "40.5%",
-      left: "67.4%",
+      height: "42%",
+      left: "67%",
       top: "29%",
-      style: { background: "rgba(69, 147, 255, 0)", zIndex: "8", cursor: "pointer" },
-      onMouseOver: () => {        
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
       },
-      render: (area, index) => (
-        <span>
-
-        </span>
-      ),
+      onMouseOver: () => {},
+      render: (area, index) => <span></span>,
     },
   ];
 
   const onMapBoothSilverClick = (area, index) => {
     if (index == 0) {
-      window.open(dataBooth.master[0].link);
+      if (dataBooth.master[0].link != "-" || dataBooth.master[0].link != null) {
+        window.open(dataBooth.master[0].link);
+      }
     } else if (index == 1) {
       console.log("Open PDF MODAL");
       setVisibleModal(true);
@@ -126,16 +124,18 @@ const SilverBooth = ({phase, dataBooth}) => {
 
   const onMapBoothGoldClick = (area, index) => {
     if (index == 0) {
-      window.open(dataBooth.master[0].link);
-    } else if (index == 1) {    
+      if (dataBooth.master[0].link != "-" || dataBooth.master[0].link != null) {
+        window.open(dataBooth.master[0].link);
+      }
+    } else if (index == 1) {
       setVisibleModal(true);
-      setViewType("Video");  
-    } else if (index == 2) {      
+      setViewType("Video");
+    } else if (index == 2) {
       setVisibleModal(true);
-      setViewType("Video");    
-    } else if (index == 3) {      
+      setViewType("Video");
+    } else if (index == 3) {
       setVisibleModal(true);
-      setViewType("PDF");    
+      setViewType("PDF");
     }
   };
 
@@ -153,16 +153,16 @@ const SilverBooth = ({phase, dataBooth}) => {
       UrlFile = link;
     } else {
       UrlFile = dirFile + "video/" + file;
-    }    
+    }
     setVisibleViewModal(true);
-    setFileView(UrlFile);    
+    setFileView(UrlFile);
   };
 
   return (
     <>
       {/* Modal PDF AND Video */}
       <Modal
-        title="View"
+        title={`View ${viewType}`}
         width={"100%"}
         visible={visibleModal}
         onCancel={() => setVisibleModal(false)}
@@ -172,9 +172,23 @@ const SilverBooth = ({phase, dataBooth}) => {
           </Button>,
         ]}
       >
+        {/* <img
+          src="https://acsasurabaya2021.com/wp-content/plugins/perki/register.png"
+          className="visible-desktop"
+          width="300"
+          style={{
+            position: "absolute",
+            right: "0",
+            width: "350px",
+            marginTop: "-22px",
+          }}
+        /> */}
         <div className="row">
           {dataBooth && (
             <>
+              {dataBooth.pdf.length == 0 || dataBooth.video.length == 0
+                ? "No Data"
+                : ""}
               {viewType == "PDF" ? (
                 <>
                   {dataBooth.pdf.map((row, i) => {
@@ -245,7 +259,7 @@ const SilverBooth = ({phase, dataBooth}) => {
 
       {/* Modal View PDF AND Video */}
       <Modal
-        title="Catalog"
+        title={`View Catalog ${viewType}`}
         width={"100%"}
         visible={visibleViewModal}
         onCancel={() => setVisibleViewModal(false)}
@@ -254,8 +268,8 @@ const SilverBooth = ({phase, dataBooth}) => {
             Close
           </Button>,
         ]}
-      >      
-          {/* <Document           
+      >
+        {/* <Document           
             file={fileView}
             showAll={true}
             onLoadSuccess={onDocumentLoadSuccess}
@@ -264,8 +278,13 @@ const SilverBooth = ({phase, dataBooth}) => {
             <Page pageNumber={pageNumber} />
           </Document> */}
         {viewType == "PDF" && fileView != null ? (
-          <iframe src={`${fileView}#view=fitH`} title="title" height="100%" width="100%">
-              Presss me: <a href={fileView}>Download PDF</a>
+          <iframe
+            src={`${fileView}#view=fitH`}
+            title="title"
+            height="100%"
+            width="100%"
+          >
+            Presss me: <a href={fileView}>Download PDF</a>
           </iframe>
         ) : (
           <ReactPlayer
@@ -281,53 +300,49 @@ const SilverBooth = ({phase, dataBooth}) => {
             autoPlay={false}
           />
         )}
-      </Modal>        
-      {
-          DataSliver.map((row, i) => {
-              return (
-                  <>
-                      {phase == row.phase ? (
-                          <ImageMap
-                              className="usage-map"
-                              src={row.img}
-                              map={mapAreSilver}
-                              onMapClick={onMapBoothSilverClick}
-                              style={{
-                                  width: "75%",
-                                  position: "relative",
-                                  zIndex: "1",
-                                  left: "50%",
-                                  transform: "translate(-50%, -23px)",
-                              }}
-                          />         
-                      ) : null}
-                  </>
-              )
-          })
-      }      
-      {
-          DataGold.map((row, i) => {
-              return (
-                  <>
-                      {phase == row.phase ? (
-                          <ImageMap
-                              className="usage-map"
-                              src={row.img}
-                              map={mapAreGold}
-                              onMapClick={onMapBoothGoldClick}
-                              style={{
-                                  width: "75%",
-                                  position: "relative",
-                                  zIndex: "1",
-                                  left: "50%",
-                                  transform: "translate(-50%, -23px)",
-                              }}
-                          />         
-                      ) : null}
-                  </>
-              )
-          })
-      }      
+      </Modal>
+      {DataSliver.map((row, i) => {
+        return (
+          <>
+            {phase == row.phase ? (
+              <ImageMap
+                className="usage-map"
+                src={row.img}
+                map={mapAreSilver}
+                onMapClick={onMapBoothSilverClick}
+                style={{
+                  width: "75%",
+                  position: "relative",
+                  zIndex: "1",
+                  left: "50%",
+                  transform: "translate(-50%, -23px)",
+                }}
+              />
+            ) : null}
+          </>
+        );
+      })}
+      {DataGold.map((row, i) => {
+        return (
+          <>
+            {phase == row.phase ? (
+              <ImageMap
+                className="usage-map"
+                src={row.img}
+                map={mapAreGold}
+                onMapClick={onMapBoothGoldClick}
+                style={{
+                  width: "75%",
+                  position: "relative",
+                  zIndex: "1",
+                  left: "50%",
+                  transform: "translate(-50%, -23px)",
+                }}
+              />
+            ) : null}
+          </>
+        );
+      })}
     </>
   );
 };

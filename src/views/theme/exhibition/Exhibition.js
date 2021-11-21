@@ -134,7 +134,7 @@ const Colors = () => {
           boothCode
       )
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.data.status == 0) {
           alert(res.data.message);
         } else {

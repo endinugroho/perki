@@ -14,23 +14,23 @@ import {
   CButton,
 } from "@coreui/react";
 import styles from "./Button.module.css";
-import DataPlatinum from './platinum.json'
+import DataPlatinum from "./platinum.json";
 
 // const dirFile = "https://acsasurabaya2021.com/files/";
-const dirFile = "https://admin.acsasurabaya2021.com/files/"
+const dirFile = "https://admin.acsasurabaya2021.com/files/";
 
-const PlatinumBooth = ({phase, dataBooth}) => {    
+const PlatinumBooth = ({ phase, dataBooth }) => {
   const [visibleModal, setVisibleModal] = useState(false);
   const [visibleViewModal, setVisibleViewModal] = useState(false);
   const [fileView, setFileView] = useState(null);
-  const [viewType, setViewType] = useState(null);  
+  const [viewType, setViewType] = useState("Catalog");
 
   const mapAreaBoothPlatinum = [
     {
       width: "2.3%",
       height: "5.3%",
       left: "59.3%",
-      top: "-4px",
+      top: "-19px",
       style: {
         background: "rgba(69, 147, 255, 0)",
         zIndex: "8",
@@ -40,11 +40,10 @@ const PlatinumBooth = ({phase, dataBooth}) => {
       render: (area: any, index: number) => <span></span>,
     },
     {
-      width: "7.3%",
-      height: "29.1%",
-      left: "29.9%",
+      width: "8.3%",
+      height: "30%",
+      left: "29.5%",
       top: "21.8%",
-      // href: "https://detik.com",
       style: {
         background: "rgba(69, 147, 255, 0)",
         zIndex: "8",
@@ -54,11 +53,24 @@ const PlatinumBooth = ({phase, dataBooth}) => {
       render: (area: any, index: number) => <span></span>,
     },
     {
-      width: "2.3%",
-      height: "5.3%",
-      left: "25.6%",
-      top: "47.9%",
-      // href: "https://detik.com",
+      width: "2.7%",
+      height: "6.5%",
+      left: "24.6%",
+      top: "48.3%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+        borderRadius: "50%",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    {
+      width: "8.6%",
+      height: "13.2%",
+      left: "49.8%",
+      top: "29.6%",
       style: {
         background: "rgba(69, 147, 255, 0)",
         zIndex: "8",
@@ -68,11 +80,10 @@ const PlatinumBooth = ({phase, dataBooth}) => {
       render: (area: any, index: number) => <span></span>,
     },
     {
-      width: "8.2%",
-      height: "12.7%",
-      left: "50.3%",
-      top: "34%",
-      // href: "https://detik.com",
+      width: "8.6%",
+      height: "13.2%",
+      left: "59.1%",
+      top: "29.6%",
       style: {
         background: "rgba(69, 147, 255, 0)",
         zIndex: "8",
@@ -82,11 +93,10 @@ const PlatinumBooth = ({phase, dataBooth}) => {
       render: (area: any, index: number) => <span></span>,
     },
     {
-      width: "8.2%",
-      height: "12.7%",
-      left: "73.3%",
-      top: "32%",
-      // href: "https://detik.com",
+      width: "8.6%",
+      height: "13.2%",
+      left: "72.9%",
+      top: "29.6%",
       style: {
         background: "rgba(69, 147, 255, 0)",
         zIndex: "8",
@@ -96,11 +106,10 @@ const PlatinumBooth = ({phase, dataBooth}) => {
       render: (area: any, index: number) => <span></span>,
     },
     {
-      width: "8.2%",
-      height: "12.7%",
-      left: "73.3%",
-      top: "47%",
-      // href: "https://detik.com",
+      width: "8.6%",
+      height: "13.2%",
+      left: "72.9%",
+      top: "44.9%",
       style: {
         background: "rgba(69, 147, 255, 0)",
         zIndex: "8",
@@ -110,25 +119,10 @@ const PlatinumBooth = ({phase, dataBooth}) => {
       render: (area: any, index: number) => <span></span>,
     },
     {
-      width: "8.2%",
-      height: "12.7%",
-      left: "73.3%",
-      top: "61.5%",
-      // href: "https://detik.com",
-      style: {
-        background: "rgba(69, 147, 255, 0)",
-        zIndex: "8",
-        cursor: "pointer",
-      },
-      onMouseOver: () => {},
-      render: (area: any, index: number) => <span></span>,
-    },
-    {
-      width: "8.2%",
-      height: "12.7%",
-      left: "59.7%",
-      top: "34%",
-      // href: "https://detik.com",
+      width: "8.6%",
+      height: "13.2%",
+      left: "72.9%",
+      top: "60.5%",
       style: {
         background: "rgba(69, 147, 255, 0)",
         zIndex: "8",
@@ -141,7 +135,9 @@ const PlatinumBooth = ({phase, dataBooth}) => {
 
   const onMapBoothPlatinumClick = (area, index) => {
     if (index == 0) {
-      window.open(dataBooth.master[0].link);
+      if (dataBooth.master[0].link != "-" || dataBooth.master[0].link != null) {
+        window.open(dataBooth.master[0].link);
+      }
     } else if (index == 1) {
       console.log("Open PDF MODAL");
       setVisibleModal(true);
@@ -169,16 +165,16 @@ const PlatinumBooth = ({phase, dataBooth}) => {
       UrlFile = link;
     } else {
       UrlFile = dirFile + "video/" + file;
-    }    
+    }
     setVisibleViewModal(true);
-    setFileView(UrlFile);    
+    setFileView(UrlFile);
   };
 
   return (
     <>
       {/* Modal PDF AND Video */}
       <Modal
-        title="View"
+        title={`View ${viewType}`}
         width={"100%"}
         visible={visibleModal}
         onCancel={() => setVisibleModal(false)}
@@ -188,9 +184,23 @@ const PlatinumBooth = ({phase, dataBooth}) => {
           </Button>,
         ]}
       >
+        {/* <img
+          src="https://acsasurabaya2021.com/wp-content/plugins/perki/register.png"
+          className="visible-desktop"
+          width="300"
+          style={{
+            position: "absolute",
+            right: "0",
+            width: "350px",
+            marginTop: "-22px",
+          }}
+        /> */}
         <div className="row">
           {dataBooth && (
             <>
+              {dataBooth.pdf.length == 0 || dataBooth.video.length == 0
+                ? "No Data"
+                : ""}
               {viewType == "PDF" ? (
                 <>
                   {dataBooth.pdf.map((row, i) => {
@@ -261,7 +271,7 @@ const PlatinumBooth = ({phase, dataBooth}) => {
 
       {/* Modal View PDF AND Video */}
       <Modal
-        title="Catalog"
+        title={`View Catalog ${viewType}`}
         width={"100%"}
         visible={visibleViewModal}
         onCancel={() => setVisibleViewModal(false)}
@@ -270,8 +280,8 @@ const PlatinumBooth = ({phase, dataBooth}) => {
             Close
           </Button>,
         ]}
-      >      
-          {/* <Document           
+      >
+        {/* <Document           
             file={fileView}
             showAll={true}
             onLoadSuccess={onDocumentLoadSuccess}
@@ -280,8 +290,13 @@ const PlatinumBooth = ({phase, dataBooth}) => {
             <Page pageNumber={pageNumber} />
           </Document> */}
         {viewType == "PDF" && fileView != null ? (
-          <iframe src={`${fileView}#view=fitH`} title="title" height="100%" width="100%">
-              Presss me: <a href={fileView}>Download PDF</a>
+          <iframe
+            src={`${fileView}#view=fitH`}
+            title="title"
+            height="100%"
+            width="100%"
+          >
+            Presss me: <a href={fileView}>Download PDF</a>
           </iframe>
         ) : (
           <ReactPlayer
@@ -298,29 +313,28 @@ const PlatinumBooth = ({phase, dataBooth}) => {
           />
         )}
       </Modal>
-        {
-            DataPlatinum.map((row, i) => {
-                return (
-                    <>
-                        {phase == row.phase ? (
-                            <ImageMap
-                                className="usage-map"
-                                src={row.img}
-                                map={mapAreaBoothPlatinum}
-                                onMapClick={onMapBoothPlatinumClick}
-                                style={{
-                                    width: "75%",
-                                    position: "relative",
-                                    zIndex: "1",
-                                    left: "50%",
-                                    transform: "translate(-50%, -23px)",
-                                }}
-                            />         
-                        ) : null}
-                    </>
-                )
-            })
-        }      
+
+      {DataPlatinum.map((row, i) => {
+        return (
+          <>
+            {phase == row.phase ? (
+              <ImageMap
+                className="usage-map"
+                src={row.img}
+                map={mapAreaBoothPlatinum}
+                onMapClick={onMapBoothPlatinumClick}
+                style={{
+                  width: "75%",
+                  position: "relative",
+                  zIndex: "1",
+                  left: "50%",
+                  transform: "translate(-50%, -23px)",
+                }}
+              />
+            ) : null}
+          </>
+        );
+      })}
     </>
   );
 };

@@ -1,62 +1,62 @@
 [
     {
-        "img" : "./astra.jpg",        
+        "img" : "./Booth/Booth Platinum/booth_AstraZeneca.jpg",        
         "phase" : "ASTRA"        
     },
     {
-        "img" : "./boston.jpg",        
+        "img" : "./Booth/Booth Platinum/booth_Boston.jpg",        
         "phase" : "BOSTON"        
     },
     {
-        "img" : "./meril.jpg",        
+        "img" : "./Booth/Booth Platinum/booth_Meril.jpg",        
         "phase" : "MERIL"        
     },
     {
-        "img" : "./novartis.jpg",        
+        "img" : "./Booth/Booth Platinum/booth_Novartis.jpg",        
         "phase" : "NOVARTIS"        
     },
     {
-        "img" : "./otsuka.jpg",        
+        "img" : "./Booth/Booth Platinum/booth_Otsuka.jpg",        
         "phase" : "OTSUKA"        
     },
     {
-        "img" : "./servier.jpg",        
+        "img" : "./Booth/Booth Platinum/booth_Servier.jpg",        
         "phase" : "SERVIER"        
     },
     {
-        "img" : "./mitsubisi.jpg",        
+        "img" : "./Booth/Booth Platinum/booth_Tanabe.jpg",        
         "phase" : "MISTUBISHI"        
     },    
     {
-        "img" : "./Booth/booth_indovascular.jpg",        
+        "img" : "./Booth/Booth Platinum/In Colaboration With/booth_indovascular.jpg",        
         "phase" : "VASCULAR"        
     },
     {
-        "img" : "./Booth/booth_yayasan.jpg",        
+        "img" : "./Booth/Booth Platinum/In Colaboration With/booth_yayasan.jpg",        
         "phase" : "YKMA"        
     },
     {
-        "img" : "./Booth/booth_ikatanalumny.jpg",        
+        "img" : "./Booth/Booth Platinum/In Colaboration With/booth_ikatanalumny.jpg",        
         "phase" : "IAKAS"        
     },
     {
-        "img" : "./Booth/booth_idi.jpg",        
+        "img" : "./Booth/Booth Platinum/In Colaboration With/booth_idi.jpg",        
         "phase" : "IDI"        
     },
     {
-        "img" : "./Booth/booth_unair.jpg",        
+        "img" : "./Booth/Booth Platinum/In Colaboration With/booth_unair.jpg",        
         "phase" : "UNAIR"        
     },
     {
-        "img" : "./Booth/booth_drsutomo.jpg",        
+        "img" : "./Booth/Booth Platinum/In Colaboration With/booth_drsutomo.jpg",        
         "phase" : "DRSUTOMO"        
     },
     {
-        "img" : "./Booth/booth_Cardiology.jpg",        
+        "img" : "./Booth/Booth Platinum/In Colaboration With/booth_Cardiology.jpg",        
         "phase" : "UADCVM"        
     },
     {
-        "img" : "./Booth/booth_perki.jpg",        
+        "img" : "./Booth/Booth Platinum/In Colaboration With/booth_perki.jpg",        
         "phase" : "PERKI"        
     }
 ]

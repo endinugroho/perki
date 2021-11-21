@@ -58,6 +58,7 @@ const Faq = React.lazy(() => import('./views/theme/faq/Faq'));
 const Symposium = React.lazy(() => import('./views/theme/symposium/Symposium'));
 const Workshop = React.lazy(() => import('./views/theme/workshop/Workshop'));
 const Zoom = React.lazy(() => import('./views/theme/zoom/index'));
+const LiveStream = React.lazy(() => import('./views/theme/livestream/index'));
 
 // const Typography = React.lazy(() => import('./views/theme/typography/Typography'));
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'));
@@ -78,6 +79,7 @@ const routes = [
   { path: '/theme/symposium', name: 'Symposium', component: Symposium },
   { path: '/theme/workshop', name: 'Workshop', component: Workshop },
   { path: '/theme/zoom', name: 'Zoom', component: Zoom },
+  { path: '/livestream', name: 'LiveStream', component: LiveStream },
   { path: '/theme/info', name: 'Info', component: Info },
   { path: '/theme/jadwal', name: 'Info', component: Jadwal },
   { path: '/base', name: 'Base', component: Cards, exact: true },
