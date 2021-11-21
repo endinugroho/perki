@@ -1098,7 +1098,7 @@ const pilihanku = (value) =>
     <>
       <CCard>
         <CCardHeader>
-          FAQ
+          Meeting
         </CCardHeader>
         <CCardBody>
           <CRow>
