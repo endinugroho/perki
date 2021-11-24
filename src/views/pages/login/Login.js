@@ -60,16 +60,15 @@ const Login = () => {
     })
       .then((data) => {
         var temp = data.data;
-        console.log(temp);
+        console.log(temp);          
+        localStorage.setItem("userData", JSON.stringify(temp)) ;
           localStorage.setItem("loginid",temp.data);
           localStorage.setItem("nama",temp.nama);
           if (temp.status=="ANGGOTA") {
             localStorage.setItem("status",temp.status);
           } else {
-            localStorage.setItem("status","");
-
+            localStorage.setItem("status", "");
           }
-
           if (temp.sukses==="OK") {
             history.push('/dashboard');
           } else {

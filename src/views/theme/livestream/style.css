@@ -1,6 +1,3 @@
-#main-video{
-    margin-top: -92px;
-}
-.footer__leave-btn-container{
-    display: none;
+.ytp-watermark.yt-uix-sessionlink,.ytp-button,.ytp-chrome-top.ytp-show-cards-title,#card{
+    display: none !important;
 }

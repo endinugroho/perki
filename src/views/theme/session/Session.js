@@ -38,6 +38,9 @@ const { Option } = Select;
 const { Search } = Input;
 const { TextArea } = Input;
 
+var leaveUrl = "https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/theme/session";
+// var leaveUrl = "http://localhost:3000/#/theme/session";
+
 const rowsColor = "#0075BC";
 const headerColor = "#0075BC";
 const borderColor = "#0075BC";
@@ -132,11 +135,6 @@ const Colors = () => {
   const [ws, setWs] = useState("-");
   const [hari, setHari] = useState("PERTAMA");
   const [visible, setVisible] = useState(false);
-  // const [meetingid1,setMeetingid1] = useState("79190715224");
-  const [tanggalmeeting, setTanggalmeeting] = useState(
-    "'January 01, 2022 00:00:00 GMT+03:00'"
-  );
-
   const [dataWs, setDataWs] = useState({});
   const [dataSympo, setDataSympo] = useState({});
 
@@ -256,20 +254,49 @@ const Colors = () => {
       });
   }, []);
 
+  useEffect(() => {
+    let fromZoom = localStorage.getItem("fromZoom");
+    console.log(fromZoom);
+    if (fromZoom == "true") {
+      localStorage.setItem("fromZoom", false);
+      window.location.reload();
+      window.parent.location.href = leaveUrl;
+    }
+    let type = localStorage.getItem("type");
+    console.log(type);
+    if (type === "sympo") {
+      window.parent.location.href = leaveUrl;
+    }
+  }, []);
+
   const WacthZoom = (meetingId, passcode = null, type = null) => {
-    if(meetingId == "" || passcode == ""){
-      alert("This feature is not active")
-    }else{
-      // if(type == 'sympo'){
-      //   localStorage.setItem("meetingid", meetingId);
-      //   localStorage.setItem("passcode", passcode);
-      //   history.push("/livestream");
-      // }else{
+    if (meetingId == "" || passcode == "") {
+      alert("This feature is not active");
+    } else {
+      if (type == "sympo") {
         localStorage.setItem("meetingid", meetingId);
         localStorage.setItem("passcode", passcode);
-        history.push("/theme/zoom");
-      // }      
-    }    
+        localStorage.setItem("type", "sympo");
+        history.push("/livestream");
+      } else {
+        if(passcode != null){
+          passcode = "?pwd="+passcode;        
+        }else{
+          passcode = ""
+        }
+        window.open(`https://us04web.zoom.us/j/${meetingId}${passcode}`);        
+      }
+    }
+  };
+
+  const WacthZoomYt = (meetingId, passcode = null, type = null) => {
+    if (meetingId == "" || passcode == "") {
+      alert("This feature is not active");
+    } else {      
+      localStorage.setItem("meetingid", meetingId);
+      localStorage.setItem("passcode", passcode);      
+      history.push("/livestreamOther");      
+    }
   };
 
   const changeDataWS = (noUrut) => {
@@ -425,12 +452,12 @@ const Colors = () => {
                 <CRow>
                   <div className="col-lg-12 col-md-12 col-sm-12 text-center">
                     <b>Symposium</b>
-                    <br/>
+                    <br />
                     {anggota.simposium != "" ? (
                       <>
                         <Button
                           type="primary"
-                          onClick={() => {                            
+                          onClick={() => {
                             changeDataSympo(1);
                           }}
                           style={{ borderRadius: "10px" }}
@@ -439,7 +466,7 @@ const Colors = () => {
                         </Button>
                         <Button
                           type="primary"
-                          onClick={() => {                            
+                          onClick={() => {
                             changeDataSympo(2);
                           }}
                           style={{ marginLeft: "2px", borderRadius: "10px" }}
@@ -448,7 +475,7 @@ const Colors = () => {
                         </Button>
                         <Button
                           type="primary"
-                          onClick={() => {                            
+                          onClick={() => {
                             changeDataSympo(3);
                           }}
                           style={{ marginLeft: "2px", borderRadius: "10px" }}
@@ -457,9 +484,9 @@ const Colors = () => {
                         </Button>
                       </>
                     ) : null}
-                    <hr style={{width: '50%'}} />
+                    <hr style={{ width: "50%" }} />
                     <b>Workshop</b>
-                    <br/>
+                    <br />
                     {workshopku.indexOf("WS 1 ") > -1 ? (
                       <Button
                         type="primary"
@@ -741,7 +768,7 @@ const Colors = () => {
                         return (
                           <div
                             key={index1}
-                            class={`col-lg-${
+                            className={`col-lg-${
                               dataSympo.detil.length == 1
                                 ? "12"
                                 : dataSympo.detil.length > 1 &&
@@ -802,7 +829,7 @@ const Colors = () => {
                                           transform: "translate(-50%, -50%)",
                                           fontSize: "25px",
                                         }}
-                                        class="far fa-calendar-alt"
+                                        className="far fa-calendar-alt"
                                       ></i>
                                     }
                                   >
@@ -832,21 +859,44 @@ const Colors = () => {
                                             right: "15px",
                                             bottom: "16px",
                                             color: "#fff",
+                                            display:
+                                              row.status == "Active"
+                                                ? "block"
+                                                : "none",
                                           }}
                                           onClick={() => {
                                             WacthZoom(
                                               row.zoom_room_id,
-                                              row.passcode, 
-                                              'sympo'                                              
+                                              row.passcode,
+                                              "sympo"
                                             );
                                           }}
-                                          disabled={
-                                            row.status == "Active"
-                                              ? false
-                                              : true
-                                          }
                                         >
                                           Watch Now
+                                        </Button>
+                                        <Button
+                                          type="primary"
+                                          style={{
+                                            borderRadius: "10px",
+                                            background: "#2a3d9f",
+                                            position: "absolute",
+                                            right: "15px",
+                                            bottom: "16px",
+                                            color: "#fff",
+                                            display:
+                                              row.status == "Active"
+                                                ? "block"
+                                                : "none",
+                                          }}
+                                          onClick={() => {
+                                            WacthZoomYt(
+                                              row.zoom_room_id,
+                                              row.passcode,
+                                              "sympo"
+                                            );
+                                          }}
+                                        >
+                                          Watch Now 2
                                         </Button>
                                       </>
                                     )}
@@ -861,9 +911,9 @@ const Colors = () => {
                   ) : ws == "ws" ? (
                     <>
                       <div className="col-lg-8 col-md-10 col-sm-12 col-xs-12">
-                        <div class="card" style={{ borderRadius: "10px" }}>
+                        <div className="card" style={{ borderRadius: "10px" }}>
                           <div
-                            class="card-header"
+                            className="card-header"
                             style={{
                               background: "rgb(33, 150, 243)",
                               color: "#fff",
@@ -879,44 +929,44 @@ const Colors = () => {
                               </p>
                             </h4>
                           </div>
-                          <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
+                          <ul className="list-group list-group-flush">
+                            <li className="list-group-item">
                               Topic : {dataWs.master.topic}
                             </li>
-                            <li class="list-group-item">
+                            <li className="list-group-item">
                               Day,Date : {dataWs.master.day},{" "}
                               {dataWs.master.date}
                             </li>
-                            <li class="list-group-item">
+                            <li className="list-group-item">
                               Course Director : {dataWs.master.course_director}
                             </li>
-                            <li class="list-group-item">
+                            <li className="list-group-item">
                               PIC : {dataWs.master.pic}
                             </li>
-                            <li class="list-group-item">
+                            <li className="list-group-item">
                               Moderator : {dataWs.master.moderator}
                             </li>
-                            <li class="list-group-item text-center">
+                            <li className="list-group-item text-center">
                               <Button
                                 type="primary"
                                 style={{
                                   borderRadius: "10px",
                                   background: "#2a3d9f",
                                   color: "#fff",
+                                  display:
+                                    dataWs.master.status == "Active"
+                                      ? "inline-block"
+                                      : "none",
                                 }}
                                 onClick={() => {
                                   WacthZoom(
                                     dataWs.master.zoom_room_id,
-                                    dataWs.master.passcode
+                                    dataWs.master.passcode,
+                                    "ws"
                                   );
                                 }}
-                                disabled={
-                                  dataWs.master.status == "Active"
-                                    ? false
-                                    : true
-                                }
                               >
-                                Watch Now
+                                Join Now
                               </Button>
                             </li>
                           </ul>
@@ -950,7 +1000,7 @@ const Colors = () => {
                                       transform: "translate(-50%, -50%)",
                                       fontSize: "25px",
                                     }}
-                                    class="far fa-calendar-alt"
+                                    className="far fa-calendar-alt"
                                   ></i>
                                 }
                               >
@@ -973,7 +1023,7 @@ const Colors = () => {
                 <CRow>
                   <div className="col-lg-12 col-md-12 col-sm-12 text-center">
                     <b>Symposium</b>
-                    <br/>
+                    <br />
                     {anggota.simposium != "" ? (
                       <>
                         <Button
@@ -996,9 +1046,9 @@ const Colors = () => {
                         </Button>
                       </>
                     ) : null}
-                    <hr style={{width: '50%'}} />
+                    <hr style={{ width: "50%" }} />
                     <b>Workshop</b>
-                    <br/>
+                    <br />
                     {workshopku.indexOf("WS Indovasc 1 ") > -1 ? (
                       <Button
                         type="primary"
@@ -1053,8 +1103,8 @@ const Colors = () => {
                           width: "95%",
                           marginBottom: "25px",
                           color: "#4e4e4e",
-                          textAlign: "center"
-                        }} 
+                          textAlign: "center",
+                        }}
                       >
                         {`DAY-${dataSympo.master[0].serial_number} : ${
                           dataSympo.master[0].day
@@ -1064,7 +1114,7 @@ const Colors = () => {
                         return (
                           <div
                             key={index1}
-                            class={`col-lg-${
+                            className={`col-lg-${
                               dataSympo.detil.length == 1
                                 ? "8"
                                 : dataSympo.detil.length > 1 &&
@@ -1125,7 +1175,7 @@ const Colors = () => {
                                           transform: "translate(-50%, -50%)",
                                           fontSize: "25px",
                                         }}
-                                        class="far fa-calendar-alt"
+                                        className="far fa-calendar-alt"
                                       ></i>
                                     }
                                   >
@@ -1156,18 +1206,18 @@ const Colors = () => {
                                             right: "15px",
                                             bottom: "16px",
                                             color: "#fff",
+                                            display:
+                                              row.status == "Active"
+                                                ? "block"
+                                                : "none",
                                           }}
                                           onClick={() => {
                                             WacthZoom(
                                               row.zoom_room_id,
-                                              row.passcode
+                                              row.passcode,
+                                              "sympo"
                                             );
                                           }}
-                                          disabled={
-                                            row.status == "Active"
-                                              ? false
-                                              : true
-                                          }
                                         >
                                           Watch Now
                                         </Button>
@@ -1184,9 +1234,9 @@ const Colors = () => {
                   ) : ws == "wsIndo" ? (
                     <>
                       <div className="col-lg-8 col-md-10 col-sm-12 col-xs-12">
-                        <div class="card" style={{ borderRadius: "10px" }}>
+                        <div className="card" style={{ borderRadius: "10px" }}>
                           <div
-                            class="card-header"
+                            className="card-header"
                             style={{
                               background: "rgb(33, 150, 243)",
                               color: "#fff",
@@ -1202,30 +1252,34 @@ const Colors = () => {
                               </p>
                             </h4>
                           </div>
-                          <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
+                          <ul className="list-group list-group-flush">
+                            <li className="list-group-item">
                               Topic : {dataWs.master.topic}
                             </li>
-                            <li class="list-group-item">
+                            <li className="list-group-item">
                               Day,Date : {dataWs.master.day},{" "}
                               {dataWs.master.date}
                             </li>
-                            <li class="list-group-item">
+                            <li className="list-group-item">
                               Course Director : {dataWs.master.course_director}
                             </li>
-                            <li class="list-group-item">
+                            <li className="list-group-item">
                               PIC : {dataWs.master.pic}
                             </li>
-                            <li class="list-group-item">
+                            <li className="list-group-item">
                               Moderator : {dataWs.master.moderator}
                             </li>
-                            <li class="list-group-item text-center">
+                            <li className="list-group-item text-center">
                               <Button
                                 type="primary"
                                 style={{
                                   borderRadius: "10px",
                                   background: "#2a3d9f",
                                   color: "#fff",
+                                  display:
+                                    dataWs.master.status == "Active"
+                                      ? "inline-block"
+                                      : "none",
                                 }}
                                 onClick={() => {
                                   WacthZoom(
@@ -1233,13 +1287,8 @@ const Colors = () => {
                                     dataWs.master.passcode
                                   );
                                 }}
-                                disabled={
-                                  dataWs.master.status == "Active"
-                                    ? false
-                                    : true
-                                }
                               >
-                                Watch Now
+                                Join Now
                               </Button>
                             </li>
                           </ul>
@@ -1273,7 +1322,7 @@ const Colors = () => {
                                       transform: "translate(-50%, -50%)",
                                       fontSize: "25px",
                                     }}
-                                    class="far fa-calendar-alt"
+                                    className="far fa-calendar-alt"
                                   ></i>
                                 }
                               >

@@ -769,7 +769,7 @@ const Edit = () => {
           <div class="labelatas">Office phone number1 </div>
           <Input placeholder="Office phone number" value={myform.officeph} onChange={(e)=>setMyform({...myform,officeph:e.target.value})} />
       </div>
-      <div class="labeldaninput" style={{marginLeft:"15px"}}>
+      {/* <div class="labeldaninput" style={{marginLeft:"15px"}}>
           <div class="labelatas">Macam Workshop{professionselect}-{macamworkshop}-{totalws}</div>
         <Select mode="multiple"  style={{width:"100%"}} onChange={(e)=>handleChange5(e)} value={macamworkshop}>
          {workshopprof.filter(ch => ch.profession === professionselect).map((item) =>(
@@ -778,7 +778,7 @@ const Edit = () => {
          ))  }
 
         </Select>
-        </div>
+        </div> */}
 
 
       <div style={{width:"100%",textAlign:"right",paddingRight:"15px"}}>

@@ -1,17 +1,18 @@
-// import React from 'react';
 import React, { useEffect, useState } from "react";
 import { ZoomMtg } from "@zoomus/websdk";
 import { useParams } from "react-router-dom";
-import "./App.css";
+
 const crypto = require("crypto");
+
+localStorage.setItem("fromZoom", true);
 
 var signatureEndpoint = "";
 var apiKey = "sw1o-LaLTtaMC0xjZ9ghdw";
 var apiSecret = "NDRYGCnfiSXNSosr25YEPnKOkKU4rf8ksSiF";
 var meetingNumber = localStorage.getItem("meetingid");
 var role = 0;
-var leaveUrl =
-  "https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/theme/session";
+var leaveUrl = "https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/theme/session";
+// var leaveUrl = "http://localhost:3000/#/theme/session";
 var userName = localStorage.getItem("nama");
 var userEmail = localStorage.getItem("email") ?? "random1002310@gmail.com";
 var passWord = localStorage.getItem("passcode") ?? "";
@@ -20,12 +21,29 @@ var registrantToken = "";
 const App = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
+  useEffect(() => {      
     if (isOpen != true) {
       startMeeting(generateSignature(apiKey, apiSecret, meetingNumber, role));
     }
+    let type = localStorage.getItem("type")
+    if(type === 'sympo') {
+      require('./sympo.css');
+    } else {
+      require('./App.css');
+    }
   }, [isOpen]);
 
+  function leavePage(){
+    let type = localStorage.getItem("type")    
+    if(type === 'sympo') {
+      window.parent.location.href = leaveUrl;            
+    } else {
+      window.location.href = leaveUrl;
+      window.location.reload();
+    }    
+  }
+
+  
   function generateSignature(apiKey, apiSecret, meetingNumber, role) {
     const timestamp = new Date().getTime() - 30000;
     const msg = Buffer.from(apiKey + meetingNumber + timestamp + role).toString(
@@ -43,7 +61,7 @@ const App = (props) => {
   }
 
   function startMeeting(signature) {
-    document.getElementById("zmmtg-root").style.display = "block";
+    document.getElementById("zmmtg-root").style.display = "block";    
     ZoomMtg.setZoomJSLib("https://source.zoom.us/1.9.9/lib", "/av");
     ZoomMtg.preLoadWasm();
     ZoomMtg.prepareWebSDK();
@@ -52,8 +70,7 @@ const App = (props) => {
 
     ZoomMtg.init({
       disablePreview: true,
-      leaveUrl: leaveUrl,
-      isSupportAV: true,
+      leaveUrl: leaveUrl,      
       success: (success) => {
         console.log(success);
         ZoomMtg.join({
@@ -82,19 +99,28 @@ const App = (props) => {
   }
 
   function leave() {
-    ZoomMtg.leaveMeeting({
-      leaveUrl: "/index.html",
-      success: function (response) {
-        console.log(response);
-      },
-      error: function (err) {
-        console.log(err);
-      },
-    });
-  }
+    if(window.confirm("Are You Sure?")){
+      ZoomMtg.leaveMeeting({        
+        success: function (response) {
+          console.log(response);          
+          leavePage()
+        },
+        error: function (err) {
+          console.log(err);
+          leavePage()
+        },
+      });      
+      leavePage()      
+    }
+  }  
 
-  return (
-    <button onClick={leave} className="btn btn-info">
+  return (  
+    <button onClick={leave} className="btn btn-danger" style={{ 
+      position: "absolute",
+      zIndex: '9999',
+      bottom: "10px",
+      right: "20px",
+     }}>
         Leave
     </button>
   );

@@ -4,7 +4,7 @@ import ReactPlayer from "react-player";
 import "antd/dist/antd.css";
 import { useHistory } from "react-router-dom";
 import { ImageMap } from "@qiuz/react-image-map";
-import { Modal, Button } from "antd";
+import { Modal, Button, Form, Input } from "antd";
 import {
   CModal,
   CModalHeader,
@@ -21,10 +21,12 @@ import DataGold from "./gold.json";
 const dirFile = "https://admin.acsasurabaya2021.com/files/";
 
 const SilverBooth = ({ phase, dataBooth }) => {
+  const [guestBookModal, setGuestBookModal] = useState(false);
   const [visibleModal, setVisibleModal] = useState(false);
   const [visibleViewModal, setVisibleViewModal] = useState(false);
   const [fileView, setFileView] = useState(null);
   const [viewType, setViewType] = useState(null);
+  const [form] = Form.useForm();
 
   const mapAreSilver = [
     {
@@ -52,6 +54,21 @@ const SilverBooth = ({ phase, dataBooth }) => {
       },
       onMouseOver: () => {},
       render: (area, index) => <span></span>,
+    },
+    {
+      width: "4%",
+      height: "9%",
+      left: "18.9%",
+      top: "59.7%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => (
+        <img width="100%" height="100%" src="./guests-book.png" />
+      ),
     },
   ];
 
@@ -108,6 +125,21 @@ const SilverBooth = ({ phase, dataBooth }) => {
       onMouseOver: () => {},
       render: (area, index) => <span></span>,
     },
+    {
+      width: "4%",
+      height: "9%",
+      left: "39.9%",
+      top: "61.7%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => (
+        <img width="100%" height="100%" src="./guests-book.png" />
+      ),
+    },
   ];
 
   const onMapBoothSilverClick = (area, index) => {
@@ -119,6 +151,10 @@ const SilverBooth = ({ phase, dataBooth }) => {
       console.log("Open PDF MODAL");
       setVisibleModal(true);
       setViewType("PDF");
+    } else if (index == 2) {
+      console.log("Open Modal Guest Book");
+      setGuestBookModal(true);
+      // setViewType("Video");
     }
   };
 
@@ -127,17 +163,35 @@ const SilverBooth = ({ phase, dataBooth }) => {
       if (dataBooth.master[0].link != "-" || dataBooth.master[0].link != null) {
         window.open(dataBooth.master[0].link);
       }
-    } else if (index == 1) {
-      setVisibleModal(true);
-      setViewType("Video");
-    } else if (index == 2) {
-      setVisibleModal(true);
-      setViewType("Video");
+    } else if (index == 1) {      
+      playVideo(0)
+    } else if (index == 2) {      
+      playVideo(1)
     } else if (index == 3) {
       setVisibleModal(true);
       setViewType("PDF");
+    } else if (index == 4) {
+      console.log("Open Modal Guest Book");
+      setGuestBookModal(true);
+      // setViewType("Video");
     }
   };
+
+  const playVideo = (index) => {
+    let dataVideo = dataBooth.video[index];
+      if(dataVideo != undefined){
+        let UrlFile;
+        if (dataVideo.type == "EMBED") {
+          UrlFile = dataVideo.link;
+        } else {
+          UrlFile = dirFile + "video/" + dataVideo.file;
+        }
+        setVisibleViewModal(true);
+        setFileView(UrlFile);
+      }else{
+        alert('Video Is Unavaible')
+      }
+  }
 
   const openPdfReader = (file) => {
     let UrlFile = dirFile + "pdf/" + file;
@@ -158,8 +212,110 @@ const SilverBooth = ({ phase, dataBooth }) => {
     setFileView(UrlFile);
   };
 
+  const onFinish = (value) => {
+    let values = {
+      ...value,
+      nama: JSON.parse(localStorage.getItem("userData")).nama,
+      phone: JSON.parse(localStorage.getItem("userData")).userData.mobilephone,
+      instansi: JSON.parse(localStorage.getItem("userData")).userData.affiliation,
+      booth_id: dataBooth.master[0].id,
+      peserta_id: JSON.parse(localStorage.getItem("userData")).userData.id,
+    };
+    console.log("Success:", values);
+    axios({
+      url: "https://acsasurabaya2021.com/wp-content/plugins/perki/PerkiAPi.php?function=getboothguestbook",
+      data: values,
+      contentType: "application/json",
+      method: "POST",
+    })
+      .then((res) => {
+        console.log(res.data);
+        if(res.data.status == 1){
+          form.resetFields();
+          setGuestBookModal(false)
+          alert(res.data.message)
+        }else{
+          alert(res.data.message)
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+
   return (
     <>
+      {/* Modal Guest Book */}
+      <Modal
+        title={`Guest Book`}
+        width={"80%"}
+        visible={guestBookModal}
+        onCancel={() => setGuestBookModal(false)}
+        footer={[
+          <Button key="back" onClick={() => setGuestBookModal(false)}>
+            Close
+          </Button>,
+        ]}
+      >
+        <div className="row">
+          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <Form
+              name="basic"
+              form={form}
+              initialValues={{ remember: true }}
+              onFinish={onFinish}
+              onFinishFailed={onFinishFailed}
+              autoComplete="off"
+            >              
+              <Form.Item label="Name" name="nama">
+                <Input           
+                  disabled={true}        
+                  defaultValue={JSON.parse(localStorage.getItem("userData")).nama}             
+                  placeholder="Name"
+                />
+              </Form.Item>
+
+              <Form.Item
+                label="Phone"
+                name="phone"                
+              >
+                <Input 
+                  disabled={true}        
+                  defaultValue={JSON.parse(localStorage.getItem("userData")).userData.mobilephone}             
+                  placeholder="Phone" />
+              </Form.Item>
+
+              <Form.Item
+                label="Affiliation"
+                name="instansi"                
+              >
+                <Input 
+                  disabled={true}        
+                  defaultValue={JSON.parse(localStorage.getItem("userData")).userData.affiliation}             
+                  placeholder="Affiliation" />
+              </Form.Item>
+
+              <Form.Item label="" name="desc">
+                <Input.TextArea
+                  defaultValue={""}
+                  placeholder="Criticism and Suggestions"
+                />
+              </Form.Item>
+
+              <Form.Item>
+                <Button type="primary" htmlType="submit">
+                  Submit
+                </Button>
+              </Form.Item>
+            </Form>
+          </div>
+        </div>
+      </Modal>
+
       {/* Modal PDF AND Video */}
       <Modal
         title={`View ${viewType}`}

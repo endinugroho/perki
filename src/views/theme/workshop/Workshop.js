@@ -562,14 +562,23 @@ const Colors = () => {
       });
   }, []);
 
-  const WacthZoom = (meetingId, passcode = null) => {
-    // console.log(meetingId, passcode);
-    if(meetingId == "" || passcode == ""){
-      alert("This feature is not active")
-    }else{
-      localStorage.setItem("meetingid", meetingId);
-      localStorage.setItem("passcode", passcode);
-      history.push("/theme/zoom");
+  const WacthZoom = (meetingId, passcode = null, type = "ws") => {
+    if (meetingId == "" || passcode == "") {
+      alert("This feature is not active");
+    } else {
+      if (type == "sympo") {
+        localStorage.setItem("meetingid", meetingId);
+        localStorage.setItem("passcode", passcode);
+        localStorage.setItem("type", "sympo");
+        history.push("/livestream");
+      } else {
+        if(passcode != null){
+          passcode = "?pwd="+passcode;        
+        }else{
+          passcode = ""
+        }
+        window.open(`https://us04web.zoom.us/j/${meetingId}${passcode}`); 
+      }
     }
   };
 
@@ -850,6 +859,10 @@ const Colors = () => {
                         WS 16
                       </Button>
                     ) : null}
+                    {
+                      workshopku == null || workshopku == "" ? 
+                      "You don't have Workshop in this event" : null
+                    }
                   </div>
                 </CRow>
                 <CRow
@@ -901,20 +914,18 @@ const Colors = () => {
                                   borderRadius: "10px",
                                   background: "#2a3d9f",
                                   color: "#fff",
+                                  display: dataWs.master.status == "Active"
+                                    ? "inline-block"
+                                    : "none"
                                 }}
                                 onClick={() => {
                                   WacthZoom(
                                     dataWs.master.zoom_room_id,
                                     dataWs.master.passcode
                                   );
-                                }}
-                                disabled={
-                                  dataWs.master.status == "Active"
-                                    ? false
-                                    : true
-                                }
+                                }}                                
                               >
-                                Watch Now
+                                Join Now
                               </Button>
                             </li>
                           </ul>
@@ -1009,6 +1020,10 @@ const Colors = () => {
                         Indovasc WS 3
                       </Button>
                     ) : null}
+                    {
+                      workshopku.indexOf("WS Indovasc 1 ") < -1 && workshopku.indexOf("WS Indovasc 2 ") < -1 && workshopku.indexOf("WS Indovasc 3 ") < -1 ? 
+                      "You don't have Workshop in this event" : null
+                    }
                   </div>
                 </CRow>
                 <CRow
@@ -1060,20 +1075,18 @@ const Colors = () => {
                                   borderRadius: "10px",
                                   background: "#2a3d9f",
                                   color: "#fff",
+                                  display: dataWs.master.status == "Active"
+                                  ? "inline-block"
+                                  : "none"
                                 }}
                                 onClick={() => {
                                   WacthZoom(
                                     dataWs.master.zoom_room_id,
                                     dataWs.master.passcode
                                   );
-                                }}
-                                disabled={
-                                  dataWs.master.status == "Active"
-                                    ? false
-                                    : true
-                                }
+                                }}                                
                               >
-                                Watch Now
+                                Join Now
                               </Button>
                             </li>
                           </ul>

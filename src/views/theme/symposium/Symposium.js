@@ -227,14 +227,20 @@ const Colors = () => {
     }
   };
 
-  const WacthZoom = (meetingId, passcode = null) => {
-    // console.log(meetingId, passcode);
-    if(meetingId == "" || passcode == ""){
-      alert("This feature is not active")
-    }else{
-      localStorage.setItem("meetingid", meetingId);
-      localStorage.setItem("passcode", passcode);
-      history.push("/theme/zoom");
+  const WacthZoom = (meetingId, passcode = null, type = "sympo") => {
+    if (meetingId == "" || passcode == "") {
+      alert("This feature is not active");
+    } else {
+      if (type == "sympo") {
+        localStorage.setItem("meetingid", meetingId);
+        localStorage.setItem("passcode", passcode);
+        localStorage.setItem("type", "sympo");
+        history.push("/livestream");
+      } else {
+        localStorage.setItem("meetingid", meetingId);
+        localStorage.setItem("passcode", passcode);
+        history.push("/theme/zoom");
+      }
     }
   };
 
@@ -418,18 +424,16 @@ const Colors = () => {
                                             right: "15px",
                                             bottom: "16px",
                                             color: "#fff",
+                                            display: row.status == "Active"
+                                              ? "block"
+                                              : "none"
                                           }}
                                           onClick={() => {
                                             WacthZoom(
                                               row.zoom_room_id,
                                               row.passcode
                                             );
-                                          }}
-                                          disabled={
-                                            row.status == "Active"
-                                              ? false
-                                              : true
-                                          }
+                                          }}                                          
                                         >
                                           Watch Now
                                         </Button>
@@ -589,18 +593,16 @@ const Colors = () => {
                                             right: "15px",
                                             bottom: "16px",
                                             color: "#fff",
+                                            display: row.status == "Active"
+                                              ? "block"
+                                              : "none"
                                           }}
                                           onClick={() => {
                                             WacthZoom(
                                               row.zoom_room_id,
                                               row.passcode
                                             );
-                                          }}
-                                          disabled={
-                                            row.status == "Active"
-                                              ? false
-                                              : true
-                                          }
+                                          }}                                          
                                         >
                                           Watch Now
                                         </Button>

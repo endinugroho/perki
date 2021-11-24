@@ -139,6 +139,37 @@ const Dashboard = () => {
       history.push("/theme/workshop");
     }    
   };
+  
+  const onClikHallMobile = (area, index: number) => {    
+    if (index == 0) {
+      history.push("/theme/session");
+    }    
+    if (index == 1) {
+      history.push("/theme/exhibition");
+    }    
+    if (index == 2) {
+      // exit      
+      history.push("/theme/login");      
+    }
+    if (index == 3) {
+      history.push("/theme/workshop");
+    }    
+    if (index == 4) {
+      //acount
+      history.push("/theme/sponsor");
+    }    
+    if (index == 5) {
+      history.push("/theme/symposium");
+    }    
+    if (index == 6) {
+      // faq
+      history.push("/theme/faq");
+    }    
+    if (index == 7) {
+      // wa
+      openInNewTab("https://wa.me/6282232683785");
+    }    
+  };
 
   const onClikMenu = (area, index: number) => {            
     if (index == 1) {
@@ -249,28 +280,6 @@ const Dashboard = () => {
     },
     //6
     {
-      left: "50.5%",
-      top: "6%",
-      height: "22%",
-      width: "44%",
-      // href: "https://detik.com",
-      style: { background: "rgba(255, 0, 0, 0.0)", zIndex: "0" },
-      onMouseOver: () => console.log("map onMouseOver"),
-      render: (area: any, index: number) => <span></span>,
-    },
-    //7
-    {
-      left: "50.5%",
-      top: "6%",
-      height: "22%",
-      width: "44%",
-      // href: "https://detik.com",
-      style: { background: "rgba(255, 0, 0, 0.0)", zIndex: "1" },
-      onMouseOver: () => console.log("map onMouseOver"),
-      render: (area: any, index: number) => <span></span>,
-    },
-    //8
-    {
       left: "76.5%",
       top: "80%",
       height: "15%",
@@ -279,19 +288,8 @@ const Dashboard = () => {
       style: { background: "rgba(255, 0, 0, 0)", zIndex: "5" },
       onMouseOver: () => console.log("map onMouseOver"),
       render: (area: any, index: number) => <span></span>,
-    },
-    //9
-    {
-      left: "50.5%",
-      top: "6%",
-      height: "22%",
-      width: "44%",
-      // href: "https://detik.com",
-      style: { background: "rgba(255, 0, 0, 0)", zIndex: "0" },
-      onMouseOver: () => console.log("map onMouseOver"),
-      render: (area: any, index: number) => <span></span>,
-    },
-    //10
+    },    
+    //7
     {
       left: "65.5%",
       top: "80%",
@@ -308,10 +306,10 @@ const Dashboard = () => {
     //0
     //exhibition
     {
-      width: "8.6%",
+      width: "8.9%",
       height: "15.5%",
       left: "27.8%",
-      top: "26%",      
+      top: "33%",      
       style: {
         background: "rgba(0, 0, 255, " + layar1 + ")",
         transform: "rotate(2deg)",
@@ -334,8 +332,8 @@ const Dashboard = () => {
     {
       width: "10.7%",
       height: "15.5%",
-      left: "44.5%",
-      top: "25.5%",
+      left: "44.7%",
+      top: "32.5%",
       style: {
         background: "rgba(0, 0, 255, " + layar2 + ")",
         zIndex: "8",
@@ -358,7 +356,7 @@ const Dashboard = () => {
       width: "9%",
       height: "16%",
       left: "63.4%",
-      top: "25.8%",    
+      top: "32.8%",    
       style: {
         transform: "rotate(-2deg)",
         cursor: "pointer",
@@ -381,7 +379,7 @@ const Dashboard = () => {
       width: "14.1%",
       height: "20.5%",
       left: "43%",
-      top: "-3.8%",
+      top: "1.2%",
       style: {
         background: "rgba(0, 0, 255, 0)",
         zIndex: "8",
@@ -411,11 +409,10 @@ const Dashboard = () => {
   const mapAreaMenu: any[] = [
     //0
     {
-      left: "20.7%",
-      top: "-136px",
+      left: "24.9%",
+      top: "-95px",
       height: "100%",
-      width: "8.3%",
-      href: "https://google.com",
+      width: "7.1%",
       style: { background: "rgba(0, 255, 0, 0)", zIndex: "8" },
       onMouseOver: () => setPejet("LOBBY"),
       render: (area: any, index: number) => (
@@ -431,11 +428,10 @@ const Dashboard = () => {
     },
     //1
     {
-      left: "29.2%",
-      top: "-136px",
+      left: "32.2%",
+      top: "-96px",
       height: "100%",
-      width: "8.2%",
-      // href: "https://google.com",
+      width: "7.1%",
       style: {
         background: "rgba(255, 0, 0, 0.0)",
         zIndex: "8",
@@ -455,11 +451,10 @@ const Dashboard = () => {
     },
     //2
     {
-      left: "37.5%",
-      top: "-136px",
+      left: "39.3%",
+      top: "-96px",
       height: "100%",
-      width: "8.2%",
-      // href: "https://google.com",
+      width: "7.1%",
       style: {
         background: "rgba(255, 0, 0, 0.0)",
         zIndex: "8",
@@ -479,10 +474,10 @@ const Dashboard = () => {
     },
     //3
     {
-      left: "71.2%",
-      top: "-136px",
+      left: "68%",
+      top: "-96px",
       height: "100%",
-      width: "8.1%",      
+      width: "7.1%",      
       style: {
         background: "rgba(255, 0, 0, 0.0)",
         zIndex: "8",
@@ -502,11 +497,10 @@ const Dashboard = () => {
     },
     //4
     {
-      left: "46%",
-      top: "-136px",
+      left: "46.5%",
+      top: "-96px",
       height: "100%",
-      width: "8%",
-      // href: "https://google.com",
+      width: "7.1%",
       style: {
         background: "rgba(255, 0, 0, 0.0)",
         zIndex: "8",
@@ -526,18 +520,17 @@ const Dashboard = () => {
     },
     //5
     {
-      left: "62.7%",
-      top: "-136px",
+      left: "60.7%",
+      top: "-96px",
       height: "100%",
       width: "8%",
-      // href: "https://google.com",
       style: {
         background: "rgba(255, 0, 0, 0.0)",
         zIndex: "8",
         cursor: "pointer",
       },
       onMouseOver: () => setPejet("ACCOUNT"),
-      render: (area: any, index: number) => (
+      render: (area, index) => (
         <span>
           {pejet == "ACCOUNT" ? (
             <img
@@ -550,11 +543,10 @@ const Dashboard = () => {
     },         
     //15
     {
-      left: "54%",
-      top: "-136px",
+      left: "53.7%",
+      top: "-96px",
       height: "100%",
-      width: "8.5%",
-      href: "https://google.com",
+      width: "7.1%",
       onMouseOver: () => setPejet("WORKSHOP"),
       style: {
         background: "rgba(0, 255, 0, 0)",
@@ -577,10 +569,10 @@ const Dashboard = () => {
   const mapAreaWa: any[] = [
     //0
     {
-      width: "9.1%",
-      height: "91%",
-      left: "7.7%",
-      top: "-262px",      
+      width: "6%",      
+      height: "100%",      
+      left: "15.8%",
+      top: "-186px",      
       style: { background: "rgba(0, 255, 0, 0)", zIndex: "8" },
       onMouseOver: () => setPejet("WA"),
       render: (area: any, index: number) => (
@@ -599,10 +591,10 @@ const Dashboard = () => {
   const mapAreaFAQ: any[] = [
     //0
     {
-      width: "10%",
+      width: "7%",
       height: "91%",
-      left: "82.4%",
-      top: "-365px",      
+      left: "78.4%",
+      top: "-261px",      
       style: { background: "rgba(0, 255, 0, 0)", zIndex: "8" },
       onMouseOver: () => setPejet("FAQ"),
       render: (area: any, index: number) => (
@@ -621,14 +613,14 @@ const Dashboard = () => {
 
   return (
     <>
-      <div>
+      <div>        
         {anggota && paymentstatus == "PAY" ? (
         <div>
-          <div class="visibledesktop" style={{height: '86vh', overflow: 'hidden', marginTop: '-23px'}}>
+          <div class="visibledesktop" style={{height: '90vh', overflow: 'hidden', marginTop: '-23px'}}>
             <ImageMap
               className="usage-map"
               src={
-                "./00_BUTTON/Hall4K_rev4_edit.png"
+                "./New Img/Hall_rev 1280x620 (1).png"
               }
               map={mapAreaHall}
               style={{
@@ -636,7 +628,7 @@ const Dashboard = () => {
                 position: "relative",
                 left: "50%",
                 zIndex: 1,
-                transform: "translate(-50%, -24px)",
+                transform: "translate(-50%, 1px)",
               }}
               onMapClick={onClikHall}
             />
@@ -647,11 +639,11 @@ const Dashboard = () => {
               }
               map={mapAreaMenu}
               style={{
-                width: "59.5%",
+                width: "51%",
                 position: "relative",
                 left: "50%",
                 zIndex: 1,
-                transform: "translate(-50%, -144px)",
+                transform: "translate(-50%, -102px)",
               }}
               onMapClick={onClikMenu}
             />
@@ -662,10 +654,10 @@ const Dashboard = () => {
               }
               map={mapAreaWa}
               style={{
-                width: "9%",
+                width: "6%",
                 position: "relative",
-                left: "7.8%",
-                bottom: "262px",
+                left: "15.8%",
+                bottom: "186px",
                 zIndex: 1,                  
               }}
               onMapClick={onClikWa}
@@ -677,10 +669,10 @@ const Dashboard = () => {
               }
               map={mapAreaFAQ}
               style={{
-                width: "10%",
+                width: "7%",
                 position: "relative",
-                left: "82.4%",
-                bottom: "365px",
+                left: "78.4%",
+                bottom: "260px",
                 zIndex: 1,                  
               }}
               onMapClick={onClikFaq}
@@ -690,7 +682,7 @@ const Dashboard = () => {
             <ImageMap
               className="usage-map"
               src={
-                "./00_BUTTON/Hall4K_rev3_edit.jpg"
+                "./New Img/Hall_rev 1280x620 (1).png"
               }              
               style={{
                 width: "100%",
@@ -708,7 +700,7 @@ const Dashboard = () => {
                 width: "100%",
                 position: "relative",                
               }}
-              onMapClick={onClikHall}
+              onMapClick={onClikHallMobile}
             />
           </div>
         </div>
