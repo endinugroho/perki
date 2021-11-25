@@ -38,9 +38,6 @@ const { Option } = Select;
 const { Search } = Input;
 const { TextArea } = Input;
 
-// var leaveUrl = "https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/theme/session";
-var leaveUrl = "http://localhost:3000/#/theme/session";
-
 const rowsColor = "#0075BC";
 const headerColor = "#0075BC";
 const borderColor = "#0075BC";
