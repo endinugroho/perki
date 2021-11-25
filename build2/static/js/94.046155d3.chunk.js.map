@@ -1,0 +1,1 @@
+{"version":3,"sources":["views/poster/index.js"],"names":["Index"],"mappings":"4KAAA,wBASeA,UAPD,WACZ,OACE","file":"static/js/94.046155d3.chunk.js","sourcesContent":["import React, { useEffect, useState } from \"react\";\r\n\r\nconst Index = () => {  \r\n  return (\r\n    <>        \r\n    </>\r\n  );\r\n};\r\n\r\nexport default Index;\r\n"],"sourceRoot":""}
