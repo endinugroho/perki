@@ -153,7 +153,6 @@ const Colors = () => {
         if (data.data[0].simposium != "") {
           changeDataSympo(1);
         }
-
         setWorkshopku(data.data[0].workshop);
       })
       .catch(() => {

@@ -617,7 +617,7 @@ const Colors = () => {
             <CTabPane data-tab="acsa">
               <CCardBody>
                 <CRow>
-                  <div className="col-lg-12 col-md-12 col-sm-12 text-center">
+                  <div className="col-lg-12 col-md-12 col-sm-12 text-center">                
                     {workshopku.indexOf("WS 1 ") > -1 ? (
                       <Button
                         type="primary"

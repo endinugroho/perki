@@ -60,6 +60,9 @@ const Workshop = React.lazy(() => import('./views/theme/workshop/Workshop'));
 const Zoom = React.lazy(() => import('./views/theme/zoom/index'));
 const LiveStream = React.lazy(() => import('./views/theme/livestream/index'));
 const LiveStreamYt = React.lazy(() => import('./views/theme/livestream/Lsyt'));
+const LTAA = React.lazy(() => import('./views/lifetime/index'));
+const OP = React.lazy(() => import('./views/oral/index'));
+const EP = React.lazy(() => import('./views/poster/index'));
 
 // const Typography = React.lazy(() => import('./views/theme/typography/Typography'));
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'));
@@ -80,7 +83,10 @@ const routes = [
   { path: '/theme/symposium', name: 'Symposium', component: Symposium },
   { path: '/theme/workshop', name: 'Workshop', component: Workshop },
   { path: '/theme/zoom', name: 'Zoom', component: Zoom },
-  { path: '/livestream', name: 'LiveStream', component: LiveStream },
+  { path: '/lifeTimeAchievementAward', name: 'lifeTimeAchievementAward', component: LTAA },
+  { path: '/oralPresentation', name: 'oralPresentation', component: OP },
+  { path: '/e-Poster', name: 'eposter', component: EP },
+  { path: '/livestream', name: 'LiveStream', component: LiveStream, exact: true },
   { path: '/livestreamOther', name: 'LiveStreamOther', component: LiveStreamYt },
   { path: '/theme/info', name: 'Info', component: Info },
   { path: '/theme/jadwal', name: 'Info', component: Jadwal },

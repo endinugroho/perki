@@ -38,8 +38,8 @@ const { Option } = Select;
 const { Search } = Input;
 const { TextArea } = Input;
 
-var leaveUrl = "https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/theme/session";
-// var leaveUrl = "http://localhost:3000/#/theme/session";
+// var leaveUrl = "https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/theme/session";
+var leaveUrl = "http://localhost:3000/#/theme/session";
 
 const rowsColor = "#0075BC";
 const headerColor = "#0075BC";
@@ -254,21 +254,6 @@ const Colors = () => {
       });
   }, []);
 
-  useEffect(() => {
-    let fromZoom = localStorage.getItem("fromZoom");
-    console.log(fromZoom);
-    if (fromZoom == "true") {
-      localStorage.setItem("fromZoom", false);
-      window.location.reload();
-      window.parent.location.href = leaveUrl;
-    }
-    let type = localStorage.getItem("type");
-    console.log(type);
-    if (type === "sympo") {
-      window.parent.location.href = leaveUrl;
-    }
-  }, []);
-
   const WacthZoom = (meetingId, passcode = null, type = null) => {
     if (meetingId == "" || passcode == "") {
       alert("This feature is not active");
@@ -286,16 +271,6 @@ const Colors = () => {
         }
         window.open(`https://us04web.zoom.us/j/${meetingId}${passcode}`);        
       }
-    }
-  };
-
-  const WacthZoomYt = (meetingId, passcode = null, type = null) => {
-    if (meetingId == "" || passcode == "") {
-      alert("This feature is not active");
-    } else {      
-      localStorage.setItem("meetingid", meetingId);
-      localStorage.setItem("passcode", passcode);      
-      history.push("/livestreamOther");      
     }
   };
 
@@ -873,30 +848,6 @@ const Colors = () => {
                                           }}
                                         >
                                           Watch Now
-                                        </Button>
-                                        <Button
-                                          type="primary"
-                                          style={{
-                                            borderRadius: "10px",
-                                            background: "#2a3d9f",
-                                            position: "absolute",
-                                            right: "15px",
-                                            bottom: "16px",
-                                            color: "#fff",
-                                            display:
-                                              row.status == "Active"
-                                                ? "block"
-                                                : "none",
-                                          }}
-                                          onClick={() => {
-                                            WacthZoomYt(
-                                              row.zoom_room_id,
-                                              row.passcode,
-                                              "sympo"
-                                            );
-                                          }}
-                                        >
-                                          Watch Now 2
                                         </Button>
                                       </>
                                     )}

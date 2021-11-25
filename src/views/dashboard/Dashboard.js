@@ -409,8 +409,8 @@ const Dashboard = () => {
   const mapAreaMenu: any[] = [
     //0
     {
-      left: "24.9%",
-      top: "-95px",
+      left: "14%",
+      top: "-99px",
       height: "100%",
       width: "7.1%",
       style: { background: "rgba(0, 255, 0, 0)", zIndex: "8" },
@@ -428,8 +428,8 @@ const Dashboard = () => {
     },
     //1
     {
-      left: "32.2%",
-      top: "-96px",
+      left: "21.25%",
+      top: "-99px",
       height: "100%",
       width: "7.1%",
       style: {
@@ -451,8 +451,8 @@ const Dashboard = () => {
     },
     //2
     {
-      left: "39.3%",
-      top: "-96px",
+      left: "28.4%",
+      top: "-99px",
       height: "100%",
       width: "7.1%",
       style: {
@@ -474,8 +474,8 @@ const Dashboard = () => {
     },
     //3
     {
-      left: "68%",
-      top: "-96px",
+      left: "78.9%",
+      top: "-99px",
       height: "100%",
       width: "7.1%",      
       style: {
@@ -497,8 +497,8 @@ const Dashboard = () => {
     },
     //4
     {
-      left: "46.5%",
-      top: "-96px",
+      left: "35.7%",
+      top: "-99px",
       height: "100%",
       width: "7.1%",
       style: {
@@ -520,10 +520,10 @@ const Dashboard = () => {
     },
     //5
     {
-      left: "60.7%",
-      top: "-96px",
+      left: "71.7%",
+      top: "-99px",
       height: "100%",
-      width: "8%",
+      width: "7.1%",
       style: {
         background: "rgba(255, 0, 0, 0.0)",
         zIndex: "8",
@@ -541,23 +541,92 @@ const Dashboard = () => {
         </span>
       ),
     },         
-    //15
+    //6
     {
-      left: "53.7%",
-      top: "-96px",
+      left: "42.9%",
+      top: "-99px",
       height: "100%",
       width: "7.1%",
-      onMouseOver: () => setPejet("WORKSHOP"),
       style: {
         background: "rgba(0, 255, 0, 0)",
         zIndex: "8",
         cursor: "pointer",
       },
+      onMouseOver: () => setPejet("WORKSHOP"),
       render: (area: any, index: number) => (
         <span>
           {pejet == "WORKSHOP" ? (
             <img
               src="https://acsasurabaya2021.com/wp-content/plugins/perki/Workshop_Select.png"
+              width="100%"
+            />
+          ) : null}
+        </span>
+      ),
+    },
+    //7
+    {
+      left: "50.1%",
+      top: "-99px",
+      height: "100%",
+      width: "7.1%",
+      style: {
+        background: "rgba(0, 255, 0, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => setPejet("LIFE"),
+      render: (area: any, index: number) => (
+        <span>
+          {pejet == "LIFE" ? (
+            <img
+              src="./00_BUTTON/Lifetime_Select.png"
+              width="100%"
+            />
+          ) : null}
+        </span>
+      ),
+    },
+    //8
+    {
+      left: "57.22%",
+      top: "-99px",
+      height: "100%",
+      width: "7.1%",
+      style: {
+        background: "rgba(0, 255, 0, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => setPejet("ORAL"),
+      render: (area: any, index: number) => (
+        <span>
+          {pejet == "ORAL" ? (
+            <img
+              src="./00_BUTTON/Oral_Select.png"
+              width="100%"
+            />
+          ) : null}
+        </span>
+      ),
+    },
+    //9
+    {
+      left: "64.5%",
+      top: "-99px",
+      height: "100%",
+      width: "7.1%",
+      style: {
+        background: "rgba(0, 255, 0, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => setPejet("E_POSTER"),
+      render: (area: any, index: number) => (
+        <span>
+          {pejet == "E_POSTER" ? (
+            <img
+              src="./00_BUTTON/Eposter_Select.png"
               width="100%"
             />
           ) : null}
@@ -571,7 +640,7 @@ const Dashboard = () => {
     {
       width: "6%",      
       height: "100%",      
-      left: "15.8%",
+      left: "6.5%",
       top: "-186px",      
       style: { background: "rgba(0, 255, 0, 0)", zIndex: "8" },
       onMouseOver: () => setPejet("WA"),
@@ -591,10 +660,10 @@ const Dashboard = () => {
   const mapAreaFAQ: any[] = [
     //0
     {
-      width: "7%",
+      width: "6%",
       height: "91%",
-      left: "78.4%",
-      top: "-261px",      
+      left: "87.5%",
+      top: "-252px",      
       style: { background: "rgba(0, 255, 0, 0)", zIndex: "8" },
       onMouseOver: () => setPejet("FAQ"),
       render: (area: any, index: number) => (
@@ -616,7 +685,7 @@ const Dashboard = () => {
       <div>        
         {anggota && paymentstatus == "PAY" ? (
         <div>
-          <div class="visibledesktop" style={{height: '90vh', overflow: 'hidden', marginTop: '-23px'}}>
+          <div class="visibledesktop" style={{height: '90vh', overflow: 'hidden', marginTop: '-32px'}}>
             <ImageMap
               className="usage-map"
               src={
@@ -639,11 +708,11 @@ const Dashboard = () => {
               }
               map={mapAreaMenu}
               style={{
-                width: "51%",
+                width: "72%",
                 position: "relative",
                 left: "50%",
                 zIndex: 1,
-                transform: "translate(-50%, -102px)",
+                transform: "translate(-50%, -99px)",
               }}
               onMapClick={onClikMenu}
             />
@@ -656,7 +725,7 @@ const Dashboard = () => {
               style={{
                 width: "6%",
                 position: "relative",
-                left: "15.8%",
+                left: "6.5%",
                 bottom: "186px",
                 zIndex: 1,                  
               }}
@@ -669,10 +738,10 @@ const Dashboard = () => {
               }
               map={mapAreaFAQ}
               style={{
-                width: "7%",
+                width: "6%",
                 position: "relative",
-                left: "78.4%",
-                bottom: "260px",
+                left: "87.5%",
+                bottom: "252px",
                 zIndex: 1,                  
               }}
               onMapClick={onClikFaq}
