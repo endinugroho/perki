@@ -47,6 +47,7 @@ const Dashboard = () => {
   const [anggota1, setAnggota1] = useState();
   const [paymentstatus, setPaymentstatus] = useState("PAY");
   const [workshopku, setWorkshopku] = useState("");
+  const [isLive, setIsLive] = useState(null);
 
   let history = useHistory();
   // const vidRef = useRef(null);
@@ -117,6 +118,12 @@ const Dashboard = () => {
     // handlePlayVideo();
   }, []);
 
+  useEffect(() => {
+    if(isLive == null){
+      getCurrentLive()
+    }
+  }, [isLive])
+
   const openInNewTab = (url) => {
     window.open(url);
     // const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
@@ -127,51 +134,51 @@ const Dashboard = () => {
     setJadwal(value);
   };
 
-  const onClikHall = (area, index: number) => {    
+  const onClikHall = (area, index: number) => {
     if (index == 0) {
       console.log("exhibition");
       history.push("/theme/exhibition");
-    }    
+    }
     if (index == 1) {
       history.push("/theme/symposium");
     }
     if (index == 2) {
       history.push("/theme/workshop");
-    }    
+    }
   };
-  
-  const onClikHallMobile = (area, index: number) => {    
+
+  const onClikHallMobile = (area, index: number) => {
     if (index == 0) {
       history.push("/theme/session");
-    }    
+    }
     if (index == 1) {
       history.push("/theme/exhibition");
-    }    
+    }
     if (index == 2) {
-      // exit      
-      history.push("/theme/login");      
+      // exit
+      history.push("/theme/login");
     }
     if (index == 3) {
       history.push("/theme/workshop");
-    }    
+    }
     if (index == 4) {
       //acount
       history.push("/theme/sponsor");
-    }    
+    }
     if (index == 5) {
       history.push("/theme/symposium");
-    }    
+    }
     if (index == 6) {
       // faq
       history.push("/theme/faq");
-    }    
+    }
     if (index == 7) {
       // wa
       openInNewTab("https://wa.me/6282232683785");
-    }    
+    }
   };
 
-  const onClikMenu = (area, index: number) => {            
+  const onClikMenu = (area, index: number) => {
     if (index == 1) {
       setPejet("SESSION");
       history.push("/theme/session");
@@ -182,11 +189,11 @@ const Dashboard = () => {
     }
     if (index == 3) {
       setPejet("EXIT");
-      history.push("/theme/login");      
+      history.push("/theme/login");
     }
     if (index == 4) {
-      setPejet("SYMPOSIUM");      
-      history.push("/theme/symposium");      
+      setPejet("SYMPOSIUM");
+      history.push("/theme/symposium");
     }
     if (index == 5) {
       setPejet("ACCOUNT");
@@ -196,20 +203,41 @@ const Dashboard = () => {
     if (index == 6) {
       setPejet("WORKSHOP");
       history.push("/theme/workshop");
-    }     
+    }
+    if (index == 7) {
+      setPejet("LIFE");
+      history.push("/lifeTimeAchievementAward");
+    }
+    if (index == 8) {
+      setPejet("ORAL");
+      history.push("/oralPresentation");
+    }
+
+    if (index == 9) {
+      setPejet("E_POSTER");
+      history.push("/e-Poster");
+    }
   };
 
-  const onClikFaq = (area, index: number) => {    
+  const onClikFaq = (area, index: number) => {
     if (index == 0) {
       history.push("/theme/faq");
     }
   };
 
-  const onClikWa = (area, index: number) => {    
+  const onClikWa = (area, index: number) => {
     if (index == 0) {
       openInNewTab("https://wa.me/6282232683785");
-    }    
+    }
   };
+
+  function getCurrentLive(){
+    axios.get(`${process.env.REACT_APP_API_URL}?function=getCurrentRun`).then((res) => {      
+      console.log(res)
+      setIsLive(res.data.isLive)
+      // return res.data.isLive;
+    });    
+  }
 
   const mapAreamobile: any[] = [
     //0
@@ -288,7 +316,7 @@ const Dashboard = () => {
       style: { background: "rgba(255, 0, 0, 0)", zIndex: "5" },
       onMouseOver: () => console.log("map onMouseOver"),
       render: (area: any, index: number) => <span></span>,
-    },    
+    },
     //7
     {
       left: "65.5%",
@@ -302,14 +330,14 @@ const Dashboard = () => {
     },
   ];
 
-  const mapAreaHall: any[] = [       
+  const mapAreaHall: any[] = [
     //0
     //exhibition
     {
       width: "8.9%",
       height: "15.5%",
       left: "27.8%",
-      top: "33%",      
+      top: "33%",
       style: {
         background: "rgba(0, 0, 255, " + layar1 + ")",
         transform: "rotate(2deg)",
@@ -322,10 +350,7 @@ const Dashboard = () => {
         setLayar2(0);
         setLayar3(0);
       },
-      render: (area: any, index: number) => (
-        <span>         
-        </span>
-      ),
+      render: (area: any, index: number) => <span></span>,
     },
     //1
     //simposium
@@ -345,10 +370,7 @@ const Dashboard = () => {
         setLayar3(0);
         setLayar1(0);
       },
-      render: (area: any, index: number) => (
-        <span>          
-        </span>
-      ),
+      render: (area: any, index: number) => <span></span>,
     },
     //2
     //workshop
@@ -356,7 +378,7 @@ const Dashboard = () => {
       width: "9%",
       height: "16%",
       left: "63.4%",
-      top: "32.8%",    
+      top: "32.8%",
       style: {
         transform: "rotate(-2deg)",
         cursor: "pointer",
@@ -369,10 +391,7 @@ const Dashboard = () => {
         setLayar2(0);
         setLayar1(0);
       },
-      render: (area: any, index: number) => (
-        <span>          
-        </span>
-      ),
+      render: (area: any, index: number) => <span></span>,
     },
     //3
     {
@@ -388,7 +407,7 @@ const Dashboard = () => {
       //      href: "https://google.com",
       onMouseOver: () => console.log("map onMouseOver"),
       render: (area: any, index: number) => (
-        <span>         
+        <span>
           <ReactPlayer
             className="react-player"
             url="https://acsasurabaya2021.com/wp-content/uploads/2021/10/movie.mp4"
@@ -403,7 +422,7 @@ const Dashboard = () => {
           />
         </span>
       ),
-    }
+    },
   ];
 
   const mapAreaMenu: any[] = [
@@ -440,11 +459,24 @@ const Dashboard = () => {
       onMouseOver: () => setPejet("SESSION"),
       render: (area: any, index: number) => (
         <span>
+          <img
+            src="./ezgif.com-gif-maker.gif"
+            width="100%"
+            style={{    
+              position: "absolute",
+              width: '43px',
+              marginTop: '9px',
+              marginLeft: '24px',
+              display: isLive ? "block" : "none"
+            }}
+          />
           {pejet == "SESSION" ? (
-            <img
-              src="https://acsasurabaya2021.com/wp-content/plugins/perki/Session_Select.png"
-              width="100%"
-            />
+            <>              
+              <img
+                src="https://acsasurabaya2021.com/wp-content/plugins/perki/Session_Select.png"
+                width="100%"
+              />
+            </>
           ) : null}
         </span>
       ),
@@ -477,7 +509,7 @@ const Dashboard = () => {
       left: "78.9%",
       top: "-99px",
       height: "100%",
-      width: "7.1%",      
+      width: "7.1%",
       style: {
         background: "rgba(255, 0, 0, 0.0)",
         zIndex: "8",
@@ -540,7 +572,7 @@ const Dashboard = () => {
           ) : null}
         </span>
       ),
-    },         
+    },
     //6
     {
       left: "42.9%",
@@ -579,10 +611,7 @@ const Dashboard = () => {
       render: (area: any, index: number) => (
         <span>
           {pejet == "LIFE" ? (
-            <img
-              src="./00_BUTTON/Lifetime_Select.png"
-              width="100%"
-            />
+            <img src="./00_BUTTON/Lifetime_Select.png" width="100%" />
           ) : null}
         </span>
       ),
@@ -602,10 +631,7 @@ const Dashboard = () => {
       render: (area: any, index: number) => (
         <span>
           {pejet == "ORAL" ? (
-            <img
-              src="./00_BUTTON/Oral_Select.png"
-              width="100%"
-            />
+            <img src="./00_BUTTON/Oral_Select.png" width="100%" />
           ) : null}
         </span>
       ),
@@ -625,10 +651,7 @@ const Dashboard = () => {
       render: (area: any, index: number) => (
         <span>
           {pejet == "E_POSTER" ? (
-            <img
-              src="./00_BUTTON/Eposter_Select.png"
-              width="100%"
-            />
+            <img src="./00_BUTTON/Eposter_Select.png" width="100%" />
           ) : null}
         </span>
       ),
@@ -638,23 +661,20 @@ const Dashboard = () => {
   const mapAreaWa: any[] = [
     //0
     {
-      width: "6%",      
-      height: "100%",      
+      width: "6%",
+      height: "100%",
       left: "6.5%",
-      top: "-186px",      
+      top: "-186px",
       style: { background: "rgba(0, 255, 0, 0)", zIndex: "8" },
       onMouseOver: () => setPejet("WA"),
       render: (area: any, index: number) => (
         <span>
           {pejet == "WA" ? (
-            <img
-              src="./00_BUTTON/WA_Select.png"
-              width="100%"
-            />
+            <img src="./00_BUTTON/WA_Select.png" width="100%" />
           ) : null}
         </span>
       ),
-    }   
+    },
   ];
 
   const mapAreaFAQ: any[] = [
@@ -663,116 +683,105 @@ const Dashboard = () => {
       width: "6%",
       height: "91%",
       left: "87.5%",
-      top: "-252px",      
+      top: "-252px",
       style: { background: "rgba(0, 255, 0, 0)", zIndex: "8" },
       onMouseOver: () => setPejet("FAQ"),
       render: (area: any, index: number) => (
         <span>
           {pejet == "FAQ" ? (
-            <img
-              src="./00_BUTTON/FAQ_Select.png"
-              width="100%"
-            />
+            <img src="./00_BUTTON/FAQ_Select.png" width="100%" />
           ) : null}
         </span>
       ),
-    }   
+    },
   ];
-
 
   return (
     <>
-      <div>        
+      <div>
         {anggota && paymentstatus == "PAY" ? (
-        <div>
-          <div class="visibledesktop" style={{height: '90vh', overflow: 'hidden', marginTop: '-32px'}}>
-            <ImageMap
-              className="usage-map"
-              src={
-                "./New Img/Hall_rev 1280x620 (1).png"
-              }
-              map={mapAreaHall}
-              style={{
-                width: "90%",
-                position: "relative",
-                left: "50%",
-                zIndex: 1,
-                transform: "translate(-50%, 1px)",
-              }}
-              onMapClick={onClikHall}
-            />
-            <ImageMap
-              className="usage-map"
-              src={
-                "./00_BUTTON/MAIN_BUTTON copy.png"
-              }
-              map={mapAreaMenu}
-              style={{
-                width: "72%",
-                position: "relative",
-                left: "50%",
-                zIndex: 1,
-                transform: "translate(-50%, -99px)",
-              }}
-              onMapClick={onClikMenu}
-            />
-            <ImageMap
-              className="usage-map"
-              src={
-                "./00_BUTTON/WA_Button.png"
-              }
-              map={mapAreaWa}
-              style={{
-                width: "6%",
-                position: "relative",
-                left: "6.5%",
-                bottom: "186px",
-                zIndex: 1,                  
-              }}
-              onMapClick={onClikWa}
-            />
-            <ImageMap
-              className="usage-map"
-              src={
-                "./00_BUTTON/FAQ_Button.png"
-              }
-              map={mapAreaFAQ}
-              style={{
-                width: "6%",
-                position: "relative",
-                left: "87.5%",
-                bottom: "252px",
-                zIndex: 1,                  
-              }}
-              onMapClick={onClikFaq}
-            />
+          <div>
+            <div
+              class="visibledesktop"
+              style={{ height: "90vh", overflow: "hidden", marginTop: "-32px" }}
+            >
+              <ImageMap
+                className="usage-map"
+                src={"./New Img/Hall_rev 1280x620 (1).png"}
+                map={mapAreaHall}
+                style={{
+                  width: "90%",
+                  position: "relative",
+                  left: "50%",
+                  zIndex: 1,
+                  transform: "translate(-50%, 1px)",
+                }}
+                onMapClick={onClikHall}
+              />
+              <ImageMap
+                className="usage-map"
+                src={"./00_BUTTON/MAIN_BUTTON copy.png"}
+                map={mapAreaMenu}
+                style={{
+                  width: "72%",
+                  position: "relative",
+                  left: "50%",
+                  zIndex: 1,
+                  transform: "translate(-50%, -99px)",
+                }}
+                onMapClick={onClikMenu}
+              />
+              <ImageMap
+                className="usage-map"
+                src={"./00_BUTTON/WA_Button.png"}
+                map={mapAreaWa}
+                style={{
+                  width: "6%",
+                  position: "relative",
+                  left: "6.5%",
+                  bottom: "186px",
+                  zIndex: 1,
+                }}
+                onMapClick={onClikWa}
+              />
+              <ImageMap
+                className="usage-map"
+                src={"./00_BUTTON/FAQ_Button.png"}
+                map={mapAreaFAQ}
+                style={{
+                  width: "6%",
+                  position: "relative",
+                  left: "87.5%",
+                  bottom: "252px",
+                  zIndex: 1,
+                }}
+                onMapClick={onClikFaq}
+              />
+            </div>
+            <div class="visibledevice">
+              <ImageMap
+                className="usage-map"
+                src={"./New Img/Hall_rev 1280x620 (1).png"}
+                style={{
+                  width: "100%",
+                  position: "relative",
+                }}
+                onMapClick={onClikHall}
+              />
+              <ImageMap
+                className="usage-map"
+                src={
+                  "https://acsasurabaya2021.com/wp-content/plugins/perki/Mobile Button.png"
+                }
+                map={mapAreamobile}
+                style={{
+                  width: "100%",
+                  position: "relative",
+                }}
+                onMapClick={onClikHallMobile}
+              />
+            </div>
           </div>
-          <div class="visibledevice">
-            <ImageMap
-              className="usage-map"
-              src={
-                "./New Img/Hall_rev 1280x620 (1).png"
-              }              
-              style={{
-                width: "100%",
-                position: "relative",                
-              }}
-              onMapClick={onClikHall}
-            />
-            <ImageMap
-              className="usage-map"
-              src={
-                "https://acsasurabaya2021.com/wp-content/plugins/perki/Mobile Button.png"
-              }
-              map={mapAreamobile}
-              style={{
-                width: "100%",
-                position: "relative",                
-              }}
-              onMapClick={onClikHallMobile}
-            />
-          </div>
-        </div>
         ) : anggota && paymentstatus != "PAY" ? (
           <div style={{ fontSize: "25px", marginLeft: "15px" }}>
             Mohon klik{" "}
@@ -799,7 +808,7 @@ const Dashboard = () => {
             untuk exit.
           </div>
         ) : null}
-      </div>     
+      </div>
     </>
   );
 };

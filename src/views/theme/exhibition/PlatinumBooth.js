@@ -4,7 +4,7 @@ import ReactPlayer from "react-player";
 import "antd/dist/antd.css";
 import { useHistory } from "react-router-dom";
 import { ImageMap } from "@qiuz/react-image-map";
-import { Modal, Button, Form, Input } from "antd";
+import { Modal, Button, Form, Input, Tooltip } from "antd";
 import {
   CModal,
   CModalHeader,
@@ -65,7 +65,11 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
         borderRadius: "50%",
       },
       onMouseOver: () => {},
-      render: (area: any, index: number) => <span></span>,
+      render: (area: any, index: number) => (
+        <Tooltip placement="left" title={"Contact WhatsApp"} defaultVisible={true}>          
+          <div style={{width: "100%", height: "100%",}}></div>
+        </Tooltip>      
+      ),
     },
     {
       width: "8.6%",
@@ -144,7 +148,9 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
       },
       onMouseOver: () => {},
       render: (area: any, index: number) => (
-        <img width="100%" height="100%" src="./guests-book.png" />
+        <Tooltip placement="right" title={"Guest Book"} defaultVisible={true}>
+          <img width="100%" height="100%" src="./guests-book.png" />
+        </Tooltip>
       ),
     },
   ];
@@ -159,46 +165,46 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
       setVisibleModal(true);
       setViewType("PDF");
     } else if (index == 2) {
-      if(dataBooth.master[0].pic != "-" && dataBooth.master[0].pic != null){
+      if (dataBooth.master[0].pic != "-" && dataBooth.master[0].pic != null) {
         window.open(`https://wa.me/${dataBooth.master[0].pic}`);
-      }else{
-        alert('this WA number is unavaible')
+      } else {
+        alert("this WA number is unavaible");
       }
       // console.log("Open WA ME MODAL");
     } else if (index == 3) {
-      playVideo(0);   
+      playVideo(0);
       // console.log("Open VIDEO MODAL");
       // setVisibleModal(true);
-      // setViewType("Video"); 
+      // setViewType("Video");
     } else if (index == 4) {
-      playVideo(1);   
+      playVideo(1);
     } else if (index == 5) {
-      playVideo(2);   
+      playVideo(2);
     } else if (index == 6) {
-      playVideo(3);   
+      playVideo(3);
     } else if (index == 7) {
       playVideo(4);
     } else if (index == 8) {
       // console.log("Open Modal Guest Book");
-      setGuestBookModal(true);            
+      setGuestBookModal(true);
     }
   };
 
   const playVideo = (index) => {
     let dataVideo = dataBooth.video[index];
-      if(dataVideo != undefined){
-        let UrlFile;
-        if (dataVideo.type == "EMBED") {
-          UrlFile = dataVideo.link;
-        } else {
-          UrlFile = dirFile + "video/" + dataVideo.file;
-        }
-        setVisibleViewModal(true);
-        setFileView(UrlFile);
-      }else{
-        alert('Video Is Unavaible')
+    if (dataVideo != undefined) {
+      let UrlFile;
+      if (dataVideo.type == "EMBED") {
+        UrlFile = dataVideo.link;
+      } else {
+        UrlFile = dirFile + "video/" + dataVideo.file;
       }
-  }
+      setVisibleViewModal(true);
+      setFileView(UrlFile);
+    } else {
+      alert("Video Is Unavaible");
+    }
+  };
 
   const openPdfReader = (file) => {
     let UrlFile = dirFile + "pdf/" + file;
@@ -224,7 +230,8 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
       ...value,
       nama: JSON.parse(localStorage.getItem("userData")).nama,
       phone: JSON.parse(localStorage.getItem("userData")).userData.mobilephone,
-      instansi: JSON.parse(localStorage.getItem("userData")).userData.affiliation,
+      instansi: JSON.parse(localStorage.getItem("userData")).userData
+        .affiliation,
       booth_id: dataBooth.master[0].id,
       peserta_id: JSON.parse(localStorage.getItem("userData")).userData.id,
     };
@@ -237,12 +244,12 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
     })
       .then((res) => {
         console.log(res.data);
-        if(res.data.status == 1){
+        if (res.data.status == 1) {
           form.resetFields();
-          setGuestBookModal(false)
-          alert(res.data.message)
-        }else{
-          alert(res.data.message)
+          setGuestBookModal(false);
+          alert(res.data.message);
+        } else {
+          alert(res.data.message);
         }
       })
       .catch((err) => {
@@ -277,33 +284,37 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
               onFinish={onFinish}
               onFinishFailed={onFinishFailed}
               autoComplete="off"
-            >              
+            >
               <Form.Item label="Name" name="nama">
-                <Input           
-                  disabled={true}        
-                  defaultValue={JSON.parse(localStorage.getItem("userData")).nama}             
+                <Input
+                  disabled={true}
+                  defaultValue={
+                    JSON.parse(localStorage.getItem("userData")).nama
+                  }
                   placeholder="Name"
                 />
               </Form.Item>
 
-              <Form.Item
-                label="Phone"
-                name="phone"                
-              >
-                <Input 
-                  disabled={true}        
-                  defaultValue={JSON.parse(localStorage.getItem("userData")).userData.mobilephone}             
-                  placeholder="Phone" />
+              <Form.Item label="Phone" name="phone">
+                <Input
+                  disabled={true}
+                  defaultValue={
+                    JSON.parse(localStorage.getItem("userData")).userData
+                      .mobilephone
+                  }
+                  placeholder="Phone"
+                />
               </Form.Item>
 
-              <Form.Item
-                label="Affiliation"
-                name="instansi"                
-              >
-                <Input 
-                  disabled={true}        
-                  defaultValue={JSON.parse(localStorage.getItem("userData")).userData.affiliation}             
-                  placeholder="Affiliation" />
+              <Form.Item label="Affiliation" name="instansi">
+                <Input
+                  disabled={true}
+                  defaultValue={
+                    JSON.parse(localStorage.getItem("userData")).userData
+                      .affiliation
+                  }
+                  placeholder="Affiliation"
+                />
               </Form.Item>
 
               <Form.Item label="" name="desc">

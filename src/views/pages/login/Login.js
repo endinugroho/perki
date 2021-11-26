@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 import {
   CButton,
   CCard,
@@ -12,24 +12,39 @@ import {
   CInputGroup,
   CInputGroupPrepend,
   CInputGroupText,
-  CRow
-} from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-import axios from 'axios';
-import { useState,useEffect} from 'react';
-import { Image,Modal,Button, Space} from 'antd';
+  CRow,
+} from "@coreui/react";
+import CIcon from "@coreui/icons-react";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { Image, Modal, Button, Space, Checkbox  } from "antd";
 import { useHistory } from "react-router-dom";
-import 'antd/dist/antd.css';
-import ReactDOM from 'react-dom';
-import Countdown from 'react-countdown';
-
+import "antd/dist/antd.css";
+import ReactDOM from "react-dom";
+import Countdown from "react-countdown";
 
 const Login = () => {
   let history = useHistory();
 
-  const [myform,setMyform] = useState({email:"",password:""});
+  const [myform, setMyform] = useState({ email: "", password: "" });
 
   const Completionist = () => <span>You are good to go!</span>;
+
+  useEffect(() => {
+    if (localStorage.email !== "" && localStorage.password !== "") {    
+      setMyform({email : localStorage.email, password: localStorage.password})    
+    }      
+  }, [])
+
+  function lsRememberMe(email, pass) {
+    if (email !== "" && pass !== "") {
+      localStorage.email = email;
+      localStorage.password = pass;      
+    } else {
+      localStorage.email = "";
+      localStorage.password = "";      
+    }
+  }
 
   // Renderer callback with condition
   const renderer = ({ hours, minutes, seconds, completed }) => {
@@ -46,54 +61,58 @@ const Login = () => {
     console.log("masuk sini");
 
     const payload = {
-      email:myform.email,
+      email: myform.email,
       // user:myform.username,
-      password:myform.password,
-      mtd:"SIGNIN"
-    }
+      password: myform.password,
+      mtd: "SIGNIN",
+    };
     axios({
-      url: "https://acsasurabaya2021.com/wp-content/plugins/perki/kirimdata.php",      
+      url: "https://acsasurabaya2021.com/wp-content/plugins/perki/kirimdata.php",
       // url: "http://localhost/perki/kirimdata.php",
       data: payload,
       contentType: "application/json",
-      method: 'POST',
+      method: "POST",
     })
       .then((data) => {
         var temp = data.data;
-        console.log(temp);          
-        localStorage.setItem("userData", JSON.stringify(temp)) ;
-          localStorage.setItem("loginid",temp.data);
-          localStorage.setItem("nama",temp.nama);
-          if (temp.status=="ANGGOTA") {
-            localStorage.setItem("status",temp.status);
-          } else {
-            localStorage.setItem("status", "");
-          }
-          if (temp.sukses==="OK") {
-            history.push('/dashboard');
-          } else {
-            alert("user atau password salah");
-          }
-
+        console.log(temp);
+        localStorage.setItem("userData", JSON.stringify(temp));
+        localStorage.setItem("loginid", temp.data);
+        localStorage.setItem("nama", temp.nama);
+        if (temp.status == "ANGGOTA") {
+          localStorage.setItem("status", temp.status);
+        } else {
+          localStorage.setItem("status", "");
+        }
+        if (temp.sukses === "OK") {
+          history.push("/dashboard");
+          lsRememberMe(myform.email, myform.password)
+        } else {
+          alert("user atau password salah");
+        }
       })
       .catch(() => {
-        console.log('Internal server error');
+        console.log("Internal server error");
       });
-
-  }
-
+  };
 
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
         <CRow className="justify-content-center">
           <CCol md="8">
-          <a href="https://acsasurabaya2021.com"><Image preview={false} src="https://acsasurabaya2021.com/wp-content/uploads/2019/05/Logo-atas.png" width="200px" /></a>
-            <CCardGroup >
+            <a href="https://acsasurabaya2021.com">
+              <Image
+                preview={false}
+                src="https://acsasurabaya2021.com/wp-content/uploads/2019/05/Logo-atas.png"
+                width="200px"
+              />
+            </a>
+            <CCardGroup>
               <CCard className="p-4">
                 <CCardBody>
                   <CForm>
-                  {/* {JSON.stringify(myform)} */}
+                    {/* {JSON.stringify(myform)} */}
                     <h1>Login</h1>
                     <p className="text-muted">Sign In to your account</p>
                     <CInputGroup className="mb-3">
@@ -102,7 +121,16 @@ const Login = () => {
                           <CIcon name="cil-user" />
                         </CInputGroupText>
                       </CInputGroupPrepend>
-                      <CInput type="text" placeholder="Email" autoComplete="username" onChange={e =>setMyform({...myform,email:e.target.value})} value={myform.username} />
+                      <CInput
+                        type="text"
+                        placeholder="Email"
+                        autoComplete="username"
+                        id="email"
+                        onChange={(e) =>
+                          setMyform({ ...myform, email: e.target.value })
+                        }
+                        value={myform.email}
+                      />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupPrepend>
@@ -110,14 +138,31 @@ const Login = () => {
                           <CIcon name="cil-lock-locked" />
                         </CInputGroupText>
                       </CInputGroupPrepend>
-                      <CInput type="password" placeholder="Password" autoComplete="current-password" onChange={e =>setMyform({...myform,password:e.target.value})} value={myform.password} />
-                    </CInputGroup>
+                      <CInput
+                        type="password"
+                        placeholder="Password"
+                        autoComplete="current-password"
+                        id="pass"
+                        onChange={(e) =>
+                          setMyform({ ...myform, password: e.target.value })
+                        }
+                        value={myform.password}
+                      />
+                    </CInputGroup>                    
                     <CRow>
                       <CCol xs="6">
-                        <CButton color="primary" className="px-4" onClick={()=>loginklik()}>Login</CButton>
+                        <CButton
+                          color="primary"
+                          className="px-4"
+                          onClick={() => loginklik()}
+                        >
+                          Login
+                        </CButton>                        
                       </CCol>
                       <CCol xs="6" className="text-right">
-                        <CButton color="link" className="px-0">Forgot password?</CButton>
+                        <CButton color="link" className="px-0">
+                          Forgot password?
+                        </CButton>
                       </CCol>
                     </CRow>
                     <CRow>
@@ -150,7 +195,7 @@ const Login = () => {
               </CCard> */}
             </CCardGroup>
             <div class="visibledevice">
-            {/* <CCardGroup >
+              {/* <CCardGroup >
               <CCard className="text-white py-5" style={{ width: '100%',backgroundColor:"rgb(0,70,129)" }}>
                 <CCardBody className="text-center">
                   <div style={{backgroundColor:"rgb(0,70,129)"}}>
@@ -164,12 +209,15 @@ const Login = () => {
               </CCard>
             </CCardGroup> */}
             </div>
-            <Image preview={false} src="https://acsasurabaya2021.com/images/login.jpg" />
+            <Image
+              preview={false}
+              src="https://acsasurabaya2021.com/images/login.jpg"
+            />
           </CCol>
         </CRow>
       </CContainer>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
