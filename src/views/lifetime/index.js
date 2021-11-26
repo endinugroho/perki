@@ -27,33 +27,28 @@ const Index = () => {
       <CCard>
         <CCardHeader style={{ fontSize: "25px", overflow: "hidden" }}>
           <span className="badge badge-info">Lifetime Achievement Award</span>
-          {data && (
-            <div
-              style={{
-                display: "inline-block",
-                fontSize: "15px",
-                width: "30%",
-                position: "absolute",
-                left: "35%",
-                textAlign: "center",
-                marginTop: "-10px",
-              }}
-            >
-              <p>
-                {" "}
-                <span style={{ fontSize: "20px", fontWeight: "800" }}>
-                  {data.nama}
-                </span>{" "}
-                <br /> {data.desc}
-              </p>
-            </div>
-          )}
         </CCardHeader>
         <CCardBody>
           <CRow>
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
               {data ? (
                 <>
+                  <div
+                    style={{
+                      display: "inline-block",
+                      fontSize: "15px",
+                      width: "30%",
+                      textAlign: "center",
+                    }}
+                  >
+                    <p>
+                      {" "}
+                      <span style={{ fontSize: "20px", fontWeight: "800" }}>
+                        {data.nama}
+                      </span>{" "}
+                      <br /> {data.desc}
+                    </p>
+                  </div>
                   <ReactPlayer
                     className="react-player"
                     url={`${process.env.REACT_APP_FILE}video/${data.video}`}

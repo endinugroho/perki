@@ -16,9 +16,19 @@ const Index = () => {
       .get(`${process.env.REACT_APP_API_URL}?function=getOralZoom`)
       .then((res) => {
         // console.log(res);
-        let dataRes = res.data.data
-        setData(dataRes)
-        openZoom(dataRes.zoom_room_id, dataRes.passcode)
+        if(res.data.status == 1){
+          let dataRes = res.data.data
+          if(dataRes.zoom_room_id != ""){
+            setData(dataRes)
+            openZoom(dataRes.zoom_room_id, dataRes.passcode)
+          }else{
+            setData([])
+            alert("this Feature is not active");
+          }
+        }else{
+          setData([])
+          alert("this Feature is not active");
+        }
       })
       .catch((err) => console.log(err));
   };
@@ -43,15 +53,28 @@ const Index = () => {
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
               {data ? (
                 <>
-                  <h4>
-                    {data.name}                    
-                  </h4>
-                  <p>{data.desc}</p>
-                  <small><i>If zoom not opened please refresh this web or contact admin</i></small>
+                  {
+                    data.name != undefined ? (
+                      <>
+                      <h4>
+                        {data.name}                    
+                      </h4>
+                      <p>{data.desc}</p>
+                      <small><i>If zoom not opened please refresh this web or contact admin</i></small>
+                      </>
+                    ) : null
+                  }
                 </>                                  
               ) : (
                 <h4>Please wait</h4>
               )}
+              {
+                data && (
+                  <>
+                    {data.length == 0 ? <h4>No Data</h4> : null}
+                  </>
+                )
+              }
             </div>
           </CRow>
         </CCardBody>

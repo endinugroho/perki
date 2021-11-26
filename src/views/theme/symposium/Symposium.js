@@ -273,6 +273,7 @@ const Colors = () => {
                 <>
                   <Button
                     type="primary"
+                    size="large"
                     onClick={() => {
                       changeDataSympo(1);
                     }}
@@ -282,6 +283,7 @@ const Colors = () => {
                   </Button>
                   <Button
                     type="primary"
+                    size="large"
                     onClick={() => {
                       changeDataSympo(2, 1);
                     }}
@@ -291,6 +293,7 @@ const Colors = () => {
                   </Button>
                   <Button
                     type="primary"
+                    size="large"
                     onClick={() => {
                       changeDataSympo(3, 2);
                     }}

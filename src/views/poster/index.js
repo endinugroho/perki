@@ -20,11 +20,14 @@ const Index = () => {
   const fetchData = () => {
     axios
       .get(`${process.env.REACT_APP_API_URL}?function=getPoster`)
-      .then((res) => {
-        // console.log(res);
-        let dataRes = res.data.data;
-        setData(dataRes);
-        // openZoom(dataRes.zoom_room_id, dataRes.passcode)
+      .then((res) => {        
+        console.log(res.data.status)
+        if(res.data.status == 1){
+          let dataRes = res.data.data;
+          setData(dataRes);
+        }else{
+          setData([]);
+        }
       })
       .catch((err) => console.log(err));
   };
@@ -147,6 +150,13 @@ const Index = () => {
               ) : (
                 <h4>Please wait</h4>
               )}
+              {
+                data && (
+                  <>
+                    {data.length == 0 ? <h4>No Data</h4> : null}
+                  </>
+                )
+              }
             </div>
           </CRow>
         </CCardBody>

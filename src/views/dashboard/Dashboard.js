@@ -176,6 +176,15 @@ const Dashboard = () => {
       // wa
       openInNewTab("https://wa.me/6282232683785");
     }
+    if (index == 8) {
+      history.push("/lifeTimeAchievementAward");
+    }
+    if (index == 9) {
+      history.push("/oralPresentation");
+    }
+    if (index == 10) {
+      history.push("/e-Poster");
+    }
   };
 
   const onClikMenu = (area, index: number) => {
@@ -242,31 +251,41 @@ const Dashboard = () => {
   const mapAreamobile: any[] = [
     //0
     {
-      left: "5.5%",
-      top: "30%",
-      height: "22%",
-      width: "44%",
-      // href: "https://detik.com",
+      left: "-3.5%",
+      top: "18%",
+      height: "18%",
+      width: "53%",      
       style: { background: "rgba(255, 0, 0, 0.0)", zIndex: "0" },
       onMouseOver: () => console.log("map onMouseOver"),
-      render: (area: any, index: number) => <span></span>,
+      render: (area: any, index: number) => (
+        <img
+            src="./ezgif.com-gif-maker.gif"
+            width="100%"
+            style={{    
+              position: "absolute",
+              width: '43px',
+              marginTop: '9px',
+              marginLeft: '189px',
+              display: isLive ? "block" : "none"
+            }}
+          />
+      ),
     },
     //1
     {
-      left: "5.5%",
-      top: "55%",
-      height: "22%",
-      width: "44%",
-      // href: "https://detik.com",
+      left: "-2.5%",
+      top: "37%",
+      height: "17.8%",
+      width: "52%",
       style: { background: "rgba(255, 0, 0, 0.0)", zIndex: "0" },
       onMouseOver: () => console.log("map onMouseOver"),
       render: (area: any, index: number) => <span></span>,
     },
     //2
     {
-      left: "86.5%",
-      top: "80.8%",
-      height: "20%",
+      left: "93.5%",
+      top: "73.8%",
+      height: "26%",
       width: "10%",
       // href: "https://detik.com",
       style: { background: "rgba(255, 0, 0, 0.0)", zIndex: "0" },
@@ -275,11 +294,10 @@ const Dashboard = () => {
     },
     //3
     {
-      left: "50.5%",
-      top: "30%",
-      height: "22%",
-      width: "44%",
-      // href: "https://detik.com",
+      left: "-2.5%",
+      top: "74%",
+      height: "18%",
+      width: "52%",
       style: { background: "rgba(255, 0, 0, 0.0)", zIndex: "0" },
       onMouseOver: () => console.log("map onMouseOver"),
       render: (area: any, index: number) => <span></span>,
@@ -288,19 +306,18 @@ const Dashboard = () => {
     {
       left: "50.5%",
       top: "55%",
-      height: "22%",
-      width: "44%",
-      // href: "https://detik.com",
+      height: "18%",
+      width: "52%",
       style: { background: "rgba(255, 0, 0, 0.0)", zIndex: "0" },
       onMouseOver: () => console.log("map onMouseOver"),
       render: (area: any, index: number) => <span></span>,
     },
     //5
     {
-      left: "50.5%",
-      top: "6%",
-      height: "22%",
-      width: "44%",
+      left: "-2.5%",
+      top: "55.4%",
+      height: "18%",
+      width: "52%",
       // href: "https://detik.com",
       style: { background: "rgba(255, 0, 0, 0.0)", zIndex: "0" },
       onMouseOver: () => console.log("map onMouseOver"),
@@ -308,21 +325,52 @@ const Dashboard = () => {
     },
     //6
     {
-      left: "76.5%",
-      top: "80%",
-      height: "15%",
-      width: "10%",
-      // href: "https://detik.com",
+      left: "81.5%",
+      top: "74%",
+      height: "26%",
+      width: "11%",
       style: { background: "rgba(255, 0, 0, 0)", zIndex: "5" },
       onMouseOver: () => console.log("map onMouseOver"),
       render: (area: any, index: number) => <span></span>,
     },
     //7
     {
-      left: "65.5%",
-      top: "80%",
-      height: "15%",
+      left: "70.5%",
+      top: "74%",
+      height: "26%",
       width: "10%",
+      // href: "https://detik.com",
+      style: { background: "rgba(255, 0, 0, 0)", zIndex: "2" },
+      onMouseOver: () => console.log("map onMouseOver"),
+      render: (area: any, index: number) => <span></span>,
+    },
+    //8
+    {
+      left: "50.5%",
+      top: "0%",
+      height: "17%",
+      width: "52%",
+      style: { background: "rgba(255, 0, 0, 0)", zIndex: "2" },
+      onMouseOver: () => console.log("map onMouseOver"),
+      render: (area: any, index: number) => <span></span>,
+    },
+    //9
+    {
+      left: "50.5%",
+      top: "18%",
+      height: "17%",
+      width: "52%",
+      // href: "https://detik.com",
+      style: { background: "rgba(255, 0, 0, 0)", zIndex: "2" },
+      onMouseOver: () => console.log("map onMouseOver"),
+      render: (area: any, index: number) => <span></span>,
+    },
+    //10
+    {
+      left: "50.5%",
+      top: "34%",
+      height: "17%",
+      width: "52%",
       // href: "https://detik.com",
       style: { background: "rgba(255, 0, 0, 0)", zIndex: "2" },
       onMouseOver: () => console.log("map onMouseOver"),
@@ -336,8 +384,8 @@ const Dashboard = () => {
     {
       width: "8.9%",
       height: "15.5%",
-      left: "27.8%",
-      top: "33%",
+      left: "27.4%",
+      top: "32.8%",
       style: {
         background: "rgba(0, 0, 255, " + layar1 + ")",
         transform: "rotate(2deg)",
@@ -377,7 +425,7 @@ const Dashboard = () => {
     {
       width: "9%",
       height: "16%",
-      left: "63.4%",
+      left: "63.7%",
       top: "32.8%",
       style: {
         transform: "rotate(-2deg)",
@@ -703,14 +751,14 @@ const Dashboard = () => {
           <div>
             <div
               class="visibledesktop"
-              style={{ height: "90vh", overflow: "hidden", marginTop: "-32px" }}
+              style={{ height: "93vh", overflow: "hidden", marginTop: "-32px" }}
             >
               <ImageMap
                 className="usage-map"
                 src={"./New Img/Hall_rev 1280x620 (1).png"}
                 map={mapAreaHall}
                 style={{
-                  width: "90%",
+                  width: "92%",
                   position: "relative",
                   left: "50%",
                   zIndex: 1,
@@ -765,18 +813,21 @@ const Dashboard = () => {
                 style={{
                   width: "100%",
                   position: "relative",
+                  marginTop: "-30px"
                 }}
                 onMapClick={onClikHall}
               />
               <ImageMap
                 className="usage-map"
                 src={
-                  "https://acsasurabaya2021.com/wp-content/plugins/perki/Mobile Button.png"
+                  "./MOBILE BUTTON/Mobile Button copy.png"
                 }
                 map={mapAreamobile}
                 style={{
-                  width: "100%",
+                  width: "143%",
                   position: "relative",
+                  left: "-21.5%",
+                  marginTop: '-33px'
                 }}
                 onMapClick={onClikHallMobile}
               />
