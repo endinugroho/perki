@@ -602,7 +602,10 @@ const Colors = () => {
         </CCardHeader>
         <CCardBody>
           <CRow>
-            <div className="col-lg-12 col-md-12 col-sm-12 text-center">
+            <p style={{ width: "97%", margin: "0px auto 05px", textAlign: "center" }}>
+              Click the button below to view the workshop
+            </p>
+            <div className="col-lg-12 col-md-12 col-sm-12 text-center">                        
               {workshopku.indexOf("WS 1 ") > -1 ? (
                 <Button
                   type="primary"
@@ -923,7 +926,7 @@ const Colors = () => {
                       }}
                     >
                       <h4>
-                        Workshop{" "}
+                        Workshop{" "}{dataWs.master.serial_number}
                         <p style={{ textAlign: "center" }}>
                           {dataWs.master.title}
                         </p>
