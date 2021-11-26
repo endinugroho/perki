@@ -6,7 +6,8 @@ import { useHistory } from "react-router-dom";
 import './style.css';
 
 const baseUrl = "https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/theme/session";
-const ytId = localStorage.getItem('meetingid');
+// document.getElementsByTagName('iframe')[0].contentWindow.getElementsByClassName('ytp-watch-later-button')[0].style.display = 'none';
+// const ytId = localStorage.getItem('meetingid');
 // const baseUrl = "http://localhost:3000/";
 
 const Colors = () => {  
@@ -39,11 +40,10 @@ const Colors = () => {
                   // transform: "translate(-50%, 0)",
                   // left: "50%",
                 }}
-                src={`https://www.youtube.com/embed/${ytId}?&showinfo=0&autoplay=1&modestbranding=1&rel=0&iv_load_policy=3&cc_load_policy=1&hd=1`}
+                src={`https://www.youtube-nocookie.com/embed/2Q58cPgiKuA?controls=1&showinfo=0&autoplay=1&modestbranding=1&rel=0&iv_load_policy=3&cc_load_policy=1&hd=1`}
                 title="YouTube video player" 
                 frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"                 
             ></iframe>                            
               <iframe 
                 className="col-lg-3 col-md-12 col-sm-12"
@@ -56,7 +56,7 @@ const Colors = () => {
                   // transform: "translate(-50%, 0)",
                   // left: "50%",
                 }}
-                src={`https://www.youtube.com/live_chat?v=${ytId}&embed_domain=https://acsasurabaya2021.com`} 
+                src={`https://www.youtube.com/live_chat?v=2Q58cPgiKuA&embed_domain=localhost`} 
                 title="YouTube video player" 
                 frameborder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 

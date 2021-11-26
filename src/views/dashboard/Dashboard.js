@@ -47,6 +47,7 @@ const Dashboard = () => {
   const [anggota1, setAnggota1] = useState();
   const [paymentstatus, setPaymentstatus] = useState("PAY");
   const [workshopku, setWorkshopku] = useState("");
+  const [isLive, setIsLive] = useState(null);
 
   let history = useHistory();
   // const vidRef = useRef(null);
@@ -117,6 +118,12 @@ const Dashboard = () => {
     // handlePlayVideo();
   }, []);
 
+  useEffect(() => {
+    if(isLive == null){
+      getCurrentLive()
+    }
+  }, [isLive])
+
   const openInNewTab = (url) => {
     window.open(url);
     // const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
@@ -127,51 +134,60 @@ const Dashboard = () => {
     setJadwal(value);
   };
 
-  const onClikHall = (area, index: number) => {    
+  const onClikHall = (area, index: number) => {
     if (index == 0) {
       console.log("exhibition");
       history.push("/theme/exhibition");
-    }    
+    }
     if (index == 1) {
       history.push("/theme/symposium");
     }
     if (index == 2) {
       history.push("/theme/workshop");
-    }    
+    }
   };
-  
-  const onClikHallMobile = (area, index: number) => {    
+
+  const onClikHallMobile = (area, index: number) => {
     if (index == 0) {
       history.push("/theme/session");
-    }    
+    }
     if (index == 1) {
       history.push("/theme/exhibition");
-    }    
+    }
     if (index == 2) {
-      // exit      
-      history.push("/theme/login");      
+      // exit
+      history.push("/theme/login");
     }
     if (index == 3) {
       history.push("/theme/workshop");
-    }    
+    }
     if (index == 4) {
       //acount
       history.push("/theme/sponsor");
-    }    
+    }
     if (index == 5) {
       history.push("/theme/symposium");
-    }    
+    }
     if (index == 6) {
       // faq
       history.push("/theme/faq");
-    }    
+    }
     if (index == 7) {
       // wa
       openInNewTab("https://wa.me/6282232683785");
-    }    
+    }
+    if (index == 8) {
+      history.push("/lifeTimeAchievementAward");
+    }
+    if (index == 9) {
+      history.push("/oralPresentation");
+    }
+    if (index == 10) {
+      history.push("/e-Poster");
+    }
   };
 
-  const onClikMenu = (area, index: number) => {            
+  const onClikMenu = (area, index: number) => {
     if (index == 1) {
       setPejet("SESSION");
       history.push("/theme/session");
@@ -182,11 +198,11 @@ const Dashboard = () => {
     }
     if (index == 3) {
       setPejet("EXIT");
-      history.push("/theme/login");      
+      history.push("/theme/login");
     }
     if (index == 4) {
-      setPejet("SYMPOSIUM");      
-      history.push("/theme/symposium");      
+      setPejet("SYMPOSIUM");
+      history.push("/theme/symposium");
     }
     if (index == 5) {
       setPejet("ACCOUNT");
@@ -196,49 +212,80 @@ const Dashboard = () => {
     if (index == 6) {
       setPejet("WORKSHOP");
       history.push("/theme/workshop");
-    }     
+    }
+    if (index == 7) {
+      setPejet("LIFE");
+      history.push("/lifeTimeAchievementAward");
+    }
+    if (index == 8) {
+      setPejet("ORAL");
+      history.push("/oralPresentation");
+    }
+
+    if (index == 9) {
+      setPejet("E_POSTER");
+      history.push("/e-Poster");
+    }
   };
 
-  const onClikFaq = (area, index: number) => {    
+  const onClikFaq = (area, index: number) => {
     if (index == 0) {
       history.push("/theme/faq");
     }
   };
 
-  const onClikWa = (area, index: number) => {    
+  const onClikWa = (area, index: number) => {
     if (index == 0) {
       openInNewTab("https://wa.me/6282232683785");
-    }    
+    }
   };
+
+  function getCurrentLive(){
+    axios.get(`${process.env.REACT_APP_API_URL}?function=getCurrentRun`).then((res) => {      
+      console.log(res)
+      setIsLive(res.data.isLive)
+      // return res.data.isLive;
+    });    
+  }
 
   const mapAreamobile: any[] = [
     //0
     {
-      left: "5.5%",
-      top: "30%",
-      height: "22%",
-      width: "44%",
-      // href: "https://detik.com",
+      left: "-3.5%",
+      top: "18%",
+      height: "18%",
+      width: "53%",      
       style: { background: "rgba(255, 0, 0, 0.0)", zIndex: "0" },
       onMouseOver: () => console.log("map onMouseOver"),
-      render: (area: any, index: number) => <span></span>,
+      render: (area: any, index: number) => (
+        <img
+            src="./ezgif.com-gif-maker.gif"
+            width="100%"
+            style={{    
+              position: "absolute",
+              width: '43px',
+              marginTop: '9px',
+              marginLeft: '189px',
+              display: isLive ? "block" : "none"
+            }}
+          />
+      ),
     },
     //1
     {
-      left: "5.5%",
-      top: "55%",
-      height: "22%",
-      width: "44%",
-      // href: "https://detik.com",
+      left: "-2.5%",
+      top: "37%",
+      height: "17.8%",
+      width: "52%",
       style: { background: "rgba(255, 0, 0, 0.0)", zIndex: "0" },
       onMouseOver: () => console.log("map onMouseOver"),
       render: (area: any, index: number) => <span></span>,
     },
     //2
     {
-      left: "86.5%",
-      top: "80.8%",
-      height: "20%",
+      left: "93.5%",
+      top: "73.8%",
+      height: "26%",
       width: "10%",
       // href: "https://detik.com",
       style: { background: "rgba(255, 0, 0, 0.0)", zIndex: "0" },
@@ -247,11 +294,10 @@ const Dashboard = () => {
     },
     //3
     {
-      left: "50.5%",
-      top: "30%",
-      height: "22%",
-      width: "44%",
-      // href: "https://detik.com",
+      left: "-2.5%",
+      top: "74%",
+      height: "18%",
+      width: "52%",
       style: { background: "rgba(255, 0, 0, 0.0)", zIndex: "0" },
       onMouseOver: () => console.log("map onMouseOver"),
       render: (area: any, index: number) => <span></span>,
@@ -260,19 +306,18 @@ const Dashboard = () => {
     {
       left: "50.5%",
       top: "55%",
-      height: "22%",
-      width: "44%",
-      // href: "https://detik.com",
+      height: "18%",
+      width: "52%",
       style: { background: "rgba(255, 0, 0, 0.0)", zIndex: "0" },
       onMouseOver: () => console.log("map onMouseOver"),
       render: (area: any, index: number) => <span></span>,
     },
     //5
     {
-      left: "50.5%",
-      top: "6%",
-      height: "22%",
-      width: "44%",
+      left: "-2.5%",
+      top: "55.4%",
+      height: "18%",
+      width: "52%",
       // href: "https://detik.com",
       style: { background: "rgba(255, 0, 0, 0.0)", zIndex: "0" },
       onMouseOver: () => console.log("map onMouseOver"),
@@ -280,21 +325,52 @@ const Dashboard = () => {
     },
     //6
     {
-      left: "76.5%",
-      top: "80%",
-      height: "15%",
-      width: "10%",
-      // href: "https://detik.com",
+      left: "81.5%",
+      top: "74%",
+      height: "26%",
+      width: "11%",
       style: { background: "rgba(255, 0, 0, 0)", zIndex: "5" },
       onMouseOver: () => console.log("map onMouseOver"),
       render: (area: any, index: number) => <span></span>,
-    },    
+    },
     //7
     {
-      left: "65.5%",
-      top: "80%",
-      height: "15%",
+      left: "70.5%",
+      top: "74%",
+      height: "26%",
       width: "10%",
+      // href: "https://detik.com",
+      style: { background: "rgba(255, 0, 0, 0)", zIndex: "2" },
+      onMouseOver: () => console.log("map onMouseOver"),
+      render: (area: any, index: number) => <span></span>,
+    },
+    //8
+    {
+      left: "50.5%",
+      top: "0%",
+      height: "17%",
+      width: "52%",
+      style: { background: "rgba(255, 0, 0, 0)", zIndex: "2" },
+      onMouseOver: () => console.log("map onMouseOver"),
+      render: (area: any, index: number) => <span></span>,
+    },
+    //9
+    {
+      left: "50.5%",
+      top: "18%",
+      height: "17%",
+      width: "52%",
+      // href: "https://detik.com",
+      style: { background: "rgba(255, 0, 0, 0)", zIndex: "2" },
+      onMouseOver: () => console.log("map onMouseOver"),
+      render: (area: any, index: number) => <span></span>,
+    },
+    //10
+    {
+      left: "50.5%",
+      top: "34%",
+      height: "17%",
+      width: "52%",
       // href: "https://detik.com",
       style: { background: "rgba(255, 0, 0, 0)", zIndex: "2" },
       onMouseOver: () => console.log("map onMouseOver"),
@@ -302,14 +378,14 @@ const Dashboard = () => {
     },
   ];
 
-  const mapAreaHall: any[] = [       
+  const mapAreaHall: any[] = [
     //0
     //exhibition
     {
       width: "8.9%",
       height: "15.5%",
-      left: "27.8%",
-      top: "33%",      
+      left: "27.4%",
+      top: "32.8%",
       style: {
         background: "rgba(0, 0, 255, " + layar1 + ")",
         transform: "rotate(2deg)",
@@ -322,10 +398,7 @@ const Dashboard = () => {
         setLayar2(0);
         setLayar3(0);
       },
-      render: (area: any, index: number) => (
-        <span>         
-        </span>
-      ),
+      render: (area: any, index: number) => <span></span>,
     },
     //1
     //simposium
@@ -345,18 +418,15 @@ const Dashboard = () => {
         setLayar3(0);
         setLayar1(0);
       },
-      render: (area: any, index: number) => (
-        <span>          
-        </span>
-      ),
+      render: (area: any, index: number) => <span></span>,
     },
     //2
     //workshop
     {
       width: "9%",
       height: "16%",
-      left: "63.4%",
-      top: "32.8%",    
+      left: "63.7%",
+      top: "32.8%",
       style: {
         transform: "rotate(-2deg)",
         cursor: "pointer",
@@ -369,10 +439,7 @@ const Dashboard = () => {
         setLayar2(0);
         setLayar1(0);
       },
-      render: (area: any, index: number) => (
-        <span>          
-        </span>
-      ),
+      render: (area: any, index: number) => <span></span>,
     },
     //3
     {
@@ -388,7 +455,7 @@ const Dashboard = () => {
       //      href: "https://google.com",
       onMouseOver: () => console.log("map onMouseOver"),
       render: (area: any, index: number) => (
-        <span>         
+        <span>
           <ReactPlayer
             className="react-player"
             url="https://acsasurabaya2021.com/wp-content/uploads/2021/10/movie.mp4"
@@ -403,14 +470,14 @@ const Dashboard = () => {
           />
         </span>
       ),
-    }
+    },
   ];
 
   const mapAreaMenu: any[] = [
     //0
     {
-      left: "24.9%",
-      top: "-95px",
+      left: "14%",
+      top: "-99px",
       height: "100%",
       width: "7.1%",
       style: { background: "rgba(0, 255, 0, 0)", zIndex: "8" },
@@ -428,8 +495,8 @@ const Dashboard = () => {
     },
     //1
     {
-      left: "32.2%",
-      top: "-96px",
+      left: "21.25%",
+      top: "-99px",
       height: "100%",
       width: "7.1%",
       style: {
@@ -440,19 +507,32 @@ const Dashboard = () => {
       onMouseOver: () => setPejet("SESSION"),
       render: (area: any, index: number) => (
         <span>
+          <img
+            src="./ezgif.com-gif-maker.gif"
+            width="100%"
+            style={{    
+              position: "absolute",
+              width: '43px',
+              marginTop: '9px',
+              marginLeft: '24px',
+              display: isLive ? "block" : "none"
+            }}
+          />
           {pejet == "SESSION" ? (
-            <img
-              src="https://acsasurabaya2021.com/wp-content/plugins/perki/Session_Select.png"
-              width="100%"
-            />
+            <>              
+              <img
+                src="https://acsasurabaya2021.com/wp-content/plugins/perki/Session_Select.png"
+                width="100%"
+              />
+            </>
           ) : null}
         </span>
       ),
     },
     //2
     {
-      left: "39.3%",
-      top: "-96px",
+      left: "28.4%",
+      top: "-99px",
       height: "100%",
       width: "7.1%",
       style: {
@@ -474,10 +554,10 @@ const Dashboard = () => {
     },
     //3
     {
-      left: "68%",
-      top: "-96px",
+      left: "78.9%",
+      top: "-99px",
       height: "100%",
-      width: "7.1%",      
+      width: "7.1%",
       style: {
         background: "rgba(255, 0, 0, 0.0)",
         zIndex: "8",
@@ -497,8 +577,8 @@ const Dashboard = () => {
     },
     //4
     {
-      left: "46.5%",
-      top: "-96px",
+      left: "35.7%",
+      top: "-99px",
       height: "100%",
       width: "7.1%",
       style: {
@@ -520,10 +600,10 @@ const Dashboard = () => {
     },
     //5
     {
-      left: "60.7%",
-      top: "-96px",
+      left: "71.7%",
+      top: "-99px",
       height: "100%",
-      width: "8%",
+      width: "7.1%",
       style: {
         background: "rgba(255, 0, 0, 0.0)",
         zIndex: "8",
@@ -540,19 +620,19 @@ const Dashboard = () => {
           ) : null}
         </span>
       ),
-    },         
-    //15
+    },
+    //6
     {
-      left: "53.7%",
-      top: "-96px",
+      left: "42.9%",
+      top: "-99px",
       height: "100%",
       width: "7.1%",
-      onMouseOver: () => setPejet("WORKSHOP"),
       style: {
         background: "rgba(0, 255, 0, 0)",
         zIndex: "8",
         cursor: "pointer",
       },
+      onMouseOver: () => setPejet("WORKSHOP"),
       render: (area: any, index: number) => (
         <span>
           {pejet == "WORKSHOP" ? (
@@ -564,146 +644,195 @@ const Dashboard = () => {
         </span>
       ),
     },
+    //7
+    {
+      left: "50.1%",
+      top: "-99px",
+      height: "100%",
+      width: "7.1%",
+      style: {
+        background: "rgba(0, 255, 0, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => setPejet("LIFE"),
+      render: (area: any, index: number) => (
+        <span>
+          {pejet == "LIFE" ? (
+            <img src="./00_BUTTON/Lifetime_Select.png" width="100%" />
+          ) : null}
+        </span>
+      ),
+    },
+    //8
+    {
+      left: "57.22%",
+      top: "-99px",
+      height: "100%",
+      width: "7.1%",
+      style: {
+        background: "rgba(0, 255, 0, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => setPejet("ORAL"),
+      render: (area: any, index: number) => (
+        <span>
+          {pejet == "ORAL" ? (
+            <img src="./00_BUTTON/Oral_Select.png" width="100%" />
+          ) : null}
+        </span>
+      ),
+    },
+    //9
+    {
+      left: "64.5%",
+      top: "-99px",
+      height: "100%",
+      width: "7.1%",
+      style: {
+        background: "rgba(0, 255, 0, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => setPejet("E_POSTER"),
+      render: (area: any, index: number) => (
+        <span>
+          {pejet == "E_POSTER" ? (
+            <img src="./00_BUTTON/Eposter_Select.png" width="100%" />
+          ) : null}
+        </span>
+      ),
+    },
   ];
 
   const mapAreaWa: any[] = [
     //0
     {
-      width: "6%",      
-      height: "100%",      
-      left: "15.8%",
-      top: "-186px",      
+      width: "6%",
+      height: "100%",
+      left: "6.5%",
+      top: "-186px",
       style: { background: "rgba(0, 255, 0, 0)", zIndex: "8" },
       onMouseOver: () => setPejet("WA"),
       render: (area: any, index: number) => (
         <span>
           {pejet == "WA" ? (
-            <img
-              src="./00_BUTTON/WA_Select.png"
-              width="100%"
-            />
+            <img src="./00_BUTTON/WA_Select.png" width="100%" />
           ) : null}
         </span>
       ),
-    }   
+    },
   ];
 
   const mapAreaFAQ: any[] = [
     //0
     {
-      width: "7%",
+      width: "6%",
       height: "91%",
-      left: "78.4%",
-      top: "-261px",      
+      left: "87.5%",
+      top: "-252px",
       style: { background: "rgba(0, 255, 0, 0)", zIndex: "8" },
       onMouseOver: () => setPejet("FAQ"),
       render: (area: any, index: number) => (
         <span>
           {pejet == "FAQ" ? (
-            <img
-              src="./00_BUTTON/FAQ_Select.png"
-              width="100%"
-            />
+            <img src="./00_BUTTON/FAQ_Select.png" width="100%" />
           ) : null}
         </span>
       ),
-    }   
+    },
   ];
-
 
   return (
     <>
-      <div>        
+      <div>
         {anggota && paymentstatus == "PAY" ? (
-        <div>
-          <div class="visibledesktop" style={{height: '90vh', overflow: 'hidden', marginTop: '-23px'}}>
-            <ImageMap
-              className="usage-map"
-              src={
-                "./New Img/Hall_rev 1280x620 (1).png"
-              }
-              map={mapAreaHall}
-              style={{
-                width: "90%",
-                position: "relative",
-                left: "50%",
-                zIndex: 1,
-                transform: "translate(-50%, 1px)",
-              }}
-              onMapClick={onClikHall}
-            />
-            <ImageMap
-              className="usage-map"
-              src={
-                "./00_BUTTON/MAIN_BUTTON copy.png"
-              }
-              map={mapAreaMenu}
-              style={{
-                width: "51%",
-                position: "relative",
-                left: "50%",
-                zIndex: 1,
-                transform: "translate(-50%, -102px)",
-              }}
-              onMapClick={onClikMenu}
-            />
-            <ImageMap
-              className="usage-map"
-              src={
-                "./00_BUTTON/WA_Button.png"
-              }
-              map={mapAreaWa}
-              style={{
-                width: "6%",
-                position: "relative",
-                left: "15.8%",
-                bottom: "186px",
-                zIndex: 1,                  
-              }}
-              onMapClick={onClikWa}
-            />
-            <ImageMap
-              className="usage-map"
-              src={
-                "./00_BUTTON/FAQ_Button.png"
-              }
-              map={mapAreaFAQ}
-              style={{
-                width: "7%",
-                position: "relative",
-                left: "78.4%",
-                bottom: "260px",
-                zIndex: 1,                  
-              }}
-              onMapClick={onClikFaq}
-            />
+          <div>
+            <div
+              class="visibledesktop"
+              style={{ height: "93vh", overflow: "hidden", marginTop: "-32px" }}
+            >
+              <ImageMap
+                className="usage-map"
+                src={"./New Img/Hall_rev 1280x620 (1).png"}
+                map={mapAreaHall}
+                style={{
+                  width: "92%",
+                  position: "relative",
+                  left: "50%",
+                  zIndex: 1,
+                  transform: "translate(-50%, 1px)",
+                }}
+                onMapClick={onClikHall}
+              />
+              <ImageMap
+                className="usage-map"
+                src={"./00_BUTTON/MAIN_BUTTON copy.png"}
+                map={mapAreaMenu}
+                style={{
+                  width: "72%",
+                  position: "relative",
+                  left: "50%",
+                  zIndex: 1,
+                  transform: "translate(-50%, -99px)",
+                }}
+                onMapClick={onClikMenu}
+              />
+              <ImageMap
+                className="usage-map"
+                src={"./00_BUTTON/WA_Button.png"}
+                map={mapAreaWa}
+                style={{
+                  width: "6%",
+                  position: "relative",
+                  left: "6.5%",
+                  bottom: "186px",
+                  zIndex: 1,
+                }}
+                onMapClick={onClikWa}
+              />
+              <ImageMap
+                className="usage-map"
+                src={"./00_BUTTON/FAQ_Button.png"}
+                map={mapAreaFAQ}
+                style={{
+                  width: "6%",
+                  position: "relative",
+                  left: "87.5%",
+                  bottom: "252px",
+                  zIndex: 1,
+                }}
+                onMapClick={onClikFaq}
+              />
+            </div>
+            <div class="visibledevice">
+              <ImageMap
+                className="usage-map"
+                src={"./New Img/Hall_rev 1280x620 (1).png"}
+                style={{
+                  width: "100%",
+                  position: "relative",
+                  marginTop: "-30px"
+                }}
+                onMapClick={onClikHall}
+              />
+              <ImageMap
+                className="usage-map"
+                src={
+                  "./MOBILE BUTTON/Mobile Button copy.png"
+                }
+                map={mapAreamobile}
+                style={{
+                  width: "143%",
+                  position: "relative",
+                  left: "-21.5%",
+                  marginTop: '-33px'
+                }}
+                onMapClick={onClikHallMobile}
+              />
+            </div>
           </div>
-          <div class="visibledevice">
-            <ImageMap
-              className="usage-map"
-              src={
-                "./New Img/Hall_rev 1280x620 (1).png"
-              }              
-              style={{
-                width: "100%",
-                position: "relative",                
-              }}
-              onMapClick={onClikHall}
-            />
-            <ImageMap
-              className="usage-map"
-              src={
-                "https://acsasurabaya2021.com/wp-content/plugins/perki/Mobile Button.png"
-              }
-              map={mapAreamobile}
-              style={{
-                width: "100%",
-                position: "relative",                
-              }}
-              onMapClick={onClikHallMobile}
-            />
-          </div>
-        </div>
         ) : anggota && paymentstatus != "PAY" ? (
           <div style={{ fontSize: "25px", marginLeft: "15px" }}>
             Mohon klik{" "}
@@ -730,7 +859,7 @@ const Dashboard = () => {
             untuk exit.
           </div>
         ) : null}
-      </div>     
+      </div>
     </>
   );
 };

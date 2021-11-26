@@ -12,7 +12,6 @@ var apiSecret = "NDRYGCnfiSXNSosr25YEPnKOkKU4rf8ksSiF";
 var meetingNumber = localStorage.getItem("meetingid");
 var role = 0;
 var leaveUrl = "https://acsasurabaya2021.com/wp-content/plugins/perki/build/#/theme/session";
-// var leaveUrl = "http://localhost:3000/#/theme/session";
 var userName = localStorage.getItem("nama");
 var userEmail = localStorage.getItem("email") ?? "random1002310@gmail.com";
 var passWord = localStorage.getItem("passcode") ?? "";

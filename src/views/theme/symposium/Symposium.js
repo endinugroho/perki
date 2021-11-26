@@ -153,7 +153,6 @@ const Colors = () => {
         if (data.data[0].simposium != "") {
           changeDataSympo(1);
         }
-
         setWorkshopku(data.data[0].workshop);
       })
       .catch(() => {
@@ -161,27 +160,19 @@ const Colors = () => {
       });
   }, []);
 
-  const changeDataSympo = (noUrut) => {
+  const changeDataSympo = (noUrut, noUrutIndo = null) => {
     setVisible(!visible);
+    let url = "getsympodetilIndo";
+    if (noUrutIndo) {
+      url = `getsympodetilIndo&noUrutIndo=${noUrutIndo}`;
+    }
     axios
-      .get(
-        "https://acsasurabaya2021.com/wp-content/plugins/perki/PerkiAPi.php?function=getsympodetil&noUrut=" +
-          noUrut
-      )
+      .get(`${process.env.REACT_APP_API_URL}?function=${url}&noUrut=${noUrut}`)
       .then((res) => {
-        // console.log(res);
+        console.log(res);
         setVisible(!visible);
-        if (
-          res.data.status == 0 &&
-          res.data.master == null &&
-          res.data.master == []
-        ) {
-          alert("Mohon Hubungi Admin");
-        } else {
-          setDataSympo(res.data);
-          setHari("sympo");
-          console.log(dataSympo);
-        }
+        setDataSympo(res.data.data);
+        setHari("sympo");
       })
       .catch((err) => console.log(err));
   };
@@ -237,11 +228,24 @@ const Colors = () => {
         localStorage.setItem("type", "sympo");
         history.push("/livestream");
       } else {
-        localStorage.setItem("meetingid", meetingId);
-        localStorage.setItem("passcode", passcode);
-        history.push("/theme/zoom");
+        if (passcode != null) {
+          passcode = "?pwd=" + passcode;
+        } else {
+          passcode = "";
+        }
+        window.open(`https://us04web.zoom.us/j/${meetingId}${passcode}`);
       }
     }
+  };
+
+  const getTime = (timeDa) => {
+    let today = new Date(timeDa);
+    // let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    let date = "";
+    let time =
+      today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    let dateTime = date + " " + time;
+    return dateTime;
   };
 
   return (
@@ -262,366 +266,165 @@ const Colors = () => {
             }}
           />
         </CCardHeader>
-        <CTabs activeTab="acsa">
-          <CNav variant="tabs" style={{ padding: "11px" }}>
-            <CNavItem>
-              <CNavLink data-tab="acsa" style={{ border: "none" }}>
-                ACSA
-              </CNavLink>
-            </CNavItem>
-            <CNavItem>
-              <CNavLink data-tab="indoviscular" style={{ border: "none" }}>
-                INDOVASCULAR
-              </CNavLink>
-            </CNavItem>
-          </CNav>
-          <CTabContent>
-            <CTabPane data-tab="acsa">
-              <CCardBody>
-                <CRow>
-                  <div className="col-lg-12 col-md-12 col-sm-12 text-center">
-                    {anggota.simposium != "" ? (
-                      <>
-                        <Button
-                          type="primary"
-                          onClick={() => {
-                            changeDataSympo(1);
-                          }}
-                          style={{ borderRadius: "10px" }}
-                        >
-                          Day 1
-                        </Button>
-                        <Button
-                          type="primary"
-                          onClick={() => {
-                            changeDataSympo(2);
-                          }}
-                          style={{ marginLeft: "2px", borderRadius: "10px" }}
-                        >
-                          Day 2
-                        </Button>
-                        <Button
-                          type="primary"
-                          onClick={() => {
-                            changeDataSympo(3);
-                          }}
-                          style={{ marginLeft: "2px", borderRadius: "10px" }}
-                        >
-                          Day 3
-                        </Button>
-                      </>
-                    ) : null}
-                  </div>
-                </CRow>
-                <CRow>
-                  {hari == "sympo" ? (
-                    <>
-                      <h2
+        <CCardBody>
+          <CRow>
+            <div className="col-lg-12 col-md-12 col-sm-12 text-center">
+              {anggota.simposium != "" ? (
+                <>
+                  <Button
+                    type="primary"
+                    size="large"
+                    onClick={() => {
+                      changeDataSympo(1);
+                    }}
+                    style={{ borderRadius: "10px" }}
+                  >
+                    Day 1
+                  </Button>
+                  <Button
+                    type="primary"
+                    size="large"
+                    onClick={() => {
+                      changeDataSympo(2, 1);
+                    }}
+                    style={{ marginLeft: "2px", borderRadius: "10px" }}
+                  >
+                    Day 2
+                  </Button>
+                  <Button
+                    type="primary"
+                    size="large"
+                    onClick={() => {
+                      changeDataSympo(3, 2);
+                    }}
+                    style={{ marginLeft: "2px", borderRadius: "10px" }}
+                  >
+                    Day 3
+                  </Button>
+                </>
+              ) : null}
+            </div>
+          </CRow>
+          <CRow>
+            {hari == "sympo" ? (
+              <>
+                <h2
+                  style={{
+                    margin: "0 auto",
+                    position: "relative",
+                    width: "95%",
+                    marginBottom: "25px",
+                    color: "#4e4e4e",
+                  }}
+                >
+                  {`DAY-${dataSympo[0].serial_number} : ${
+                    dataSympo[0].day
+                  }, ${parseDate(dataSympo[0].date)}`}
+                </h2>
+                {dataSympo.map((s, index1) => {
+                  return (
+                    <div
+                      key={index1}
+                      class={`col-lg-${
+                        dataSympo.length == 1
+                          ? "12"
+                          : dataSympo.length == 2
+                          ? "6"
+                          : dataSympo.length == 3
+                          ? "4"
+                          : dataSympo.length > 3
+                          ? "3"
+                          : "12"
+                      } col-md-${
+                        dataSympo.length == 1
+                          ? "12"
+                          : dataSympo.length > 1 && dataSympo.length <= 3
+                          ? "4"
+                          : dataSympo.length > 3
+                          ? "3"
+                          : "12"
+                      } col-sm-12 col-xs-12`}
+                    >
+                      <h4
                         style={{
+                          color: "#4e4e4e",
                           margin: "0 auto",
                           position: "relative",
                           width: "95%",
-                          marginBottom: "25px",
-                          color: "#4e4e4e",
                         }}
-                      >
-                        {`DAY-${dataSympo.master[0].serial_number} : ${
-                          dataSympo.master[0].day
-                        }, ${parseDate(dataSympo.master[0].date)}`}
-                      </h2>
-                      {dataSympo.detil.map((s, index1) => {
-                        return (
-                          <div
-                            key={index1}
-                            class={`col-lg-${
-                              dataSympo.detil.length == 1
-                                ? "12"
-                                : dataSympo.detil.length > 1 &&
-                                  dataSympo.detil.length >= 2
-                                ? "6"
-                                : dataSympo.detil.length > 2 &&
-                                  dataSympo.detil.length <= 3
-                                ? "4"
-                                : dataSympo.detil.length > 3
-                                ? "3"
-                                : "12"
-                            } col-md-${
-                              dataSympo.detil.length == 1
-                                ? "12"
-                                : dataSympo.detil.length > 1 &&
-                                  dataSympo.detil.length <= 3
-                                ? "4"
-                                : dataSympo.detil.length > 3
-                                ? "3"
-                                : "12"
-                            } col-sm-12 col-xs-12`}
-                          >
-                            <h4
-                              style={{
-                                color: "#4e4e4e",
-                                margin: "0 auto",
-                                position: "relative",
-                                width: "95%",
-                              }}
-                            >{`Ballroom ${index1 + 1}`}</h4>
-                            <VerticalTimeline layout="1-column-left">
-                              {dataSympo.detil[index1].map((row, index2) => {
-                                return (
-                                  <VerticalTimelineElement
-                                    key={index2}
-                                    className="vertical-timeline-element--work"
-                                    style={{ margin: "10px 0" }}
-                                    contentStyle={{
-                                      background: "rgb(33, 150, 243)",
-                                      color: "#fff",
-                                      textAlign: "center",
+                      >{`Ballroom ${index1 + 1}`}</h4>
+                      <VerticalTimeline layout="1-column-left">
+                        {s.detil.map((row, index2) => {
+                          return (
+                            <>
+                              <VerticalTimelineElement
+                                key={index2}
+                                className="vertical-timeline-element--work"
+                                style={{ margin: "10px 0" }}
+                                contentStyle={{
+                                  background: "rgb(33, 150, 243)",
+                                  color: "#fff",
+                                  textAlign: "center",
+                                }}
+                                contentArrowStyle={{
+                                  borderRight: "7px solid  rgb(33, 150, 243)",
+                                }}
+                                date={row.time_range}
+                                iconStyle={{
+                                  background: "rgb(33, 150, 243)",
+                                  color: "#fff",
+                                }}
+                                icon={
+                                  <i
+                                    style={{
+                                      position: "relative",
+                                      left: "50%",
+                                      top: "50%",
+                                      transform: "translate(-50%, -50%)",
+                                      fontSize: "25px",
                                     }}
-                                    contentArrowStyle={{
-                                      borderRight:
-                                        "7px solid  rgb(33, 150, 243)",
-                                    }}
-                                    date={row.time_range}
-                                    iconStyle={{
-                                      background: "rgb(33, 150, 243)",
-                                      color: "#fff",
-                                    }}
-                                    icon={
-                                      <i
-                                        style={{
-                                          position: "relative",
-                                          left: "50%",
-                                          top: "50%",
-                                          transform: "translate(-50%, -50%)",
-                                          fontSize: "25px",
-                                        }}
-                                        class="far fa-calendar-alt"
-                                      ></i>
-                                    }
-                                  >
-                                    {row.tipe == "Activity" ? (
-                                      <>
-                                        <h5 className="text-white vertical-timeline-element-title">
-                                          {row.topic}
-                                        </h5>
-                                        <p>Speaker: {row.speaker ?? "tba"}</p>
-                                      </>
-                                    ) : (
-                                      <>
-                                        <h5 className="text-white vertical-timeline-element-title">
-                                          {row.topic}
-                                        </h5>
-                                        <p>
-                                          Chairman: {row.chairman ?? "tba"}{" "}
-                                          <br /> Panelist:{" "}
-                                          {row.panelist ?? "tba"}
-                                        </p>
-                                        <Button
-                                          type="primary"
-                                          style={{
-                                            borderRadius: "10px",
-                                            background: "#2a3d9f",
-                                            position: "absolute",
-                                            right: "15px",
-                                            bottom: "16px",
-                                            color: "#fff",
-                                            display: row.status == "Active"
-                                              ? "block"
-                                              : "none"
-                                          }}
-                                          onClick={() => {
-                                            WacthZoom(
-                                              row.zoom_room_id,
-                                              row.passcode
-                                            );
-                                          }}                                          
-                                        >
-                                          Watch Now
-                                        </Button>
-                                      </>
-                                    )}
-                                  </VerticalTimelineElement>
-                                );
-                              })}
-                            </VerticalTimeline>
-                          </div>
-                        );
-                      })}
-                    </>
-                  ) : null}
-                </CRow>
-              </CCardBody>
-            </CTabPane>
-            <CTabPane data-tab="indoviscular">
-              <CCardBody>
-                <CRow>
-                  <div className="col-lg-12 col-md-12 col-sm-12 text-center">
-                    {anggota.simposium != "" ? (
-                      <>
-                        <Button
-                          type="primary"
-                          onClick={() => {
-                            changeDataIndoSympo(1);
-                          }}
-                          style={{ marginLeft: "30px", borderRadius: "10px" }}
-                        >
-                          Day 1
-                        </Button>
-                        <Button
-                          type="primary"
-                          onClick={() => {
-                            changeDataIndoSympo(2);
-                          }}
-                          style={{ marginLeft: "2px", borderRadius: "10px" }}
-                        >
-                          Day 2
-                        </Button>
-                      </>
-                    ) : null}
-                  </div>
-                </CRow>
-                <CRow style={{ marginTop: "30px" }}
-                  className="justify-content-center">
-                  {hari == "sympoIndo" ? (
-                    <>
-                      <h2
-                        style={{
-                          margin: "0 auto",
-                          position: "relative",
-                          width: "95%",
-                          marginBottom: "25px",
-                          color: "#4e4e4e",
-                          textAlign: "center",
-                        }}
-                      >
-                        {`DAY-${dataSympo.master[0].serial_number} : ${
-                          dataSympo.master[0].day
-                        }, ${parseDate(dataSympo.master[0].date)}`}
-                      </h2>
-                      {dataSympo.detil.map((s, index1) => {
-                        return (
-                          <div
-                            key={index1}
-                            class={`col-lg-${
-                              dataSympo.detil.length == 1
-                                ? "8"
-                                : dataSympo.detil.length > 1 &&
-                                  dataSympo.detil.length >= 2
-                                ? "6"
-                                : dataSympo.detil.length > 2 &&
-                                  dataSympo.detil.length <= 3
-                                ? "4"
-                                : dataSympo.detil.length > 3
-                                ? "3"
-                                : "8"
-                            } col-md-${
-                              dataSympo.detil.length == 1
-                                ? "8"
-                                : dataSympo.detil.length > 1 &&
-                                  dataSympo.detil.length <= 3
-                                ? "4"
-                                : dataSympo.detil.length > 3
-                                ? "3"
-                                : "8"
-                            } col-sm-12 col-xs-12`}
-                          >
-                            <h4
-                              style={{
-                                color: "#4e4e4e",
-                                margin: "0 auto",
-                                position: "relative",
-                                width: "95%",
-                              }}
-                            >{`Ballroom ${index1 + 1}`}</h4>
-                            <VerticalTimeline layout="1-column-left">
-                              {dataSympo.detil[index1].map((row, index2) => {
-                                return (
-                                  <VerticalTimelineElement
-                                    key={index2}
-                                    className="vertical-timeline-element--work"
-                                    style={{ margin: "10px 0" }}
-                                    contentStyle={{
-                                      background: "rgb(33, 150, 243)",
-                                      color: "#fff",
-                                      textAlign: "center",
-                                    }}
-                                    contentArrowStyle={{
-                                      borderRight:
-                                        "7px solid  rgb(33, 150, 243)",
-                                    }}
-                                    date={row.time_range}
-                                    iconStyle={{
-                                      background: "rgb(33, 150, 243)",
-                                      color: "#fff",
-                                    }}
-                                    icon={
-                                      <i
-                                        style={{
-                                          position: "relative",
-                                          left: "50%",
-                                          top: "50%",
-                                          transform: "translate(-50%, -50%)",
-                                          fontSize: "25px",
-                                        }}
-                                        class="far fa-calendar-alt"
-                                      ></i>
-                                    }
-                                  >
-                                    {row.tipe == "Activity" ? (
-                                      <>
-                                        <h5 className="text-white vertical-timeline-element-title">
-                                          {row.topic}
-                                        </h5>
-                                        <p>Speaker: {row.speaker ?? "tba"}</p>
-                                      </>
-                                    ) : (
-                                      <>
-                                        <h5 className="text-white vertical-timeline-element-title">
-                                          {row.topic}
-                                        </h5>
-                                        <p>
-                                          Chairman: {row.chairman ?? "tba"}{" "}
-                                          <br /> Panelist:{" "}
-                                          {row.panelist ?? "tba"}
-                                        </p>
-                                        <br />
-                                        <Button
-                                          type="primary"
-                                          style={{
-                                            borderRadius: "10px",
-                                            background: "#2a3d9f",
-                                            position: "absolute",
-                                            right: "15px",
-                                            bottom: "16px",
-                                            color: "#fff",
-                                            display: row.status == "Active"
-                                              ? "block"
-                                              : "none"
-                                          }}
-                                          onClick={() => {
-                                            WacthZoom(
-                                              row.zoom_room_id,
-                                              row.passcode
-                                            );
-                                          }}                                          
-                                        >
-                                          Watch Now
-                                        </Button>
-                                      </>
-                                    )}
-                                  </VerticalTimelineElement>
-                                );
-                              })}
-                            </VerticalTimeline>
-                          </div>
-                        );
-                      })}
-                    </>
-                  ) : null}
-                </CRow>
-              </CCardBody>
-            </CTabPane>
-          </CTabContent>
-        </CTabs>
+                                    class="far fa-calendar-alt"
+                                  ></i>
+                                }
+                              >
+                                <h5 className="text-white vertical-timeline-element-title">
+                                  {row.topic}
+                                </h5>
+                                <p>
+                                  Chairman: {row.chairman ?? "tba"} <br />{" "}
+                                  Panelist: {row.panelist ?? "tba"} <br /> Time:{" "}
+                                  {getTime(row.time_launching) ?? "tba"}
+                                </p>
+                                <Button
+                                  type="primary"
+                                  style={{
+                                    borderRadius: "10px",
+                                    background: "#2a3d9f",
+                                    position: "absolute",
+                                    right: "15px",
+                                    bottom: "16px",
+                                    color: "#fff",
+                                    display:
+                                      row.status == "Active" ? "block" : "none",
+                                  }}
+                                  onClick={() => {
+                                    WacthZoom(row.zoom_room_id, row.passcode);
+                                  }}
+                                >
+                                  Watch Now
+                                </Button>
+                              </VerticalTimelineElement>
+                            </>
+                          );
+                        })}
+                      </VerticalTimeline>
+                    </div>
+                  );
+                })}
+              </>
+            ) : null}
+          </CRow>
+        </CCardBody>
       </CCard>
     </>
   );

@@ -4,7 +4,7 @@ import ReactPlayer from "react-player";
 import "antd/dist/antd.css";
 import { useHistory } from "react-router-dom";
 import { ImageMap } from "@qiuz/react-image-map";
-import { Modal, Button, Form, Input } from "antd";
+import { Modal, Button, Form, Input, Tooltip } from "antd";
 import {
   CModal,
   CModalHeader,
@@ -67,7 +67,9 @@ const SilverBooth = ({ phase, dataBooth }) => {
       },
       onMouseOver: () => {},
       render: (area: any, index: number) => (
-        <img width="100%" height="100%" src="./guests-book.png" />
+        <Tooltip placement="right" title={"Guest Book"} defaultVisible={true}>
+          <img width="100%" height="100%" src="./guests-book.png" />
+        </Tooltip>
       ),
     },
   ];
@@ -137,7 +139,9 @@ const SilverBooth = ({ phase, dataBooth }) => {
       },
       onMouseOver: () => {},
       render: (area: any, index: number) => (
-        <img width="100%" height="100%" src="./guests-book.png" />
+        <Tooltip placement="right" title={"Guest Book"} defaultVisible={true}>
+          <img width="100%" height="100%" src="./guests-book.png" />
+        </Tooltip>
       ),
     },
   ];
