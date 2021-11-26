@@ -162,8 +162,7 @@ const Colors = () => {
     })
       .then((data) => {
         setAnggota(data.data[0]);
-        if (data.data[0].simposium != "") {
-          // changeDataSympo(1);
+        if (data.data[0].simposium != "") {          
           getActiveEventSympo();
         }
         if (data.data[0].workshop != "") {
@@ -202,8 +201,10 @@ const Colors = () => {
       .get(`${process.env.REACT_APP_API_URL}?function=getActiveSympo`)
       .then((res) => {
         console.log(res);
-        setDataSympo(res.data.data);
-        setSympo("sympo");
+        if(res.data.status == 1){
+          setDataSympo(res.data.data);
+          setSympo("sympo");
+        }
       })
       .catch((err) => console.log(err));
   };
@@ -221,10 +222,10 @@ const Colors = () => {
             if (wsUserParam.indexOf(row + " ") > -1) {
               dataWsNew += row + " ";
             }
-          });
-        }
-        setWorkshopku(dataWsNew);
-        console.log(dataWsNew);
+          });          
+        }    
+        setWorkshopku(dataWsNew);    
+        // console.log(dataWsNew);
         // setDataWs(res.data.data);
         // setWs("ws");
       })
