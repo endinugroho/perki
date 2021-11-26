@@ -81,6 +81,7 @@
     "reactjs-text-to-image": "0.0.1",
     "redux": "~4.0.5",
     "spinkit": "~2.0.1",
+    "style.css": "^1.0.0",
     "video-react": "^0.14.1",
     "web-vitals": "^0.2.4",
     "yup": "^0.32.8"

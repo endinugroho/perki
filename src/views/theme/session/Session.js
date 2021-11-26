@@ -280,11 +280,11 @@ const Colors = () => {
         history.push("/livestream");
       } else {
         if(passcode != null){
-          passcode = "?pwd="+passcode;        
+          passcode = "?pwd="+passcode;
         }else{
           passcode = ""
         }
-        window.open(`https://us04web.zoom.us/j/${meetingId}${passcode}`);        
+        window.open(`https://us04web.zoom.us/j/${meetingId}${passcode}`);
       }
     }
   };
@@ -292,10 +292,10 @@ const Colors = () => {
   const WacthZoomYt = (meetingId, passcode = null, type = null) => {
     if (meetingId == "" || passcode == "") {
       alert("This feature is not active");
-    } else {      
+    } else {
       localStorage.setItem("meetingid", meetingId);
-      localStorage.setItem("passcode", passcode);      
-      history.push("/livestreamOther");      
+      localStorage.setItem("passcode", passcode);
+      history.push("/livestreamOther");
     }
   };
 
@@ -872,7 +872,7 @@ const Colors = () => {
                                             );
                                           }}
                                         >
-                                          Watch Now
+                                          Watch Now Zoom
                                         </Button>
                                         <Button
                                           type="primary"
@@ -880,7 +880,7 @@ const Colors = () => {
                                             borderRadius: "10px",
                                             background: "#2a3d9f",
                                             position: "absolute",
-                                            right: "15px",
+                                            right: "165px",
                                             bottom: "16px",
                                             color: "#fff",
                                             display:
@@ -896,7 +896,7 @@ const Colors = () => {
                                             );
                                           }}
                                         >
-                                          Watch Now 2
+                                          Watch Now Youtube
                                         </Button>
                                       </>
                                     )}
