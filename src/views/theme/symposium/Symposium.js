@@ -177,31 +177,6 @@ const Colors = () => {
       .catch((err) => console.log(err));
   };
 
-  const changeDataIndoSympo = (noUrut) => {
-    setVisible(!visible);
-    axios
-      .get(
-        "https://acsasurabaya2021.com/wp-content/plugins/perki/PerkiAPi.php?function=getsympovasculardetil&noUrut=" +
-          noUrut
-      )
-      .then((res) => {
-        // console.log(res);
-        setVisible(!visible);
-        if (
-          res.data.status == 0 &&
-          res.data.master == null &&
-          res.data.master == []
-        ) {
-          alert("Mohon Hubungi Admin");
-        } else {
-          setDataSympo(res.data);
-          setHari("sympoIndo");
-          console.log(dataSympo);
-        }
-      })
-      .catch((err) => console.log(err));
-  };
-
   const parseDate = (date) => {
     let isValidDate = Date.parse(date);
     let dateArticle = new Intl.DateTimeFormat("en", { month: "long" });
@@ -352,7 +327,10 @@ const Colors = () => {
                           position: "relative",
                           width: "95%",
                         }}
-                      >{`Ballroom ${index1 + 1}`}</h4>
+                      >
+                        {`Ballroom ${index1 + 1}`}
+                        <small>{s.type_event == "INDOVASCULAR" ? " (INDOVASCULAR)" : null}</small>
+                      </h4>
                       <VerticalTimeline layout="1-column-left">
                         {s.detil.map((row, index2) => {
                           return (

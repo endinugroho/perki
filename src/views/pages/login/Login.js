@@ -32,7 +32,8 @@ const Login = () => {
 
   useEffect(() => {
     if (localStorage.email !== "" && localStorage.password !== "") {    
-      setMyform({email : localStorage.email, password: localStorage.password})    
+      setMyform({email : localStorage.email, password: localStorage.password})   
+      loginklik({email : localStorage.email, password: localStorage.password}) 
     }      
   }, [])
 
@@ -57,15 +58,23 @@ const Login = () => {
     }
   };
 
-  const loginklik = () => {
+  const loginklik = (data = null) => {
     console.log("masuk sini");
+    let payload;
+    if(data == null){
+      payload = {
+        email: myform.email,
+        password: myform.password,
+        mtd: "SIGNIN",
+      };
+    }else{
+      payload = {
+        email: data.email,
+        password: data.password,
+        mtd: "SIGNIN",
+      };
+    } 
 
-    const payload = {
-      email: myform.email,
-      // user:myform.username,
-      password: myform.password,
-      mtd: "SIGNIN",
-    };
     axios({
       url: "https://acsasurabaya2021.com/wp-content/plugins/perki/kirimdata.php",
       // url: "http://localhost/perki/kirimdata.php",

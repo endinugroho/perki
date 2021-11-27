@@ -199,6 +199,7 @@ const Dashboard = () => {
     if (index == 3) {
       setPejet("EXIT");
       history.push("/theme/login");
+      window.location.href = "https://acsasurabaya2021.com/ "
     }
     if (index == 4) {
       setPejet("SYMPOSIUM");

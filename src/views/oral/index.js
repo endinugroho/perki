@@ -23,11 +23,11 @@ const Index = () => {
             openZoom(dataRes.zoom_room_id, dataRes.passcode)
           }else{
             setData([])
-            alert("this Feature is not active");
+            // alert("this Feature is not active");
           }
         }else{
           setData([])
-          alert("this Feature is not active");
+          // alert("this Feature is not active");
         }
       })
       .catch((err) => console.log(err));
