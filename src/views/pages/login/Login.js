@@ -31,18 +31,18 @@ const Login = () => {
   const Completionist = () => <span>You are good to go!</span>;
 
   useEffect(() => {
-    if (localStorage.email !== "" && localStorage.password !== "") {    
-      setMyform({email : localStorage.email, password: localStorage.password})    
-    }      
+    if (localStorage.email !== "" && localStorage.password !== "") {
+      setMyform({email : localStorage.email, password: localStorage.password})
+    }
   }, [])
 
   function lsRememberMe(email, pass) {
     if (email !== "" && pass !== "") {
       localStorage.email = email;
-      localStorage.password = pass;      
+      localStorage.password = pass;
     } else {
       localStorage.email = "";
-      localStorage.password = "";      
+      localStorage.password = "";
     }
   }
 
@@ -148,7 +148,7 @@ const Login = () => {
                         }
                         value={myform.password}
                       />
-                    </CInputGroup>                    
+                    </CInputGroup>
                     <CRow>
                       <CCol xs="6">
                         <CButton
@@ -157,10 +157,10 @@ const Login = () => {
                           onClick={() => loginklik()}
                         >
                           Login
-                        </CButton>                        
+                        </CButton>
                       </CCol>
                       <CCol xs="6" className="text-right">
-                        <CButton color="link" className="px-0">
+                        <CButton color="link" className="px-0" onClick={()=>history.push("/forgotpassword")}>
                           Forgot password?
                         </CButton>
                       </CCol>
