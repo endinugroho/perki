@@ -119,10 +119,10 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
-    if(isLive == null){
-      getCurrentLive()
+    if (isLive == null) {
+      getCurrentLive();
     }
-  }, [isLive])
+  }, [isLive]);
 
   const openInNewTab = (url) => {
     window.open(url);
@@ -240,12 +240,14 @@ const Dashboard = () => {
     }
   };
 
-  function getCurrentLive(){
-    axios.get(`${process.env.REACT_APP_API_URL}?function=getCurrentRun`).then((res) => {      
-      console.log(res)
-      setIsLive(res.data.isLive)
-      // return res.data.isLive;
-    });    
+  function getCurrentLive() {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}?function=getCurrentRun`)
+      .then((res) => {
+        console.log(res);
+        setIsLive(res.data.isLive);
+        // return res.data.isLive;
+      });
   }
 
   const mapAreamobile: any[] = [
@@ -254,21 +256,21 @@ const Dashboard = () => {
       left: "-3.5%",
       top: "18%",
       height: "18%",
-      width: "53%",      
+      width: "53%",
       style: { background: "rgba(255, 0, 0, 0.0)", zIndex: "0" },
       onMouseOver: () => console.log("map onMouseOver"),
       render: (area: any, index: number) => (
         <img
-            src="./ezgif.com-gif-maker.gif"
-            width="100%"
-            style={{    
-              position: "absolute",
-              width: '43px',
-              marginTop: '9px',
-              marginLeft: '189px',
-              display: isLive ? "block" : "none"
-            }}
-          />
+          src="./ezgif.com-gif-maker.gif"
+          width="100%"
+          style={{
+            position: "absolute",
+            width: "43px",
+            top: "10px",
+            right: "20px",
+            display: isLive ? "block" : "none",
+          }}
+        />
       ),
     },
     //1
@@ -510,16 +512,16 @@ const Dashboard = () => {
           <img
             src="./ezgif.com-gif-maker.gif"
             width="100%"
-            style={{    
+            style={{
               position: "absolute",
-              width: '43px',
-              marginTop: '9px',
-              marginLeft: '24px',
-              display: isLive ? "block" : "none"
+              width: "43px",
+              marginTop: "9px",
+              marginLeft: "24px",
+              display: isLive ? "block" : "none",
             }}
           />
           {pejet == "SESSION" ? (
-            <>              
+            <>
               <img
                 src="https://acsasurabaya2021.com/wp-content/plugins/perki/Session_Select.png"
                 width="100%"
@@ -813,21 +815,19 @@ const Dashboard = () => {
                 style={{
                   width: "100%",
                   position: "relative",
-                  marginTop: "-30px"
+                  marginTop: "-30px",
                 }}
                 onMapClick={onClikHall}
               />
               <ImageMap
                 className="usage-map"
-                src={
-                  "./MOBILE BUTTON/Mobile Button copy.png"
-                }
+                src={"./MOBILE BUTTON/Mobile Button copy.png"}
                 map={mapAreamobile}
                 style={{
                   width: "143%",
                   position: "relative",
                   left: "-21.5%",
-                  marginTop: '-33px'
+                  marginTop: "-33px",
                 }}
                 onMapClick={onClikHallMobile}
               />

@@ -456,7 +456,7 @@ const Colors = () => {
                                     <br />
                                     Time: {getTime(row.time_launching) ?? "tba"}
                                     <br />
-                                    <b>Comming Up In</b> : <br />
+                                    <b>Coming Up In</b> : <br />
                                     <Countdown
                                       date={new Date(row.time_launching)}
                                     />
@@ -881,7 +881,7 @@ const Colors = () => {
                         Moderator : {dataWs.master.moderator}
                       </li>
                       <li className="list-group-item">
-                        Comming Up In :{" "}
+                        Coming Up In :{" "}
                         <Countdown date={new Date(dataWs.master.date)} />
                       </li>
                       <li className="list-group-item text-center">
