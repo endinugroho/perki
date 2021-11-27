@@ -119,6 +119,193 @@ const Colors = () => {
   const [dataWs, setDataWs] = useState({});
   const [dataIndoWs, setDataIndoWs] = useState({});
   const [visible, setVisible] = useState(false);
+  const [hasFetch, setHasFetch] = useState(true);
+
+  useEffect(() => {
+    var idsponsor = localStorage.getItem("loginid");
+    setIdsponsor(idsponsor);
+    var anggotast = localStorage.getItem("status");
+    if (anggotast == "ANGGOTA") {
+      setAnggota(true);
+    } else setAnggota(false);
+    setNama(localStorage.getItem("nama"));
+    var mtd2 = "";
+    if (anggotast == "ANGGOTA") {
+      mtd2 = "ANGGOTA2";
+    } else {
+      mtd2 = "ANGGOTA";
+    }
+    axios({
+      url: "https://acsasurabaya2021.com/wp-content/plugins/perki/kirimdata.php",
+      data: { mtd: mtd2, idsponsor: idsponsor },
+      contentType: "application/json",
+      method: "POST",
+    })
+      .then((data) => {
+        // var temp = data.data;
+        console.log(data.data[0]);
+        setAnggota(data.data[0]);
+        setWorkshopku(data.data[0].workshop);
+        if (data.data[0].workshop != "") {
+          if (data.data[0].workshop.indexOf("WS 1 ") > -1) {
+            // setWs("1");
+            if (hasFetch) {
+              setHasFetch(false);
+              changeDataWS(1);
+            }
+            return;
+          }
+          if (data.data[0].workshop.indexOf("WS 2 ") > -1) {
+            // setWs("2");
+            if (hasFetch) {
+              setHasFetch(false);
+              changeDataWS(2);
+            }
+            return;
+          }
+          if (data.data[0].workshop.indexOf("WS 3 ") > -1) {
+            // setWs("3");
+            if (hasFetch) {
+              setHasFetch(false);
+              changeDataWS(3);
+            }
+            return;
+          }
+          if (data.data[0].workshop.indexOf("WS 4 ") > -1) {
+            // setWs("4");
+            if (hasFetch) {
+              setHasFetch(false);
+              changeDataWS(4);
+            }
+            return;
+          }
+          if (data.data[0].workshop.indexOf("WS 5 ") > -1) {
+            // setWs("5");
+            if (hasFetch) {
+              setHasFetch(false);
+              changeDataWS(5);
+            }
+            return;
+          }
+          if (data.data[0].workshop.indexOf("WS 6 ") > -1) {
+            // setWs("6");
+            if (hasFetch) {
+              setHasFetch(false);
+              changeDataWS(6);
+            }
+            return;
+          }
+          if (data.data[0].workshop.indexOf("WS 7 ") > -1) {
+            // setWs("7");
+            if (hasFetch) {
+              setHasFetch(false);
+              changeDataWS(7);
+            }
+            return;
+          }
+          if (data.data[0].workshop.indexOf("WS 8 ") > -1) {
+            // setWs("8");
+            if (hasFetch) {
+              setHasFetch(false);
+              changeDataWS(8);
+            }
+            return;
+          }
+          if (data.data[0].workshop.indexOf("WS 9 ") > -1) {
+            // setWs("9");
+            if (hasFetch) {
+              setHasFetch(false);
+              changeDataWS(9);
+            }
+            return;
+          }
+          if (data.data[0].workshop.indexOf("WS 10 ") > -1) {
+            // setWs("10");
+            if (hasFetch) {
+              setHasFetch(false);
+              changeDataWS(10);
+            }
+            return;
+          }
+          if (data.data[0].workshop.indexOf("WS 11 ") > -1) {
+            // setWs("11");
+            if (hasFetch) {
+              setHasFetch(false);
+              changeDataWS(11);
+            }
+            return;
+          }
+          if (data.data[0].workshop.indexOf("WS 12 ") > -1) {
+            // setWs("12");
+            if (hasFetch) {
+              setHasFetch(false);
+              changeDataWS(12);
+            }
+            return;
+          }
+          if (data.data[0].workshop.indexOf("WS 13 ") > -1) {
+            // setWs("13");
+            if (hasFetch) {
+              setHasFetch(false);
+              changeDataWS(13);
+            }
+            return;
+          }
+          if (data.data[0].workshop.indexOf("WS 14 ") > -1) {
+            // setWs("14");
+            if (hasFetch) {
+              setHasFetch(false);
+              changeDataWS(14);
+            }
+            return;
+          }
+          if (data.data[0].workshop.indexOf("WS 15 ") > -1) {
+            // setWs("15");
+            if (hasFetch) {
+              setHasFetch(false);
+              changeDataWS(15);
+            }
+            return;
+          }
+          if (data.data[0].workshop.indexOf("WS 16 ") > -1) {
+            // setWs("16");
+            if (hasFetch) {
+              setHasFetch(false);
+              changeDataWS(16);
+            }
+            return;
+          }
+          if (data.data[0].workshop.indexOf("WS Indovasc 1 ") > -1) {
+            // setWs("1A");
+            if (hasFetch) {
+              setHasFetch(false);
+              changeDataIndows(1);
+            }
+            // changeDataIndows(1);
+            return;
+          }
+          if (data.data[0].workshop.indexOf("WS Indovasc 2 ") > -1) {
+            // setWs("1B");
+            if (hasFetch) {
+              setHasFetch(false);
+              changeDataIndows(2);
+            }
+            return;
+          }
+          if (data.data[0].workshop.indexOf("WS Indovasc 3 ") > -1) {
+            // setWs("1C");
+            if (hasFetch) {
+              setHasFetch(false);
+              changeDataIndows(3);
+            }
+            return;
+          }
+        }
+      })
+      .catch(() => {
+        console.log("Internal server error");
+      });
+  }, []);
 
   const changeDataWS = (noUrut) => {
     setVisible(!visible);
@@ -450,118 +637,6 @@ const Colors = () => {
     },
   ]);
 
-  useEffect(() => {
-    var idsponsor = localStorage.getItem("loginid");
-    setIdsponsor(idsponsor);
-    var anggotast = localStorage.getItem("status");
-    if (anggotast == "ANGGOTA") {
-      setAnggota(true);
-    } else setAnggota(false);
-    setNama(localStorage.getItem("nama"));
-
-    var mtd2 = "";
-    if (anggotast == "ANGGOTA") {
-      mtd2 = "ANGGOTA2";
-    } else {
-      mtd2 = "ANGGOTA";
-    }
-
-    axios({
-      url: "https://acsasurabaya2021.com/wp-content/plugins/perki/kirimdata.php",
-      data: { mtd: mtd2, idsponsor: idsponsor },
-      contentType: "application/json",
-      method: "POST",
-    })
-      .then((data) => {
-        // var temp = data.data;
-        console.log(data.data[0]);
-        setAnggota(data.data[0]);
-        setWorkshopku(data.data[0].workshop);
-        if (data.data[0].workshop != "") {
-          if (data.data[0].workshop.indexOf("WS 1 ") > -1) {
-            setWs("1");
-            return;
-          }
-          if (data.data[0].workshop.indexOf("WS 2 ") > -1) {
-            setWs("2");
-            return;
-          }
-          if (data.data[0].workshop.indexOf("WS 3 ") > -1) {
-            setWs("3");
-            return;
-          }
-          if (data.data[0].workshop.indexOf("WS 4 ") > -1) {
-            setWs("4");
-            return;
-          }
-          if (data.data[0].workshop.indexOf("WS 5 ") > -1) {
-            setWs("5");
-            return;
-          }
-          if (data.data[0].workshop.indexOf("WS 6 ") > -1) {
-            setWs("6");
-            return;
-          }
-          if (data.data[0].workshop.indexOf("WS 7 ") > -1) {
-            setWs("7");
-            return;
-          }
-          if (data.data[0].workshop.indexOf("WS 8 ") > -1) {
-            setWs("8");
-            return;
-          }
-          if (data.data[0].workshop.indexOf("WS 9 ") > -1) {
-            setWs("9");
-            return;
-          }
-          if (data.data[0].workshop.indexOf("WS 10 ") > -1) {
-            setWs("10");
-            return;
-          }
-          if (data.data[0].workshop.indexOf("WS 11 ") > -1) {
-            setWs("11");
-            return;
-          }
-          if (data.data[0].workshop.indexOf("WS 12 ") > -1) {
-            setWs("12");
-            return;
-          }
-          if (data.data[0].workshop.indexOf("WS 13 ") > -1) {
-            setWs("13");
-            return;
-          }
-          if (data.data[0].workshop.indexOf("WS 14 ") > -1) {
-            setWs("14");
-            return;
-          }
-          if (data.data[0].workshop.indexOf("WS 15 ") > -1) {
-            setWs("15");
-            return;
-          }
-          if (data.data[0].workshop.indexOf("WS 16 ") > -1) {
-            setWs("16");
-            return;
-          }
-          if (data.data[0].workshop.indexOf("WS Indovasc 1 ") > -1) {
-            setWs("1A");
-            // changeDataIndows(1);
-            return;
-          }
-          if (data.data[0].workshop.indexOf("WS Indovasc 2 ") > -1) {
-            setWs("1B");
-            return;
-          }
-          if (data.data[0].workshop.indexOf("WS Indovasc 3 ") > -1) {
-            setWs("1C");
-            return;
-          }
-        }
-      })
-      .catch(() => {
-        console.log("Internal server error");
-      });
-  }, []);
-
   const WacthZoom = (meetingId, passcode = null, type = "ws") => {
     if (meetingId == "" || passcode == "") {
       alert("This feature is not active");
@@ -602,10 +677,16 @@ const Colors = () => {
         </CCardHeader>
         <CCardBody>
           <CRow>
-            <p style={{ width: "97%", margin: "0px auto 05px", textAlign: "center" }}>
+            <p
+              style={{
+                width: "97%",
+                margin: "0px auto 05px",
+                textAlign: "center",
+              }}
+            >
               Click the button below to view the workshop
             </p>
-            <div className="col-lg-12 col-md-12 col-sm-12 text-center">                        
+            <div className="col-lg-12 col-md-12 col-sm-12 text-center">
               {workshopku.indexOf("WS 1 ") > -1 ? (
                 <Button
                   type="primary"
@@ -926,16 +1007,14 @@ const Colors = () => {
                       }}
                     >
                       <h4>
-                        Workshop{" "}{dataWs.master.serial_number}
+                        Workshop {dataWs.master.serial_number}
                         <p style={{ textAlign: "center" }}>
-                          {dataWs.master.title}
+                          {dataWs.master.topic}
                         </p>
                       </h4>
                     </div>
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item">
-                        Topic : {dataWs.master.topic}
-                      </li>
+                      <li class="list-group-item">{dataWs.master.title}</li>
                       <li class="list-group-item">
                         Day,Date : {dataWs.master.day}, {dataWs.master.date}
                       </li>

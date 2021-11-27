@@ -136,6 +136,7 @@ const Colors = () => {
   const [hari, setHari] = useState("PERTAMA");
   const [visible, setVisible] = useState(false);
   const [dataWs, setDataWs] = useState({});
+  const [hasFetch, setHasFetch] = useState(true);
   const [dataSympo, setDataSympo] = useState({});
 
   useEffect(() => {
@@ -201,9 +202,11 @@ const Colors = () => {
       .get(`${process.env.REACT_APP_API_URL}?function=getActiveSympo`)
       .then((res) => {
         console.log(res);
-        if(res.data.status == 1){
+        if (res.data.status == 1) {
           setDataSympo(res.data.data);
           setSympo("sympo");
+        }else{
+          setDataSympo([])
         }
       })
       .catch((err) => console.log(err));
@@ -218,41 +221,20 @@ const Colors = () => {
         let dataWsNew = "";
         if (res.data.data.length != 0) {
           res.data.data.forEach((row) => {
-            // console.log(wsUserParam);
-            if (wsUserParam.indexOf(row + " ") > -1) {
-              dataWsNew += row + " ";
+            if (wsUserParam.indexOf(row.data + " ") > -1) {
+              if (hasFetch) {
+                setHasFetch(false);
+                if (row.type == "acsa") {
+                  changeDataWS(row.no);
+                } else {
+                  changeDataIndoWS(row.no);
+                }
+              }
+              dataWsNew += row.data + " ";
             }
           });
         }
         setWorkshopku(dataWsNew);
-        // console.log(dataWsNew);
-        // setDataWs(res.data.data);
-        // setWs("ws");
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const changeDataSympo = (noUrut) => {
-    setVisible(!visible);
-    axios
-      .get(
-        "https://acsasurabaya2021.com/wp-content/plugins/perki/PerkiAPi.php?function=getsympodetil&noUrut=" +
-          noUrut
-      )
-      .then((res) => {
-        console.log(res);
-        setVisible(!visible);
-        if (
-          res.data.status == 0 &&
-          res.data.master == null &&
-          res.data.master == []
-        ) {
-          alert("Mohon Hubungi Admin");
-        } else {
-          setDataSympo(res.data);
-          setWs("sympo");
-          console.log(dataSympo);
-        }
       })
       .catch((err) => console.log(err));
   };
@@ -276,31 +258,6 @@ const Colors = () => {
         } else {
           setDataWs(res.data);
           setWs("ws");
-        }
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const changeDataIndoSympo = (noUrut) => {
-    setVisible(!visible);
-    axios
-      .get(
-        "https://acsasurabaya2021.com/wp-content/plugins/perki/PerkiAPi.php?function=getsympovasculardetil&noUrut=" +
-          noUrut
-      )
-      .then((res) => {
-        console.log(res);
-        setVisible(!visible);
-        if (
-          res.data.status == 0 &&
-          res.data.master == null &&
-          res.data.master == []
-        ) {
-          alert("Mohon Hubungi Admin");
-        } else {
-          setDataSympo(res.data);
-          setWs("sympoIndo");
-          console.log(dataSympo);
         }
       })
       .catch((err) => console.log(err));
@@ -434,9 +391,9 @@ const Colors = () => {
                       <h4
                         style={{
                           color: "#4e4e4e",
-                          margin: "0 auto",
+                          margin: "0 auto 15px",
                           position: "relative",
-                          width: "95%",
+                          width: "99%",
                         }}
                       >{`Ballroom ${index1 + 1}`}</h4>
                       <div
@@ -491,7 +448,7 @@ const Colors = () => {
                                 </>
                               ) : (
                                 <>
-                                  {index2 == 0 ? (
+                                  {index2 == 0 && s.length == 1 ? (
                                     <h5 align="center">
                                       This event is not Active
                                     </h5>
@@ -506,22 +463,69 @@ const Colors = () => {
                   );
                 })}
               </>
-            ) : null}
+            ) : (
+              <>
+                {dataSympo.length == 0 ? (
+                  <>
+                    <h5
+                      style={{
+                        margin: "0 auto",
+                        position: "relative",
+                        width: "97%",
+                        marginBottom: "25px",
+                        color: "#4e4e4e",
+                      }}
+                    >
+                      (Symposium)
+                    </h5>
+                    <p style={{ width: "97%", margin: "0px auto 25px" }}>
+                      No Symposium live today
+                    </p>
+                  </>
+                ) : null}
+              </>
+            )}
           </CRow>
           <CRow>
-            <h5
-              style={{
-                margin: "0px auto 0",
-                position: "relative",
-                width: "97%",
-                color: "#4e4e4e",
-              }}
-            >
-              (Workshop)
-            </h5>
-            <p style={{ width: "97%", margin: "0px auto 0px" }}>
-              Click the button below to view the workshop
-            </p>
+            {workshopku.length != 0 ? (
+              <>
+                <h5
+                  style={{
+                    margin: "0px auto",
+                    position: "relative",
+                    marginBottom: "25px",
+                    width: "97%",
+                    color: "#4e4e4e",
+                  }}
+                >
+                  (Workshop)
+                </h5>
+                <p style={{ width: "97%", margin: "0px auto 0px" }}>
+                  Click the button below to view the workshop
+                </p>
+              </>
+            ) : (
+              <>
+                {workshopku.length == 0 ? (
+                  <>
+                    <h5
+                      style={{
+                        margin: "0px auto 0",
+                    marginBottom: "25px",
+                    position: "relative",
+                        width: "97%",
+                        color: "#4e4e4e",
+                      }}
+                    >
+                      (Workshop)
+                    </h5>
+                    <p style={{ width: "97%", margin: "0px auto 0px" }}>
+                      No Workshop live today
+                    </p>
+                  </>
+                ) : null}
+              </>
+            )}
             <div className="col-lg-12 col-md-12 col-sm-12">
               {workshopku.indexOf("WS 1 ") > -1 ? (
                 <Button
@@ -860,13 +864,14 @@ const Colors = () => {
                       <h4>
                         Workshop {dataWs.master.serial_number}
                         <p style={{ textAlign: "center" }}>
-                          {dataWs.master.title}
+
+                          {dataWs.master.topic}
                         </p>
                       </h4>
                     </div>
                     <ul className="list-group list-group-flush">
                       <li className="list-group-item">
-                        Topic : {dataWs.master.topic}
+                        {dataWs.master.title}
                       </li>
                       <li className="list-group-item">
                         Day,Date : {dataWs.master.day}, {dataWs.master.date}

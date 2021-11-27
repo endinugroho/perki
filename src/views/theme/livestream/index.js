@@ -36,7 +36,8 @@ const Colors = () => {
   function onFullScreenBtnClick() {
     // if we are in fullscreen, then exit
     let container = document.getElementById("Container");
-    if (isFullScreen()) {      
+    if (isFullScreen()) {   
+      setCap('Open Video Full Screen');   
       if (document.exitFullscreen) {
         document.exitFullscreen();
       } else if (document.webkitExitFullscreen) {

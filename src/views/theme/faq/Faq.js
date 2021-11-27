@@ -1102,6 +1102,9 @@ const pilihanku = (value) =>
         </CCardHeader>
         <CCardBody>
           <CRow>
+            <div className="col-lg-8 col-md-12 col-sm-12">
+
+            </div>  
           </CRow>
         </CCardBody>
       </CCard>
