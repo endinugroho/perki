@@ -628,7 +628,8 @@ const Colors = () => {
   // {profession:"Nurse or Paramedics",package:"-",price:"0"},
   {profession:"Nurse or Paramedics",package:"Silver (Symposium+2 workshop*)",price:"IDR 225,000",jumlah:2}]);
 
-  const [workshopprof,setWorkshopprof] = useState([{profession:"GP",name:"WS 3 (Stay Fit, Don't Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
+  const [workshopprof,setWorkshopprof] = useState([
+  // {profession:"GP",name:"WS 3 (Stay Fit, Don't Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
   {profession:"GP",name:"WS 5 (AF Management in the ER, Consultant Cardiologist do their jobs)"},
   {profession:"GP",name:"WS 6 (Cardiovascular Evaluation in Hajj Pilgrim)"},
   {profession:"GP",name:"WS 7 (Comprehensive CV Risk Stratification)"},
@@ -637,10 +638,10 @@ const Colors = () => {
   {profession:"GP",name:"WS 11 (Rapid Echocardiography in Emergency Setting)"},
   {profession:"GP",name:"WS 13 (Advanced in Diagnosing Acute Heart Failure)"},
   {profession:"GP",name:"WS Indovasc 3 (A - Z Peripheral Management : From Patient Selection to Therapy)"},
-  {profession:"Cardiologist",name:"WS 1 (Pregnancy and Heart Disease: What is the Most Common Cardiovascular Problem on It?)"},
-  {profession:"Cardiologist",name:"WS 2 (Perioperative Cardiac Consultation)"},
-  {profession:"Cardiologist",name:"WS 3 (Stay Fit, Don't Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
-  {profession:"Cardiologist",name:"WS 4 (Cardiac Injury in Chemotherapy Patient)"},
+  // {profession:"Cardiologist",name:"WS 1 (Pregnancy and Heart Disease: What is the Most Common Cardiovascular Problem on It?)"},
+  // {profession:"Cardiologist",name:"WS 2 (Perioperative Cardiac Consultation)"},
+  // {profession:"Cardiologist",name:"WS 3 (Stay Fit, Don't Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
+  // {profession:"Cardiologist",name:"WS 4 (Cardiac Injury in Chemotherapy Patient)"},
   {profession:"Cardiologist",name:"WS 5 (AF Management in the ER, Consultant Cardiologist do their jobs)"},
   {profession:"Cardiologist",name:"WS 6 (Cardiovascular Evaluation in Hajj Pilgrim)"},
   {profession:"Cardiologist",name:"WS 7 (Comprehensive CV Risk Stratification)"},
@@ -652,9 +653,9 @@ const Colors = () => {
   {profession:"Cardiologist",name:"WS Indovasc 1 (Early Detection of Chronic Venous Insufficiency)"},
   {profession:"Cardiologist",name:"WS Indovasc 2 (Vascular Doppler US)"},
   {profession:"Cardiologist",name:"WS Indovasc 3 (A - Z Peripheral Management : From Patient Selection to Therapy)"},
-  {profession:"Other Specialist",name:"WS 1 (Pregnancy and Heart Disease: What is the Most Common Cardiovascular Problem on It?)"},
-  {profession:"Other Specialist",name:"WS 3 (Stay Fit, Don't Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
-  {profession:"Other Specialist",name:"WS 4 (Cardiac Injury in Chemotherapy Patient)"},
+  // {profession:"Other Specialist",name:"WS 1 (Pregnancy and Heart Disease: What is the Most Common Cardiovascular Problem on It?)"},
+  // {profession:"Other Specialist",name:"WS 3 (Stay Fit, Don't Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
+  // {profession:"Other Specialist",name:"WS 4 (Cardiac Injury in Chemotherapy Patient)"},
   {profession:"Other Specialist",name:"WS 7 (Comprehensive CV Risk Stratification)"},
   {profession:"Other Specialist",name:"WS 8 (Practical approach to non-invasive ventilation in acute heart failure)"},
   {profession:"Other Specialist",name:"WS 9 (Practical Approach in Emergency Arrythmias)"},
@@ -662,7 +663,7 @@ const Colors = () => {
   {profession:"Other Specialist",name:"WS 13 (Advanced in Diagnosing Acute Heart Failure)"},
   {profession:"Other Specialist",name:"WS 15 (Cardiomyopathy Evaluation by Cardiac MR)"},
   {profession:"Other Specialist",name:"WS 16 (Cardiac CT in Coronary Artery and Beyond)"},
-  {profession:"Nurse or Paramedics",name:"Ws 3 (Stay Fit, Don't Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
+  // {profession:"Nurse or Paramedics",name:"Ws 3 (Stay Fit, Don't Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
   {profession:"Nurse or Paramedics",name:"WS 10 (Asuhan Medis dan Keperawatan pada Kegawatan Kardiovaskular di Lini Terdepan: Fokus pada Terapi Trombolitik)"}]);
 
   useEffect(() => {

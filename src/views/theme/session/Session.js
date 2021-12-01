@@ -162,7 +162,7 @@ const Colors = () => {
       method: "POST",
     })
       .then((data) => {
-        setAnggota(data.data[0]);        
+        setAnggota(data.data[0]);
         if (data.data[0].simposium != "") {
           getActiveEventSympo();
         }
@@ -864,7 +864,7 @@ const Colors = () => {
                       <h4>
                         Workshop {dataWs.master.serial_number}
                         <p style={{ textAlign: "center" }}>
-                          
+
                           {dataWs.master.topic}
                         </p>
                       </h4>
