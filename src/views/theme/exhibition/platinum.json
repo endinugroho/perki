@@ -40,11 +40,11 @@
         "phase" : "IAKAS"        
     },
     {
-        "img" : "./Booth/Booth Platinum/In Colaboration With/booth_idi.jpg",        
-        "phase" : "IDI"        
+        "img" : "./Booth/Booth Platinum/In Colaboration With/booth_acsa.jpg",        
+        "phase" : "ACSA"        
     },
     {
-        "img" : "./Booth/Booth Platinum/In Colaboration With/booth_unair.jpg",        
+        "img" : "./Booth/Booth Platinum/In Colaboration With/booth unair+iakas.jpg",        
         "phase" : "UNAIR"        
     },
     {
@@ -58,5 +58,9 @@
     {
         "img" : "./Booth/Booth Platinum/In Colaboration With/booth_perki.jpg",        
         "phase" : "PERKI"        
+    },
+    {
+        "img" : "./Booth/Booth Platinum/In Colaboration With/booth_perki.jpg",        
+        "phase" : "LAA"        
     }
 ]

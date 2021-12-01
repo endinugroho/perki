@@ -47,7 +47,7 @@ const Colors = () => {
       fetchDataBooth("BOOTH014", "YKMA");
     }
     if (index == 3) {
-      fetchDataBooth("BOOTH010", "IAKAS");
+      fetchDataBooth("BOOTH012", "ACSA");
     }
     if (index == 4) {
       fetchDataBooth("BOOTH003", "MERIL");
@@ -71,16 +71,10 @@ const Colors = () => {
       fetchDataBooth("BOOTH011", "PERKI");
     }
     if (index == 11) {
-      fetchDataBooth("BOOTH012", "IDI");
-    }
-    if (index == 12) {
       fetchDataBooth("BOOTH013", "UNAIR");
-    }
-    if (index == 13) {
-      fetchDataBooth("BOOTH016", "UADCVM");
-    }
+    }    
     if (index == 14) {
-      fetchDataBooth("BOOTH015", "DRSUTOMO");
+      fetchDataBooth("BOOTH018", "LAA");
     }
   };
 
@@ -129,8 +123,7 @@ const Colors = () => {
   const fetchDataBooth = (boothCode, boothName) => {
     axios
       .get(
-        "https://acsasurabaya2021.com/wp-content/plugins/perki/PerkiAPi.php?function=getboothdetil&code=" +
-          boothCode
+        process.env.REACT_APP_API_URL+"?function=getboothdetil&idPeserta="+JSON.parse(localStorage.getItem("userData")).userData.id+"&code=" +boothCode
       )
       .then((res) => {
         // console.log(res);
@@ -371,20 +364,20 @@ const Colors = () => {
       onMouseOver: () => {},
       render: (area: any, index: number) => <span></span>,
     },
-    //10
-    {
-      width: "9%",
-      height: "21%",
-      left: "16%",
-      top: "63%",
-      style: {
-        background: "rgba(69, 147, 255, 0)",
-        zIndex: "8",
-        cursor: "pointer",
-      },
-      onMouseOver: () => {},
-      render: (area: any, index: number) => <span></span>,
-    },
+    // //10
+    // {
+    //   width: "9%",
+    //   height: "21%",
+    //   left: "16%",
+    //   top: "63%",
+    //   style: {
+    //     background: "rgba(69, 147, 255, 0)",
+    //     zIndex: "8",
+    //     cursor: "pointer",
+    //   },
+    //   onMouseOver: () => {},
+    //   render: (area: any, index: number) => <span></span>,
+    // },
     //11
     {
       width: "8%",
@@ -427,20 +420,20 @@ const Colors = () => {
       onMouseOver: () => {},
       render: (area: any, index: number) => <span></span>,
     },
-    //14
-    {
-      width: "8%",
-      height: "20%",
-      left: "75%",
-      top: "63%",
-      style: {
-        background: "rgba(69, 147, 255, 0)",
-        zIndex: "8",
-        cursor: "pointer",
-      },
-      onMouseOver: () => {},
-      render: (area: any, index: number) => <span></span>,
-    },
+    // //14
+    // {
+    //   width: "8%",
+    //   height: "20%",
+    //   left: "75%",
+    //   top: "63%",
+    //   style: {
+    //     background: "rgba(69, 147, 255, 0)",
+    //     zIndex: "8",
+    //     cursor: "pointer",
+    //   },
+    //   onMouseOver: () => {},
+    //   render: (area: any, index: number) => <span></span>,
+    // },
   ];
 
   const mapSilverAndGold = [
@@ -670,7 +663,7 @@ const Colors = () => {
           {phase == "PLATINUM" ? (
             <ImageMap
               className="usage-map"
-              src={"./New Img/001 Booth Venue platinum.jpg"}
+              src={"./001 Booth Venue platinum_rev.jpg"}
               map={mapPlatinum}
               onMapClick={onMapPlatinum}
               style={{

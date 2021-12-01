@@ -33,7 +33,7 @@ const Login = () => {
   useEffect(() => {
     if (localStorage.email !== "" && localStorage.password !== "") {    
       setMyform({email : localStorage.email, password: localStorage.password})   
-      loginklik({email : localStorage.email, password: localStorage.password}) 
+      // loginklik({email : localStorage.email, password: localStorage.password}) 
     }      
   }, [])
 
