@@ -459,15 +459,11 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
         title={`View Catalog ${viewType}`}
         width={"100%"}
         visible={visibleViewModal}
-        onCancel={() => {
-          setFileView(null)
-          setViewType(null);
+        onCancel={() => {          
           setVisibleViewModal(false);
         }}
         footer={[
-          <Button key="back" onClick={() => {
-            setFileView(null)
-            setViewType(null);
+          <Button key="back" onClick={() => {            
             setVisibleViewModal(false)            
           }}>
             Close
