@@ -26,7 +26,7 @@ const SilverBooth = ({ phase, dataBooth }) => {
   const [visibleViewModal, setVisibleViewModal] = useState(false);
   const [fileView, setFileView] = useState(null);
   const [viewType, setViewType] = useState(null);
-  const [form] = Form.useForm();
+  const [form] = Form.useForm();  
 
   const mapAreSilver = [
     {
@@ -182,10 +182,11 @@ const SilverBooth = ({ phase, dataBooth }) => {
   };
 
   const playVideo = (index) => {
+    setViewType("Video");
     let dataVideo = dataBooth.video[index];
       if(dataVideo != undefined){
         let UrlFile;
-        if (dataVideo.type == "EMBED") {
+        if (dataVideo.tipe == "EMBED") {
           UrlFile = dataVideo.link;
         } else {
           UrlFile = dirFile + "video/" + dataVideo.file;
@@ -252,7 +253,7 @@ const SilverBooth = ({ phase, dataBooth }) => {
   };
 
   return (
-    <>
+    <>    
       {/* Modal Guest Book */}
       <Modal
         title={`Guest Book`}
@@ -438,14 +439,12 @@ const SilverBooth = ({ phase, dataBooth }) => {
             <Page pageNumber={pageNumber} />
           </Document> */}
         {viewType == "PDF" && fileView != null ? (
-          <iframe
-            src={`${fileView}#view=fitH`}
-            title="title"
-            height="100%"
-            width="100%"
-          >
-            Presss me: <a href={fileView}>Download PDF</a>
-          </iframe>
+            <embed
+              src={fileView}
+              height="800"
+              width="100%"
+              type="application/pdf"
+            />
         ) : (
           <ReactPlayer
             className="react-player"
@@ -454,7 +453,7 @@ const SilverBooth = ({ phase, dataBooth }) => {
             height="80vh"
             volume="0.2"
             playsInline
-            playing={false}
+            playing={visibleViewModal}
             loop
             controls={true}
             autoPlay={false}

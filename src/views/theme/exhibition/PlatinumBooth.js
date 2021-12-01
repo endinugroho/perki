@@ -19,6 +19,7 @@ import DataPlatinum from "./platinum.json";
 const dirFile = "https://admin.acsasurabaya2021.com/files/";
 
 const PlatinumBooth = ({ phase, dataBooth }) => {
+  const [waModal, setWaModal] = useState(false);
   const [guestBookModal, setGuestBookModal] = useState(false);
   const [visibleModal, setVisibleModal] = useState(false);
   const [visibleViewModal, setVisibleViewModal] = useState(false);
@@ -66,9 +67,13 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
       },
       onMouseOver: () => {},
       render: (area: any, index: number) => (
-        <Tooltip placement="left" title={"Contact WhatsApp"} defaultVisible={true}>          
-          <div style={{width: "100%", height: "100%",}}></div>
-        </Tooltip>      
+        <Tooltip
+          placement="left"
+          title={"Contact WhatsApp"}
+          defaultVisible={true}
+        >
+          <div style={{ width: "100%", height: "100%" }}></div>
+        </Tooltip>
       ),
     },
     {
@@ -161,21 +166,16 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
         window.open(dataBooth.master[0].link);
       }
     } else if (index == 1) {
-      // console.log("Open PDF MODAL");
       setVisibleModal(true);
       setViewType("PDF");
     } else if (index == 2) {
-      if (dataBooth.master[0].pic != "-" && dataBooth.master[0].pic != null) {
-        window.open(`https://wa.me/${dataBooth.master[0].pic}`);
+      if (dataBooth.wa.length != 0) {
+        setWaModal(true);
       } else {
         alert("this WA number is unavaible");
       }
-      // console.log("Open WA ME MODAL");
     } else if (index == 3) {
       playVideo(0);
-      // console.log("Open VIDEO MODAL");
-      // setVisibleModal(true);
-      // setViewType("Video");
     } else if (index == 4) {
       playVideo(1);
     } else if (index == 5) {
@@ -185,16 +185,16 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
     } else if (index == 7) {
       playVideo(4);
     } else if (index == 8) {
-      // console.log("Open Modal Guest Book");
       setGuestBookModal(true);
     }
   };
 
   const playVideo = (index) => {
+    setViewType("Video");
     let dataVideo = dataBooth.video[index];
     if (dataVideo != undefined) {
       let UrlFile;
-      if (dataVideo.type == "EMBED") {
+      if (dataVideo.tipe == "EMBED") {
         UrlFile = dataVideo.link;
       } else {
         UrlFile = dirFile + "video/" + dataVideo.file;
@@ -263,6 +263,40 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
 
   return (
     <>
+      {/* Modal WA Contact */}
+      <Modal
+        title={`Guest Book`}
+        width={"60%"}
+        visible={waModal}
+        onCancel={() => setWaModal(false)}
+        footer={[
+          <Button key="back" onClick={() => setWaModal(false)}>
+            Close
+          </Button>,
+        ]}
+      >
+        <div className="row justify-content-center">
+          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            {dataBooth && (
+              <ul class="list-group">
+                {dataBooth.wa.map((row, i) => {
+                  return (
+                    <>
+                      <li class="list-group-item">
+                        {row.nama}{" "}
+                        <button className="btn btn-success float-right" onClick={() => window.open(`https://api.whatsapp.com/send/?phone=${row.contact}&text=Hallo`)}>
+                          Contact now
+                        </button>
+                      </li>
+                    </>
+                  );
+                })}
+              </ul>
+            )}
+          </div>
+        </div>
+      </Modal>
+
       {/* Modal Guest Book */}
       <Modal
         title={`Guest Book`}
@@ -425,9 +459,17 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
         title={`View Catalog ${viewType}`}
         width={"100%"}
         visible={visibleViewModal}
-        onCancel={() => setVisibleViewModal(false)}
+        onCancel={() => {
+          setFileView(null)
+          setViewType(null);
+          setVisibleViewModal(false);
+        }}
         footer={[
-          <Button key="back" onClick={() => setVisibleViewModal(false)}>
+          <Button key="back" onClick={() => {
+            setFileView(null)
+            setViewType(null);
+            setVisibleViewModal(false)            
+          }}>
             Close
           </Button>,
         ]}
@@ -441,7 +483,8 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
               type="application/pdf"
             />
           </>
-        ) : (
+        ) : null}
+        { viewType == "Video" && fileView != null ?  (
           <ReactPlayer
             className="react-player"
             url={fileView}
@@ -449,12 +492,12 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
             height="80vh"
             volume="0.2"
             playsInline
-            playing={false}
+            playing={visibleViewModal}
             loop
             controls={true}
             autoPlay={false}
           />
-        )}
+        ) : null}
       </Modal>
 
       {DataPlatinum.map((row, i) => {
