@@ -73,7 +73,7 @@ const Colors = () => {
     if (index == 11) {
       fetchDataBooth("BOOTH013", "UNAIR");
     }    
-    if (index == 14) {
+    if (index == 12) {
       fetchDataBooth("BOOTH018", "LAA");
     }
   };
