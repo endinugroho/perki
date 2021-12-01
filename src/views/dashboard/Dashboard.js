@@ -483,27 +483,27 @@ const Dashboard = () => {
       top: "-99px",
       height: "100%",
       width: "7.1%",
-      style: { background: "rgba(0, 255, 0, 0)", zIndex: "8" },
+      style: { background: "rgba(0, 255, 0, 0)", zIndex: "0" },
       onMouseOver: () => setPejet("LOBBY"),
       render: (area: any, index: number) => (
         <span>
-          {pejet == "LOBBY" ? (
+          {/* {pejet == "LOBBY" ? (
             <img
               src="https://acsasurabaya2021.com/wp-content/plugins/perki/Lobby_Select.png"
               width="100%"
             />
-          ) : null}
+          ) : null} */}
         </span>
       ),
     },
     //1
     {
-      left: "21.25%",
+      left: "17.55%",
       top: "-99px",
       height: "100%",
       width: "7.1%",
       style: {
-        background: "rgba(255, 0, 0, 0.0)",
+        background: "rgba(255, 0, 0, 0)",
         zIndex: "8",
         cursor: "pointer",
       },
@@ -534,7 +534,7 @@ const Dashboard = () => {
     },
     //2
     {
-      left: "28.4%",
+      left: "24.8%",
       top: "-99px",
       height: "100%",
       width: "7.1%",
@@ -557,7 +557,7 @@ const Dashboard = () => {
     },
     //3
     {
-      left: "78.9%",
+      left: "75.3%",
       top: "-99px",
       height: "100%",
       width: "7.1%",
@@ -580,7 +580,7 @@ const Dashboard = () => {
     },
     //4
     {
-      left: "35.7%",
+      left: "32.0%",
       top: "-99px",
       height: "100%",
       width: "7.1%",
@@ -603,7 +603,7 @@ const Dashboard = () => {
     },
     //5
     {
-      left: "71.7%",
+      left: "68.1%",
       top: "-99px",
       height: "100%",
       width: "7.1%",
@@ -626,12 +626,12 @@ const Dashboard = () => {
     },
     //6
     {
-      left: "42.9%",
+      left: "39.1%",
       top: "-99px",
       height: "100%",
       width: "7.1%",
       style: {
-        background: "rgba(0, 255, 0, 0)",
+        background: "rgba(0, 255, 0, 0.0)",
         zIndex: "8",
         cursor: "pointer",
       },
@@ -649,12 +649,12 @@ const Dashboard = () => {
     },
     //7
     {
-      left: "50.1%",
+      left: "46.4%",
       top: "-99px",
       height: "100%",
       width: "7.1%",
       style: {
-        background: "rgba(0, 255, 0, 0)",
+        background: "rgba(0, 255, 0, 0.0)",
         zIndex: "8",
         cursor: "pointer",
       },
@@ -669,12 +669,12 @@ const Dashboard = () => {
     },
     //8
     {
-      left: "57.22%",
+      left: "53.72%",
       top: "-99px",
       height: "100%",
       width: "7.1%",
       style: {
-        background: "rgba(0, 255, 0, 0)",
+        background: "rgba(0, 255, 0, 0.0)",
         zIndex: "8",
         cursor: "pointer",
       },
@@ -689,12 +689,12 @@ const Dashboard = () => {
     },
     //9
     {
-      left: "64.5%",
+      left: "60.9%",
       top: "-99px",
       height: "100%",
       width: "7.1%",
       style: {
-        background: "rgba(0, 255, 0, 0)",
+        background: "rgba(0, 255, 0, 0.0)",
         zIndex: "8",
         cursor: "pointer",
       },
@@ -774,7 +774,7 @@ const Dashboard = () => {
                 src={"./00_BUTTON/MAIN_BUTTON copy.png"}
                 map={mapAreaMenu}
                 style={{
-                  width: "72%",
+                  width: "65%",
                   position: "relative",
                   left: "50%",
                   zIndex: 1,

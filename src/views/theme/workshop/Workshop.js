@@ -698,6 +698,9 @@ const Colors = () => {
                     marginLeft: "2px",
                     borderRadius: "10px",
                     marginBottom: "5px",
+                    backgroundColor:"rgb(159,226,255)",
+                    borderColor:"rgb(159,226,255)",
+
                   }}
                 >
                   WS 1
@@ -714,6 +717,8 @@ const Colors = () => {
                     marginLeft: "2px",
                     borderRadius: "10px",
                     marginBottom: "5px",
+                    backgroundColor:"rgb(159,226,255)",
+                    borderColor:"rgb(159,226,255)",
                   }}
                 >
                   WS 2
@@ -731,6 +736,8 @@ const Colors = () => {
                     marginLeft: "2px",
                     borderRadius: "10px",
                     marginBottom: "5px",
+                    backgroundColor:"rgb(159,226,255)",
+                    borderColor:"rgb(159,226,255)",
                   }}
                 >
                   WS 3
@@ -747,6 +754,8 @@ const Colors = () => {
                     marginLeft: "2px",
                     borderRadius: "10px",
                     marginBottom: "5px",
+                    backgroundColor:"rgb(159,226,255)",
+                    borderColor:"rgb(159,226,255)",
                   }}
                 >
                   WS 4
