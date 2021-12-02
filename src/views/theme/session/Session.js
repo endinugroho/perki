@@ -43,6 +43,8 @@ const rowsColor = "#0075BC";
 const headerColor = "#0075BC";
 const borderColor = "#0075BC";
 
+const isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && window['safari'].pushNotification));
+
 const ThemeView = () => {
   const [color, setColor] = useState("rgb(255, 255, 255)");
   const ref = createRef();
@@ -293,13 +295,23 @@ const Colors = () => {
     if (isNaN(isValidDate)) {
       return "-";
     } else {
-      return (
-        new Date(date).getDate() +
-        " " +
-        dateArticle.format(new Date(date)) +
-        " " +
-        new Date(date).getFullYear()
-      );
+      if(isSafari){
+        return (
+          Date.parse(date).getDate() +
+          " " +
+          dateArticle.format(Date.parse(date)) +
+          " " +
+          Date.parse(date).getFullYear()
+        );
+      }else{
+        return (
+          new Date(date).getDate() +
+          " " +
+          dateArticle.format(new Date(date)) +
+          " " +
+          new Date(date).getFullYear()
+        );
+      }
     }
   };
 
@@ -312,6 +324,14 @@ const Colors = () => {
     let dateTime = date + " " + time;
     return dateTime;
   };
+
+  const getDate = (date) => {
+    if(isSafari){
+      return Date.parse(date);
+    }else{
+      return new Date(date);
+    }
+  }
 
   return (
     <>
@@ -415,7 +435,7 @@ const Colors = () => {
                                     <br />
                                     <b>Coming Up In</b> : <br />
                                     <Countdown
-                                      date={new Date(row.time_launching)}
+                                      date={getDate(row.time_launching)}
                                     />
                                   </p>
                                   {row.zoom_room_id ||
@@ -511,8 +531,8 @@ const Colors = () => {
                     <h5
                       style={{
                         margin: "0px auto 0",
-                    marginBottom: "25px",
-                    position: "relative",
+                        marginBottom: "25px",
+                        position: "relative",
                         width: "97%",
                         color: "#4e4e4e",
                       }}
@@ -887,7 +907,7 @@ const Colors = () => {
                       </li>
                       <li className="list-group-item">
                         Coming Up In :{" "}
-                        <Countdown date={new Date(dataWs.master.date)} />
+                        <Countdown date={getDate(dataWs.master.date)} />
                       </li>
                       <li className="list-group-item text-center">
                         <Button

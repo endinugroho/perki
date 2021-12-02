@@ -16,6 +16,8 @@ import {
 import styles from "./Button.module.css";
 import DataSliver from "./silver.json";
 import DataGold from "./gold.json";
+import {isMobile} from 'react-device-detect';
+
 
 // const dirFile = "https://acsasurabaya2021.com/files/";
 const dirFile = "https://admin.acsasurabaya2021.com/files/";
@@ -67,7 +69,7 @@ const SilverBooth = ({ phase, dataBooth }) => {
       },
       onMouseOver: () => {},
       render: (area: any, index: number) => (
-        <Tooltip placement="right" title={"Guest Book"} defaultVisible={true}>
+        <Tooltip placement="right" title={"Guest Book"}>
           <img width="100%" height="100%" src="./guests-book.png" />
         </Tooltip>
       ),
@@ -139,7 +141,7 @@ const SilverBooth = ({ phase, dataBooth }) => {
       },
       onMouseOver: () => {},
       render: (area: any, index: number) => (
-        <Tooltip placement="right" title={"Guest Book"} defaultVisible={true}>
+        <Tooltip placement="right" title={"Guest Book"}>
           <img width="100%" height="100%" src="./guests-book.png" />
         </Tooltip>
       ),
@@ -201,8 +203,12 @@ const SilverBooth = ({ phase, dataBooth }) => {
   const openPdfReader = (file) => {
     let UrlFile = dirFile + "pdf/" + file;
     console.log(UrlFile);
-    setVisibleViewModal(true);
-    setFileView(UrlFile);
+    if(isMobile){
+      window.open("https://docs.google.com/viewerng/viewer?url="+UrlFile);
+    }else{
+      setVisibleViewModal(true);
+      setFileView(UrlFile);    
+    } 
     // setFileView("https://cors-anywhere.herokuapp.com/http://www.pdf995.com/samples/pdf.pdf")
   };
 
@@ -332,26 +338,13 @@ const SilverBooth = ({ phase, dataBooth }) => {
             Close
           </Button>,
         ]}
-      >
-        {/* <img
-          src="https://acsasurabaya2021.com/wp-content/plugins/perki/register.png"
-          className="visible-desktop"
-          width="300"
-          style={{
-            position: "absolute",
-            right: "0",
-            width: "350px",
-            marginTop: "-22px",
-          }}
-        /> */}
+      >      
         <div className="row">
           {dataBooth && (
             <>
-              {dataBooth.pdf.length == 0 || dataBooth.video.length == 0
-                ? "No Data"
-                : ""}
               {viewType == "PDF" ? (
                 <>
+                {dataBooth.pdf.length == 0 ? "No Data" : ""}              
                   {dataBooth.pdf.map((row, i) => {
                     return (
                       <div
@@ -381,6 +374,7 @@ const SilverBooth = ({ phase, dataBooth }) => {
                 </>
               ) : (
                 <>
+                {dataBooth.video.length == 0 ? "No Data" : ""}
                   {dataBooth.video.map((row, i) => {
                     return (
                       <div
@@ -423,6 +417,8 @@ const SilverBooth = ({ phase, dataBooth }) => {
         title={`View Catalog ${viewType}`}
         width={"100%"}
         visible={visibleViewModal}
+        destroyOnClose={true}
+
         onCancel={() => setVisibleViewModal(false)}
         footer={[
           <Button key="back" onClick={() => setVisibleViewModal(false)}>
@@ -445,7 +441,7 @@ const SilverBooth = ({ phase, dataBooth }) => {
               width="100%"
               type="application/pdf"
             />
-        ) : (
+        ) : (          
           <ReactPlayer
             className="react-player"
             url={fileView}
@@ -453,11 +449,11 @@ const SilverBooth = ({ phase, dataBooth }) => {
             height="80vh"
             volume="0.2"
             playsInline
-            playing={visibleViewModal}
+            playing={false}
             loop
             controls={true}
-            autoPlay={false}
-          />
+            autoPlay={false}          
+          />        
         )}
       </Modal>
       {DataSliver.map((row, i) => {

@@ -6,7 +6,7 @@ const TheFooter = () => {
     <CFooter fixed={false}>
       <div>
         <a href="https://primavisiglobalindo.com/" target="_blank" rel="noopener noreferrer">PT Primavisi Globalindo</a>
-        <span className="ml-1">&copy; 2021 creativeLabs.</span>
+        <span className="ml-1">&copy; 2021</span>
       </div>
       <div className="mfs-auto">
         <span className="mr-1">Powered by</span>

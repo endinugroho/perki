@@ -1,4 +1,15 @@
-.back{
+.backMobile{
+    position: absolute;
+    font-size: 32px;
+    background: #094584;
+    padding: 10px;
+    border-Radius: 50%;
+    color: #fff;
+    right: 45px;
+    z-index: 2;
+}
+
+.backDesktop{
     position: absolute;
     font-size: 32px;
     background: #094584;
@@ -8,6 +19,7 @@
     right: 222px;
     z-index: 2;
 }
-.back:hover{    
+
+.backDesktop:hover, .backMobile:hover{    
     background: #247edd;    
 }
