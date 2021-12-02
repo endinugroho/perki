@@ -67,7 +67,7 @@ const SilverBooth = ({ phase, dataBooth }) => {
       },
       onMouseOver: () => {},
       render: (area: any, index: number) => (
-        <Tooltip placement="right" title={"Guest Book"} defaultVisible={true}>
+        <Tooltip placement="right" title={"Guest Book"}>
           <img width="100%" height="100%" src="./guests-book.png" />
         </Tooltip>
       ),
@@ -139,7 +139,7 @@ const SilverBooth = ({ phase, dataBooth }) => {
       },
       onMouseOver: () => {},
       render: (area: any, index: number) => (
-        <Tooltip placement="right" title={"Guest Book"} defaultVisible={true}>
+        <Tooltip placement="right" title={"Guest Book"}>
           <img width="100%" height="100%" src="./guests-book.png" />
         </Tooltip>
       ),
@@ -332,26 +332,13 @@ const SilverBooth = ({ phase, dataBooth }) => {
             Close
           </Button>,
         ]}
-      >
-        {/* <img
-          src="https://acsasurabaya2021.com/wp-content/plugins/perki/register.png"
-          className="visible-desktop"
-          width="300"
-          style={{
-            position: "absolute",
-            right: "0",
-            width: "350px",
-            marginTop: "-22px",
-          }}
-        /> */}
+      >      
         <div className="row">
           {dataBooth && (
             <>
-              {dataBooth.pdf.length == 0 || dataBooth.video.length == 0
-                ? "No Data"
-                : ""}
               {viewType == "PDF" ? (
                 <>
+                {dataBooth.pdf.length == 0 ? "No Data" : ""}              
                   {dataBooth.pdf.map((row, i) => {
                     return (
                       <div
@@ -381,6 +368,7 @@ const SilverBooth = ({ phase, dataBooth }) => {
                 </>
               ) : (
                 <>
+                {dataBooth.video.length == 0 ? "No Data" : ""}
                   {dataBooth.video.map((row, i) => {
                     return (
                       <div
@@ -423,6 +411,8 @@ const SilverBooth = ({ phase, dataBooth }) => {
         title={`View Catalog ${viewType}`}
         width={"100%"}
         visible={visibleViewModal}
+        destroyOnClose={true}
+
         onCancel={() => setVisibleViewModal(false)}
         footer={[
           <Button key="back" onClick={() => setVisibleViewModal(false)}>
@@ -439,25 +429,28 @@ const SilverBooth = ({ phase, dataBooth }) => {
             <Page pageNumber={pageNumber} />
           </Document> */}
         {viewType == "PDF" && fileView != null ? (
-            <embed
+          <>
+            {/* // <embed
+            //   src={fileView}
+            //   height="800"
+            //   width="100%"
+            //   type="application/pdf"
+            // /> */}
+            <object data={fileView} type="application/pdf" width="100%" height="800">
+              <p>Your web browser doesn't have a PDF plugin.</p>
+            </object>
+          </>
+        ) : (
+          <>            
+            {/* <embed
               src={fileView}
               height="800"
-              width="100%"
-              type="application/pdf"
-            />
-        ) : (
-          <ReactPlayer
-            className="react-player"
-            url={fileView}
-            width="100%"
-            height="80vh"
-            volume="0.2"
-            playsInline
-            playing={visibleViewModal}
-            loop
-            controls={true}
-            autoPlay={false}
-          />
+              width="100%"            
+            /> */}
+            <object data={fileView} width="100%" height="800">
+              <p>Your web browser doesn't have a Video Plugins.</p>
+            </object>
+          </>
         )}
       </Modal>
       {DataSliver.map((row, i) => {

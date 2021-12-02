@@ -81,41 +81,38 @@ const Colors = () => {
   const onMapSilverAndGold = (area, index) => {
     if (index == 0) {
       fetchDataBooth("BASIC001", "DARYA");
-    }
+    }    
     if (index == 1) {
-      fetchDataBooth("BASIC002", "BAYER");
-    }
-    if (index == 2) {
       fetchDataBooth("BASIC003", "PRODIA");
     }
-    if (index == 3) {
+    if (index == 2) {
       fetchDataBooth("BASIC004", "INDOMED");
     }
-    if (index == 4) {
+    if (index == 3) {
       fetchDataBooth("BASIC005", "UPJOHN");
     }
-    if (index == 5) {
+    if (index == 4) {
       fetchDataBooth("BASIC006", "TERUMO");
     }
-    if (index == 6) {
+    if (index == 5) {
       fetchDataBooth("BASIC007", "IDSMED");
     }
-    if (index == 7) {
+    if (index == 6) {
       fetchDataBooth("BASIC008", "FERRON");
     }
-    if (index == 8) {
+    if (index == 7) {
       fetchDataBooth("BASIC009", "SIEMENS");
     }
-    if (index == 9) {
+    if (index == 8) {
       fetchDataBooth("BASIC010", "MEDTRONIK");
     }
-    if (index == 10) {
+    if (index == 9) {
       fetchDataBooth("BASIC011", "MERCK");
     }
-    if (index == 11) {
+    if (index == 10) {
       fetchDataBooth("BOOTH017", "ABBOT");
     }
-    if (index == 12) {
+    if (index == 11) {
       fetchDataBooth("BOOTH008", "PFIZER");
     }
   };
@@ -441,7 +438,7 @@ const Colors = () => {
     {
       width: "7%",
       height: "15%",
-      left: "26%",
+      left: "29%",
       top: "26%",
       style: {
         background: "rgba(69, 147, 255, 0)",
@@ -455,7 +452,7 @@ const Colors = () => {
     {
       width: "7%",
       height: "14%",
-      left: "34%",
+      left: "38%",
       top: "26%",
       style: {
         background: "rgba(69, 147, 255, 0)",
@@ -469,7 +466,7 @@ const Colors = () => {
     {
       width: "7%",
       height: "15%",
-      left: "42%",
+      left: "46%",
       top: "26%",
       style: {
         background: "rgba(69, 147, 255, 0)",
@@ -483,7 +480,7 @@ const Colors = () => {
     {
       width: "6%",
       height: "13%",
-      left: "51%",
+      left: "55%",
       top: "27%",
       style: {
         background: "rgba(69, 147, 255, 0)",
@@ -497,7 +494,7 @@ const Colors = () => {
     {
       width: "7%",
       height: "14%",
-      left: "59%",
+      left: "63%",
       top: "27%",
       style: {
         background: "rgba(69, 147, 255, 0)",
@@ -506,21 +503,7 @@ const Colors = () => {
       },
       onMouseOver: () => {},
       render: (area: any, index: number) => <span></span>,
-    },
-    //5
-    {
-      width: "7%",
-      height: "14%",
-      left: "67%",
-      top: "27%",
-      style: {
-        background: "rgba(69, 147, 255, 0)",
-        zIndex: "8",
-        cursor: "pointer",
-      },
-      onMouseOver: () => {},
-      render: (area: any, index: number) => <span></span>,
-    },
+    },    
     //6
     {
       width: "7%",
@@ -634,16 +617,15 @@ const Colors = () => {
 
   return (
     <div className="row">
-      <div className="col-lg-12 col-md-12 col-sm-12">
-        {phase != "GATE" && (
-          <RollbackOutlined
-            className={styles.back}
-            onClick={() => backBeforeImg()}
-          />
-        )}
-        <div
-          class="visibledesktop"          
-        >
+      <div className="col-lg-12 col-md-12 col-sm-12">        
+        
+        <div class="visibledesktop" >
+          {phase != "GATE" && (
+            <RollbackOutlined
+              className={styles.backDesktop}
+              onClick={() => backBeforeImg()}
+            />
+          )}
           {phase == "GATE" ? (
             <ImageMap
               className="usage-map"
@@ -690,7 +672,14 @@ const Colors = () => {
             />
           ) : null}
         </div>
+
         <div class="visibledevice">
+          {phase != "GATE" && (
+            <RollbackOutlined
+              className={styles.backMobile}
+              onClick={() => backBeforeImg()}
+            />
+          )}
           {phase == "GATE" ? (
             <>
               <ImageMap
@@ -714,6 +703,7 @@ const Colors = () => {
               </small>
             </>
           ) : null}
+
           {/* GATE AND BOOTHS */}
           {phase == "PLATINUM" ? (
             <ImageMap

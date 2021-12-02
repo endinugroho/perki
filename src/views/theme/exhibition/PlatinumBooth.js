@@ -69,8 +69,7 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
       render: (area: any, index: number) => (
         <Tooltip
           placement="left"
-          title={"Contact WhatsApp"}
-          defaultVisible={true}
+          title={"Contact WhatsApp"}          
         >
           <div style={{ width: "100%", height: "100%" }}></div>
         </Tooltip>
@@ -153,7 +152,7 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
       },
       onMouseOver: () => {},
       render: (area: any, index: number) => (
-        <Tooltip placement="right" title={"Guest Book"} defaultVisible={true}>
+        <Tooltip placement="right" title={"Guest Book"}>
           <img width="100%" height="100%" src="./guests-book.png" />
         </Tooltip>
       ),
@@ -265,7 +264,7 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
     <>
       {/* Modal WA Contact */}
       <Modal
-        title={`Guest Book`}
+        title={`Whats App Contact`}
         width={"60%"}
         visible={waModal}
         onCancel={() => setWaModal(false)}
@@ -382,12 +381,10 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
       >
         <div className="row">
           {dataBooth && (
-            <>
-              {dataBooth.pdf.length == 0 || dataBooth.video.length == 0
-                ? "No Data"
-                : ""}
+            <>                            
               {viewType == "PDF" ? (
                 <>
+                  {dataBooth.pdf.length == 0 ? "No Data" : ""}
                   {dataBooth.pdf.map((row, i) => {
                     return (
                       <div
@@ -417,6 +414,7 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
                 </>
               ) : (
                 <>
+                  {dataBooth.video.length == 0 ? "No Data" : ""}
                   {dataBooth.video.map((row, i) => {
                     return (
                       <div
@@ -459,6 +457,7 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
         title={`View Catalog ${viewType}`}
         width={"100%"}
         visible={visibleViewModal}
+        destroyOnClose={true}
         onCancel={() => {          
           setVisibleViewModal(false);
         }}
@@ -480,19 +479,13 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
             />
           </>
         ) : null}
-        { viewType == "Video" && fileView != null ?  (
-          <ReactPlayer
-            className="react-player"
-            url={fileView}
-            width="100%"
-            height="80vh"
-            volume="0.2"
-            playsInline
-            playing={visibleViewModal}
-            loop
-            controls={true}
-            autoPlay={false}
-          />
+        { viewType == "Video" && fileView != null ?  (                  
+          <embed
+              src={fileView}
+              height="800"
+              width="100%"
+              type="application/pdf"
+            />          
         ) : null}
       </Modal>
 
