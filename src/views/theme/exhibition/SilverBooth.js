@@ -16,6 +16,8 @@ import {
 import styles from "./Button.module.css";
 import DataSliver from "./silver.json";
 import DataGold from "./gold.json";
+import {isMobile} from 'react-device-detect';
+
 
 // const dirFile = "https://acsasurabaya2021.com/files/";
 const dirFile = "https://admin.acsasurabaya2021.com/files/";
@@ -201,8 +203,12 @@ const SilverBooth = ({ phase, dataBooth }) => {
   const openPdfReader = (file) => {
     let UrlFile = dirFile + "pdf/" + file;
     console.log(UrlFile);
-    setVisibleViewModal(true);
-    setFileView(UrlFile);
+    if(isMobile){
+      window.open("https://docs.google.com/viewerng/viewer?url="+UrlFile);
+    }else{
+      setVisibleViewModal(true);
+      setFileView(UrlFile);    
+    } 
     // setFileView("https://cors-anywhere.herokuapp.com/http://www.pdf995.com/samples/pdf.pdf")
   };
 
@@ -429,28 +435,25 @@ const SilverBooth = ({ phase, dataBooth }) => {
             <Page pageNumber={pageNumber} />
           </Document> */}
         {viewType == "PDF" && fileView != null ? (
-          <>
-            {/* // <embed
-            //   src={fileView}
-            //   height="800"
-            //   width="100%"
-            //   type="application/pdf"
-            // /> */}
-            <object data={fileView} type="application/pdf" width="100%" height="800">
-              <p>Your web browser doesn't have a PDF plugin.</p>
-            </object>
-          </>
-        ) : (
-          <>            
-            {/* <embed
+            <embed
               src={fileView}
               height="800"
-              width="100%"            
-            /> */}
-            <object data={fileView} width="100%" height="800">
-              <p>Your web browser doesn't have a Video Plugins.</p>
-            </object>
-          </>
+              width="100%"
+              type="application/pdf"
+            />
+        ) : (          
+          <ReactPlayer
+            className="react-player"
+            url={fileView}
+            width="100%"
+            height="80vh"
+            volume="0.2"
+            playsInline
+            playing={false}
+            loop
+            controls={true}
+            autoPlay={false}          
+          />        
         )}
       </Modal>
       {DataSliver.map((row, i) => {

@@ -5,6 +5,7 @@ import "antd/dist/antd.css";
 import { useHistory } from "react-router-dom";
 import { ImageMap } from "@qiuz/react-image-map";
 import { Modal, Button, Form, Input, Tooltip } from "antd";
+import {isMobile} from 'react-device-detect';
 import {
   CModal,
   CModalHeader,
@@ -208,9 +209,12 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
   const openPdfReader = (file) => {
     let UrlFile = dirFile + "pdf/" + file;
     console.log(UrlFile);
-    setVisibleViewModal(true);
-    setFileView(UrlFile);
-    // setFileView("https://cors-anywhere.herokuapp.com/http://www.pdf995.com/samples/pdf.pdf")
+    if(isMobile){
+      window.open("https://docs.google.com/viewerng/viewer?url="+UrlFile);
+    }else{
+      setVisibleViewModal(true);
+      setFileView(UrlFile);    
+    }    
   };
 
   const openVideoPlayer = (file, link, type) => {
@@ -480,12 +484,18 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
           </>
         ) : null}
         { viewType == "Video" && fileView != null ?  (                  
-          <embed
-              src={fileView}
-              height="800"
+            <ReactPlayer
+              className="react-player"
+              url={fileView}
               width="100%"
-              type="application/pdf"
-            />          
+              height="80vh"
+              volume="0.2"
+              playsInline
+              playing={false}
+              loop
+              controls={true}
+              autoPlay={false}          
+            />                  
         ) : null}
       </Modal>
 
