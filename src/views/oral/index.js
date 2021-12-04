@@ -19,8 +19,7 @@ const Index = () => {
         if(res.data.status == 1){
           let dataRes = res.data.data
           if(dataRes.zoom_room_id != ""){
-            setData(dataRes)
-            openZoom(dataRes.zoom_room_id, dataRes.passcode)
+            setData(dataRes)            
           }else{
             setData([])
             // alert("this Feature is not active");
@@ -60,6 +59,10 @@ const Index = () => {
                         {data.name}                    
                       </h4>
                       <p>{data.desc}</p>
+                      <Countdown date={new Date(data.time_launching)}/>
+                      <button className="btn btn-primary" onClick={() => openZoom(data.zoom_room_id, data.passcode)}>
+                        Join Now
+                      </button>
                       <small><i>If zoom not opened please refresh this web or contact admin</i></small>
                       </>
                     ) : null
