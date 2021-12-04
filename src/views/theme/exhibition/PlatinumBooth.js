@@ -235,6 +235,83 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
     },
   ];
 
+  const mapAreaBoothPlatinumOneVideoMobile = [
+    {
+      width: "2.3%",
+      height: "5.3%",
+      left: "59.3%",
+      top: "-19px",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    {
+      width: "8.3%",
+      height: "30%",
+      left: "29.5%",
+      top: "21.8%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    {
+      width: "2.7%",
+      height: "6.5%",
+      left: "24.6%",
+      top: "48.3%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+        borderRadius: "50%",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => (
+        <Tooltip placement="left" title={"Contact WhatsApp"}>
+          <div style={{ width: "100%", height: "100%" }}></div>
+        </Tooltip>
+      ),
+    },
+    {
+      width: "15.6%",
+      height: "19.2%",
+      left: "54.8%",
+      top: "29.6%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    {
+      width: "4%",
+      height: "9%",
+      left: "37.9%",
+      top: "45.7%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => (
+        <Tooltip placement="right" title={"Guest Book"}>
+          <img width="100%" height="100%" src="./guests-book.png" />
+        </Tooltip>
+      ),
+    },
+  ];
+
   const mapAreaBoothPlatinumMobile = [
     //0
     {
