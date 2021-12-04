@@ -157,7 +157,86 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
     },
   ];
 
+
+  const mapAreaBoothPlatinumOneVideo = [
+    {
+      width: "2.3%",
+      height: "5.3%",
+      left: "59.3%",
+      top: "-19px",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    {
+      width: "8.3%",
+      height: "30%",
+      left: "29.5%",
+      top: "21.8%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    {
+      width: "2.7%",
+      height: "6.5%",
+      left: "24.6%",
+      top: "48.3%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+        borderRadius: "50%",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => (
+        <Tooltip placement="left" title={"Contact WhatsApp"}>
+          <div style={{ width: "100%", height: "100%" }}></div>
+        </Tooltip>
+      ),
+    },
+    {
+      width: "9.6%",
+      height: "13.2%",
+      left: "54.8%",
+      top: "29.6%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    {
+      width: "4%",
+      height: "9%",
+      left: "37.9%",
+      top: "45.7%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => (
+        <Tooltip placement="right" title={"Guest Book"}>
+          <img width="100%" height="100%" src="./guests-book.png" />
+        </Tooltip>
+      ),
+    },
+  ];
+
   const mapAreaBoothPlatinumMobile = [
+    //0
     {
       width: "16%",
       height: "23%",
@@ -171,6 +250,7 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
       onMouseOver: () => {},
       render: (area: any, index: number) => <span></span>,
     },
+    //1
     {
       width: "13.3%",
       height: "35%",
@@ -184,6 +264,7 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
       onMouseOver: () => {},
       render: (area: any, index: number) => <span></span>,
     },
+    //2
     {
       width: "6.7%",
       height: "11.5%",
@@ -202,6 +283,7 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
         </Tooltip>
       ),
     },
+    //3
     {
       width: "13.6%",
       height: "20.2%",
@@ -215,6 +297,7 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
       onMouseOver: () => {},
       render: (area: any, index: number) => <span></span>,
     },
+    //4
     {
       width: "14.6%",
       height: "19.2%",
@@ -228,6 +311,7 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
       onMouseOver: () => {},
       render: (area: any, index: number) => <span></span>,
     },
+    //5
     {
       width: "12.6%",
       height: "17.2%",
@@ -241,6 +325,7 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
       onMouseOver: () => {},
       render: (area: any, index: number) => <span></span>,
     },
+    //6
     {
       width: "12.6%",
       height: "15.2%",
@@ -254,6 +339,7 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
       onMouseOver: () => {},
       render: (area: any, index: number) => <span></span>,
     },
+    //7
     {
       width: "11.6%",
       height: "17.2%",
@@ -267,6 +353,7 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
       onMouseOver: () => {},
       render: (area: any, index: number) => <span></span>,
     },
+    //8
     {
       width: "7%",
       height: "10%",
@@ -642,7 +729,7 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
                 <ImageMap
                   className="usage-map"
                   src={row.img}
-                  map={mapAreaBoothPlatinum}
+                  map={(dataBooth.video.length == 1) ? mapAreaBoothPlatinumOneVideo : mapAreaBoothPlatinum}
                   onMapClick={onMapBoothPlatinumClick}
                   style={{
                     width: "75%",
@@ -665,7 +752,7 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
                 <ImageMap
                   className="usage-map"
                   src={row.img}
-                  map={mapAreaBoothPlatinumMobile}
+                  map={(dataBooth.video.length == 1) ? mapAreaBoothPlatinumOneVideo : mapAreaBoothPlatinumMobile}
                   onMapClick={onMapBoothPlatinumClick}
                   style={{
                     width: "100%",
