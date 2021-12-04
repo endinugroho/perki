@@ -72,7 +72,7 @@ const Colors = () => {
     }
     if (index == 11) {
       fetchDataBooth("BOOTH013", "UNAIR");
-    }    
+    }
     if (index == 12) {
       fetchDataBooth("BOOTH018", "LAA");
     }
@@ -81,7 +81,7 @@ const Colors = () => {
   const onMapSilverAndGold = (area, index) => {
     if (index == 0) {
       fetchDataBooth("BASIC001", "DARYA");
-    }    
+    }
     if (index == 1) {
       fetchDataBooth("BASIC003", "PRODIA");
     }
@@ -120,7 +120,11 @@ const Colors = () => {
   const fetchDataBooth = (boothCode, boothName) => {
     axios
       .get(
-        process.env.REACT_APP_API_URL+"?function=getboothdetil&idPeserta="+JSON.parse(localStorage.getItem("userData")).userData.id+"&code=" +boothCode
+        process.env.REACT_APP_API_URL +
+          "?function=getboothdetil&idPeserta=" +
+          JSON.parse(localStorage.getItem("userData")).userData.id +
+          "&code=" +
+          boothCode
       )
       .then((res) => {
         // console.log(res);
@@ -433,6 +437,223 @@ const Colors = () => {
     // },
   ];
 
+  const mapPlatinumMobile = [
+    //0
+    {
+      width: "49.5%",
+      height: "13.5%",
+      left: "0%",
+      top: "42%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {
+        setLayar1(0.3);
+        setLayar2(0);
+      },
+      render: (area: any, index: number) => <span></span>,
+    },
+    //1
+    {
+      width: "49.5%",
+      height: "13.5%",
+      left: "0%",
+      top: "56%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    //2
+    {
+      width: "49.5%",
+      height: "13.5%",
+      left: "50%",
+      top: "70%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    //3
+    {
+      width: "49.5%",
+      height: "13.5%",
+      left: "50%",
+      top: "56%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    //4
+    {
+      width: "49.5%",
+      height: "13.5%",
+      left: "0%",
+      top: "14%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    //5
+    {
+      width: "49.5%",
+      height: "13.5%",
+      left: "0%",
+      top: "0%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    //6
+    {
+      width: "49.5%",
+      height: "13.5%",
+      left: "50%",
+      top: "0%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    //7
+    {
+      width: "49.5%",
+      height: "13.5%",
+      left: "50%",
+      top: "14%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    //8
+    {
+      width: "49.5%",
+      height: "13.5%",
+      left: "0%",
+      top: "28%",
+      // href: "https://detik.com",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    //9
+    {
+      width: "49.5%",
+      height: "13.5%",
+      left: "50%",
+      top: "28%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    // //10
+    // {
+    //   width: "49.5%",
+    //   height: "23.5%",
+    //   left: "16%",
+    //   top: "63%",
+    //   style: {
+    //     background: "rgba(69, 147, 255, 0)",
+    //     zIndex: "8",
+    //     cursor: "pointer",
+    //   },
+    //   onMouseOver: () => {},
+    //   render: (area: any, index: number) => <span></span>,
+    // },
+    //11
+    {
+      width: "49.5%",
+      height: "13.5%",
+      left: "50%",
+      top: "42%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    //12
+    {
+      width: "49.5%",
+      height: "13.5%",
+      left: "0%",
+      top: "70%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    //13
+    {
+      width: "49.5%",
+      height: "13.5%",
+      left: "0%",
+      top: "84%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    // //14
+    // {
+    //   width: "49.5%",
+    //   height: "23.5%",
+    //   left: "75%",
+    //   top: "63%",
+    //   style: {
+    //     background: "rgba(69, 147, 255, 0)",
+    //     zIndex: "8",
+    //     cursor: "pointer",
+    //   },
+    //   onMouseOver: () => {},
+    //   render: (area: any, index: number) => <span></span>,
+    // },
+  ];
+
   const mapSilverAndGold = [
     //0
     {
@@ -503,7 +724,7 @@ const Colors = () => {
       },
       onMouseOver: () => {},
       render: (area: any, index: number) => <span></span>,
-    },    
+    },
     //6
     {
       width: "7%",
@@ -604,6 +825,177 @@ const Colors = () => {
     },
   ];
 
+  const mapSilverAndGoldMobile = [
+    //0
+    {
+      width: "49%",
+      height: "13%",
+      left: "0%",
+      top: "-4%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    //1
+    {
+      width: "49%",
+      height: "13%",
+      left: "50%",
+      top: "-4%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    //2
+    {
+      width: "49%",
+      height: "13%",
+      left: "0%",
+      top: "10%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    //3
+    {
+      width: "49%",
+      height: "13%",
+      left: "50%",
+      top: "10%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    //4
+    {
+      width: "49%",
+      height: "13%",
+      left: "0%",
+      top: "24%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    //5
+    {
+      width: "49%",
+      height: "13%",
+      left: "50%",
+      top: "24%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    //6
+    {
+      width: "49%",
+      height: "13%",
+      left: "0%",
+      top: "38%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    //7
+    {
+      width: "49%",
+      height: "13%",
+      left: "50%",
+      top: "38%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    //8
+    {
+      width: "49%",
+      height: "13%",
+      left: "0%",
+      top: "52%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    //9
+    {
+      width: "49%",
+      height: "13%",
+      left: "50%",
+      top: "52%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    //10
+    {
+      width: "49%",
+      height: "13%",
+      left: "0%",
+      top: "66%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    //12
+    {
+      width: "49%",
+      height: "13%",
+      left: "50%",
+      top: "66%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+  ];
+
   const backBeforeImg = () => {
     // console.log(phase)
     if (phase == "PLATINUM" || phase == "SILVER") {
@@ -617,9 +1009,8 @@ const Colors = () => {
 
   return (
     <div className="row">
-      <div className="col-lg-12 col-md-12 col-sm-12">        
-        
-        <div class="visibledesktop" >
+      <div className="col-lg-12 col-md-12 col-sm-12">
+        <div class="visibledesktop">
           {phase != "GATE" && (
             <RollbackOutlined
               className={styles.backDesktop}
@@ -706,33 +1097,41 @@ const Colors = () => {
 
           {/* GATE AND BOOTHS */}
           {phase == "PLATINUM" ? (
-            <ImageMap
-              className="usage-map"
-              src={"./New Img/001 Booth Venue platinum.jpg"}
-              map={mapPlatinum}
-              onMapClick={onMapPlatinum}
-              style={{
-                width: "100%",
-                position: "relative",
-                zIndex: "1",
-                left: "50%",
-                transform: "translate(-50%, -23px)",
-              }}
-            />
+            <>
+              <img
+                src={"./New Img/001 Booth Venue platinum.jpg"}
+                width="100%"
+              />
+              <ImageMap
+                className="usage-map"
+                src={"./MOBILE BUTTON/Mobile-Button_Platinum_rev_self.png"}
+                map={mapPlatinumMobile}
+                onMapClick={onMapPlatinum}
+                style={{
+                  width: "100%",
+                }}
+              />
+            </>
           ) : phase == "SILVER" ? (
-            <ImageMap
-              className="usage-map"
-              src={"./New Img/001 Booth Venue silver.jpg"}
-              map={mapSilverAndGold}
-              onMapClick={onMapSilverAndGold}
-              style={{
-                width: "100%",
-                position: "relative",
-                zIndex: "1",
-                left: "50%",
-                transform: "translate(-50%, -23px)",
-              }}
-            />
+            <>
+              <img
+                src={"./New Img/001 Booth Venue silver.jpg"}
+                width="100%"
+              />
+              <ImageMap
+                className="usage-map"
+                src={"./MOBILE BUTTON/Mobile-Button_Silver_rev_self.png"}
+                map={mapSilverAndGoldMobile}
+                onMapClick={onMapSilverAndGold}
+                style={{
+                  width: "100%",
+                  position: "relative",
+                  zIndex: "1",
+                  left: "50%",
+                  transform: "translate(-50%, -23px)",
+                }}
+              />
+            </>
           ) : null}
         </div>
 

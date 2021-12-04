@@ -5,7 +5,7 @@ import "antd/dist/antd.css";
 import { useHistory } from "react-router-dom";
 import { ImageMap } from "@qiuz/react-image-map";
 import { Modal, Button, Form, Input, Tooltip } from "antd";
-import {isMobile} from 'react-device-detect';
+import { isMobile } from "react-device-detect";
 import {
   CModal,
   CModalHeader,
@@ -68,10 +68,7 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
       },
       onMouseOver: () => {},
       render: (area: any, index: number) => (
-        <Tooltip
-          placement="left"
-          title={"Contact WhatsApp"}          
-        >
+        <Tooltip placement="left" title={"Contact WhatsApp"}>
           <div style={{ width: "100%", height: "100%" }}></div>
         </Tooltip>
       ),
@@ -160,6 +157,135 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
     },
   ];
 
+  const mapAreaBoothPlatinumMobile = [
+    {
+      width: "16%",
+      height: "23%",
+      left: "59.3%",
+      top: "0",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    {
+      width: "13.3%",
+      height: "35%",
+      left: "21.5%",
+      top: "21.8%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    {
+      width: "6.7%",
+      height: "11.5%",
+      left: "13.6%",
+      top: "48.3%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+        borderRadius: "50%",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => (
+        <Tooltip placement="bottom" title={"Contact WhatsApp"} defaultVisible={true}>
+          <div style={{ width: "100%", height: "100%" }}></div>
+        </Tooltip>
+      ),
+    },
+    {
+      width: "13.6%",
+      height: "20.2%",
+      left: "47.8%",
+      top: "29.6%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    {
+      width: "14.6%",
+      height: "19.2%",
+      left: "62.1%",
+      top: "29.6%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    {
+      width: "12.6%",
+      height: "17.2%",
+      left: "79.9%",
+      top: "29.6%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    {
+      width: "12.6%",
+      height: "15.2%",
+      left: "79.9%",
+      top: "47.9%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    {
+      width: "11.6%",
+      height: "17.2%",
+      left: "80.9%",
+      top: "62.5%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => <span></span>,
+    },
+    {
+      width: "7%",
+      height: "10%",
+      left: "30.9%",
+      top: "52.7%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => (
+        <Tooltip placement="right" title={"Guest Book"} defaultVisible={true}>
+          <img width="100%" height="100%" src="./guests-book.png" />
+        </Tooltip>
+      ),
+    },
+  ];
+
   const onMapBoothPlatinumClick = (area, index) => {
     if (index == 0) {
       if (dataBooth.master[0].link != "-" && dataBooth.master[0].link != null) {
@@ -209,12 +335,12 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
   const openPdfReader = (file) => {
     let UrlFile = dirFile + "pdf/" + file;
     console.log(UrlFile);
-    if(isMobile){
-      window.open("https://docs.google.com/viewerng/viewer?url="+UrlFile);
-    }else{
+    if (isMobile) {
+      window.open("https://docs.google.com/viewerng/viewer?url=" + UrlFile);
+    } else {
       setVisibleViewModal(true);
-      setFileView(UrlFile);    
-    }    
+      setFileView(UrlFile);
+    }
   };
 
   const openVideoPlayer = (file, link, type) => {
@@ -287,7 +413,14 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
                     <>
                       <li class="list-group-item">
                         {row.nama}{" "}
-                        <button className="btn btn-success float-right" onClick={() => window.open(`https://api.whatsapp.com/send/?phone=${row.contact}&text=Hallo`)}>
+                        <button
+                          className="btn btn-success float-right"
+                          onClick={() =>
+                            window.open(
+                              `https://api.whatsapp.com/send/?phone=${row.contact}&text=Hallo`
+                            )
+                          }
+                        >
                           Contact now
                         </button>
                       </li>
@@ -385,7 +518,7 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
       >
         <div className="row">
           {dataBooth && (
-            <>                            
+            <>
               {viewType == "PDF" ? (
                 <>
                   {dataBooth.pdf.length == 0 ? "No Data" : ""}
@@ -462,13 +595,16 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
         width={"100%"}
         visible={visibleViewModal}
         destroyOnClose={true}
-        onCancel={() => {          
+        onCancel={() => {
           setVisibleViewModal(false);
         }}
         footer={[
-          <Button key="back" onClick={() => {            
-            setVisibleViewModal(false)            
-          }}>
+          <Button
+            key="back"
+            onClick={() => {
+              setVisibleViewModal(false);
+            }}
+          >
             Close
           </Button>,
         ]}
@@ -483,43 +619,63 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
             />
           </>
         ) : null}
-        { viewType == "Video" && fileView != null ?  (                  
-            <ReactPlayer
-              className="react-player"
-              url={fileView}
-              width="100%"
-              height="80vh"
-              volume="0.2"
-              playsInline
-              playing={false}
-              loop
-              controls={true}
-              autoPlay={false}          
-            />                  
+        {viewType == "Video" && fileView != null ? (
+          <ReactPlayer
+            className="react-player"
+            url={fileView}
+            width="100%"
+            height="80vh"
+            volume="0.2"
+            playsInline
+            playing={false}
+            loop
+            controls={true}
+            autoPlay={false}
+          />
         ) : null}
       </Modal>
-
-      {DataPlatinum.map((row, i) => {
-        return (
-          <>
-            {phase == row.phase ? (
-              <ImageMap
-                className="usage-map"
-                src={row.img}
-                map={mapAreaBoothPlatinum}
-                onMapClick={onMapBoothPlatinumClick}
-                style={{
-                  width: "75%",
-                  position: "relative",
-                  zIndex: "1",
-                  left: "50%",
-                  transform: "translate(-50%, -23px)",
-                }}
-              />
-            ) : null}
-          </>
-        );
-      })}
+      <div class="visibledesktop">
+        {DataPlatinum.map((row, i) => {
+          return (
+            <>
+              {phase == row.phase ? (
+                <ImageMap
+                  className="usage-map"
+                  src={row.img}
+                  map={mapAreaBoothPlatinum}
+                  onMapClick={onMapBoothPlatinumClick}
+                  style={{
+                    width: "75%",
+                    position: "relative",
+                    zIndex: "1",
+                    left: "50%",
+                    transform: "translate(-50%, -23px)",
+                  }}
+                />
+              ) : null}
+            </>
+          );
+        })}
+      </div>
+      <div class="visibledevice">
+        {DataPlatinum.map((row, i) => {
+          return (
+            <>
+              {phase == row.phase ? (
+                <ImageMap
+                  className="usage-map"
+                  src={row.img}
+                  map={mapAreaBoothPlatinumMobile}
+                  onMapClick={onMapBoothPlatinumClick}
+                  style={{
+                    width: "100%",
+                  }}
+                />
+              ) : null}
+            </>
+          );
+        })}
+      </div>
     </>
   );
 };

@@ -16,8 +16,7 @@ import {
 import styles from "./Button.module.css";
 import DataSliver from "./silver.json";
 import DataGold from "./gold.json";
-import {isMobile} from 'react-device-detect';
-
+import { isMobile } from "react-device-detect";
 
 // const dirFile = "https://acsasurabaya2021.com/files/";
 const dirFile = "https://admin.acsasurabaya2021.com/files/";
@@ -28,7 +27,7 @@ const SilverBooth = ({ phase, dataBooth }) => {
   const [visibleViewModal, setVisibleViewModal] = useState(false);
   const [fileView, setFileView] = useState(null);
   const [viewType, setViewType] = useState(null);
-  const [form] = Form.useForm();  
+  const [form] = Form.useForm();
 
   const mapAreSilver = [
     {
@@ -70,6 +69,52 @@ const SilverBooth = ({ phase, dataBooth }) => {
       onMouseOver: () => {},
       render: (area: any, index: number) => (
         <Tooltip placement="right" title={"Guest Book"}>
+          <img width="100%" height="100%" src="./guests-book.png" />
+        </Tooltip>
+      ),
+    },
+  ];
+
+  const mapAreSilverMobile = [
+    {
+      width: "15.4%",
+      height: "24.5%",
+      left: "58%",
+      top: "10%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area, index) => <span></span>,
+    },
+    {
+      width: "14.4%",
+      height: "38.5%",
+      left: "59%",
+      top: "37%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area, index) => <span></span>,
+    },
+    {
+      width: "7%",
+      height: "10%",
+      left: "9.9%",
+      top: "63.7%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => (
+        <Tooltip placement="right" title={"Guest Book"} defaultVisible={true}>
           <img width="100%" height="100%" src="./guests-book.png" />
         </Tooltip>
       ),
@@ -141,7 +186,79 @@ const SilverBooth = ({ phase, dataBooth }) => {
       },
       onMouseOver: () => {},
       render: (area: any, index: number) => (
-        <Tooltip placement="right" title={"Guest Book"}>
+        <Tooltip placement="right" title={"Guest Book"} >
+          <img width="100%" height="100%" src="./guests-book.png" />
+        </Tooltip>
+      ),
+    },
+  ];
+
+  const mapAreGoldMobile = [
+    {
+      width: "16%",
+      height: "19%",
+      left: "58%",
+      top: "5%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area, index) => <span></span>,
+    },
+    {
+      width: "14.5%",
+      height: "17%",
+      left: "27.4%",
+      top: "33.5%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area, index) => <span></span>,
+    },
+    {
+      width: "14.5%",
+      height: "17%",
+      left: "42.3%",
+      top: "33%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area, index) => <span></span>,
+    },
+    {
+      width: "15.7%",
+      height: "43%",
+      left: "72%",
+      top: "32%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area, index) => <span></span>,
+    },
+    {
+      width: "6%",
+      height: "9%",
+      left: "36.9%",
+      top: "64.7%",
+      style: {
+        background: "rgba(69, 147, 255, 0)",
+        zIndex: "8",
+        cursor: "pointer",
+      },
+      onMouseOver: () => {},
+      render: (area: any, index: number) => (
+        <Tooltip placement="right" title={"Guest Book"} defaultVisible={true}>
           <img width="100%" height="100%" src="./guests-book.png" />
         </Tooltip>
       ),
@@ -169,10 +286,10 @@ const SilverBooth = ({ phase, dataBooth }) => {
       if (dataBooth.master[0].link != "-" || dataBooth.master[0].link != null) {
         window.open(dataBooth.master[0].link);
       }
-    } else if (index == 1) {      
-      playVideo(0)
-    } else if (index == 2) {      
-      playVideo(1)
+    } else if (index == 1) {
+      playVideo(0);
+    } else if (index == 2) {
+      playVideo(1);
     } else if (index == 3) {
       setVisibleModal(true);
       setViewType("PDF");
@@ -186,29 +303,29 @@ const SilverBooth = ({ phase, dataBooth }) => {
   const playVideo = (index) => {
     setViewType("Video");
     let dataVideo = dataBooth.video[index];
-      if(dataVideo != undefined){
-        let UrlFile;
-        if (dataVideo.tipe == "EMBED") {
-          UrlFile = dataVideo.link;
-        } else {
-          UrlFile = dirFile + "video/" + dataVideo.file;
-        }
-        setVisibleViewModal(true);
-        setFileView(UrlFile);
-      }else{
-        alert('Video Is Unavaible')
+    if (dataVideo != undefined) {
+      let UrlFile;
+      if (dataVideo.tipe == "EMBED") {
+        UrlFile = dataVideo.link;
+      } else {
+        UrlFile = dirFile + "video/" + dataVideo.file;
       }
-  }
+      setVisibleViewModal(true);
+      setFileView(UrlFile);
+    } else {
+      alert("Video Is Unavaible");
+    }
+  };
 
   const openPdfReader = (file) => {
     let UrlFile = dirFile + "pdf/" + file;
     console.log(UrlFile);
-    if(isMobile){
-      window.open("https://docs.google.com/viewerng/viewer?url="+UrlFile);
-    }else{
+    if (isMobile) {
+      window.open("https://docs.google.com/viewerng/viewer?url=" + UrlFile);
+    } else {
       setVisibleViewModal(true);
-      setFileView(UrlFile);    
-    } 
+      setFileView(UrlFile);
+    }
     // setFileView("https://cors-anywhere.herokuapp.com/http://www.pdf995.com/samples/pdf.pdf")
   };
 
@@ -228,7 +345,8 @@ const SilverBooth = ({ phase, dataBooth }) => {
       ...value,
       nama: JSON.parse(localStorage.getItem("userData")).nama,
       phone: JSON.parse(localStorage.getItem("userData")).userData.mobilephone,
-      instansi: JSON.parse(localStorage.getItem("userData")).userData.affiliation,
+      instansi: JSON.parse(localStorage.getItem("userData")).userData
+        .affiliation,
       booth_id: dataBooth.master[0].id,
       peserta_id: JSON.parse(localStorage.getItem("userData")).userData.id,
     };
@@ -241,12 +359,12 @@ const SilverBooth = ({ phase, dataBooth }) => {
     })
       .then((res) => {
         console.log(res.data);
-        if(res.data.status == 1){
+        if (res.data.status == 1) {
           form.resetFields();
-          setGuestBookModal(false)
-          alert(res.data.message)
-        }else{
-          alert(res.data.message)
+          setGuestBookModal(false);
+          alert(res.data.message);
+        } else {
+          alert(res.data.message);
         }
       })
       .catch((err) => {
@@ -259,7 +377,7 @@ const SilverBooth = ({ phase, dataBooth }) => {
   };
 
   return (
-    <>    
+    <>
       {/* Modal Guest Book */}
       <Modal
         title={`Guest Book`}
@@ -281,33 +399,37 @@ const SilverBooth = ({ phase, dataBooth }) => {
               onFinish={onFinish}
               onFinishFailed={onFinishFailed}
               autoComplete="off"
-            >              
+            >
               <Form.Item label="Name" name="nama">
-                <Input           
-                  disabled={true}        
-                  defaultValue={JSON.parse(localStorage.getItem("userData")).nama}             
+                <Input
+                  disabled={true}
+                  defaultValue={
+                    JSON.parse(localStorage.getItem("userData")).nama
+                  }
                   placeholder="Name"
                 />
               </Form.Item>
 
-              <Form.Item
-                label="Phone"
-                name="phone"                
-              >
-                <Input 
-                  disabled={true}        
-                  defaultValue={JSON.parse(localStorage.getItem("userData")).userData.mobilephone}             
-                  placeholder="Phone" />
+              <Form.Item label="Phone" name="phone">
+                <Input
+                  disabled={true}
+                  defaultValue={
+                    JSON.parse(localStorage.getItem("userData")).userData
+                      .mobilephone
+                  }
+                  placeholder="Phone"
+                />
               </Form.Item>
 
-              <Form.Item
-                label="Affiliation"
-                name="instansi"                
-              >
-                <Input 
-                  disabled={true}        
-                  defaultValue={JSON.parse(localStorage.getItem("userData")).userData.affiliation}             
-                  placeholder="Affiliation" />
+              <Form.Item label="Affiliation" name="instansi">
+                <Input
+                  disabled={true}
+                  defaultValue={
+                    JSON.parse(localStorage.getItem("userData")).userData
+                      .affiliation
+                  }
+                  placeholder="Affiliation"
+                />
               </Form.Item>
 
               <Form.Item label="" name="desc">
@@ -338,13 +460,13 @@ const SilverBooth = ({ phase, dataBooth }) => {
             Close
           </Button>,
         ]}
-      >      
+      >
         <div className="row">
           {dataBooth && (
             <>
               {viewType == "PDF" ? (
                 <>
-                {dataBooth.pdf.length == 0 ? "No Data" : ""}              
+                  {dataBooth.pdf.length == 0 ? "No Data" : ""}
                   {dataBooth.pdf.map((row, i) => {
                     return (
                       <div
@@ -374,7 +496,7 @@ const SilverBooth = ({ phase, dataBooth }) => {
                 </>
               ) : (
                 <>
-                {dataBooth.video.length == 0 ? "No Data" : ""}
+                  {dataBooth.video.length == 0 ? "No Data" : ""}
                   {dataBooth.video.map((row, i) => {
                     return (
                       <div
@@ -418,7 +540,6 @@ const SilverBooth = ({ phase, dataBooth }) => {
         width={"100%"}
         visible={visibleViewModal}
         destroyOnClose={true}
-
         onCancel={() => setVisibleViewModal(false)}
         footer={[
           <Button key="back" onClick={() => setVisibleViewModal(false)}>
@@ -435,13 +556,13 @@ const SilverBooth = ({ phase, dataBooth }) => {
             <Page pageNumber={pageNumber} />
           </Document> */}
         {viewType == "PDF" && fileView != null ? (
-            <embed
-              src={fileView}
-              height="800"
-              width="100%"
-              type="application/pdf"
-            />
-        ) : (          
+          <embed
+            src={fileView}
+            height="800"
+            width="100%"
+            type="application/pdf"
+          />
+        ) : (
           <ReactPlayer
             className="react-player"
             url={fileView}
@@ -452,52 +573,94 @@ const SilverBooth = ({ phase, dataBooth }) => {
             playing={false}
             loop
             controls={true}
-            autoPlay={false}          
-          />        
+            autoPlay={false}
+          />
         )}
       </Modal>
-      {DataSliver.map((row, i) => {
-        return (
-          <>
-            {phase == row.phase ? (
-              <ImageMap
-                className="usage-map"
-                src={row.img}
-                map={mapAreSilver}
-                onMapClick={onMapBoothSilverClick}
-                style={{
-                  width: "75%",
-                  position: "relative",
-                  zIndex: "1",
-                  left: "50%",
-                  transform: "translate(-50%, -23px)",
-                }}
-              />
-            ) : null}
-          </>
-        );
-      })}
-      {DataGold.map((row, i) => {
-        return (
-          <>
-            {phase == row.phase ? (
-              <ImageMap
-                className="usage-map"
-                src={row.img}
-                map={mapAreGold}
-                onMapClick={onMapBoothGoldClick}
-                style={{
-                  width: "75%",
-                  position: "relative",
-                  zIndex: "1",
-                  left: "50%",
-                  transform: "translate(-50%, -23px)",
-                }}
-              />
-            ) : null}
-          </>
-        );
-      })}
+      <div class="visibledesktop">
+        {DataSliver.map((row, i) => {
+          return (
+            <>
+              {phase == row.phase ? (
+                <ImageMap
+                  className="usage-map"
+                  src={row.img}
+                  map={mapAreSilver}
+                  onMapClick={onMapBoothSilverClick}
+                  style={{
+                    width: "75%",
+                    position: "relative",
+                    zIndex: "1",
+                    left: "50%",
+                    transform: "translate(-50%, -23px)",
+                  }}
+                />
+              ) : null}
+            </>
+          );
+        })}
+      </div>
+      <div class="visibledevice">
+        {DataSliver.map((row, i) => {
+          return (
+            <>
+              {phase == row.phase ? (
+                <ImageMap
+                  className="usage-map"
+                  src={row.img}
+                  map={mapAreSilverMobile}
+                  onMapClick={onMapBoothSilverClick}
+                  style={{
+                    width: "100%",
+                  }}
+                />
+              ) : null}
+            </>
+          );
+        })}
+      </div>
+      <div class="visibledesktop">
+        {DataGold.map((row, i) => {
+          return (
+            <>
+              {phase == row.phase ? (
+                <ImageMap
+                  className="usage-map"
+                  src={row.img}
+                  map={mapAreGold}
+                  onMapClick={onMapBoothGoldClick}
+                  style={{
+                    width: "75%",
+                    position: "relative",
+                    zIndex: "1",
+                    left: "50%",
+                    transform: "translate(-50%, -23px)",
+                  }}
+                />
+              ) : null}
+            </>
+          );
+        })}
+      </div>
+      <div class="visibledevice">
+        {DataGold.map((row, i) => {
+          return (
+            <>
+              {phase == row.phase ? (
+                <ImageMap
+                  className="usage-map"
+                  src={row.img}
+                  map={mapAreGoldMobile}
+                  onMapClick={onMapBoothGoldClick}
+                  style={{
+                    width: "100%",
+                  }}
+                />
+              ) : null}
+            </>
+          );
+        })}
+      </div>
     </>
   );
 };
