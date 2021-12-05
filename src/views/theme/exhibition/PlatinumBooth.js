@@ -479,6 +479,27 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
     }
   };
 
+  const onMapBoothPlatinumClickOneVideo = (area, index) => {
+    if (index == 0) {
+      if (dataBooth.master[0].link != "-" && dataBooth.master[0].link != null) {
+        window.open(dataBooth.master[0].link);
+      }
+    } else if (index == 1) {
+      setVisibleModal(true);
+      setViewType("PDF");
+    } else if (index == 2) {
+      if (dataBooth.wa.length != 0) {
+        setWaModal(true);
+      } else {
+        alert("this WA number is unavaible");
+      }
+    } else if (index == 3) {
+      playVideo(0);
+    } else if (index == 4) {
+      setGuestBookModal(true);
+    }
+  };
+
   const playVideo = (index) => {
     setViewType("Video");
     let dataVideo = dataBooth.video[index];
@@ -807,7 +828,7 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
                   className="usage-map"
                   src={row.img}
                   map={(dataBooth.video.length == 1) ? mapAreaBoothPlatinumOneVideo : mapAreaBoothPlatinum}
-                  onMapClick={onMapBoothPlatinumClick}
+                  onMapClick={(dataBooth.video.length == 1) ? onMapBoothPlatinumClickOneVideo : onMapBoothPlatinumClick}
                   style={{
                     width: "75%",
                     position: "relative",
@@ -829,8 +850,8 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
                 <ImageMap
                   className="usage-map"
                   src={row.img}
-                  map={(dataBooth.video.length == 1) ? mapAreaBoothPlatinumOneVideo : mapAreaBoothPlatinumMobile}
-                  onMapClick={onMapBoothPlatinumClick}
+                  map={(dataBooth.video.length == 1) ? mapAreaBoothPlatinumOneVideo : mapAreaBoothPlatinumOneVideoMobile}
+                  onMapClick={(dataBooth.video.length == 1) ? onMapBoothPlatinumClickOneVideo : onMapBoothPlatinumClick}
                   style={{
                     width: "100%",
                   }}
