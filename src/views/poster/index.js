@@ -44,6 +44,22 @@ const Index = () => {
 
   return (
     <>
+      
+      {/* Modal IMG */}
+      <Modal
+        title={`Gallery e-Poster`}
+        width={"100%"}
+        visible={modalImg}
+        onCancel={() => setModalImg(false)}
+        footer={[
+          <Button key="back" onClick={() => setModalImg(false)}>
+            Close
+          </Button>,
+        ]}
+      >
+        <img style={{ width: "100%" }} src={img} width="100%" />
+      </Modal>
+
       {/* Modal Galley */}
       <Modal
         title={`Gallery e-Poster`}
@@ -79,21 +95,6 @@ const Index = () => {
             );
           })}
         </div>
-      </Modal>
-
-      {/* Modal IMG */}
-      <Modal
-        title={`Gallery e-Poster`}
-        width={"100%"}
-        visible={modalImg}
-        onCancel={() => setModalImg(false)}
-        footer={[
-          <Button key="back" onClick={() => setModalImg(false)}>
-            Close
-          </Button>,
-        ]}
-      >
-        <img style={{ width: "100%" }} src={img} width="100%" />
       </Modal>
 
       <CCard>
