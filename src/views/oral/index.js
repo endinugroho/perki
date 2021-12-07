@@ -52,6 +52,7 @@ const Index = () => {
         width={"100%"}
         visible={modalImg}
         onCancel={() => setModalImg(false)}
+        destroyOnClose={true}
         footer={[
           <Button key="back" onClick={() => setModalImg(false)}>
             Close

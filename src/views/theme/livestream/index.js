@@ -4,16 +4,13 @@ import { CRow, CCol, CCard, CCardHeader, CCardBody } from "@coreui/react";
 import "antd/dist/antd.css";
 import { useHistory } from "react-router-dom";
 import "./style.css";
-import ReactPlayer from 'react-player/youtube'
-
-// const baseUrl = "http://localhost:3000/";
-// const baseUrl = "https://acsasurabaya2021.com/wp-content/plugins/perki/build/";
-
-var meetingNumber = localStorage.getItem("meetingid");
+import ReactPlayer from "react-player/youtube";
 
 const Colors = () => {
   let history = useHistory();
-  const [fullscreencap, setCap] = useState('Open Video Full Screen');
+  const [frameId, setFrameId] = useState(localStorage.getItem("meetingid"));
+  const [chatId, setChatId] = useState(localStorage.getItem("passcode"));
+  const [fullscreencap, setCap] = useState("Open Video Full Screen");
 
   document.addEventListener("fullscreenchange", changeHandler);
   document.addEventListener("webkitfullscreenchange", changeHandler);
@@ -37,8 +34,8 @@ const Colors = () => {
   function onFullScreenBtnClick() {
     // if we are in fullscreen, then exit
     let container = document.getElementById("Container");
-    if (isFullScreen()) {   
-      setCap('Open Video Full Screen');   
+    if (isFullScreen()) {
+      setCap("Open Video Full Screen");
       if (document.exitFullscreen) {
         document.exitFullscreen();
       } else if (document.webkitExitFullscreen) {
@@ -50,7 +47,7 @@ const Colors = () => {
       }
       // if we are in non-fullscreen mode, open it
     } else {
-      setCap('Exit Fullscreen');
+      setCap("Exit Fullscreen");
       if (container.requestFullscreen) {
         container.requestFullscreen();
       } else if (container.webkitRequestFullscreen) {
@@ -67,32 +64,50 @@ const Colors = () => {
       <CCard>
         <CCardHeader style={{ fontSize: "25px" }}>
           <span className="badge badge-info">Live Stream Symposium </span>
-          <button className="btn btn-danger float-right" onClick={() => history.goBack()}>Leave</button>
+          <button
+            className="btn btn-danger float-right"
+            onClick={() => history.push("/theme/symposium")}
+          >
+            Leave
+          </button>
         </CCardHeader>
-        <CCardBody style={{ height: "525px" }}>
+        <CCardBody style={{ height: "750px" }}>
           <CRow>
-            <div className="col-lg-8 col-md-8 col-sm-12">
-              <div id="Container" style={{ height: "461px" }}>
+            <div
+              className="col-lg-8 col-md-10 col-sm-12"
+              style={{ height: "700px" }}
+            >
+              <div id="Container" style={{ height: "100%" }}>
                 <button
                   id="fullScreenBtn"
                   className="btn btn-info"
                   onClick={onFullScreenBtnClick}
+                  style={{
+                    position: "absolute",
+                  }}
                 >
                   {fullscreencap}
                 </button>
-                <ReactPlayer 
-                  url='https://www.youtube.com/watch?v=ysz5S6PUM-U' 
-                  config={{
-                    youtube: {
-                      playerVars: { showinfo: 1 }
-                    }
-                  }}
-                />
+                <iframe
+                  // src={`${frameId}`}
+                  // src={`https://player.castr.com/live_f8fa4cd0573111ecb04313bac1e552cf`}
+                  src={`https://player.castr.com/${frameId}`}
+                  width="100%"
+                  height="100%"
+                  frameborder="0"
+                  scrolling="no"
+                  allow="autoplay"
+                  allowfullscreen
+                  webkitallowfullscreen
+                  mozallowfullscreen
+                  oallowfullscreen
+                  msallowfullscreen
+                ></iframe>
               </div>
             </div>
-            <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-             
-            </div>            
+            <div className="col-lg-4 col-md-2 col-sm-12">
+              <iframe src={`${chatId}`} width="100%" height="100%"></iframe>
+            </div>
           </CRow>
         </CCardBody>
       </CCard>
