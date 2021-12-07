@@ -74,7 +74,7 @@ const Index = () => {
 
       <CCard>
         <CCardHeader style={{ fontSize: "25px" }}>
-          <span className="badge badge-info">e-Poster</span>
+          <span className="badge badge-info">Oral Presentation</span>
         </CCardHeader>
         <CCardBody>
           <CRow>

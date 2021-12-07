@@ -4,6 +4,7 @@ import { CRow, CCol, CCard, CCardHeader, CCardBody } from "@coreui/react";
 import "antd/dist/antd.css";
 import { useHistory } from "react-router-dom";
 import "./style.css";
+import ReactPlayer from 'react-player/youtube'
 
 // const baseUrl = "http://localhost:3000/";
 // const baseUrl = "https://acsasurabaya2021.com/wp-content/plugins/perki/build/";
@@ -79,29 +80,18 @@ const Colors = () => {
                 >
                   {fullscreencap}
                 </button>
-                <iframe
-                  src={`https://video.ibm.com/embed/${meetingNumber}?autoplay=true`}
-                  style={{ border: "0" }}
-                  webkitallowfullscreen="true"
-                  allowfullscreen
-                  frameborder="no"
-                  width="100%"
-                  height="100%"
-                  referrerpolicy="no-referrer-when-downgrade"
-                ></iframe>
+                <ReactPlayer 
+                  url='https://www.youtube.com/watch?v=ysz5S6PUM-U' 
+                  config={{
+                    youtube: {
+                      playerVars: { showinfo: 1 }
+                    }
+                  }}
+                />
               </div>
             </div>
             <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-              <iframe
-                src={`https://video.ibm.com/socialstream/${meetingNumber}?videos=0&theme=g10&messageVerticalSpacing=default&mainLinkColor=0f62fe&moderatorNameColor=d12771`}
-                style={{ border: "0" }}
-                webkitallowfullscreen="true"
-                allowfullscreen
-                frameborder="no"
-                width="100%"
-                height="461px"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
+             
             </div>            
           </CRow>
         </CCardBody>
