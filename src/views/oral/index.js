@@ -52,6 +52,7 @@ const Index = () => {
         width={"100%"}
         visible={modalImg}
         onCancel={() => setModalImg(false)}
+        destroyOnClose={true}
         footer={[
           <Button key="back" onClick={() => setModalImg(false)}>
             Close
@@ -74,7 +75,7 @@ const Index = () => {
 
       <CCard>
         <CCardHeader style={{ fontSize: "25px" }}>
-          <span className="badge badge-info">e-Poster</span>
+          <span className="badge badge-info">Oral Presentation</span>
         </CCardHeader>
         <CCardBody>
           <CRow>
