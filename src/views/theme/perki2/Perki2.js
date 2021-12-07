@@ -653,6 +653,7 @@ const Colors = () => {
     {profession:"Cardiologist",name:"WS Indovasc 1 (Early Detection of Chronic Venous Insufficiency)"},
     {profession:"Cardiologist",name:"WS Indovasc 2 (Vascular Doppler US)"},
     {profession:"Cardiologist",name:"WS Indovasc 3 (A - Z Peripheral Management : From Patient Selection to Therapy)"},
+    {profession:"Cardiologist",name:"WS 20 (Physiology Assessment and Intravascular Imaging (OCT) in Coronary Intervention)"},
     // {profession:"Other Specialist",name:"WS 1 (Pregnancy and Heart Disease: What is the Most Common Cardiovascular Problem on It?)"},
     // {profession:"Other Specialist",name:"WS 3 (Stay Fit, Don't Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
     // {profession:"Other Specialist",name:"WS 4 (Cardiac Injury in Chemotherapy Patient)"},

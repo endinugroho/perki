@@ -772,6 +772,8 @@ const Colors = () => {
                     marginLeft: "2px",
                     borderRadius: "10px",
                     marginBottom: "5px",
+                    backgroundColor:"rgb(159,226,255)",
+                    borderColor:"rgb(159,226,255)",
                   }}
                 >
                   WS 5
@@ -788,6 +790,8 @@ const Colors = () => {
                     marginLeft: "2px",
                     borderRadius: "10px",
                     marginBottom: "5px",
+                    backgroundColor:"rgb(159,226,255)",
+                    borderColor:"rgb(159,226,255)",
                   }}
                 >
                   WS 6
@@ -804,6 +808,8 @@ const Colors = () => {
                     marginLeft: "2px",
                     borderRadius: "10px",
                     marginBottom: "5px",
+                    backgroundColor:"rgb(159,226,255)",
+                    borderColor:"rgb(159,226,255)",
                   }}
                 >
                   WS 7
@@ -820,6 +826,8 @@ const Colors = () => {
                     marginLeft: "2px",
                     borderRadius: "10px",
                     marginBottom: "5px",
+                    backgroundColor:"rgb(159,226,255)",
+                    borderColor:"rgb(159,226,255)",
                   }}
                 >
                   WS 8
