@@ -4,9 +4,11 @@ import axios from "axios";
 import { Modal, DatePicker, Input, Form, Radio, Select, Button } from "antd";
 import Countdown from "react-countdown";
 import { element } from "prop-types";
+import 'antd/dist/antd.css';
 
 const Index = () => {
   const [data, setData] = useState(null);
+  const [full, setFull] = useState("FULL");
 
   useEffect(() => {
     if (data == null) {
@@ -59,19 +61,62 @@ const Index = () => {
           <span className="badge badge-info">VIDEO</span>
         </CCardHeader>
         <CCardBody>
-          <CRow>
+        {full=="NONFULL" ?
+        <div><div class="visibledesktop">
+        <CRow>
           <CCol sm={8}>
-            {/* <p><iframe title="ACSA" src={"http://54.169.143.108:3050/?"+localStorage.getItem("nama")} allowfullscreen="allowfullscreen" width="100%" height="700px"></iframe></p> */}
-            <iframe src="https://iframe.dacast.com/live/51aa6ea8-8a53-8f21-aea8-c692161ab9cb/44229ebf-592a-7980-daee-fc1db19d5e2f" width="100%" height="100%" frameborder="0" scrolling="no" allow="autoplay" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>            <Button onClick={()=>hideelement()}>Hide</Button>
-            </CCol>
-            <CCol sm={4}>
-            {/* <p><iframe title="ACSA" src={"http://54.169.143.108:3030/?"+localStorage.getItem("nama")} allowfullscreen="allowfullscreen" width="100%" height="700px"></iframe></p> */}
-            <iframe src="https://deadsimplechat.com/_rfQF1Sr5" width="400px" height="600px"></iframe>
-            </CCol>
-            {/* <CCol sm={4}>
-            <p><iframe title="ACSA" src={"http://54.169.143.108:3040/?"+localStorage.getItem("nama")} allowfullscreen="allowfullscreen" width="100%" height="700px"></iframe></p>
-            </CCol> */}
-          </CRow>
+          {/* <p><iframe title="ACSA" src={"http://54.169.143.108:3050/?"+localStorage.getItem("nama")} allowfullscreen="allowfullscreen" width="100%" height="700px"></iframe></p> */}
+          <div><Button type="primary" onClick={()=>setFull("FULL")}>Full Screen</Button></div>
+          <iframe src="https://acsasurabaya2021.com/video-symposium-page-1/" width="100%" height="500px" frameborder="0" scrolling="no" allow="autoplay" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+          </CCol>
+          <CCol sm={4}>
+          <p><iframe src="https://deadsimplechat.com/_rfQF1Sr5" width="400px" height="600px"></iframe></p>
+          </CCol>
+        </CRow>
+        </div>
+        <div class="visibledevice">
+        <CRow>
+          <CCol sm={8}>
+          {/* <p><iframe title="ACSA" src={"http://54.169.143.108:3050/?"+localStorage.getItem("nama")} allowfullscreen="allowfullscreen" width="100%" height="700px"></iframe></p> */}
+          <div><Button type="primary" onClick={()=>setFull("FULL")}>Full Screen</Button></div>
+          <iframe src="https://acsasurabaya2021.com/video-symposium-page-1/" width="100%" height="300px" frameborder="0" scrolling="no" allow="autoplay" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+          </CCol>
+          <CCol sm={4}>
+          <p><iframe src="https://deadsimplechat.com/_rfQF1Sr5" width="100%" height="600px"></iframe></p>
+          </CCol>
+        </CRow>
+        </div></div>
+:
+<div>
+<div class="visibledesktop">
+<CRow>
+<CCol sm={12}>
+{/* <p><iframe title="ACSA" src={"http://54.169.143.108:3050/?"+localStorage.getItem("nama")} allowfullscreen="allowfullscreen" width="100%" height="700px"></iframe></p> */}
+<div><Button type="primary" onClick={()=>setFull("NONFULL")}>Normal Screen</Button></div>
+<iframe src="https://acsasurabaya2021.com/video-symposium-page-1/" width="100%" height="700px" frameborder="0" scrolling="no" allow="autoplay" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+</CCol>
+</CRow>
+<CRow>
+<CCol sm={12}>
+<p><iframe src="https://deadsimplechat.com/_rfQF1Sr5" width="100%" height="600px"></iframe></p>
+</CCol>
+</CRow>
+</div>
+<div class="visibledevice">
+<CRow>
+<CCol sm={12}>
+{/* <p><iframe title="ACSA" src={"http://54.169.143.108:3050/?"+localStorage.getItem("nama")} allowfullscreen="allowfullscreen" width="100%" height="700px"></iframe></p> */}
+<div><Button type="primary" onClick={()=>setFull("NONFULL")}>Normal Screen</Button></div>
+<iframe src="https://acsasurabaya2021.com/video-symposium-page-1/" width="100%" height="300px" frameborder="0" scrolling="no" allow="autoplay" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+</CCol>
+</CRow>
+<CRow>
+<CCol sm={12}>
+<p><iframe src="https://deadsimplechat.com/_rfQF1Sr5" width="100%" height="600px"></iframe></p>
+</CCol>
+</CRow>
+</div></div>
+        }
         </CCardBody>
       </CCard>
     </>
