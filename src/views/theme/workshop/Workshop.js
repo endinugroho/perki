@@ -275,6 +275,14 @@ const Colors = () => {
             }
             return;
           }
+          if (data.data[0].workshop.indexOf("WS 20 ") > -1) {
+            // setWs("16");
+            if (hasFetch) {
+              setHasFetch(false);
+              changeDataWS(16);
+            }
+            return;
+          }
           if (data.data[0].workshop.indexOf("WS Indovasc 1 ") > -1) {
             // setWs("1A");
             if (hasFetch) {

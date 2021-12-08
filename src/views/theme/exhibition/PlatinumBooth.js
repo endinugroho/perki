@@ -26,6 +26,7 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
   const [visibleViewModal, setVisibleViewModal] = useState(false);
   const [fileView, setFileView] = useState(null);
   const [viewType, setViewType] = useState("Catalog");
+  const [userData, setUserData] = useState(JSON.parse(localStorage.getItem("userData")).userData);
   const [form] = Form.useForm();
 
   const mapAreaBoothPlatinum = [
@@ -602,7 +603,7 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
                           className="btn btn-success float-right"
                           onClick={() =>
                             window.open(
-                              `https://api.whatsapp.com/send/?phone=${row.contact}&text=Hallo`
+                              `https://api.whatsapp.com/send/?phone=${row.contact}&text=Excuse me, my name is ${userData.fullnamecert}, I am an Acsa Surabaya 2021 participant`
                             )
                           }
                         >
