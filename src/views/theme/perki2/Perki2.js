@@ -715,7 +715,7 @@ const Colors = () => {
       contentType: "application/json",
     })
       .then((data) => {
-        console.log(data.data.data);
+        // console.log(data.data.data);
         setSimposium(data.data.data);
       })
       .catch(() => {

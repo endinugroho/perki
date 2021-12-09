@@ -35,8 +35,8 @@ const Index = () => {
           setData([]);
         }
       })
-      .catch((err) => console.log(err));
-  };
+      .catch((err) => console.log(err) )
+  }
 
   const mapAreaBoothPlatinum = [
     {
@@ -219,7 +219,7 @@ const Index = () => {
 
   const openPdfReader = (file) => {
     let UrlFile = dirFile + "pdf/" + file;
-    console.log(UrlFile);
+    // console.log(UrlFile);
     setVisibleViewModal(true);
     setFileView(UrlFile);
     // setFileView("https://cors-anywhere.herokuapp.com/http://www.pdf995.com/samples/pdf.pdf")
@@ -246,7 +246,7 @@ const Index = () => {
       booth_id: dataBooth.master[0].id,
       peserta_id: JSON.parse(localStorage.getItem("userData")).userData.id,
     };
-    console.log("Success:", values);
+    // console.log("Success:", values);
     axios({
       url: "https://acsasurabaya2021.com/wp-content/plugins/perki/PerkiAPi.php?function=getboothguestbook",
       data: values,
@@ -254,7 +254,7 @@ const Index = () => {
       method: "POST",
     })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data.status == 1) {
           form.resetFields();
           setGuestBookModal(false);
@@ -264,12 +264,12 @@ const Index = () => {
         }
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    // console.log("Failed:", errorInfo);
   };
 
   return (

@@ -219,7 +219,7 @@ const Colors = () => {
     axios
       .get(`${process.env.REACT_APP_API_URL}?function=getActiveWs`)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         let dataWsNew = "";
         if (res.data.data.length != 0) {
           res.data.data.forEach((row) => {
@@ -428,7 +428,7 @@ const Colors = () => {
                                 <>
                                   <h5>{row.topic}</h5>
                                   <p>
-                                    Chairman: {row.chairman ?? "tba"} <br />{" "}
+                                    Chairman: {row.chairmain ?? "tba"} <br />{" "}
                                     Panelist: {row.panelist ?? "tba"}
                                     <br />
                                     Time: {getTime(row.time_launching) ?? "tba"}
@@ -859,6 +859,23 @@ const Colors = () => {
                   }}
                 >
                   Indovasc WS 3
+                </Button>
+              ) : null}
+              {workshopku.indexOf("WS 20 ") > -1 ? (
+                <Button
+                  type="primary"
+                  size="large"
+                  onClick={() => {
+                    // setWs("20");
+                    changeDataWS(20);
+                  }}
+                  style={{
+                    marginLeft: "2px",
+                    borderRadius: "7px",
+                    marginBottom: "5px",
+                  }}
+                >
+                  WS 20
                 </Button>
               ) : null}
             </div>

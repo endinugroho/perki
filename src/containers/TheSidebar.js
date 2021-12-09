@@ -190,7 +190,7 @@ const TheSidebar = () => {
   var mtd2 ="";
   if (anggotast=="ANGGOTA") {
     mtd2 = "ANGGOTA2";
-    console.log("anggota2");
+    // console.log("anggota2");
   } else
   {
     mtd2 = "ANGGOTA";
@@ -207,20 +207,20 @@ const TheSidebar = () => {
     })
       .then((data) => {
         // var temp = data.data;
-        console.log(data.data[0]);
+        // console.log(data.data[0]);
         setAnggota(data.data[0]);
         if (data.data[0].paymentstatus=="PAY") {
           set_nav(_nav1);
-          console.log("nav1");
+          // console.log("nav1");
         } else {
           set_nav(_nav2);
-          console.log("nav2");
+          // console.log("nav2");
 
         }
         // setWorkshopku(data.data[0].workshop);
       })
       .catch(() => {
-        console.log('Internal server error');
+        // console.log('Internal server error');
       });
     }, [])
 

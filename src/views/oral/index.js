@@ -23,7 +23,7 @@ const Index = () => {
     axios
       .get(`${process.env.REACT_APP_API_URL}?function=getOralClip`)
       .then((res) => {
-        console.log(res.data.status);
+        // console.log(res.data.status);
         if (res.data.status == 1) {
           let dataRes = res.data.data;
           setData(dataRes);

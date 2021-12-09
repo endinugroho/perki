@@ -20,7 +20,7 @@ const Colors = () => {
 
   const onMapGateClick = (area, index) => {
     const tip = `click map${area.href || index + 1}`;
-    console.log(index);
+    // console.log(index);
     if (index == 16) {
       openInNewTab("https://wa.me/6282232683785");
     }

@@ -148,7 +148,7 @@ const Colors = () => {
     })
       .then((data) => {
         // var temp = data.data;
-        console.log(data.data[0]);
+        // console.log(data.data[0]);
         setAnggota(data.data[0]);
         if (data.data[0].simposium != "") {
           changeDataSympo(1);
@@ -169,7 +169,7 @@ const Colors = () => {
     axios
       .get(`${process.env.REACT_APP_API_URL}?function=${url}&noUrut=${noUrut}`)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setVisible(!visible);
         setDataSympo(res.data.data);
         setHari("sympo");
@@ -369,7 +369,7 @@ const Colors = () => {
                                   {row.topic}
                                 </h5>
                                 <p>
-                                  Chairman: {row.chairman ?? "tba"} <br />{" "}
+                                  Chairman: {row.chairmain ?? "tba"} <br />{" "}
                                   Panelist: {row.panelist ?? "tba"} <br /> Time:{" "}
                                   {getTime(row.time_launching) ?? "tba"}
                                 </p>

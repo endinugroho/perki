@@ -94,7 +94,7 @@ const Dashboard = () => {
         // setWorkshopku(data.data[0].workshop);
       })
       .catch(() => {
-        console.log("Internal server error");
+        // console.log("Internal server error");
       });
 
     // axios({
@@ -136,7 +136,7 @@ const Dashboard = () => {
 
   const onClikHall = (area, index: number) => {
     if (index == 0) {
-      console.log("exhibition");
+      // console.log("exhibition");
       history.push("/theme/exhibition");
     }
     if (index == 1) {
@@ -207,7 +207,7 @@ const Dashboard = () => {
     }
     if (index == 5) {
       setPejet("ACCOUNT");
-      console.log("akun");
+      // console.log("akun");
       history.push("/theme/sponsor");
     }
     if (index == 6) {
@@ -245,7 +245,7 @@ const Dashboard = () => {
     axios
       .get(`${process.env.REACT_APP_API_URL}?function=getCurrentRun`)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setIsLive(res.data.isLive);
         // return res.data.isLive;
       });

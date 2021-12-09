@@ -577,7 +577,7 @@ const Edit = () => {
   const [macamworkshop,setMacamworkshop] = useState([]);
   const [totalws,setTotalws] = useState(0);
   useEffect(() => {
-    console.log("id=",id);
+    // console.log("id=",id);
     var idsponsor = localStorage.getItem("loginid");
     setIdsponsor(idsponsor);
     axios({
@@ -589,7 +589,7 @@ const Edit = () => {
     })
       .then((data) => {
         // var temp = data.data;
-        console.log(data.data);
+        // console.log(data.data);
         setMyform({address:data.data[0].address,lastname:data.data[0].lastname,fullname:data.data[0].fullnamecert,gender:data.data[0].gender,placedob:data.data[0].placedob,dob:data.data[0].dob,county:data.data[0].county,province:data.data[0].province,city:data.data[0].city,email:data.data[0].email,emailconfirm:data.data[0].email,password:data.data[0].password,mobile:data.data[0].mobilephone,affiliation:data.data[0].affiliation,officeph:data.data[0].officeph});
         setProfessionselect(data.data[0].profession);
         setMacamworkshop(data.data[0].workshop.split(","));
@@ -688,7 +688,7 @@ const Edit = () => {
           return;
 
         }
-        console.log({"id":id,"address":myform.address,"lastname":myform.lastname,"fullnamecert":myform.fullname,"gender":myform.gender,"placedob":myform.pob,"country":myform.county,"province":myform.province,"city":myform.city,"email":myform.email,"password":myform.password,"mobilephone":myform.mobile,"workshop":macamworkshop.toString(),"affiliation":myform.affiliation,"officemobilephone":myform.officeph,"mtd":'EDITANGGOTA'});
+        // console.log({"id":id,"address":myform.address,"lastname":myform.lastname,"fullnamecert":myform.fullname,"gender":myform.gender,"placedob":myform.pob,"country":myform.county,"province":myform.province,"city":myform.city,"email":myform.email,"password":myform.password,"mobilephone":myform.mobile,"workshop":macamworkshop.toString(),"affiliation":myform.affiliation,"officemobilephone":myform.officeph,"mtd":'EDITANGGOTA'});
         axios({
           method: "POST",
           url: "https://acsasurabaya2021.com/wp-content/plugins/perki/kirimdata.php",
@@ -697,7 +697,7 @@ const Edit = () => {
           contentType: "application/json",
         })
           .then((data) => {
-            console.log("data sponsorid",data.data);
+            // console.log("data sponsorid",data.data);
             Modal.info({
               title: 'This is a notification message',
               content: (

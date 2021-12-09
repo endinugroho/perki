@@ -350,7 +350,7 @@ const SilverBooth = ({ phase, dataBooth }) => {
       booth_id: dataBooth.master[0].id,
       peserta_id: JSON.parse(localStorage.getItem("userData")).userData.id,
     };
-    console.log("Success:", values);
+    // console.log("Success:", values);
     axios({
       url: "https://acsasurabaya2021.com/wp-content/plugins/perki/PerkiAPi.php?function=getboothguestbook",
       data: values,
@@ -358,7 +358,7 @@ const SilverBooth = ({ phase, dataBooth }) => {
       method: "POST",
     })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data.status == 1) {
           form.resetFields();
           setGuestBookModal(false);
