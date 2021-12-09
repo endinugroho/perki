@@ -264,9 +264,9 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
       render: (area: any, index: number) => <span></span>,
     },
     {
-      width: "2.7%",
-      height: "6.5%",
-      left: "24.6%",
+      width: "6.7%",
+      height: "11.5%",
+      left: "14.6%",
       top: "48.3%",
       style: {
         background: "rgba(69, 147, 255, 0)",
@@ -295,10 +295,10 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
       render: (area: any, index: number) => <span></span>,
     },
     {
-      width: "4%",
+      width: "5%",
       height: "9%",
-      left: "37.9%",
-      top: "45.7%",
+      left: "30.9%",
+      top: "51.7%",
       style: {
         background: "rgba(69, 147, 255, 0)",
         zIndex: "8",
@@ -851,7 +851,7 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
                 <ImageMap
                   className="usage-map"
                   src={row.img}
-                  map={(dataBooth.video.length == 1) ? mapAreaBoothPlatinumOneVideo : mapAreaBoothPlatinumOneVideoMobile}
+                  map={(dataBooth.video.length == 1) ? mapAreaBoothPlatinumOneVideoMobile : mapAreaBoothPlatinumMobile}
                   onMapClick={(dataBooth.video.length == 1) ? onMapBoothPlatinumClickOneVideo : onMapBoothPlatinumClick}
                   style={{
                     width: "100%",
