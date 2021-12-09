@@ -282,8 +282,9 @@ const Colors = () => {
         ) {
           alert("Mohon Hubungi Admin");
         } else {
+          res.data.master.serial_number = "Indovascular "+res.data.master.serial_number
           setDataWs(res.data);
-          setWs("wsIndo");
+          setWs("ws");
         }
       })
       .catch((err) => console.log(err));
