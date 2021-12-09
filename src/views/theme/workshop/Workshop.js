@@ -37,6 +37,7 @@ const { TextArea } = Input;
 
 const ThemeView = () => {
   const [color, setColor] = useState("rgb(255, 255, 255)");
+
   const ref = createRef();
   useEffect(() => {
     const el = ref.current.parentNode.firstChild;
@@ -81,6 +82,8 @@ const Colors = () => {
   const [pilih, setPilih] = useState(0);
   const [pilih2, setPilih2] = useState(0);
   const [kodevoucher, setKodevoucher] = useState("");
+  const [statusnew, setStatusnew] = useState(false);
+
   const [myform, setMyform] = useState({
     firstname: "",
     lastname: "",
@@ -145,6 +148,7 @@ const Colors = () => {
         // var temp = data.data;
         // console.log(data.data[0]);
         setAnggota(data.data[0]);
+        setStatusnew(data.data[0].statusnew)
         setWorkshopku(data.data[0].workshop);
         if (data.data[0].workshop != "") {
           if (data.data[0].workshop.indexOf("WS 1 ") > -1) {
@@ -684,458 +688,464 @@ const Colors = () => {
           />
         </CCardHeader>
         <CCardBody>
-          <CRow>
-            <p
-              style={{
-                width: "97%",
-                margin: "0px auto 05px",
-                textAlign: "center",
-              }}
-            >
-              Click the button below to view the workshop
-            </p>
-            <div className="col-lg-12 col-md-12 col-sm-12 text-center">
-              {workshopku.indexOf("WS 1 ") > -1 ? (
-                <Button
-                  type="primary"
-                  size="large"
-                  onClick={() => {
-                    changeDataWS(1);
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                    backgroundColor:"rgb(159,226,255)",
-                    borderColor:"rgb(159,226,255)",
+          {statusnew!="OK" ?
+        <div>
 
-                  }}
-                >
-                  WS 1
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 2 ") > -1 ? (
-                <Button
-                  type="primary"
-                  size="large"
-                  onClick={() => {
-                    changeDataWS(2);
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                    backgroundColor:"rgb(159,226,255)",
-                    borderColor:"rgb(159,226,255)",
-                  }}
-                >
-                  WS 2
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 3 ") > -1 ? (
-                <Button
-                  type="primary"
-                  size="large"
-                  onClick={() => {
-                    setWs("3");
-                    changeDataWS(3);
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                    backgroundColor:"rgb(159,226,255)",
-                    borderColor:"rgb(159,226,255)",
-                  }}
-                >
-                  WS 3
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 4 ") > -1 ? (
-                <Button
-                  type="primary"
-                  size="large"
-                  onClick={() => {
-                    changeDataWS(4);
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                    backgroundColor:"rgb(159,226,255)",
-                    borderColor:"rgb(159,226,255)",
-                  }}
-                >
-                  WS 4
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 5 ") > -1 ? (
-                <Button
-                  type="primary"
-                  size="large"
-                  onClick={() => {
-                    changeDataWS(5);
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                    backgroundColor:"rgb(159,226,255)",
-                    borderColor:"rgb(159,226,255)",
-                  }}
-                >
-                  WS 5
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 6 ") > -1 ? (
-                <Button
-                  type="primary"
-                  size="large"
-                  onClick={() => {
-                    changeDataWS(6);
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                    backgroundColor:"rgb(159,226,255)",
-                    borderColor:"rgb(159,226,255)",
-                  }}
-                >
-                  WS 6
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 7 ") > -1 ? (
-                <Button
-                  type="primary"
-                  size="large"
-                  onClick={() => {
-                    changeDataWS(7);
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                    backgroundColor:"rgb(159,226,255)",
-                    borderColor:"rgb(159,226,255)",
-                  }}
-                >
-                  WS 7
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 8 ") > -1 ? (
-                <Button
-                  type="primary"
-                  size="large"
-                  onClick={() => {
-                    changeDataWS(8);
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                    backgroundColor:"rgb(159,226,255)",
-                    borderColor:"rgb(159,226,255)",
-                  }}
-                >
-                  WS 8
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 9 ") > -1 ? (
-                <Button
-                  type="primary"
-                  size="large"
-                  onClick={() => {
-                    changeDataWS(9);
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  WS 9
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 10 ") > -1 ? (
-                <Button
-                  type="primary"
-                  size="large"
-                  onClick={() => {
-                    changeDataWS(10);
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  WS 10
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 11 ") > -1 ? (
-                <Button
-                  type="primary"
-                  size="large"
-                  onClick={() => {
-                    changeDataWS(11);
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  WS 11
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 12 ") > -1 ? (
-                <Button
-                  type="primary"
-                  size="large"
-                  onClick={() => {
-                    changeDataWS(12);
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  WS 12
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 13 ") > -1 ? (
-                <Button
-                  type="primary"
-                  size="large"
-                  onClick={() => {
-                    changeDataWS(13);
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  WS 13
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 14 ") > -1 ? (
-                <Button
-                  type="primary"
-                  size="large"
-                  onClick={() => {
-                    changeDataWS(14);
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  WS 14
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 15 ") > -1 ? (
-                <Button
-                  type="primary"
-                  size="large"
-                  onClick={() => {
-                    changeDataWS(15);
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  WS 15
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 16 ") > -1 ? (
-                <Button
-                  type="primary"
-                  size="large"
-                  onClick={() => {
-                    changeDataWS(16);
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  WS 16
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS Indovasc 1 ") > -1 ? (
-                <Button
-                  type="primary"
-                  size="large"
-                  onClick={() => changeDataIndows(1)}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  Indovasc WS 1
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS Indovasc 2 ") > -1 ? (
-                <Button
-                  type="primary"
-                  size="large"
-                  onClick={() => changeDataIndows(2)}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  Indovasc WS 2
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS Indovasc 3 ") > -1 ? (
-                <Button
-                  type="primary"
-                  size="large"
-                  onClick={() => changeDataIndows(3)}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  Indovasc WS 3
-                </Button>
-              ) : null}
-              {workshopku.indexOf("WS 20 ") > -1 ? (
-                <Button
-                  type="primary"
-                  size="large"
-                  onClick={() => {
-                    changeDataWS(20);
-                  }}
-                  style={{
-                    marginLeft: "2px",
-                    borderRadius: "10px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  WS 20
-                </Button>
-              ) : null}
-            </div>
-          </CRow>
+<CRow>
+<p
+  style={{
+    width: "97%",
+    margin: "0px auto 05px",
+    textAlign: "center",
+  }}
+>
+  Click the button below to view the workshop
+</p>
+<div className="col-lg-12 col-md-12 col-sm-12 text-center">
+  {workshopku.indexOf("WS 1 ") > -1 ? (
+    <Button
+      type="primary"
+      size="large"
+      onClick={() => {
+        changeDataWS(1);
+      }}
+      style={{
+        marginLeft: "2px",
+        borderRadius: "10px",
+        marginBottom: "5px",
+        backgroundColor:"rgb(159,226,255)",
+        borderColor:"rgb(159,226,255)",
+
+      }}
+    >
+      WS 1
+    </Button>
+  ) : null}
+  {workshopku.indexOf("WS 2 ") > -1 ? (
+    <Button
+      type="primary"
+      size="large"
+      onClick={() => {
+        changeDataWS(2);
+      }}
+      style={{
+        marginLeft: "2px",
+        borderRadius: "10px",
+        marginBottom: "5px",
+        backgroundColor:"rgb(159,226,255)",
+        borderColor:"rgb(159,226,255)",
+      }}
+    >
+      WS 2
+    </Button>
+  ) : null}
+  {workshopku.indexOf("WS 3 ") > -1 ? (
+    <Button
+      type="primary"
+      size="large"
+      onClick={() => {
+        setWs("3");
+        changeDataWS(3);
+      }}
+      style={{
+        marginLeft: "2px",
+        borderRadius: "10px",
+        marginBottom: "5px",
+        backgroundColor:"rgb(159,226,255)",
+        borderColor:"rgb(159,226,255)",
+      }}
+    >
+      WS 3
+    </Button>
+  ) : null}
+  {workshopku.indexOf("WS 4 ") > -1 ? (
+    <Button
+      type="primary"
+      size="large"
+      onClick={() => {
+        changeDataWS(4);
+      }}
+      style={{
+        marginLeft: "2px",
+        borderRadius: "10px",
+        marginBottom: "5px",
+        backgroundColor:"rgb(159,226,255)",
+        borderColor:"rgb(159,226,255)",
+      }}
+    >
+      WS 4
+    </Button>
+  ) : null}
+  {workshopku.indexOf("WS 5 ") > -1 ? (
+    <Button
+      type="primary"
+      size="large"
+      onClick={() => {
+        changeDataWS(5);
+      }}
+      style={{
+        marginLeft: "2px",
+        borderRadius: "10px",
+        marginBottom: "5px",
+        backgroundColor:"rgb(159,226,255)",
+        borderColor:"rgb(159,226,255)",
+      }}
+    >
+      WS 5
+    </Button>
+  ) : null}
+  {workshopku.indexOf("WS 6 ") > -1 ? (
+    <Button
+      type="primary"
+      size="large"
+      onClick={() => {
+        changeDataWS(6);
+      }}
+      style={{
+        marginLeft: "2px",
+        borderRadius: "10px",
+        marginBottom: "5px",
+        backgroundColor:"rgb(159,226,255)",
+        borderColor:"rgb(159,226,255)",
+      }}
+    >
+      WS 6
+    </Button>
+  ) : null}
+  {workshopku.indexOf("WS 7 ") > -1 ? (
+    <Button
+      type="primary"
+      size="large"
+      onClick={() => {
+        changeDataWS(7);
+      }}
+      style={{
+        marginLeft: "2px",
+        borderRadius: "10px",
+        marginBottom: "5px",
+        backgroundColor:"rgb(159,226,255)",
+        borderColor:"rgb(159,226,255)",
+      }}
+    >
+      WS 7
+    </Button>
+  ) : null}
+  {workshopku.indexOf("WS 8 ") > -1 ? (
+    <Button
+      type="primary"
+      size="large"
+      onClick={() => {
+        changeDataWS(8);
+      }}
+      style={{
+        marginLeft: "2px",
+        borderRadius: "10px",
+        marginBottom: "5px",
+        backgroundColor:"rgb(159,226,255)",
+        borderColor:"rgb(159,226,255)",
+      }}
+    >
+      WS 8
+    </Button>
+  ) : null}
+  {workshopku.indexOf("WS 9 ") > -1 ? (
+    <Button
+      type="primary"
+      size="large"
+      onClick={() => {
+        changeDataWS(9);
+      }}
+      style={{
+        marginLeft: "2px",
+        borderRadius: "10px",
+        marginBottom: "5px",
+      }}
+    >
+      WS 9
+    </Button>
+  ) : null}
+  {workshopku.indexOf("WS 10 ") > -1 ? (
+    <Button
+      type="primary"
+      size="large"
+      onClick={() => {
+        changeDataWS(10);
+      }}
+      style={{
+        marginLeft: "2px",
+        borderRadius: "10px",
+        marginBottom: "5px",
+      }}
+    >
+      WS 10
+    </Button>
+  ) : null}
+  {workshopku.indexOf("WS 11 ") > -1 ? (
+    <Button
+      type="primary"
+      size="large"
+      onClick={() => {
+        changeDataWS(11);
+      }}
+      style={{
+        marginLeft: "2px",
+        borderRadius: "10px",
+        marginBottom: "5px",
+      }}
+    >
+      WS 11
+    </Button>
+  ) : null}
+  {workshopku.indexOf("WS 12 ") > -1 ? (
+    <Button
+      type="primary"
+      size="large"
+      onClick={() => {
+        changeDataWS(12);
+      }}
+      style={{
+        marginLeft: "2px",
+        borderRadius: "10px",
+        marginBottom: "5px",
+      }}
+    >
+      WS 12
+    </Button>
+  ) : null}
+  {workshopku.indexOf("WS 13 ") > -1 ? (
+    <Button
+      type="primary"
+      size="large"
+      onClick={() => {
+        changeDataWS(13);
+      }}
+      style={{
+        marginLeft: "2px",
+        borderRadius: "10px",
+        marginBottom: "5px",
+      }}
+    >
+      WS 13
+    </Button>
+  ) : null}
+  {workshopku.indexOf("WS 14 ") > -1 ? (
+    <Button
+      type="primary"
+      size="large"
+      onClick={() => {
+        changeDataWS(14);
+      }}
+      style={{
+        marginLeft: "2px",
+        borderRadius: "10px",
+        marginBottom: "5px",
+      }}
+    >
+      WS 14
+    </Button>
+  ) : null}
+  {workshopku.indexOf("WS 15 ") > -1 ? (
+    <Button
+      type="primary"
+      size="large"
+      onClick={() => {
+        changeDataWS(15);
+      }}
+      style={{
+        marginLeft: "2px",
+        borderRadius: "10px",
+        marginBottom: "5px",
+      }}
+    >
+      WS 15
+    </Button>
+  ) : null}
+  {workshopku.indexOf("WS 16 ") > -1 ? (
+    <Button
+      type="primary"
+      size="large"
+      onClick={() => {
+        changeDataWS(16);
+      }}
+      style={{
+        marginLeft: "2px",
+        borderRadius: "10px",
+        marginBottom: "5px",
+      }}
+    >
+      WS 16
+    </Button>
+  ) : null}
+  {workshopku.indexOf("WS Indovasc 1 ") > -1 ? (
+    <Button
+      type="primary"
+      size="large"
+      onClick={() => changeDataIndows(1)}
+      style={{
+        marginLeft: "2px",
+        borderRadius: "10px",
+        marginBottom: "5px",
+      }}
+    >
+      Indovasc WS 1
+    </Button>
+  ) : null}
+  {workshopku.indexOf("WS Indovasc 2 ") > -1 ? (
+    <Button
+      type="primary"
+      size="large"
+      onClick={() => changeDataIndows(2)}
+      style={{
+        marginLeft: "2px",
+        borderRadius: "10px",
+        marginBottom: "5px",
+      }}
+    >
+      Indovasc WS 2
+    </Button>
+  ) : null}
+  {workshopku.indexOf("WS Indovasc 3 ") > -1 ? (
+    <Button
+      type="primary"
+      size="large"
+      onClick={() => changeDataIndows(3)}
+      style={{
+        marginLeft: "2px",
+        borderRadius: "10px",
+        marginBottom: "5px",
+      }}
+    >
+      Indovasc WS 3
+    </Button>
+  ) : null}
+  {workshopku.indexOf("WS 20 ") > -1 ? (
+    <Button
+      type="primary"
+      size="large"
+      onClick={() => {
+        changeDataWS(20);
+      }}
+      style={{
+        marginLeft: "2px",
+        borderRadius: "10px",
+        marginBottom: "5px",
+      }}
+    >
+      WS 20
+    </Button>
+  ) : null}
+</div>
+</CRow>
           <CRow
-            style={{ marginTop: "30px" }}
-            className="justify-content-center"
-          >
-            {ws == "ws" ? (
-              <>
-                <div className="col-lg-8 col-md-10 col-sm-12 col-xs-12">
-                  <div class="card" style={{ borderRadius: "10px" }}>
-                    <div
-                      class="card-header"
-                      style={{
-                        background: "rgb(33, 150, 243)",
-                        color: "#fff",
-                        margin: "10px auto",
-                        position: "relative",
-                        width: "100%",
-                      }}
-                    >
-                      <h4>
-                        Workshop {dataWs.master.serial_number}
-                        <p style={{ textAlign: "center" }}>
-                          {dataWs.master.topic}
-                        </p>
-                      </h4>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item">{dataWs.master.title}</li>
-                      <li class="list-group-item">
-                        Day,Date : {dataWs.master.day}, {dataWs.master.date}
-                      </li>
-                      <li class="list-group-item">
-                        Course Director : {dataWs.master.course_director}
-                      </li>
-                      <li class="list-group-item">PIC : {dataWs.master.pic}</li>
-                      <li class="list-group-item">
-                        Moderator : {dataWs.master.moderator}
-                      </li>
-                      <li class="list-group-item text-center">
-                        <Button
-                          type="primary"
-                          size="large"
-                          style={{
-                            borderRadius: "10px",
-                            background: "#2a3d9f",
-                            color: "#fff",
-                            display:
-                              dataWs.master.status == "Active"
-                                ? "inline-block"
-                                : "none",
-                          }}
-                          onClick={() => {
-                            WacthZoom(
-                              dataWs.master.zoom_room_id,
-                              dataWs.master.passcode
-                            );
-                          }}
-                        >
-                          Join Now
-                        </Button>
-                      </li>
-                    </ul>
+          style={{ marginTop: "30px" }}
+          className="justify-content-center"
+        >
+          {ws == "ws" ? (
+            <>
+              <div className="col-lg-8 col-md-10 col-sm-12 col-xs-12">
+                <div class="card" style={{ borderRadius: "10px" }}>
+                  <div
+                    class="card-header"
+                    style={{
+                      background: "rgb(33, 150, 243)",
+                      color: "#fff",
+                      margin: "10px auto",
+                      position: "relative",
+                      width: "100%",
+                    }}
+                  >
+                    <h4>
+                      Workshop {dataWs.master.serial_number}
+                      <p style={{ textAlign: "center" }}>
+                        {dataWs.master.topic}
+                      </p>
+                    </h4>
                   </div>
-                  <VerticalTimeline layout="1-column-left">
-                    {dataWs.data.map((s, index1) => {
-                      return (
-                        <VerticalTimelineElement
-                          key={index1}
-                          className="vertical-timeline-element--work"
-                          style={{ margin: "10px 0" }}
-                          contentStyle={{
-                            background: "rgb(33, 150, 243)",
-                            color: "#fff",
-                            textAlign: "center",
-                          }}
-                          contentArrowStyle={{
-                            borderRight: "7px solid  rgb(33, 150, 243)",
-                          }}
-                          date={s.time_range}
-                          iconStyle={{
-                            background: "rgb(33, 150, 243)",
-                            color: "#fff",
-                          }}
-                          icon={
-                            <i
-                              style={{
-                                position: "relative",
-                                left: "50%",
-                                top: "50%",
-                                transform: "translate(-50%, -50%)",
-                                fontSize: "25px",
-                              }}
-                              class="far fa-calendar-alt"
-                            ></i>
-                          }
-                        >
-                          <h5 className="text-white vertical-timeline-element-title">
-                            {s.topic}
-                          </h5>
-                          <p>Speakers: {s.speaker ?? "tba"}</p>
-                        </VerticalTimelineElement>
-                      );
-                    })}{" "}
-                  </VerticalTimeline>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{dataWs.master.title}</li>
+                    <li class="list-group-item">
+                      Day,Date : {dataWs.master.day}, {dataWs.master.date}
+                    </li>
+                    <li class="list-group-item">
+                      Course Director : {dataWs.master.course_director}
+                    </li>
+                    <li class="list-group-item">PIC : {dataWs.master.pic}</li>
+                    <li class="list-group-item">
+                      Moderator : {dataWs.master.moderator}
+                    </li>
+                    <li class="list-group-item text-center">
+                      <Button
+                        type="primary"
+                        size="large"
+                        style={{
+                          borderRadius: "10px",
+                          background: "#2a3d9f",
+                          color: "#fff",
+                          display:
+                            dataWs.master.status == "Active"
+                              ? "inline-block"
+                              : "none",
+                        }}
+                        onClick={() => {
+                          WacthZoom(
+                            dataWs.master.zoom_room_id,
+                            dataWs.master.passcode
+                          );
+                        }}
+                      >
+                        Join Now
+                      </Button>
+                    </li>
+                  </ul>
                 </div>
-              </>
-            ) : null}
-          </CRow>
+                <VerticalTimeline layout="1-column-left">
+                  {dataWs.data.map((s, index1) => {
+                    return (
+                      <VerticalTimelineElement
+                        key={index1}
+                        className="vertical-timeline-element--work"
+                        style={{ margin: "10px 0" }}
+                        contentStyle={{
+                          background: "rgb(33, 150, 243)",
+                          color: "#fff",
+                          textAlign: "center",
+                        }}
+                        contentArrowStyle={{
+                          borderRight: "7px solid  rgb(33, 150, 243)",
+                        }}
+                        date={s.time_range}
+                        iconStyle={{
+                          background: "rgb(33, 150, 243)",
+                          color: "#fff",
+                        }}
+                        icon={
+                          <i
+                            style={{
+                              position: "relative",
+                              left: "50%",
+                              top: "50%",
+                              transform: "translate(-50%, -50%)",
+                              fontSize: "25px",
+                            }}
+                            class="far fa-calendar-alt"
+                          ></i>
+                        }
+                      >
+                        <h5 className="text-white vertical-timeline-element-title">
+                          {s.topic}
+                        </h5>
+                        <p>Speakers: {s.speaker ?? "tba"}</p>
+                      </VerticalTimelineElement>
+                    );
+                  })}{" "}
+                </VerticalTimeline>
+              </div>
+            </>
+          ) : null}
+        </CRow>
+        </div>
+          : null
+          }
         </CCardBody>
       </CCard>
     </>

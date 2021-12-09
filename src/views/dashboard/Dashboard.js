@@ -29,6 +29,7 @@ const WidgetsBrand = lazy(() => import("../widgets/WidgetsBrand.js"));
 
 const Dashboard = () => {
   const [anggota, setAnggota] = useState(false);
+  const [statusnew, setStatusnew] = useState(false);
   const [file, setFile] = useState("");
   // const [playing,setPlaying] = useState(false);
   const dispatch = useDispatch();
@@ -91,6 +92,7 @@ const Dashboard = () => {
         var temp1 = data.data[0].paymentstatus;
         // setAnggota1(data.data[0]);
         setPaymentstatus(temp1);
+        setStatusnew(data.data[0].statusnew)
         // setWorkshopku(data.data[0].workshop);
       })
       .catch(() => {
@@ -750,7 +752,7 @@ const Dashboard = () => {
   return (
     <>
       <div>
-        {anggota && paymentstatus == "PAY" ? (
+        {(anggota && paymentstatus == "PAY") || (anggota && statusnew == "OK")  ? (
           <div>
             <div
               class="visibledesktop"

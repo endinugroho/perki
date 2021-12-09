@@ -140,6 +140,7 @@ const Colors = () => {
   const [dataWs, setDataWs] = useState({});
   const [hasFetch, setHasFetch] = useState(true);
   const [dataSympo, setDataSympo] = useState({});
+  const [statusnew, setStatusnew] = useState(false);
 
   useEffect(() => {
     var idsponsor = localStorage.getItem("loginid");
@@ -165,6 +166,7 @@ const Colors = () => {
     })
       .then((data) => {
         setAnggota(data.data[0]);
+        setStatusnew(data.data[0].statusnew);
         if (data.data[0].simposium != "") {
           getActiveEventSympo();
         }
@@ -506,6 +508,8 @@ const Colors = () => {
               </>
             )}
           </CRow>
+          {statusnew!="OK" ?
+          <div>
           <CRow>
             {workshopku.length != 0 ? (
               <>
@@ -955,6 +959,9 @@ const Colors = () => {
               </>
             ) : null}
           </CRow>
+
+          </div>
+          :null }
         </CCardBody>
       </CCard>
     </>
