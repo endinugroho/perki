@@ -40,10 +40,10 @@ const Index = () => {
 
   const mapAreaBoothPlatinum = [
     {
-      width: "2.3%",
-      height: "5.3%",
-      left: "59.3%",
-      top: "-19px",
+      width: "3.3%",
+      height: "8.3%",
+      left: "62.3%",
+      top: "0px",
       style: {
         background: "rgba(69, 147, 255, 0)",
         zIndex: "8",
@@ -53,10 +53,10 @@ const Index = () => {
       render: (area: any, index: number) => <span></span>,
     },
     {
-      width: "8.3%",
+      width: "10.3%",
       height: "30%",
-      left: "29.5%",
-      top: "21.8%",
+      left: "23.5%",
+      top: "23.8%",
       style: {
         background: "rgba(69, 147, 255, 0)",
         zIndex: "8",
@@ -66,10 +66,10 @@ const Index = () => {
       render: (area: any, index: number) => <span></span>,
     },
     {
-      width: "2.7%",
+      width: "4.7%",
       height: "6.5%",
-      left: "24.6%",
-      top: "48.3%",
+      left: "15.6%",
+      top: "52.3%",
       style: {
         background: "rgba(69, 147, 255, 0)",
         zIndex: "8",
@@ -88,10 +88,10 @@ const Index = () => {
       ),
     },
     {
-      width: "8.6%",
+      width: "11.6%",
       height: "13.2%",
-      left: "49.8%",
-      top: "29.6%",
+      left: "56.8%",
+      top: "32.6%",
       style: {
         background: "rgba(69, 147, 255, 0)",
         zIndex: "8",
@@ -101,62 +101,10 @@ const Index = () => {
       render: (area: any, index: number) => <span></span>,
     },
     {
-      width: "8.6%",
-      height: "13.2%",
-      left: "59.1%",
-      top: "29.6%",
-      style: {
-        background: "rgba(69, 147, 255, 0)",
-        zIndex: "8",
-        cursor: "pointer",
-      },
-      onMouseOver: () => {},
-      render: (area: any, index: number) => <span></span>,
-    },
-    {
-      width: "8.6%",
-      height: "13.2%",
-      left: "72.9%",
-      top: "29.6%",
-      style: {
-        background: "rgba(69, 147, 255, 0)",
-        zIndex: "8",
-        cursor: "pointer",
-      },
-      onMouseOver: () => {},
-      render: (area: any, index: number) => <span></span>,
-    },
-    {
-      width: "8.6%",
-      height: "13.2%",
-      left: "72.9%",
-      top: "44.9%",
-      style: {
-        background: "rgba(69, 147, 255, 0)",
-        zIndex: "8",
-        cursor: "pointer",
-      },
-      onMouseOver: () => {},
-      render: (area: any, index: number) => <span></span>,
-    },
-    {
-      width: "8.6%",
-      height: "13.2%",
-      left: "72.9%",
-      top: "60.5%",
-      style: {
-        background: "rgba(69, 147, 255, 0)",
-        zIndex: "8",
-        cursor: "pointer",
-      },
-      onMouseOver: () => {},
-      render: (area: any, index: number) => <span></span>,
-    },
-    {
-      width: "4%",
+      width: "5%",
       height: "9%",
-      left: "37.9%",
-      top: "45.7%",
+      left: "31.9%",
+      top: "51.7%",
       style: {
         background: "rgba(69, 147, 255, 0)",
         zIndex: "8",
@@ -188,17 +136,10 @@ const Index = () => {
     } else if (index == 3) {
       playVideo(0);
     } else if (index == 4) {
-      playVideo(1);
-    } else if (index == 5) {
-      playVideo(2);
-    } else if (index == 6) {
-      playVideo(3);
-    } else if (index == 7) {
-      playVideo(4);
-    } else if (index == 8) {
       setGuestBookModal(true);
+
     }
-  };
+  } ;
 
   const playVideo = (index) => {
     setViewType("Video");
@@ -485,6 +426,7 @@ const Index = () => {
             title={`View Catalog ${viewType}`}
             width={"100%"}
             visible={visibleViewModal}
+            destroyOnClose={true}
             onCancel={() => {
               setFileView(null);
               setViewType(null);
