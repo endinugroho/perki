@@ -47,7 +47,7 @@ const Colors = () => {
       fetchDataBooth("BOOTH014", "YKMA");
     }
     if (index == 3) {
-      fetchDataBooth("BOOTH012", "ACSA");
+      fetchDataBooth("BOOTH016", "UADCVM");
     }
     if (index == 4) {
       fetchDataBooth("BOOTH003", "MERIL");
@@ -612,10 +612,10 @@ const Colors = () => {
     },
     //12
     {
-      width: "49.5%",
+      width: "99.5%",
       height: "13.5%",
       left: "0%",
-      top: "70%",
+      top: "86%",
       style: {
         background: "rgba(69, 147, 255, 0)",
         zIndex: "8",
@@ -629,7 +629,7 @@ const Colors = () => {
       width: "49.5%",
       height: "13.5%",
       left: "0%",
-      top: "84%",
+      top: "71%",
       style: {
         background: "rgba(69, 147, 255, 0)",
         zIndex: "8",
