@@ -71,44 +71,46 @@ const Colors = () => {
             Leave
           </button>
         </CCardHeader>
-        <CCardBody style={{ height: "750px" }}>
-          <CRow>
-            <div
-              className="col-lg-8 col-md-10 col-sm-12"
-              style={{ height: "700px" }}
-            >
-              <div id="Container" style={{ height: "100%" }}>
-                <button
-                  id="fullScreenBtn"
-                  className="btn btn-info"
-                  onClick={onFullScreenBtnClick}
-                  style={{
-                    position: "absolute",
-                  }}
-                >
-                  {fullscreencap}
-                </button>
-                <iframe
-                  // src={`${frameId}`}
-                  // src={`https://player.castr.com/live_f8fa4cd0573111ecb04313bac1e552cf`}
-                  src={`https://player.castr.com/${frameId}`}
-                  width="100%"
-                  height="100%"
-                  frameborder="0"
-                  scrolling="no"
-                  allow="autoplay"
-                  allowfullscreen
-                  webkitallowfullscreen
-                  mozallowfullscreen
-                  oallowfullscreen
-                  msallowfullscreen
-                ></iframe>
+        <CCardBody>
+          <div className="container-fluid">
+            <CRow>
+              <div
+                className="col-lg-8 col-md-10 col-sm-12"
+                style={{ height: "700px" }}
+              >
+                <div id="Container" style={{ height: "100%" }}>
+                  <button
+                    id="fullScreenBtn"
+                    className="btn btn-info"
+                    onClick={onFullScreenBtnClick}
+                    style={{
+                      position: "absolute",
+                    }}
+                  >
+                    {fullscreencap}
+                  </button>
+                  <iframe
+                    // src={`${frameId}`}
+                    // src={`https://player.castr.com/live_f8fa4cd0573111ecb04313bac1e552cf`}
+                    src={`https://player.castr.com/${frameId}`}
+                    width="100%"
+                    height="100%"
+                    frameborder="0"
+                    scrolling="no"
+                    allow="autoplay"
+                    allowfullscreen
+                    webkitallowfullscreen
+                    mozallowfullscreen
+                    oallowfullscreen
+                    msallowfullscreen
+                  ></iframe>
+                </div>
               </div>
-            </div>
-            <div className="col-lg-4 col-md-2 col-sm-12">
-              <iframe src={`${chatId}`} width="100%" height="100%"></iframe>
-            </div>
-          </CRow>
+              <div className="col-lg-4 col-md-2 col-sm-12" style={{ height: "700px" }}>
+                <iframe src={`${chatId}`} width="100%" className="shadow" height="100%" style={{ border: "none" }}></iframe>
+              </div>
+            </CRow>
+          </div>
         </CCardBody>
       </CCard>
     </>

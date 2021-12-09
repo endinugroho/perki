@@ -16,7 +16,7 @@ const TheHeaderDropdown = () => {
   let history = useHistory();
 
   const logout = () => {
-    console.log("logout");
+    // console.log("logout");
     localStorage.removeItem("loginid");
     localStorage.removeItem("nama");
     localStorage.removeItem("status");

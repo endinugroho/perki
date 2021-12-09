@@ -51,7 +51,7 @@ const ThemeView = () => {
 
 
 const onChange = (date, dateString) => {
-  console.log(date, dateString);
+  // console.log(date, dateString);
 }
 
 const ThemeColor = ({className, children}) => {
@@ -684,7 +684,7 @@ useEffect(() => {
     contentType: "application/json",
   })
     .then((data) => {
-      console.log(data.data.data);
+      // console.log(data.data.data);
       setSimposium(data.data.data);
     })
     .catch(() => {
@@ -737,7 +737,7 @@ useEffect(() => {
     setHargatotal(value.split("#")[1]);
     setHargagrandtotal(value.split("#")[1]);
     setJumlahworkshop(value.split("#")[2]);
-    console.log(value);
+    // console.log(value);
     if (value.substr(0,1)=="S") {
       setPilih2("packagesilver");
     } else if (value.substr(0,1)=="G") {
@@ -810,7 +810,7 @@ useEffect(() => {
         alert("Ws 16 and WS Indovac 3 run in same time");
       }
       setHargatotal(value.length*hargaworkshop);
-      console.log(value.length*hargaworkshop);
+      // console.log(value.length*hargaworkshop);
       setHargagrandtotal(value.length*hargaworkshop);
     }
 
@@ -819,7 +819,7 @@ useEffect(() => {
   };
 
   const onSearch = value => {
-    console.log(value);
+    // console.log(value);
     if (value=="") {
       alert("Silakan isi kode promo");return;
     }
@@ -837,7 +837,7 @@ useEffect(() => {
     })
       .then((data) => {
         var temp = data.data;
-        console.log(temp);
+        // console.log(temp);
         if (temp.sukses=="OK") {
           alert("Promo valid diskon Rp100,000");
           setHargapromo(100000);
@@ -892,7 +892,7 @@ if (pilih===1 || pilih===3 || pilih===4) simposium2=simposium;
   contentType: "application/json",
 })
   .then((data) => {
-    console.log(data);
+    // console.log(data);
     Modal.info({
       title: 'This is a notification message',
       content: (

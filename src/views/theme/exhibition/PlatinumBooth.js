@@ -520,7 +520,7 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
 
   const openPdfReader = (file) => {
     let UrlFile = dirFile + "pdf/" + file;
-    console.log(UrlFile);
+    // console.log(UrlFile);
     if (isMobile) {
       window.open("https://docs.google.com/viewerng/viewer?url=" + UrlFile);
     } else {
@@ -550,7 +550,7 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
       booth_id: dataBooth.master[0].id,
       peserta_id: JSON.parse(localStorage.getItem("userData")).userData.id,
     };
-    console.log("Success:", values);
+    // console.log("Success:", values);
     axios({
       url: "https://acsasurabaya2021.com/wp-content/plugins/perki/PerkiAPi.php?function=getboothguestbook",
       data: values,
@@ -558,7 +558,7 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
       method: "POST",
     })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data.status == 1) {
           form.resetFields();
           setGuestBookModal(false);
@@ -568,12 +568,12 @@ const PlatinumBooth = ({ phase, dataBooth }) => {
         }
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    // console.log("Failed:", errorInfo);
   };
 
   return (

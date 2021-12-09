@@ -50,7 +50,7 @@ const ThemeView = () => {
 
 
 const onChange = (date, dateString) => {
-  console.log(date, dateString);
+  // console.log(date, dateString);
 }
 
 const ThemeColor = ({className, children}) => {
@@ -698,7 +698,7 @@ useEffect(() => {
     contentType: "application/json",
   })
     .then((data) => {
-      console.log(data.data.data);
+      // console.log(data.data.data);
       setSimposium(data.data.data);
     })
     .catch(() => {
@@ -862,7 +862,7 @@ useEffect(() => {
     if (promofirst) {
       alert("Promo hanya digunakan sekali silakan refresh untuk mengulang");return;
     }
-    console.log(value);
+    // console.log(value);
     if (value=="") {
       alert("Silakan isi kode promo");return;
     }
@@ -880,7 +880,7 @@ useEffect(() => {
     })
       .then((data) => {
         var temp = data.data;
-        console.log(temp);
+        // console.log(temp);
         if (temp.sukses=="OK") {
           if (temp.type=="NUMERIC") {
 
@@ -945,7 +945,7 @@ if (pilih===1 || pilih===3 || pilih===4) simposium2=simposium;
   contentType: "application/json",
 })
   .then((data) => {
-    console.log("data sponsorid",data.data);
+    // console.log("data sponsorid",data.data);
     Modal.info({
       title: 'This is a notification message',
       content: (
@@ -967,7 +967,7 @@ if (pilih===1 || pilih===3 || pilih===4) simposium2=simposium;
             // var temp = data.data;
             setOrderid(data.data[0].orderid);
             setStep("Step3");return;
-            console.log(data.data);
+            // console.log(data.data);
           })
           .catch(() => {
             console.log('Internal server error');
@@ -1017,7 +1017,7 @@ const lastaction = () => {
     method: 'POST',
   })
     .then((data) => {
-      console.log(data.data.sukses);
+      // console.log(data.data.sukses);
       if (data.data.sukses==="OK") {
         if (width <= 768) {
           openInNewTab('https://acsasurabaya2021.com/wp-content/plugins/perki/midtrans/examples/snap/checkout-process2.php?orderid='+orderid+'&total='+hargagrandtotal+'&judul='+myform.fullname+'-'+professionselect+'-'+myform.mobile);
@@ -1089,7 +1089,7 @@ if (step=="Step1")
     })
       .then((data) => {
         var temp = data.data;
-        console.log(temp);
+        // console.log(temp);
         if (temp.sukses=="OKPAY") {
           alert("Email sudah digunakan dan sudah terbayar");
           return;
@@ -1104,7 +1104,7 @@ if (step=="Step1")
             })
               .then((data) => {
                 var temp = data.data;
-                console.log(temp);
+                // console.log(temp);
                 if (temp.sukses=="OK") {
                   setStep("Step2");return;
                 } else {
@@ -1177,7 +1177,7 @@ if (step=="Step1")
 
 const pilihanku = (value) =>
 {
-  console.log(professionselect);
+  // console.log(professionselect);
   console.log("pilih",value);
   if (value===1) {
     simposiumprice.filter(ch => ch.profession === professionselect).map((item) =>

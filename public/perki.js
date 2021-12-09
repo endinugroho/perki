@@ -1,7 +1,7 @@
 window.onload = function () {
   alert("hi");
   var ImageMap = function (map, img) {
-          console.log("masuk js");
+        //   console.log("masuk js");
           var n,
               areas = map.getElementsByTagName('area'),
               len = areas.length,

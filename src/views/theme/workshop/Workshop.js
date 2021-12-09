@@ -143,7 +143,7 @@ const Colors = () => {
     })
       .then((data) => {
         // var temp = data.data;
-        console.log(data.data[0]);
+        // console.log(data.data[0]);
         setAnggota(data.data[0]);
         setWorkshopku(data.data[0].workshop);
         if (data.data[0].workshop != "") {
@@ -275,14 +275,6 @@ const Colors = () => {
             }
             return;
           }
-          if (data.data[0].workshop.indexOf("WS 20 ") > -1) {
-            // setWs("16");
-            if (hasFetch) {
-              setHasFetch(false);
-              changeDataWS(16);
-            }
-            return;
-          }
           if (data.data[0].workshop.indexOf("WS Indovasc 1 ") > -1) {
             // setWs("1A");
             if (hasFetch) {
@@ -305,6 +297,14 @@ const Colors = () => {
             if (hasFetch) {
               setHasFetch(false);
               changeDataIndows(3);
+            }
+            return;
+          }
+          if (data.data[0].workshop.indexOf("WS 20 ") > -1) {
+            // setWs("16");
+            if (hasFetch) {
+              setHasFetch(false);
+              changeDataWS(20);
             }
             return;
           }
@@ -334,7 +334,7 @@ const Colors = () => {
         } else {
           setDataWs(res.data);
           setWs("ws");
-          console.log(ws);
+          // console.log(ws);
         }
       })
       .catch((err) => console.log(err));
@@ -348,7 +348,7 @@ const Colors = () => {
           noUrut
       )
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setVisible(!visible);
         if (
           res.data.status == 0 &&
@@ -359,7 +359,7 @@ const Colors = () => {
         } else {
           setDataWs(res.data);
           setWs("ws");
-          console.log(ws);
+          // console.log(ws);
         }
       })
       .catch((err) => console.log(err));
@@ -1009,6 +1009,22 @@ const Colors = () => {
                   }}
                 >
                   Indovasc WS 3
+                </Button>
+              ) : null}
+              {workshopku.indexOf("WS 20 ") > -1 ? (
+                <Button
+                  type="primary"
+                  size="large"
+                  onClick={() => {
+                    changeDataWS(20);
+                  }}
+                  style={{
+                    marginLeft: "2px",
+                    borderRadius: "10px",
+                    marginBottom: "5px",
+                  }}
+                >
+                  WS 20
                 </Button>
               ) : null}
             </div>

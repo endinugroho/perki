@@ -83,7 +83,7 @@ const Login = () => {
     })
       .then((data) => {
         var temp = data.data;
-        console.log(temp);
+        // console.log(temp);
         localStorage.setItem("userData", JSON.stringify(temp));
         localStorage.setItem("loginid", temp.data);
         localStorage.setItem("nama", temp.nama);
