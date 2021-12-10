@@ -70,9 +70,6 @@ const Colors = () => {
     if (index == 10) {
       fetchDataBooth("BOOTH013", "UNAIR");
     }
-    if (index == 11) {
-      fetchDataBooth("BOOTH018", "LAA");
-    }
   };
 
   const onMapSilverAndGold = (area, index) => {
@@ -363,20 +360,6 @@ const Colors = () => {
       render: (area: any, index: number) => <span></span>,
     },
     //10
-    {
-      width: "8%",
-      height: "20%",
-      left: "46%",
-      top: "63%",
-      style: {
-        background: "rgba(69, 147, 255, 0)",
-        zIndex: "8",
-        cursor: "pointer",
-      },
-      onMouseOver: () => {},
-      render: (area: any, index: number) => <span></span>,
-    },
-    //11
     {
       width: "8%",
       height: "20%",
