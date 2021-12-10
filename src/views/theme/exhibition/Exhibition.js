@@ -46,34 +46,31 @@ const Colors = () => {
     if (index == 2) {
       fetchDataBooth("BOOTH014", "YKMA");
     }
-    if (index == 3) {
-      fetchDataBooth("BOOTH016", "UADCVM");
-    }
-    if (index == 4) {
+      if (index == 3) {
       fetchDataBooth("BOOTH003", "MERIL");
     }
-    if (index == 5) {
+    if (index == 4) {
       fetchDataBooth("BOOTH001", "ASTRA");
     }
-    if (index == 6) {
+    if (index == 5) {
       fetchDataBooth("BOOTH002", "BOSTON");
     }
-    if (index == 7) {
+    if (index == 6) {
       fetchDataBooth("BOOTH004", "NOVARTIS");
     }
-    if (index == 8) {
+    if (index == 7) {
       fetchDataBooth("BOOTH005", "OTSUKA");
     }
-    if (index == 9) {
+    if (index == 8) {
       fetchDataBooth("BOOTH006", "SERVIER");
     }
-    if (index == 10) {
+    if (index == 9) {
       fetchDataBooth("BOOTH011", "PERKI");
     }
-    if (index == 11) {
+    if (index == 10) {
       fetchDataBooth("BOOTH013", "UNAIR");
     }
-    if (index == 12) {
+    if (index == 11) {
       fetchDataBooth("BOOTH018", "LAA");
     }
   };
@@ -220,8 +217,8 @@ const Colors = () => {
     //0
     {
       width: "6%",
-      height: "12%",
-      left: "26%",
+      height: "15%",
+      left: "31%",
       top: "27%",
       style: {
         background: "rgba(69, 147, 255, 0)",
@@ -237,8 +234,8 @@ const Colors = () => {
     //1
     {
       width: "6%",
-      height: "12%",
-      left: "37%",
+      height: "15%",
+      left: "42%",
       top: "27%",
       style: {
         background: "rgba(69, 147, 255, 0)",
@@ -251,8 +248,8 @@ const Colors = () => {
     //2
     {
       width: "6%",
-      height: "12%",
-      left: "47%",
+      height: "15%",
+      left: "53%",
       top: "27%",
       style: {
         background: "rgba(69, 147, 255, 0)",
@@ -265,8 +262,8 @@ const Colors = () => {
     //3
     {
       width: "6%",
-      height: "12%",
-      left: "58%",
+      height: "16%",
+      left: "64%",
       top: "26%",
       style: {
         background: "rgba(69, 147, 255, 0)",
@@ -277,20 +274,6 @@ const Colors = () => {
       render: (area: any, index: number) => <span></span>,
     },
     //4
-    {
-      width: "7%",
-      height: "12%",
-      left: "68%",
-      top: "28%",
-      style: {
-        background: "rgba(69, 147, 255, 0)",
-        zIndex: "8",
-        cursor: "pointer",
-      },
-      onMouseOver: () => {},
-      render: (area: any, index: number) => <span></span>,
-    },
-    //5
     {
       width: "7%",
       height: "16%",
@@ -304,7 +287,7 @@ const Colors = () => {
       onMouseOver: () => {},
       render: (area: any, index: number) => <span></span>,
     },
-    //6
+    //5
     {
       width: "7%",
       height: "16%",
@@ -318,7 +301,7 @@ const Colors = () => {
       onMouseOver: () => {},
       render: (area: any, index: number) => <span></span>,
     },
-    //7
+    //6
     {
       width: "7%",
       height: "16%",
@@ -332,7 +315,7 @@ const Colors = () => {
       onMouseOver: () => {},
       render: (area: any, index: number) => <span></span>,
     },
-    //8
+    //7
     {
       width: "7%",
       height: "16%",
@@ -351,7 +334,7 @@ const Colors = () => {
         </span>
       ),
     },
-    //9
+    //8
     {
       width: "8%",
       height: "16%",
@@ -365,21 +348,7 @@ const Colors = () => {
       onMouseOver: () => {},
       render: (area: any, index: number) => <span></span>,
     },
-    // //10
-    // {
-    //   width: "9%",
-    //   height: "21%",
-    //   left: "16%",
-    //   top: "63%",
-    //   style: {
-    //     background: "rgba(69, 147, 255, 0)",
-    //     zIndex: "8",
-    //     cursor: "pointer",
-    //   },
-    //   onMouseOver: () => {},
-    //   render: (area: any, index: number) => <span></span>,
-    // },
-    //11
+    //9
     {
       width: "8%",
       height: "21%",
@@ -393,7 +362,7 @@ const Colors = () => {
       onMouseOver: () => {},
       render: (area: any, index: number) => <span></span>,
     },
-    //12
+    //10
     {
       width: "8%",
       height: "20%",
@@ -407,7 +376,7 @@ const Colors = () => {
       onMouseOver: () => {},
       render: (area: any, index: number) => <span></span>,
     },
-    //13
+    //11
     {
       width: "8%",
       height: "20%",
@@ -421,29 +390,15 @@ const Colors = () => {
       onMouseOver: () => {},
       render: (area: any, index: number) => <span></span>,
     },
-    // //14
-    // {
-    //   width: "8%",
-    //   height: "20%",
-    //   left: "75%",
-    //   top: "63%",
-    //   style: {
-    //     background: "rgba(69, 147, 255, 0)",
-    //     zIndex: "8",
-    //     cursor: "pointer",
-    //   },
-    //   onMouseOver: () => {},
-    //   render: (area: any, index: number) => <span></span>,
-    // },
   ];
 
   const mapPlatinumMobile = [
     //0
     {
       width: "49.5%",
-      height: "13.5%",
+      height: "25.5%",
       left: "0%",
-      top: "42%",
+      top: "67%",
       style: {
         background: "rgba(69, 147, 255, 0)",
         zIndex: "8",
@@ -460,7 +415,7 @@ const Colors = () => {
       width: "49.5%",
       height: "13.5%",
       left: "0%",
-      top: "56%",
+      top: "85%",
       style: {
         background: "rgba(69, 147, 255, 0)",
         zIndex: "8",
@@ -474,7 +429,7 @@ const Colors = () => {
       width: "49.5%",
       height: "13.5%",
       left: "50%",
-      top: "70%",
+      top: "85%",
       style: {
         background: "rgba(69, 147, 255, 0)",
         zIndex: "8",
@@ -487,8 +442,8 @@ const Colors = () => {
     {
       width: "49.5%",
       height: "13.5%",
-      left: "50%",
-      top: "56%",
+      left: "0%",
+      top: "35%",
       style: {
         background: "rgba(69, 147, 255, 0)",
         zIndex: "8",
@@ -502,7 +457,7 @@ const Colors = () => {
       width: "49.5%",
       height: "13.5%",
       left: "0%",
-      top: "14%",
+      top: "18%",
       style: {
         background: "rgba(69, 147, 255, 0)",
         zIndex: "8",
@@ -515,8 +470,8 @@ const Colors = () => {
     {
       width: "49.5%",
       height: "13.5%",
-      left: "0%",
-      top: "0%",
+      left: "50%",
+      top: "18%",
       style: {
         background: "rgba(69, 147, 255, 0)",
         zIndex: "8",
@@ -530,7 +485,7 @@ const Colors = () => {
       width: "49.5%",
       height: "13.5%",
       left: "50%",
-      top: "0%",
+      top: "35%",
       style: {
         background: "rgba(69, 147, 255, 0)",
         zIndex: "8",
@@ -543,8 +498,8 @@ const Colors = () => {
     {
       width: "49.5%",
       height: "13.5%",
-      left: "50%",
-      top: "14%",
+      left: "0%",
+      top: "52%",
       style: {
         background: "rgba(69, 147, 255, 0)",
         zIndex: "8",
@@ -557,8 +512,8 @@ const Colors = () => {
     {
       width: "49.5%",
       height: "13.5%",
-      left: "0%",
-      top: "28%",
+      left: "50%",
+      top: "52%",
       // href: "https://detik.com",
       style: {
         background: "rgba(69, 147, 255, 0)",
@@ -573,7 +528,7 @@ const Colors = () => {
       width: "49.5%",
       height: "13.5%",
       left: "50%",
-      top: "28%",
+      top: "68%",
       style: {
         background: "rgba(69, 147, 255, 0)",
         zIndex: "8",
@@ -582,40 +537,12 @@ const Colors = () => {
       onMouseOver: () => {},
       render: (area: any, index: number) => <span></span>,
     },
-    // //10
-    // {
-    //   width: "49.5%",
-    //   height: "23.5%",
-    //   left: "16%",
-    //   top: "63%",
-    //   style: {
-    //     background: "rgba(69, 147, 255, 0)",
-    //     zIndex: "8",
-    //     cursor: "pointer",
-    //   },
-    //   onMouseOver: () => {},
-    //   render: (area: any, index: number) => <span></span>,
-    // },
-    //11
-    {
-      width: "49.5%",
-      height: "13.5%",
-      left: "50%",
-      top: "42%",
-      style: {
-        background: "rgba(69, 147, 255, 0)",
-        zIndex: "8",
-        cursor: "pointer",
-      },
-      onMouseOver: () => {},
-      render: (area: any, index: number) => <span></span>,
-    },
-    //12
+    //10
     {
       width: "99.5%",
       height: "13.5%",
       left: "0%",
-      top: "86%",
+      top: "1%",
       style: {
         background: "rgba(69, 147, 255, 0)",
         zIndex: "8",
@@ -624,34 +551,6 @@ const Colors = () => {
       onMouseOver: () => {},
       render: (area: any, index: number) => <span></span>,
     },
-    //13
-    {
-      width: "49.5%",
-      height: "13.5%",
-      left: "0%",
-      top: "71%",
-      style: {
-        background: "rgba(69, 147, 255, 0)",
-        zIndex: "8",
-        cursor: "pointer",
-      },
-      onMouseOver: () => {},
-      render: (area: any, index: number) => <span></span>,
-    },
-    // //14
-    // {
-    //   width: "49.5%",
-    //   height: "23.5%",
-    //   left: "75%",
-    //   top: "63%",
-    //   style: {
-    //     background: "rgba(69, 147, 255, 0)",
-    //     zIndex: "8",
-    //     cursor: "pointer",
-    //   },
-    //   onMouseOver: () => {},
-    //   render: (area: any, index: number) => <span></span>,
-    // },
   ];
 
   const mapSilverAndGold = [

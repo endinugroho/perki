@@ -180,7 +180,7 @@ const Colors = () => {
       });
   }, []);
 
-  const WacthZoom = (meetingId, passcode = null, type = null) => {
+  const WacthZoom = (meetingId, passcode = null, type = null, caption = "") => {
     if (meetingId == "" || passcode == "") {
       alert("This feature is not active");
     } else {
@@ -188,6 +188,7 @@ const Colors = () => {
         localStorage.setItem("meetingid", meetingId);
         localStorage.setItem("passcode", passcode);
         localStorage.setItem("type", "sympo");
+        localStorage.setItem("captionTitle", caption);
         history.push("/livestream");
       } else {
         if (passcode != null) {
@@ -418,7 +419,10 @@ const Colors = () => {
                           position: "relative",
                           width: "99%",
                         }}
-                      >{`Ballroom ${index1 + 1}`}</h4>
+                      >
+                        {`Ballroom ${index1 + 1}`}
+                        <small>{s.type_event == "INDOVASCULAR" ? " (INDOVASCULAR)" : null}</small>
+                      </h4>
                       <div
                         className="card card-body shadow border"
                         layout="1-column-left"
@@ -461,7 +465,8 @@ const Colors = () => {
                                         WacthZoom(
                                           row.zoom_room_id,
                                           row.passcode,
-                                          "sympo"
+                                          "sympo", 
+                                          index1 + 1 + (s.type_event == "INDOVASCULAR" ? " (INDOVASCULAR)" : null)
                                         );
                                       }}
                                     >

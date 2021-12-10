@@ -10,6 +10,7 @@ const Colors = () => {
   let history = useHistory();
   const [frameId, setFrameId] = useState(localStorage.getItem("meetingid"));
   const [chatId, setChatId] = useState(localStorage.getItem("passcode"));
+  const [roomTitle, setRoomTitle] = useState(localStorage.getItem("captionTitle"));
   const [fullscreencap, setCap] = useState("Open Video Full Screen");
 
   document.addEventListener("fullscreenchange", changeHandler);
@@ -64,6 +65,9 @@ const Colors = () => {
       <CCard>
         <CCardHeader style={{ fontSize: "25px" }}>
           <span className="badge badge-info">Live Stream Symposium </span>
+
+          <small className="ml-3"><b><i>Ballroom {roomTitle}</i></b></small>
+
           <button
             className="btn btn-danger float-right"
             onClick={() => history.push("/theme/symposium")}

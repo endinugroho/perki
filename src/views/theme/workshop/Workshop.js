@@ -857,6 +857,8 @@ const Colors = () => {
                         marginLeft: "2px",
                         borderRadius: "10px",
                         marginBottom: "5px",
+                        backgroundColor: "rgb(159,226,255)",
+                        borderColor: "rgb(159,226,255)",
                       }}
                     >
                       WS 9
@@ -873,6 +875,8 @@ const Colors = () => {
                         marginLeft: "2px",
                         borderRadius: "10px",
                         marginBottom: "5px",
+                        backgroundColor: "rgb(159,226,255)",
+                        borderColor: "rgb(159,226,255)",
                       }}
                     >
                       WS 10
@@ -983,6 +987,8 @@ const Colors = () => {
                         marginLeft: "2px",
                         borderRadius: "10px",
                         marginBottom: "5px",
+                        backgroundColor: "rgb(159,226,255)",
+                        borderColor: "rgb(159,226,255)",
                       }}
                     >
                       Indovasc WS 1
