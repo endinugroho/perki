@@ -650,7 +650,7 @@ const Colors = () => {
     {profession:"Cardiologist",name:"WS 14 (How to Deal with Heavy Coronary Calcified Lesion in PCI?)"},
     {profession:"Cardiologist",name:"WS 15 (Cardiomyopathy Evaluation by Cardiac MR)"},
     {profession:"Cardiologist",name:"WS 16 (Cardiac CT in Coronary Artery and Beyond)"},
-    {profession:"Cardiologist",name:"WS Indovasc 1 (Early Detection of Chronic Venous Insufficiency)"},
+    // {profession:"Cardiologist",name:"WS Indovasc 1 (Early Detection of Chronic Venous Insufficiency)"},
     {profession:"Cardiologist",name:"WS Indovasc 2 (Vascular Doppler US)"},
     {profession:"Cardiologist",name:"WS Indovasc 3 (A - Z Peripheral Management : From Patient Selection to Therapy)"},
     {profession:"Cardiologist",name:"WS 20 (Physiology Assessment and Intravascular Imaging (OCT) in Coronary Intervention)"},
