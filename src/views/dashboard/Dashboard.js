@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 import React, { lazy, useEffect, useState, useRef } from "react";
 import axios from "axios";
-import { Input, Select, DatePicker, Modal, Button, Space, Table } from "antd";
+import { Input, Form, Select, DatePicker, Modal, Button, Space, Table } from "antd";
+import "antd/dist/antd.css";
 import {
   CBadge,
   CButton,
@@ -49,6 +50,11 @@ const Dashboard = () => {
   const [paymentstatus, setPaymentstatus] = useState("PAY");
   const [workshopku, setWorkshopku] = useState("");
   const [isLive, setIsLive] = useState(null);
+  const [GuestBookModal,setGuestBookModal] = useState(false);
+  const [GuestBookModal2,setGuestBookModal2] = useState(false);
+  const [namacert, setNamaCert] = useState("");
+  const [pesanpesan, setPesanpesan] = useState("");
+  // const [idanggota, setIdanggota] = useState("");
 
   let history = useHistory();
   // const vidRef = useRef(null);
@@ -92,7 +98,11 @@ const Dashboard = () => {
         var temp1 = data.data[0].paymentstatus;
         // setAnggota1(data.data[0]);
         setPaymentstatus(temp1);
-        setStatusnew(data.data[0].statusnew)
+        setStatusnew(data.data[0].statusnew);
+        setNamaCert(data.data[0].namacert);
+        setPesanpesan(data.data[0].pesanpesan);
+        setWorkshopku(data.data[0].workshop);
+        setIdanggota(data.data[0].id)
         // setWorkshopku(data.data[0].workshop);
       })
       .catch(() => {
@@ -137,6 +147,7 @@ const Dashboard = () => {
   };
 
   const onClikHall = (area, index: number) => {
+    console.log(index);
     if (index == 0) {
       // console.log("exhibition");
       history.push("/theme/exhibition");
@@ -146,6 +157,11 @@ const Dashboard = () => {
     }
     if (index == 2) {
       history.push("/theme/workshop");
+    }
+    if (index==4) {
+      setGuestBookModal(true);
+      console.log("true");
+
     }
   };
 
@@ -240,6 +256,16 @@ const Dashboard = () => {
   const onClikWa = (area, index: number) => {
     if (index == 0) {
       openInNewTab("https://wa.me/6282232683785");
+    }
+  };
+
+
+  const onClikdownload = (area, index: number) => {
+    console.log(index);
+
+    if (index == 0) {
+      console.log("donwload");
+      // openInNewTab("https://wa.me/6282232683785");
     }
   };
 
@@ -475,6 +501,25 @@ const Dashboard = () => {
           />
         </span>
       ),
+    },
+    {
+      width: "6%",
+      height: "11%",
+      left: "6.7%",
+      top: "72.8%",
+      style: {
+        transform: "rotate(-2deg)",
+        cursor: "pointer",
+        background: "rgba(255, 0, 255, 0)",
+        zIndex: "8",
+        display: "block",
+      },
+      onMouseOver: () => {
+        // setLayar3(0.3);
+        // setLayar2(0);
+        // setLayar1(0);
+      },
+      render: (area: any, index: number) => <span></span>,
     },
   ];
 
@@ -730,6 +775,27 @@ const Dashboard = () => {
     },
   ];
 
+
+  // const mapAreadownload: any[] = [
+  //   //0
+  //   {
+  //     width: "100%",
+  //     height: "100%",
+  //     left: "6.5%",
+  //     top: "0px",
+  //     style: { background: "rgba(255, 255, 0, 0.4)", zIndex: "8" },
+  //     onMouseOver: () => setPejet("WA"),
+  //     render: (area: any, index: number) => (
+  //       <span>
+  //         {/* {pejet == "WA" ? (
+  //           <img src="./00_BUTTON/WA_Select.png" width="100%" />
+  //         ) : null} */}
+  //       </span>
+  //     ),
+  //   },
+  // ];
+
+
   const mapAreaFAQ: any[] = [
     //0
     {
@@ -749,9 +815,22 @@ const Dashboard = () => {
     },
   ];
 
+  const handleOk = () => {
+    setGuestBookModal2(true);
+    setGuestBookModal(false);
+  };
+  const handleOk2 = () => {
+    setGuestBookModal2(false);
+    // setGuestBookModal(false);
+    // axios.get('https://acsasurabaya2021.com/wp-content/plugins/perki/certificate.php?id='+idanggota);
+  };
+
+
+
   return (
     <>
       <div>
+
         {(anggota && paymentstatus == "PAY") || (anggota && statusnew == "OK")  ? (
           <div>
             <div
@@ -783,6 +862,19 @@ const Dashboard = () => {
                   transform: "translate(-50%, -99px)",
                 }}
                 onMapClick={onClikMenu}
+              />
+              <ImageMap
+                className="usage-map"
+                src={"https://acsasurabaya2021.com/wp-content/plugins/perki/build/00_BUTTON/download.png"}
+                map={mapAreaHall}
+                style={{
+                  width: "6%",
+                  position: "absolute",
+                  left: "6.5%",
+                  bottom: "186px",
+                  zIndex: 1,
+                }}
+                onMapClick={onClikHall}
               />
               <ImageMap
                 className="usage-map"
@@ -862,6 +954,133 @@ const Dashboard = () => {
             untuk exit.
           </div>
         ) : null}
+
+      <Modal title="Data Peserta" visible={GuestBookModal} onOk={(handleOk)} onCancel={() => setGuestBookModal(false)}>
+          <div class="labeldaninput">
+            <div class="labelatas">Nama (sesuai cert)</div>
+            <Input placeholder="Nama sesuai cert" value={namacert} style={{width:"400px"}}/>
+          </div>
+          <div class="labeldaninput">
+            <div class="labelatas">Pesan - pesan</div>
+            <Input placeholder="Pesan pesan" value={pesanpesan}  style={{width:"400px"}}/>
+          </div>
+      </Modal>
+      <Modal width={"80%"} title="Data Download Sertifikat" visible={GuestBookModal2} onCancel={() => setGuestBookModal2(false)} footer={null}>
+          <div class="labeldaninput">
+            <div class="labelatas">Simposium Cardiovascular Care Advancement Reshaping and Evolving Throughout Pandemic and Beyond</div>
+          </div>
+          {workshopku.indexOf("WS 1 ") > -1 ?
+          <div class="labeldaninput">
+            <div class="labelatas">WS 1 (Pregnancy and Heart Disease: What is the Most Common Cardiovascular Problem on It?)</div>
+          </div> : null }
+          {workshopku.indexOf("WS 2 ") > -1 ?
+          <div class="labeldaninput">
+            <div class="labelatas">WS 2 (Perioperative Cardiac Consultation)</div>
+          </div> : null }
+          {workshopku.indexOf("WS 3 ") > -1 ?
+          <div class="labeldaninput">
+            <div class="labelatas">WS 3 (Stay Fit Dont Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)</div>
+          </div> :null }
+          {workshopku.indexOf("WS 4 ") > -1 ?
+          <div class="labeldaninput">
+            <div class="labelatas">WS 4 (Cardiac Injury in Chemotherapy Patient)</div>
+          </div> : null }
+          {workshopku.indexOf("WS 5 ") > -1 ?
+          <div class="labeldaninput">
+            <div class="labelatas">WS 5 (AF Management in the ER Consultant Cardiologist do their jobs)</div>
+          </div> : null }
+          {workshopku.indexOf("WS 6 ") > -1 ?
+          <div class="labeldaninput">
+            <div class="labelatas">WS 6 (Cardiovascular Evaluation in Hajj Pilgrim)</div>
+          </div> : null }
+          {workshopku.indexOf("WS 7 ") > -1 ?
+          <div class="labeldaninput">
+            <div class="labelatas">WS 7 (Comprehensive CV Risk Stratification)</div>
+          </div> : null }
+          {workshopku.indexOf("WS 8 ") > -1 ?
+          <div class="labeldaninput">
+            <div class="labelatas">WS 8 (Practical approach to non-invasive ventilation in acute heart failure)</div>
+          </div> : null }
+          {workshopku.indexOf("WS 9 ") > -1 ?
+          <div class="labeldaninput">
+            <div class="labelatas">WS 9 (Practical Approach in Emergency Arrythmias)</div>
+          </div> : null }
+          {workshopku.indexOf("WS 10 ") > -1 ?
+          <div class="labeldaninput">
+            <div class="labelatas">WS 10 (Asuhan Medis dan Keperawatan pada Kegawatan Kardiovaskulardi Lini Terdepan: Fokus pada Terapi Trombolitik)</div>
+          </div> : null }
+          {workshopku.indexOf("WS 11 ") > -1 ?
+          <div class="labeldaninput">
+            <div class="labelatas">WS 11 (Rapid Echocardiography in Emergency Setting)</div>
+          </div> : null }
+          {workshopku.indexOf("WS 12 ") > -1 ?
+          <div class="labeldaninput">
+            <div class="labelatas">WS 12 (Diagnostic Modalities in Congenital Heart Disease : Focus on VSD and TOF)</div>
+          </div> : null }
+          {workshopku.indexOf("WS 13 ") > -1 ?
+          <div class="labeldaninput">
+            <div class="labelatas">WS 13 (Advanced in Diagnosing Acute Heart Failure)</div>
+          </div> : null }
+          {workshopku.indexOf("WS 14 ") > -1 ?
+          <div class="labeldaninput">
+            <div class="labelatas">WS 14 (How to Deal with Heavy Coronary Calcified Lesion in PCI?)</div>
+          </div>:null}
+          {workshopku.indexOf("WS 15 ") > -1 ?
+          <div class="labeldaninput">
+            <div class="labelatas">WS 15 (Cardiomyopathy Evaluation by Cardiac MR)</div>
+          </div>:null}
+          {workshopku.indexOf("WS 16 ") > -1 ?
+          <div class="labeldaninput">
+            <div class="labelatas">WS 16 (Cardiac CT in Coronary Artery and Beyond)</div>
+          </div>:null}
+          {workshopku.indexOf("WS Indovasc 1 ") > -1 ?
+          <div class="labeldaninput">
+            <div class="labelatas">WS Indovasc 1 (Early Detection of Chronic Venous Insufficiency)</div>
+          </div> : null}
+          {workshopku.indexOf("WS Indovasc 2 ") > -1 ?
+          <div class="labeldaninput">
+            <div class="labelatas">WS Indovasc 2 (Vascular Doppler US)</div>
+          </div>:null}
+          {workshopku.indexOf("WS Indovasc 3 ") > -1 ?
+          <div class="labeldaninput">
+            <div class="labelatas">WS Indovasc 3 (A - Z Peripheral Management : From Patient Selection to Therapy)</div>
+          </div>:null}
+          {workshopku.indexOf("WS 20 ") > -1 ?
+          <div class="labeldaninput">
+            <div class="labelatas">WS 20 (Physiology Assessment and Intravascular Imaging (OCT) in Coronary Intervention)</div>
+          </div>:null}
+
+          <div class="labeldaninput">
+              <a href="https://acsasurabaya2021.com/wp-content/plugins/perki/certificate.php?id=1332"><Button type="primary" onClick={()=>alert("Silakan tunggu proses download")}>Download</Button></a>
+          </div>
+
+      </Modal>
+      {/* <Modal
+        title={`Guest Book`}
+        width={"80%"}
+        visible={true}
+        onCancel={() => setGuestBookModal(false)}
+        footer={[
+          <Button key="back" onClick={() => setGuestBookModal(false)}>
+            Close
+          </Button>,
+        ]}
+      >
+        <div className="row">
+          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="labeldaninput">
+            <div class="labelatas" style={{display:"flex"}}>Nama (sesuai cert)</div>
+            <Input placeholder="Nama sesuai cert" value={namacert}/>
+          </div>
+          <div class="labeldaninput">
+            <div class="labelatas" style={{display:"flex"}}>Pesan - pesan</div>
+            <Input placeholder="Pesan pesan" value={pesanpesan}/>
+          </div>
+
+          </div>
+        </div>
+      </Modal> */}
+
       </div>
     </>
   );
