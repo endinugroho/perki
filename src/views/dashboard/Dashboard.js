@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import React, { lazy, useEffect, useState, useRef } from "react";
 import axios from "axios";
-import { Input, Form, Select, DatePicker, Modal, Button, Space, Table } from "antd";
+import { Input, Form, Select, Radio, Modal, Button, Space, Table } from "antd";
 import "antd/dist/antd.css";
 import {
   CBadge,
@@ -27,6 +27,7 @@ import { useHistory } from "react-router-dom";
 
 const WidgetsDropdown = lazy(() => import("../widgets/WidgetsDropdown.js"));
 const WidgetsBrand = lazy(() => import("../widgets/WidgetsBrand.js"));
+const { TextArea } = Input;
 
 const Dashboard = () => {
   const [anggota, setAnggota] = useState(false);
@@ -52,10 +53,23 @@ const Dashboard = () => {
   const [isLive, setIsLive] = useState(null);
   const [GuestBookModal,setGuestBookModal] = useState(false);
   const [GuestBookModal2,setGuestBookModal2] = useState(false);
+  const [GuestBookModal3,setGuestBookModal3] = useState(false);
   const [namacert, setNamaCert] = useState("");
   const [pesanpesan, setPesanpesan] = useState("");
   // const [idanggota, setIdanggota] = useState("");
-
+  const [value1, setValue1] = React.useState(1);
+  const [nilai1,setNilai1]=useState("");
+  const [nilai1saran,setNilai1saran]=useState("");
+  const [nilai2a,setNilai2a]=useState("");
+  const [nilai2b,setNilai2b]=useState("");
+  const [nilai2c,setNilai2c]=useState("");
+  const [nilai3,setNilai3]=useState("");
+  const [nilai3saran,setNilai3saran]=useState("");
+  const [nilai4,setNilai4]=useState("");
+  const [nilai5,setNilai5]=useState("");
+  const [datakuis,setDatakuis] = useState([]);
+  const [simpo,setSimpo] = useState("");
+  const [downloaded,setDownloaded] = useState("");
   let history = useHistory();
   // const vidRef = useRef(null);
   // const handlePlayVideo = () => {
@@ -102,32 +116,64 @@ const Dashboard = () => {
         setNamaCert(data.data[0].namacert);
         setPesanpesan(data.data[0].pesanpesan);
         setWorkshopku(data.data[0].workshop);
-        setIdanggota(data.data[0].id)
+        setIdanggota(data.data[0].id);
+        setSimpo(data.data[0].simposium);
+        setDownloaded(data.data[0].downloaded);
+        // alert(data.data[0].downloaded);
         // setWorkshopku(data.data[0].workshop);
+        axios({
+          url: "https://acsasurabaya2021.com/wp-content/plugins/perki/kirimdata.php",
+          // url: "http://localhost/perki/kirimdata.php",
+          data: { mtd: "LOADKUESIONER", id: data.data[0].id},
+          contentType: "application/json",
+          method: "POST",
+        })
+          .then((data) => {
+              console.log(data.data);
+              setDatakuis(data.data);
+              for (var i=0;i<data.data.length;i++) {
+                  console.log(data.data[i].variable);
+                  if (data.data[i].variable=="1") {
+                    setNilai1(data.data[i].value);
+                  }
+                  if (data.data[i].variable=="1saran") {
+                    setNilai1saran(data.data[i].value);
+                  }
+                  if (data.data[i].variable=="2a") {
+                    setNilai2a(data.data[i].value);
+                  }
+                  if (data.data[i].variable=="2b") {
+                    setNilai2b(data.data[i].value);
+                  }
+                  if (data.data[i].variable=="2c") {
+                    setNilai2c(data.data[i].value);
+                  }
+                  if (data.data[i].variable=="3") {
+                    setNilai3(data.data[i].value);
+                  }
+                  if (data.data[i].variable=="3saran") {
+                    setNilai3saran(data.data[i].value);
+                  }
+                  if (data.data[i].variable=="4") {
+                    setNilai4(data.data[i].value);
+                  }
+                  if (data.data[i].variable=="5") {
+                    setNilai5(data.data[i].value);
+                  }
+              }
+
+          })
+          .catch(() => {
+            // console.log("Internal server error");
+          });
+
+
       })
       .catch(() => {
         // console.log("Internal server error");
       });
 
-    // axios({
-    //   method: "POST",
-    //   url: "https://acsasurabaya2021.com/wp-content/plugins/perki/kirimdata.php",
-    //   // url: "http://localhost/perki/kirimdata.php",
-    //   data: {"var":"hallmp4","mtd":'CEKOPTION'},
-    //   contentType: "application/json",
-    // })
-    //   .then((data) => {
-    //     console.log(data.data.data);
-    //     setFile(data.data.data);
-    //     // setTimeout(() => {
-    //     //   setPlaying(true);
-    //     //   console.log("play");
-    //     // }, 2000)
-    //   })
-    //   .catch(() => {
-    //     console.log('Internal server error');
-    //   });
-    // handlePlayVideo();
+
   }, []);
 
   useEffect(() => {
@@ -154,12 +200,17 @@ const Dashboard = () => {
     }
     if (index == 1) {
       history.push("/theme/symposium");
+      // setGuestBookModal3(true);
     }
     if (index == 2) {
       history.push("/theme/workshop");
     }
     if (index==4) {
-      setGuestBookModal(true);
+      if (downloaded=="OK") {
+        setGuestBookModal2(true);
+      } else {
+        setGuestBookModal(true);
+      }
       console.log("true");
 
     }
@@ -167,7 +218,9 @@ const Dashboard = () => {
 
   const onClikHallMobile = (area, index: number) => {
     if (index == 0) {
-      history.push("/theme/session");
+      // history.push("/theme/session");
+      setGuestBookModal3(true);
+
     }
     if (index == 1) {
       history.push("/theme/exhibition");
@@ -185,6 +238,8 @@ const Dashboard = () => {
     }
     if (index == 5) {
       history.push("/theme/symposium");
+      // setGuestBookModal3(true);
+
     }
     if (index == 6) {
       // faq
@@ -203,12 +258,24 @@ const Dashboard = () => {
     if (index == 10) {
       history.push("/e-Poster");
     }
+    // console.log(index);
+    if (index == 11) {
+      // history.push("/e-Poster");
+      if (downloaded=="OK") {
+        setGuestBookModal2(true);
+      } else {
+        setGuestBookModal(true);
+      }
+
+    }
   };
 
   const onClikMenu = (area, index: number) => {
     if (index == 1) {
       setPejet("SESSION");
-      history.push("/theme/session");
+      // history.push("/theme/session");
+      setGuestBookModal3(true);
+
     }
     if (index == 2) {
       setPejet("EXHIBITION");
@@ -222,6 +289,7 @@ const Dashboard = () => {
     if (index == 4) {
       setPejet("SYMPOSIUM");
       history.push("/theme/symposium");
+      // setGuestBookModal3(true);
     }
     if (index == 5) {
       setPejet("ACCOUNT");
@@ -279,6 +347,11 @@ const Dashboard = () => {
       });
   }
 
+  const onChange1 = e => {
+    console.log('radio checked', e.target.value);
+    setNilai1(e.target.value);
+  };
+
   const mapAreamobile: any[] = [
     //0
     {
@@ -290,14 +363,14 @@ const Dashboard = () => {
       onMouseOver: () => console.log("map onMouseOver"),
       render: (area: any, index: number) => (
         <img
-          src="./ezgif.com-gif-maker.gif"
+          src="./new.gif"
           width="100%"
           style={{
             position: "absolute",
             width: "43px",
             top: "10px",
             right: "20px",
-            display: isLive ? "block" : "none",
+            display: "block",
           }}
         />
       ),
@@ -352,7 +425,19 @@ const Dashboard = () => {
       // href: "https://detik.com",
       style: { background: "rgba(255, 0, 0, 0.0)", zIndex: "0" },
       onMouseOver: () => console.log("map onMouseOver"),
-      render: (area: any, index: number) => <span></span>,
+      render: (area: any, index: number) => (
+        <img
+          src="./vod.gif"
+          width="100%"
+          style={{
+            position: "absolute",
+            width: "43px",
+            top: "10px",
+            right: "20px",
+            display: "block",
+          }}
+        />
+      ),
     },
     //6
     {
@@ -402,6 +487,16 @@ const Dashboard = () => {
       top: "34%",
       height: "17%",
       width: "52%",
+      // href: "https://detik.com",
+      style: { background: "rgba(255, 0, 0, 0.0)", zIndex: "2" },
+      onMouseOver: () => console.log("map onMouseOver"),
+      render: (area: any, index: number) => <span></span>,
+    },
+    {
+      left: "61.5%",
+      top: "84%",
+      height: "5%",
+      width: "5%",
       // href: "https://detik.com",
       style: { background: "rgba(255, 0, 0, 0)", zIndex: "2" },
       onMouseOver: () => console.log("map onMouseOver"),
@@ -505,8 +600,8 @@ const Dashboard = () => {
     {
       width: "6%",
       height: "11%",
-      left: "6.7%",
-      top: "72.8%",
+      left: "10.7%",
+      top: "85.8%",
       style: {
         transform: "rotate(-2deg)",
         cursor: "pointer",
@@ -558,14 +653,14 @@ const Dashboard = () => {
       render: (area: any, index: number) => (
         <span>
           <img
-            src="./ezgif.com-gif-maker.gif"
+            src="./new.gif"
             width="100%"
             style={{
               position: "absolute",
               width: "43px",
               marginTop: "9px",
               marginLeft: "24px",
-              display: isLive ? "block" : "none",
+              display: "block",
             }}
           />
           {pejet == "SESSION" ? (
@@ -639,6 +734,17 @@ const Dashboard = () => {
       onMouseOver: () => setPejet("SYMPOSIUM"),
       render: (area: any, index: number) => (
         <span>
+          <img
+            src="./vod.gif"
+            width="100%"
+            style={{
+              position: "absolute",
+              width: "43px",
+              marginTop: "9px",
+              marginLeft: "24px",
+              display: "block",
+            }}
+          />
           {pejet == "SYMPOSIUM" ? (
             <img
               src="https://acsasurabaya2021.com/wp-content/plugins/perki/Symposium_Select.png"
@@ -761,7 +867,7 @@ const Dashboard = () => {
     {
       width: "6%",
       height: "100%",
-      left: "6.5%",
+      left: "4.5%",
       top: "-186px",
       style: { background: "rgba(0, 255, 0, 0)", zIndex: "8" },
       onMouseOver: () => setPejet("WA"),
@@ -816,8 +922,25 @@ const Dashboard = () => {
   ];
 
   const handleOk = () => {
-    setGuestBookModal2(true);
     setGuestBookModal(false);
+    setGuestBookModal2(true);
+    // }
+
+    axios({
+      url: "https://acsasurabaya2021.com/wp-content/plugins/perki/kirimdata.php",
+      // url: "http://localhost/perki/kirimdata.php",
+      data: { mtd: "SIMPANKUESIONER", id: idanggota, namacert:namacert,nilai1:nilai1,nilai1saran:nilai1saran,nilai2a:nilai2a,nilai2b:nilai2b,nilai2c:nilai2c,nilai3:nilai3,nilai3saran:nilai3saran,nilai4:nilai4,nilai5:nilai5},
+      contentType: "application/json",
+      method: "POST",
+    })
+      .then((data) => {
+        // var temp1 = data.data[0].paymentstatus;
+        // setAnggota1(data.data[0]);
+      })
+      .catch(() => {
+        // console.log("Internal server error");
+      });
+
   };
   const handleOk2 = () => {
     setGuestBookModal2(false);
@@ -825,7 +948,25 @@ const Dashboard = () => {
     // axios.get('https://acsasurabaya2021.com/wp-content/plugins/perki/certificate.php?id='+idanggota);
   };
 
+  const downloadcert = () => {
+//    alert("Silakan tunggu proses download");
+    axios({
+      url: "https://acsasurabaya2021.com/wp-content/plugins/perki/kirimdata.php",
+      // url: "http://localhost/perki/kirimdata.php",
+      data: { mtd: "DOWNLOADED", id: idanggota},
+      contentType: "application/json",
+      method: "POST",
+    })
+      .then((data) => {
+        // var temp1 = data.data[0].paymentstatus;
+        // setAnggota1(data.data[0]);
+      })
+      .catch(() => {
+        // console.log("Internal server error");
+      });
 
+
+  }
 
   return (
     <>
@@ -865,13 +1006,13 @@ const Dashboard = () => {
               />
               <ImageMap
                 className="usage-map"
-                src={"https://acsasurabaya2021.com/wp-content/plugins/perki/build/00_BUTTON/download.png"}
+                src={"./00_BUTTON/download2.png"}
                 map={mapAreaHall}
                 style={{
                   width: "6%",
                   position: "absolute",
-                  left: "6.5%",
-                  bottom: "186px",
+                  left: "10.5%",
+                  bottom: "110px",
                   zIndex: 1,
                 }}
                 onMapClick={onClikHall}
@@ -883,7 +1024,7 @@ const Dashboard = () => {
                 style={{
                   width: "6%",
                   position: "relative",
-                  left: "6.5%",
+                  left: "4.5%",
                   bottom: "186px",
                   zIndex: 1,
                 }}
@@ -916,7 +1057,7 @@ const Dashboard = () => {
               />
               <ImageMap
                 className="usage-map"
-                src={"./MOBILE BUTTON/Mobile Button copy.png"}
+                src={"./MOBILE BUTTON/Mobile Button copy2.png"}
                 map={mapAreamobile}
                 style={{
                   width: "143%",
@@ -955,103 +1096,211 @@ const Dashboard = () => {
           </div>
         ) : null}
 
-      <Modal title="Data Peserta" visible={GuestBookModal} onOk={(handleOk)} onCancel={() => setGuestBookModal(false)}>
+      <Modal title={"Data Peserta"+downloaded} visible={GuestBookModal} onOk={(handleOk)} width={"80%"} onCancel={() => setGuestBookModal(false)}>
           <div class="labeldaninput">
             <div class="labelatas">Nama (sesuai cert)</div>
-            <Input placeholder="Nama sesuai cert" value={namacert} style={{width:"400px"}}/>
+            <Input placeholder="Nama sesuai cert" value={namacert} style={{width:"95%"}} onChange={(e)=>setNamaCert(e.target.value)}/>
           </div>
           <div class="labeldaninput">
-            <div class="labelatas">Pesan - pesan</div>
-            <Input placeholder="Pesan pesan" value={pesanpesan}  style={{width:"400px"}}/>
+            <div class="labelatas">Bagaimana anda menilai ketepatan waktu symposium secara keseluruhan ?</div>
+            {/* <Input placeholder="Pesan pesan" value={pesanpesan}  style={{width:"400px"}}/> */}
+            {/* <TextArea rows={4} value={pesanpesan} onChange={(e)=>setPesanpesan(e.target.value)} style={{width:"400px"}} /> */}
+            <Radio.Group onChange={onChange1} value={nilai1}>
+
+                <div><Radio value="Buruk">Buruk</Radio></div>
+                <div><Radio value="Kurang">Kurang</Radio></div>
+                <div><Radio value="Cukup">Cukup</Radio></div>
+                <div><Radio value="Baik">Baik</Radio></div>
+                <div><Radio value="Sangat Baik">Sangat Baik</Radio></div>
+            </Radio.Group>
+            <div>-Saran</div>
+            <Input style={{width:"95%"}} value={nilai1saran} onChange={(e)=>setNilai1saran(e.target.value)}/>
+          </div>
+          <div class="labeldaninput">
+            <div class="labelatas">Bagaimana anda menilai topic symposium ini secara keseluruhan ?</div>
+            {/* <Input placeholder="Pesan pesan" value={pesanpesan}  style={{width:"400px"}}/> */}
+            {/* <TextArea rows={4} value={pesanpesan} onChange={(e)=>setPesanpesan(e.target.value)} style={{width:"400px"}} /> */}
+            <div>-Edukatif</div>
+            <Radio.Group onChange={(e)=>setNilai2a(e.target.value)} value={nilai2a}>
+
+                <div><Radio value="Buruk">Buruk</Radio></div>
+                <div><Radio value="Kurang">Kurang</Radio></div>
+                <div><Radio value="Cukup">Cukup</Radio></div>
+                <div><Radio value="Baik">Baik</Radio></div>
+                <div><Radio value="Sangat Baik">Sangat Baik</Radio></div>
+            </Radio.Group>
+            <div>-Bermanfaat</div>
+            <Radio.Group onChange={(e)=>setNilai2b(e.target.value)} value={nilai2b}>
+
+                <div><Radio value="Buruk">Buruk</Radio></div>
+                <div><Radio value="Kurang">Kurang</Radio></div>
+                <div><Radio value="Cukup">Cukup</Radio></div>
+                <div><Radio value="Baik">Baik</Radio></div>
+                <div><Radio value="Sangat Baik">Sangat Baik</Radio></div>
+            </Radio.Group>
+            <div>-Menarik</div>
+            <Radio.Group onChange={(e)=>setNilai2c(e.target.value)} value={nilai2c}>
+
+                <div><Radio value="Buruk">Buruk</Radio></div>
+                <div><Radio value="Kurang">Kurang</Radio></div>
+                <div><Radio value="Cukup">Cukup</Radio></div>
+                <div><Radio value="Baik">Baik</Radio></div>
+                <div><Radio value="Sangat Baik">Sangat Baik</Radio></div>
+            </Radio.Group>
+          </div>
+          <div class="labeldaninput">
+            <div class="labelatas">Bagaimana anda menilai alur registrasi pada symposium ini ?</div>
+            {/* <Input placeholder="Pesan pesan" value={pesanpesan}  style={{width:"400px"}}/> */}
+            {/* <TextArea rows={4} value={pesanpesan} onChange={(e)=>setPesanpesan(e.target.value)} style={{width:"400px"}} /> */}
+            <div>-Nilai</div>
+            <Radio.Group onChange={(e)=>setNilai3(e.target.value)} value={nilai3}>
+
+                <div><Radio value="Buruk">Buruk</Radio></div>
+                <div><Radio value="Kurang">Kurang</Radio></div>
+                <div><Radio value="Cukup">Cukup</Radio></div>
+                <div><Radio value="Baik">Baik</Radio></div>
+                <div><Radio value="Sangat Baik">Sangat Baik</Radio></div>
+            </Radio.Group>
+            <div>-Saran</div>
+            <Input style={{width:"95%"}} value={nilai3saran} onChange={(e)=>setNilai3saran(e.target.value)}/>
+          </div>
+          <div class="labeldaninput">
+            <div class="labelatas">Siapakah pembawa materi yang paling anda sukai?</div>
+            {/* <Input placeholder="Pesan pesan" value={pesanpesan}  style={{width:"400px"}}/> */}
+            {/* <TextArea rows={4} value={pesanpesan} onChange={(e)=>setPesanpesan(e.target.value)} style={{width:"400px"}} /> */}
+            <Input style={{width:"95%"}} value={nilai4} onChange={(e)=>setNilai4(e.target.value)}/>
+          </div>
+          <div class="labeldaninput">
+            <div class="labelatas">Materi apa yang anda harapkan dapat kami tampilkan pada simposium tahun depan ?</div>
+            {/* <Input placeholder="Pesan pesan" value={pesanpesan}  style={{width:"400px"}}/> */}
+            {/* <TextArea rows={4} value={pesanpesan} onChange={(e)=>setPesanpesan(e.target.value)} style={{width:"400px"}} /> */}
+            <Input style={{width:"95%"}} value={nilai5} onChange={(e)=>setNilai5(e.target.value)}/>
           </div>
       </Modal>
-      <Modal width={"80%"} title="Data Download Sertifikat" visible={GuestBookModal2} onCancel={() => setGuestBookModal2(false)} footer={null}>
+      <Modal width={"80%"} title="Data Download Materi Proceeding" visible={GuestBookModal3} onCancel={() => setGuestBookModal3(false)} footer={null}>
+        <div class="labeldaninput">
+         Silakan download Materi Proceeding
+         </div>
           <div class="labeldaninput">
-            <div class="labelatas">Simposium Cardiovascular Care Advancement Reshaping and Evolving Throughout Pandemic and Beyond</div>
-          </div>
+          <a href={"https://acsasurabaya2021.com/wp-content/plugins/perki/certificate3.php"}><Button type="primary" >Download Materi Proceeding</Button></a>
+
+        </div>
+
+      </Modal>
+      <Modal width={"80%"} title="Data Download Sertifikat" visible={GuestBookModal2} onCancel={() => setGuestBookModal2(false)} footer={null}>
+        <div class="labeldaninput">
+         Silakan download semua certifikat pada kesempatan pertama
+         </div>
+          {simpo.length>0 ?
+          <div class="labeldaninput">
+          <div class="labelatas">Simposium Cardiovascular Care Advancement Reshaping and Evolving Throughout Pandemic and Beyond</div>
+          <a href={"https://acsasurabaya2021.com/wp-content/plugins/perki/certificate2.php?ws=simpo1&id="+idanggota}><Button type="primary" onClick={()=>downloadcert()}>Download Simpo 1 (jpg)</Button></a> <a href={"https://acsasurabaya2021.com/wp-content/plugins/perki/certificate2.php?ws=simpo2&id="+idanggota}><Button type="primary" onClick={()=>downloadcert()}>Download Simpo 2 (jpg)</Button></a>
+
+        </div>:null
+        }
           {workshopku.indexOf("WS 1 ") > -1 ?
           <div class="labeldaninput">
             <div class="labelatas">WS 1 (Pregnancy and Heart Disease: What is the Most Common Cardiovascular Problem on It?)</div>
+            <a href={"https://acsasurabaya2021.com/wp-content/plugins/perki/certificate2.php?ws=1&id="+idanggota}><Button type="primary" onClick={()=>downloadcert()}>Download WS 1 (jpg)</Button></a>
           </div> : null }
           {workshopku.indexOf("WS 2 ") > -1 ?
           <div class="labeldaninput">
             <div class="labelatas">WS 2 (Perioperative Cardiac Consultation)</div>
+            <a href={"https://acsasurabaya2021.com/wp-content/plugins/perki/certificate2.php?ws=2&id="+idanggota}><Button type="primary" onClick={()=>downloadcert()}>Download WS 2 (jpg)</Button></a>
           </div> : null }
           {workshopku.indexOf("WS 3 ") > -1 ?
           <div class="labeldaninput">
             <div class="labelatas">WS 3 (Stay Fit Dont Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)</div>
+            <a href={"https://acsasurabaya2021.com/wp-content/plugins/perki/certificate2.php?ws=3&id="+idanggota}><Button type="primary" onClick={()=>downloadcert()}>Download WS 3 (jpg)</Button></a>
           </div> :null }
           {workshopku.indexOf("WS 4 ") > -1 ?
           <div class="labeldaninput">
             <div class="labelatas">WS 4 (Cardiac Injury in Chemotherapy Patient)</div>
+            <a href={"https://acsasurabaya2021.com/wp-content/plugins/perki/certificate2.php?ws=4&id="+idanggota}><Button type="primary" onClick={()=>downloadcert()}>Download WS 4 (jpg)</Button></a>
           </div> : null }
           {workshopku.indexOf("WS 5 ") > -1 ?
           <div class="labeldaninput">
             <div class="labelatas">WS 5 (AF Management in the ER Consultant Cardiologist do their jobs)</div>
+            <a href={"https://acsasurabaya2021.com/wp-content/plugins/perki/certificate2.php?ws=5&id="+idanggota}><Button type="primary" onClick={()=>downloadcert()}>Download WS 5 (jpg)</Button></a>
           </div> : null }
           {workshopku.indexOf("WS 6 ") > -1 ?
           <div class="labeldaninput">
             <div class="labelatas">WS 6 (Cardiovascular Evaluation in Hajj Pilgrim)</div>
+            <a href={"https://acsasurabaya2021.com/wp-content/plugins/perki/certificate2.php?ws=6&id="+idanggota}><Button type="primary" onClick={()=>downloadcert()}>Download WS 6 (jpg)</Button></a>
           </div> : null }
           {workshopku.indexOf("WS 7 ") > -1 ?
           <div class="labeldaninput">
             <div class="labelatas">WS 7 (Comprehensive CV Risk Stratification)</div>
+            <a href={"https://acsasurabaya2021.com/wp-content/plugins/perki/certificate2.php?ws=7&id="+idanggota}><Button type="primary" onClick={()=>downloadcert()}>Download WS 7 (jpg)</Button></a>
           </div> : null }
           {workshopku.indexOf("WS 8 ") > -1 ?
           <div class="labeldaninput">
             <div class="labelatas">WS 8 (Practical approach to non-invasive ventilation in acute heart failure)</div>
+            <a href={"https://acsasurabaya2021.com/wp-content/plugins/perki/certificate2.php?ws=8&id="+idanggota}><Button type="primary" onClick={()=>downloadcert()}>Download WS 8 (jpg)</Button></a>
           </div> : null }
           {workshopku.indexOf("WS 9 ") > -1 ?
           <div class="labeldaninput">
             <div class="labelatas">WS 9 (Practical Approach in Emergency Arrythmias)</div>
+            <a href={"https://acsasurabaya2021.com/wp-content/plugins/perki/certificate2.php?ws=9&id="+idanggota}><Button type="primary" onClick={()=>downloadcert()}>Download WS 9 (jpg)</Button></a>
           </div> : null }
           {workshopku.indexOf("WS 10 ") > -1 ?
           <div class="labeldaninput">
             <div class="labelatas">WS 10 (Asuhan Medis dan Keperawatan pada Kegawatan Kardiovaskulardi Lini Terdepan: Fokus pada Terapi Trombolitik)</div>
+            <a href={"https://acsasurabaya2021.com/wp-content/plugins/perki/certificate2.php?ws=10&id="+idanggota}><Button type="primary" onClick={()=>downloadcert()}>Download WS 10 (jpg)</Button></a>
           </div> : null }
           {workshopku.indexOf("WS 11 ") > -1 ?
           <div class="labeldaninput">
             <div class="labelatas">WS 11 (Rapid Echocardiography in Emergency Setting)</div>
+            <a href={"https://acsasurabaya2021.com/wp-content/plugins/perki/certificate2.php?ws=11&id="+idanggota}><Button type="primary" onClick={()=>downloadcert()}>Download WS 11 (jpg)</Button></a>
           </div> : null }
           {workshopku.indexOf("WS 12 ") > -1 ?
           <div class="labeldaninput">
             <div class="labelatas">WS 12 (Diagnostic Modalities in Congenital Heart Disease : Focus on VSD and TOF)</div>
+            <a href={"https://acsasurabaya2021.com/wp-content/plugins/perki/certificate2.php?ws=12&id="+idanggota}><Button type="primary" onClick={()=>downloadcert()}>Download WS 12 (jpg)</Button></a>
           </div> : null }
           {workshopku.indexOf("WS 13 ") > -1 ?
           <div class="labeldaninput">
             <div class="labelatas">WS 13 (Advanced in Diagnosing Acute Heart Failure)</div>
+            <a href={"https://acsasurabaya2021.com/wp-content/plugins/perki/certificate2.php?ws=13&id="+idanggota}><Button type="primary" onClick={()=>downloadcert()}>Download WS 13 (jpg)</Button></a>
           </div> : null }
           {workshopku.indexOf("WS 14 ") > -1 ?
           <div class="labeldaninput">
             <div class="labelatas">WS 14 (How to Deal with Heavy Coronary Calcified Lesion in PCI?)</div>
+            <a href={"https://acsasurabaya2021.com/wp-content/plugins/perki/certificate2.php?ws=14&id="+idanggota}><Button type="primary" onClick={()=>downloadcert()}>Download WS 14 (jpg)</Button></a>
           </div>:null}
           {workshopku.indexOf("WS 15 ") > -1 ?
           <div class="labeldaninput">
             <div class="labelatas">WS 15 (Cardiomyopathy Evaluation by Cardiac MR)</div>
+            <a href={"https://acsasurabaya2021.com/wp-content/plugins/perki/certificate2.php?ws=15&id="+idanggota}><Button type="primary" onClick={()=>downloadcert()}>Download WS 15 (jpg)</Button></a>
           </div>:null}
           {workshopku.indexOf("WS 16 ") > -1 ?
           <div class="labeldaninput">
             <div class="labelatas">WS 16 (Cardiac CT in Coronary Artery and Beyond)</div>
+            <a href={"https://acsasurabaya2021.com/wp-content/plugins/perki/certificate2.php?ws=16&id="+idanggota}><Button type="primary" onClick={()=>downloadcert()}>Download WS 16 (jpg)</Button></a>
           </div>:null}
           {workshopku.indexOf("WS Indovasc 1 ") > -1 ?
           <div class="labeldaninput">
             <div class="labelatas">WS Indovasc 1 (Early Detection of Chronic Venous Insufficiency)</div>
+            <a href={"https://acsasurabaya2021.com/wp-content/plugins/perki/certificate2.php?ws=17&id="+idanggota}><Button type="primary" onClick={()=>downloadcert()}>Download WS 17 (jpg)</Button></a>
           </div> : null}
           {workshopku.indexOf("WS Indovasc 2 ") > -1 ?
           <div class="labeldaninput">
             <div class="labelatas">WS Indovasc 2 (Vascular Doppler US)</div>
+            <a href={"https://acsasurabaya2021.com/wp-content/plugins/perki/certificate2.php?ws=18&id="+idanggota}><Button type="primary" onClick={()=>downloadcert()}>Download WS 18 (jpg)</Button></a>
           </div>:null}
           {workshopku.indexOf("WS Indovasc 3 ") > -1 ?
           <div class="labeldaninput">
             <div class="labelatas">WS Indovasc 3 (A - Z Peripheral Management : From Patient Selection to Therapy)</div>
+            <a href={"https://acsasurabaya2021.com/wp-content/plugins/perki/certificate2.php?ws=19&id="+idanggota}><Button type="primary" onClick={()=>downloadcert()}>Download WS 19 (jpg)</Button></a>
           </div>:null}
           {workshopku.indexOf("WS 20 ") > -1 ?
           <div class="labeldaninput">
             <div class="labelatas">WS 20 (Physiology Assessment and Intravascular Imaging (OCT) in Coronary Intervention)</div>
+            <a href={"https://acsasurabaya2021.com/wp-content/plugins/perki/certificate2.php?ws=20&id="+idanggota}><Button type="primary" onClick={()=>downloadcert()}>Download WS 20 (jpg)</Button></a>
           </div>:null}
 
           <div class="labeldaninput">
-              <a href="https://acsasurabaya2021.com/wp-content/plugins/perki/certificate.php?id=1332"><Button type="primary" onClick={()=>alert("Silakan tunggu proses download")}>Download</Button></a>
+              <a href={"https://acsasurabaya2021.com/wp-content/plugins/perki/certificate.php?id="+idanggota}><Button type="primary" onClick={()=>downloadcert()}>Download Semua (zip)</Button></a>
           </div>
 
       </Modal>

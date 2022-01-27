@@ -81,7 +81,7 @@ const routes = [
   { path: '/theme/session', name: 'Session', component: Session },
   { path: '/theme/exhibition', name: 'Exhibition', component: Exhibition },
   { path: '/theme/faq', name: 'FAQ', component: Faq },
-  { path: '/theme/video', name: 'FAQ', component: Video },
+  { path: '/theme/video/:id', name: 'FAQ', component: Video },
   { path: '/theme/symposium', name: 'Symposium', component: Symposium },
   { path: '/theme/workshop', name: 'Workshop', component: Workshop },
   { path: '/theme/zoom', name: 'Zoom', component: Zoom },

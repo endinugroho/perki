@@ -76,14 +76,14 @@ const Login = () => {
 
     axios({
       url: "https://acsasurabaya2021.com/wp-content/plugins/perki/kirimdata.php",
-      // url: "http://localhost/perki/kirimdata.php",
+      // url: "http://temanprogrammer.com/perki/kirimdata.php",
       data: payload,
       contentType: "application/json",
       method: "POST",
     })
       .then((data) => {
         var temp = data.data;
-        // console.log(temp);
+        console.log(data);
         localStorage.setItem("userData", JSON.stringify(temp));
         localStorage.setItem("loginid", temp.data);
         localStorage.setItem("nama", temp.nama);

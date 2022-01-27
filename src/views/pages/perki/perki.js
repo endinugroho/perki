@@ -603,11 +603,13 @@ const Colors = () => {
   {propinsi:"DI Yogyakarta",kota:"Yogyakarta"}]);
 
   // const [kota,setKota] = useState(
-  const [simposiumprice,setSimposiumprice] = useState([{profession:"Medical Student",price:"IDR 150,000"},
-  {profession:"GP",price:"IDR 300,000"},
+  const [simposiumprice,setSimposiumprice] = useState([
+  // {profession:"Medical Student",price:"IDR 150,000"},
+  // {profession:"GP",price:"IDR 300,000"},
   {profession:"Cardiologist",price:"IDR 500,000"},
-  {profession:"Other Specialist",price:"IDR 500,000"},
-  {profession:"Nurse or Paramedics",price:"IDR 150,000"}]);
+  // {profession:"Other Specialist",price:"IDR 500,000"},
+  // {profession:"Nurse or Paramedics",price:"IDR 150,000"}
+]);
 
 
   const [hargapaket,setHargapaket] = useState([
@@ -639,7 +641,7 @@ const Colors = () => {
     // {profession:"GP",name:"WS 10 (Asuhan Medis dan Keperawatan pada Kegawatan Kardiovaskulardi Lini Terdepan: Fokus pada Terapi Trombolitik)"},
     // {profession:"GP",name:"WS 11 (Rapid Echocardiography in Emergency Setting)"},
     // {profession:"GP",name:"WS 13 (Advanced in Diagnosing Acute Heart Failure)"},
-    {profession:"GP",name:"WS Indovasc 3 (A - Z Peripheral Management : From Patient Selection to Therapy)"},
+    // {profession:"GP",name:"WS Indovasc 3 (A - Z Peripheral Management : From Patient Selection to Therapy)"},
     // {profession:"Cardiologist",name:"WS 1 (Pregnancy and Heart Disease: What is the Most Common Cardiovascular Problem on It?)"},
     // {profession:"Cardiologist",name:"WS 2 (Perioperative Cardiac Consultation)"},
     // {profession:"Cardiologist",name:"WS 3 (Stay Fit Dont Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
@@ -648,13 +650,13 @@ const Colors = () => {
     // {profession:"Cardiologist",name:"WS 6 (Cardiovascular Evaluation in Hajj Pilgrim)"},
     // {profession:"Cardiologist",name:"WS 7 (Comprehensive CV Risk Stratification)"},
     // {profession:"Cardiologist",name:"WS 8 (Practical approach to non-invasive ventilation in acute heart failure)"},
-    {profession:"Cardiologist",name:"WS 12 (Diagnostic Modalities in Congenital Heart Disease : Focus on VSD and TOF)"},
-    {profession:"Cardiologist",name:"WS 14 (How to Deal with Heavy Coronary Calcified Lesion in PCI?)"},
-    {profession:"Cardiologist",name:"WS 15 (Cardiomyopathy Evaluation by Cardiac MR)"},
-    {profession:"Cardiologist",name:"WS 16 (Cardiac CT in Coronary Artery and Beyond)"},
+    // {profession:"Cardiologist",name:"WS 12 (Diagnostic Modalities in Congenital Heart Disease : Focus on VSD and TOF)"},
+    // {profession:"Cardiologist",name:"WS 14 (How to Deal with Heavy Coronary Calcified Lesion in PCI?)"},
+    // {profession:"Cardiologist",name:"WS 15 (Cardiomyopathy Evaluation by Cardiac MR)"},
+    // {profession:"Cardiologist",name:"WS 16 (Cardiac CT in Coronary Artery and Beyond)"},
     // {profession:"Cardiologist",name:"WS Indovasc 1 (Early Detection of Chronic Venous Insufficiency)"},
-    {profession:"Cardiologist",name:"WS Indovasc 2 (Vascular Doppler US)"},
-    {profession:"Cardiologist",name:"WS Indovasc 3 (A - Z Peripheral Management : From Patient Selection to Therapy)"},
+    // {profession:"Cardiologist",name:"WS Indovasc 2 (Vascular Doppler US)"},
+    // {profession:"Cardiologist",name:"WS Indovasc 3 (A - Z Peripheral Management : From Patient Selection to Therapy)"},
     {profession:"Cardiologist",name:"WS 20 (Physiology Assessment and Intravascular Imaging (OCT) in Coronary Intervention)"},
 
 
@@ -666,8 +668,8 @@ const Colors = () => {
     // {profession:"Other Specialist",name:"WS 9 (Practical Approach in Emergency Arrythmias)"},
     // {profession:"Other Specialist",name:"WS 11 (Rapid Echocardiography in Emergency Setting)"},
     // {profession:"Other Specialist",name:"WS 13 (Advanced in Diagnosing Acute Heart Failure)"},
-    {profession:"Other Specialist",name:"WS 15 (Cardiomyopathy Evaluation by Cardiac MR)"},
-    {profession:"Other Specialist",name:"WS 16 (Cardiac CT in Coronary Artery and Beyond)"},
+    // {profession:"Other Specialist",name:"WS 15 (Cardiomyopathy Evaluation by Cardiac MR)"},
+    // {profession:"Other Specialist",name:"WS 16 (Cardiac CT in Coronary Artery and Beyond)"},
     // {profession:"Nurse or Paramedics",name:"Ws 3 (Stay Fit Dont Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
     // {profession:"Nurse or Paramedics",name:"WS 10 (Asuhan Medis dan Keperawatan pada Kegawatan Kardiovaskular di Lini Terdepan: Fokus pada Terapi Trombolitik)"},
     // {profession:"Medical Student",name:"WS 3 (Stay Fit Dont Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
@@ -1395,19 +1397,19 @@ activeStep={1} style={{width:"100%"}}
           <div class="labelatas">Category</div>
           <Select defaultValue="Cardiologist" onChange={(e)=>handleChange3(e)} value={professionselect} style={{width:"100%"}}>
             <Option value="Cardiologist">Cardiologist</Option>
-            <Option value="GP">General Practitioner</Option>
+            {/* <Option value="GP">General Practitioner</Option>
             <Option value="Other Specialist">Other Specialist</Option>
             <Option value="Nurse or Paramedics">Nurse or Paramedics</Option>
-            <Option value="Medical Student">Medical Student</Option>
+            <Option value="Medical Student">Medical Student</Option> */}
           </Select>
       </div>
       <div style={{marginLeft:"30px",marginBottom:"15px"}}>Mohon diperhatikan jadwal Simposium dan workshop dalam memilih</div>
       <div class="labeldaninput">
       <Radio.Group onChange={(e)=>pilihanku(e.target.value)} value={pilih}>
-      <Radio value={1}>Simposium</Radio>
+      {/* <Radio value={1}>Simposium</Radio> */}
       <Radio value={2}>Workshop</Radio>
-      <Radio value={4}>Simposium+Workshop</Radio>
-      <Radio value={3}>Package</Radio>
+      {/* <Radio value={4}>Simposium+Workshop</Radio> */}
+      {/* <Radio value={3}>Package</Radio> */}
     </Radio.Group>
       </div>
       {pilih===1 || pilih===4 ?
@@ -1531,9 +1533,8 @@ activeStep={2} style={{width:"100%"}}
             <Option value="Mid Trans">Mid Trans</Option>
           </Select>
         </div> */}
-        <div class="labeldaninput" style={{marginBottom:"25px"}}>
+        {/* <div class="labeldaninput" style={{marginBottom:"25px"}}>
         <div class="labelatas" >Promo Code</div>
-        {/* <Search placeholder="promo code" allowClear onSearch={onSearch} /> */}
         <Search
       placeholder="promo code"
       allowClear
@@ -1541,7 +1542,7 @@ activeStep={2} style={{width:"100%"}}
       size="large"
       onSearch={onSearch}
       />
-            </div>
+            </div> */}
       <div class="labeldaninput">
           <div class="labelatas" style={{display:"flex"}}>Total Price</div>
           <Input addonBefore="IDR" placeholder="harga package" value={hargagrandtotal}/>

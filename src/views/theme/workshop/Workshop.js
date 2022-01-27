@@ -893,6 +893,8 @@ const Colors = () => {
                         marginLeft: "2px",
                         borderRadius: "10px",
                         marginBottom: "5px",
+                        backgroundColor: "rgb(159,226,255)",
+                        borderColor: "rgb(159,226,255)",
                       }}
                     >
                       WS 11
@@ -909,6 +911,8 @@ const Colors = () => {
                         marginLeft: "2px",
                         borderRadius: "10px",
                         marginBottom: "5px",
+                        backgroundColor: "rgb(159,226,255)",
+                        borderColor: "rgb(159,226,255)",
                       }}
                     >
                       WS 12
@@ -925,6 +929,8 @@ const Colors = () => {
                         marginLeft: "2px",
                         borderRadius: "10px",
                         marginBottom: "5px",
+                        backgroundColor: "rgb(159,226,255)",
+                        borderColor: "rgb(159,226,255)",
                       }}
                     >
                       WS 13
@@ -941,6 +947,8 @@ const Colors = () => {
                         marginLeft: "2px",
                         borderRadius: "10px",
                         marginBottom: "5px",
+                        backgroundColor: "rgb(159,226,255)",
+                        borderColor: "rgb(159,226,255)",
                       }}
                     >
                       WS 14
@@ -957,6 +965,8 @@ const Colors = () => {
                         marginLeft: "2px",
                         borderRadius: "10px",
                         marginBottom: "5px",
+                        backgroundColor: "rgb(159,226,255)",
+                        borderColor: "rgb(159,226,255)",
                       }}
                     >
                       WS 15
@@ -973,6 +983,8 @@ const Colors = () => {
                         marginLeft: "2px",
                         borderRadius: "10px",
                         marginBottom: "5px",
+                        backgroundColor: "rgb(159,226,255)",
+                        borderColor: "rgb(159,226,255)",
                       }}
                     >
                       WS 16
@@ -1003,6 +1015,8 @@ const Colors = () => {
                         marginLeft: "2px",
                         borderRadius: "10px",
                         marginBottom: "5px",
+                        backgroundColor: "rgb(159,226,255)",
+                        borderColor: "rgb(159,226,255)",
                       }}
                     >
                       Indovasc WS 2
@@ -1017,6 +1031,8 @@ const Colors = () => {
                         marginLeft: "2px",
                         borderRadius: "10px",
                         marginBottom: "5px",
+                        backgroundColor: "rgb(159,226,255)",
+                        borderColor: "rgb(159,226,255)",
                       }}
                     >
                       Indovasc WS 3

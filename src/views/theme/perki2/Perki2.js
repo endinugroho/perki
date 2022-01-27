@@ -92,11 +92,13 @@ const Colors = () => {
 
 
 
-  const [workshopprice,setWorkshopprice] = useState([{profession:"Medical Student",price:"IDR 125,000"},
-  {profession:"GP",price:"IDR 150,000"},
+  const [workshopprice,setWorkshopprice] = useState([
+  //   {profession:"Medical Student",price:"IDR 125,000"},
+  // {profession:"GP",price:"IDR 150,000"},
   {profession:"Cardiologist",price:"IDR 400,000"},
-  {profession:"Other Specialists",price:"IDR 400,000"},
-  {profession:"Nurse or Paramedics",price:"IDR 125,000"}]);
+  // {profession:"Other Specialists",price:"IDR 400,000"},
+  // {profession:"Nurse or Paramedics",price:"IDR 125,000"}
+]);
 
   const [kota,setKota] = useState([{propinsi:"Nanggroe Aceh Darussalam (NAD)",kota:"Aceh Barat"},
   {propinsi:"Nanggroe Aceh Darussalam (NAD)",kota:"Aceh Barat Daya"},
@@ -601,11 +603,13 @@ const Colors = () => {
   {propinsi:"DI Yogyakarta",kota:"Yogyakarta"}]);
 
   // const [kota,setKota] = useState(
-  const [simposiumprice,setSimposiumprice] = useState([{profession:"Medical Student",price:"IDR 150,000"},
-  {profession:"GP",price:"IDR 300,000"},
+  const [simposiumprice,setSimposiumprice] = useState([
+  //   {profession:"Medical Student",price:"IDR 150,000"},
+  // {profession:"GP",price:"IDR 300,000"},
   {profession:"Cardiologist",price:"IDR 500,000"},
-  {profession:"Other Specialist",price:"IDR 500,000"},
-  {profession:"Nurse or Paramedics",price:"IDR 150,000"}]);
+  // {profession:"Other Specialist",price:"IDR 500,000"},
+  // {profession:"Nurse or Paramedics",price:"IDR 150,000"}
+]);
 
 
   const [hargapaket,setHargapaket] = useState([
@@ -637,7 +641,7 @@ const Colors = () => {
     // {profession:"GP",name:"WS 10 (Asuhan Medis dan Keperawatan pada Kegawatan Kardiovaskulardi Lini Terdepan: Fokus pada Terapi Trombolitik)"},
     // {profession:"GP",name:"WS 11 (Rapid Echocardiography in Emergency Setting)"},
     // {profession:"GP",name:"WS 13 (Advanced in Diagnosing Acute Heart Failure)"},
-    {profession:"GP",name:"WS Indovasc 3 (A - Z Peripheral Management : From Patient Selection to Therapy)"},
+    // {profession:"GP",name:"WS Indovasc 3 (A - Z Peripheral Management : From Patient Selection to Therapy)"},
     // {profession:"Cardiologist",name:"WS 1 (Pregnancy and Heart Disease: What is the Most Common Cardiovascular Problem on It?)"},
     // {profession:"Cardiologist",name:"WS 2 (Perioperative Cardiac Consultation)"},
     // {profession:"Cardiologist",name:"WS 3 (Stay Fit, Don't Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
@@ -646,13 +650,13 @@ const Colors = () => {
     // {profession:"Cardiologist",name:"WS 6 (Cardiovascular Evaluation in Hajj Pilgrim)"},
     // {profession:"Cardiologist",name:"WS 7 (Comprehensive CV Risk Stratification)"},
     // {profession:"Cardiologist",name:"WS 8 (Practical approach to non-invasive ventilation in acute heart failure)"},
-    {profession:"Cardiologist",name:"WS 12 (Diagnostic Modalities in Congenital Heart Disease : Focus on VSD and TOF)"},
-    {profession:"Cardiologist",name:"WS 14 (How to Deal with Heavy Coronary Calcified Lesion in PCI?)"},
-    {profession:"Cardiologist",name:"WS 15 (Cardiomyopathy Evaluation by Cardiac MR)"},
-    {profession:"Cardiologist",name:"WS 16 (Cardiac CT in Coronary Artery and Beyond)"},
+    // {profession:"Cardiologist",name:"WS 12 (Diagnostic Modalities in Congenital Heart Disease : Focus on VSD and TOF)"},
+    // {profession:"Cardiologist",name:"WS 14 (How to Deal with Heavy Coronary Calcified Lesion in PCI?)"},
+    // {profession:"Cardiologist",name:"WS 15 (Cardiomyopathy Evaluation by Cardiac MR)"},
+    // {profession:"Cardiologist",name:"WS 16 (Cardiac CT in Coronary Artery and Beyond)"},
     // {profession:"Cardiologist",name:"WS Indovasc 1 (Early Detection of Chronic Venous Insufficiency)"},
-    {profession:"Cardiologist",name:"WS Indovasc 2 (Vascular Doppler US)"},
-    {profession:"Cardiologist",name:"WS Indovasc 3 (A - Z Peripheral Management : From Patient Selection to Therapy)"},
+    // {profession:"Cardiologist",name:"WS Indovasc 2 (Vascular Doppler US)"},
+    // {profession:"Cardiologist",name:"WS Indovasc 3 (A - Z Peripheral Management : From Patient Selection to Therapy)"},
     {profession:"Cardiologist",name:"WS 20 (Physiology Assessment and Intravascular Imaging (OCT) in Coronary Intervention)"},
     // {profession:"Other Specialist",name:"WS 1 (Pregnancy and Heart Disease: What is the Most Common Cardiovascular Problem on It?)"},
     // {profession:"Other Specialist",name:"WS 3 (Stay Fit, Don't Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
@@ -662,8 +666,8 @@ const Colors = () => {
     // {profession:"Other Specialist",name:"WS 9 (Practical Approach in Emergency Arrythmias)"},
     // {profession:"Other Specialist",name:"WS 11 (Rapid Echocardiography in Emergency Setting)"},
     // {profession:"Other Specialist",name:"WS 13 (Advanced in Diagnosing Acute Heart Failure)"},
-    {profession:"Other Specialist",name:"WS 15 (Cardiomyopathy Evaluation by Cardiac MR)"},
-    {profession:"Other Specialist",name:"WS 16 (Cardiac CT in Coronary Artery and Beyond)"}
+    // {profession:"Other Specialist",name:"WS 15 (Cardiomyopathy Evaluation by Cardiac MR)"},
+    // {profession:"Other Specialist",name:"WS 16 (Cardiac CT in Coronary Artery and Beyond)"}
     // {profession:"Nurse or Paramedics",name:"Ws 3 (Stay Fit, Don't Quit: Cardiovascular Exercise Prescription in Covid-19 Pandemic)"},
     // {profession:"Nurse or Paramedics",name:"WS 10 (Asuhan Medis dan Keperawatan pada Kegawatan Kardiovaskular di Lini Terdepan: Fokus pada Terapi Trombolitik)"}
 
@@ -710,7 +714,7 @@ const Colors = () => {
     axios({
       method: "POST",
       url: "https://acsasurabaya2021.com/wp-content/plugins/perki/kirimdata.php",
-      // url: "http://localhost/perki/kirimdata.php",
+      // url: "http://temanprogrammer.com/perki/kirimdata.php",
       data: {"var":"simposium","mtd":'CEKOPTION'},
       contentType: "application/json",
     })
@@ -865,7 +869,7 @@ console.log("masuk sini simpan "+pilih);
  axios({
   method: "POST",
   url: "https://acsasurabaya2021.com/wp-content/plugins/perki/kirimdata.php",
-  // url: "http://localhost/perki/kirimdata.php",
+  // url: "http://temanprogrammer.com/perki/kirimdata.php",
   data: {"firstname":myform.firstname,"lastname":myform.lastname,"fullnamecert":myform.fullname,"gender":myform.gender,"placedob":myform.pob,"address":"","country":myform.county,"province":myform.province,"city":myform.city,"email":myform.email,"password":pwd,"mobilephone":myform.mobile,"affiliation":myform.affliliation,"officemobilephone":myform.officeph,"profession":professionselect,"simposium":simposium2,"workshopprice":0,"package":packageselect,"workshop":macamworkshop,"payment":"Manual Transfer","promocode":"","pilih":id.split("-")[1],"status":"BONUS","total":0,"mtd":'ADDANGGOTA',"idsponsor":idsponsor,"paymentstatus":"FREE"},
   contentType: "application/json",
 })
@@ -955,7 +959,7 @@ if (step=="Step1")
     }
     axios({
       url: "https://acsasurabaya2021.com/wp-content/plugins/perki/kirimdata.php",
-      // url: "http://localhost/perki/kirimdata.php",
+      // url: "http://temanprogrammer.com/perki/kirimdata.php",
       data: payload,
       contentType: "application/json",
       method: 'POST',
@@ -1059,9 +1063,10 @@ activeStep={1} style={{width:"100%"}}
       <div class="labeldaninput">
           <div class="labelatas">Category</div>
           <Select defaultValue="Cardiologist" onChange={(e)=>handleChange3(e)} value={professionselect} style={{width:"100%"}}>
-            <Option value="GP">General Practitioner</Option>
+            <Option value="Cardiologist">Cardiologist</Option>
+            {/* <Option value="GP">General Practitioner</Option>
             <Option value="Nurse or Paramedics">Nurse or Paramedics</Option>
-            <Option value="Medical Student">Medical Student</Option>
+            <Option value="Medical Student">Medical Student</Option> */}
           </Select>
       </div>
       <div class="labeldaninput">
@@ -1167,9 +1172,8 @@ activeStep={2} style={{width:"100%"}}
           </Select>
         </FormItem>
         </div>
-        <div class="labeldaninput" style={{marginBottom:"25px"}}>
+        {/* <div class="labeldaninput" style={{marginBottom:"25px"}}>
         <div class="labelatas" >Promo Code</div>
-        {/* <Search placeholder="promo code" allowClear onSearch={onSearch} /> */}
         <Search
       placeholder="promo code"
       allowClear
@@ -1177,7 +1181,7 @@ activeStep={2} style={{width:"100%"}}
       size="large"
       onSearch={onSearch}
       />
-            </div>
+            </div> */}
             <div class="labeldaninput">
         <FormItem name="place" rules={[{required: true, message: 'Silakan isi package!'}]}>
           <div class="labelatas" style={{display:"flex"}}>Service Charge</div>

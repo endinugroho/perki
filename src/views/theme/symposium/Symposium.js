@@ -116,7 +116,9 @@ const Colors = () => {
   const [anggota, setAnggota] = useState("");
   const [workshopku, setWorkshopku] = useState("");
   const [visible, setVisible] = useState(false);
+  const [visiblevideo, setVisiblevideo] = useState(true);
   const [ws, setWs] = useState("-");
+  const [harike,setHarike] = useState("");
 
   const [dataWs, setDataWs] = useState({});
   const [dataSympo, setDataSympo] = useState({});
@@ -150,7 +152,7 @@ const Colors = () => {
         // var temp = data.data;
         // console.log(data.data[0]);
         setAnggota(data.data[0]);
-        if (data.data[0].simposium != "") {
+        if (data.data[0].simposium != "" && data.data[0].simposium == null) {
           changeDataSympo(1);
         }
         setWorkshopku(data.data[0].workshop);
@@ -215,6 +217,207 @@ const Colors = () => {
     }
   };
 
+  const WacthZoom1 = (index1,index2) => {
+
+    if (harike=="1") {
+      if (index1==0 && index2==0) {
+        // window.open(`https://drive.google.com/file/d/1aeKgzC-my186-eczKPaXdSqJoOKTam93/preview`);
+        history.push("/theme/video/1-1");
+
+      }
+      if (index1==1 && index2==0) {
+        // window.open(`https://drive.google.com/file/d/1vSVjX3LA_Vds5UUqBEJY5lJZdhj2vCyq/preview`);
+        history.push("/theme/video/1-2");
+      }
+      if (index1==2 && index2==0) {
+        // window.open(`https://drive.google.com/file/d/1aXXJdwmuvC0IS6E1A0ec2S72MCyqISOv/preview`);
+        history.push("/theme/video/1-3");
+      }
+
+      if (index1==3 && index2==0) {
+        // window.open(`https://drive.google.com/file/d/1L2AjLG6c4ZgYZVHTToZPsMGqBqIl2Fbq/preview`);
+        history.push("/theme/video/1-4");
+      }
+
+      if (index1==4 && index2==0) {
+        // window.open(`https://drive.google.com/file/d/1L2AjLG6c4ZgYZVHTToZPsMGqBqIl2Fbq/preview`);
+        history.push("/theme/video/1-5");
+      }
+
+      if (index1==0 && index2==1) {
+        // window.open(`https://drive.google.com/file/d/16Y_zA7-6b5MIQjxO64vGEI-Aj9AjNL-n/preview`);
+        history.push("/theme/video/2-1");
+      }
+      if (index1==1 && index2==1) {
+        // window.open(`https://drive.google.com/file/d/1UzjuY3HBSdTCLpwB5dM1u033n8gRSRsV/preview`);
+        history.push("/theme/video/2-2");
+      }
+      if (index1==2 && index2==1) {
+        // window.open(`https://drive.google.com/file/d/10e_i4YvAXoEdSLzStkdOLmRda5MuzNw0/preview`);
+        history.push("/theme/video/2-3");
+      }
+
+      if (index1==3 && index2==1) {
+        // window.open(`https://drive.google.com/file/d/166Gzt3zRaVq-_pM4BcuEBafI1YEXmrRd/preview`);
+        history.push("/theme/video/2-4");
+      }
+
+      if (index1==4 && index2==1) {
+        // window.open(`https://drive.google.com/file/d/1VGDkgMIuC0TqCSWog08qlJpm2i3-XpFu/preview`);
+        history.push("/theme/video/2-5");
+      }
+
+
+    }
+
+    if (harike=="2") {
+      if (index1==0 && index2==0) {
+        // window.open(`https://drive.google.com/file/d/1KmWRap3fSbSqvX4_V-plZv00L-cyy1OJ/preview`);
+        history.push("/theme/video/1-6");
+      }
+      if (index1==1 && index2==0) {
+        // window.open(`https://drive.google.com/file/d/1ShfL1BfvF47dgEEKDxcnnzzChXKgIF0V/preview`);
+        history.push("/theme/video/1-7");
+      }
+      if (index1==2 && index2==0) {
+        // window.open(`https://drive.google.com/file/d/1Z2Nc_1u8bzQWG6rkjaxSy_nuV6vIC3kE/preview`);
+        history.push("/theme/video/1-8");
+      }
+
+      if (index1==3 && index2==0) {
+        // window.open(`https://drive.google.com/file/d/1WJYFYINxeSGXVjA_gQyyltGrPjOPBMw3/preview`);
+        history.push("/theme/video/1-9");
+      }
+
+      if (index1==4 && index2==0) {
+        // window.open(`https://drive.google.com/file/d/1F_8mkFrGdhL-8GwRrvkYkcoDQPUmma6U/preview`);
+        history.push("/theme/video/1-10");
+      }
+
+      if (index1==0 && index2==1) {
+        // window.open(`https://drive.google.com/file/d/1yz6eHSl32AuTqQ8ccf-Q2kalu66qqSzQ/preview`);
+        history.push("/theme/video/2-6");
+      }
+      if (index1==1 && index2==1) {
+        // window.open(`https://drive.google.com/file/d/1-E860OcMKQp5Hc2gfFEg7PhtHBA6zbbL/preview`);
+        history.push("/theme/video/2-7");
+      }
+      if (index1==2 && index2==1) {
+        // window.open(`https://drive.google.com/file/d/1bcP8M2XbTO9BD9OsEOGxTFcJzPFZejaD/preview`);
+        history.push("/theme/video/2-8");
+      }
+
+      if (index1==3 && index2==1) {
+        // window.open(`https://drive.google.com/file/d/145lIrfeHeZqMkjtR1hy4s3-FOiRPdiyy/preview`);
+        history.push("/theme/video/2-9");
+      }
+
+      if (index1==4 && index2==1) {
+        // window.open(`https://drive.google.com/file/d/1UattmyxFzuhS-XrBzjiJJShmGWL32jor/preview`);
+        history.push("/theme/video/2-10");
+      }
+
+
+      if (index1==0 && index2==2) {
+        // window.open(`https://drive.google.com/file/d/1YpUZfK5veTpdS1K4QPZUHSiQIydYZjT_/preview`);
+        history.push("/theme/video/3-1");
+      }
+      if (index1==1 && index2==2) {
+        // window.open(`https://drive.google.com/file/d/1CS9L0Le-wHsxxzWe4s-2IWr8Nk92TJsH/preview`);
+        history.push("/theme/video/3-2");
+      }
+      if (index1==2 && index2==2) {
+        // window.open(`https://drive.google.com/file/d/1lz3BbMNFM8g_TvJVgMpDaZ0HTehzVK1m/preview`);
+        history.push("/theme/video/3-3");
+      }
+
+      if (index1==3 && index2==2) {
+        history.push("/theme/video/3-4");
+        // window.open(`https://drive.google.com/file/d/15Pxvq0npyUQmrVybKC4V7MYmWHwwz7xA/preview`);
+      }
+
+      if (index1==4 && index2==2) {
+        history.push("/theme/video/3-5");
+        // window.open(`https://drive.google.com/file/d/1_Tg3fYGvGwB-Ocj8mQD6KY2u2dOlmbtG/preview`);
+      }
+
+      if (index1==5 && index2==2) {
+        history.push("/theme/video/3-6");
+        // window.open(`https://drive.google.com/file/d/1lANWciipPVPB7eZlUZ8UYlmEVqJQ3T5p/preview`);
+      }
+
+    }
+
+
+    if (harike=="3") {
+      if (index1==0 && index2==0) {
+        // window.open(`https://drive.google.com/file/d/1AyXhDRzTduF9YS4BvDyq4oBjPBt61172/preview`);
+        history.push("/theme/video/1-11");
+      }
+      if (index1==1 && index2==0) {
+        // window.open(`https://drive.google.com/file/d/1PJg3KGk5uvG03MuBFVuUjUOXnVtkHz93/preview`);
+        history.push("/theme/video/1-12");
+      }
+      if (index1==2 && index2==0) {
+        // window.open(`https://drive.google.com/file/d/1gAAN7cgIpG_zrYGc7dDGki7pVO2Zsp-x/preview`);
+        history.push("/theme/video/1-13");
+      }
+
+      if (index1==3 && index2==0) {
+        // window.open(`https://drive.google.com/file/d/1GReezPN6bSSmfqE7TTm_Vb0J9tJO1nlj/preview`);
+        history.push("/theme/video/1-14");
+      }
+
+      if (index1==0 && index2==1) {
+        // window.open(`https://drive.google.com/file/d/1-oNz_cMJ9Leqs5sLuZx_h_Zt9phjWlwi/view?usp=sharing`);
+        history.push("/theme/video/2-11");
+      }
+      if (index1==1 && index2==1) {
+        history.push("/theme/video/2-12");
+      }
+      if (index1==2 && index2==1) {
+        history.push("/theme/video/2-13");
+      }
+      if (index1==3 && index2==1) {
+        history.push("/theme/video/2-14");
+      }
+
+
+      if (index1==0 && index2==2) {
+        history.push("/theme/video/3-7");
+        // window.open(`https://drive.google.com/file/d/1ewVAPhYTIeZcqhIHtB1Ta8F88KBWwz6p/preview`);
+      }
+      if (index1==1 && index2==2) {
+        history.push("/theme/video/3-8");
+        // window.open(`https://drive.google.com/file/d/1Mlt0CfLoGde4QvGrilx_1F1wwU8EYIYB/preview`);
+      }
+      if (index1==2 && index2==2) {
+        history.push("/theme/video/3-9");
+        // window.open(`https://drive.google.com/file/d/1UceEr73wW0nVtWtSk9KP6C97ibb4MBQM/preview`);
+      }
+      if (index1==3 && index2==2) {
+        history.push("/theme/video/3-10");
+        // window.open(`https://drive.google.com/file/d/11K_P8BJzDux3C71EO-rYr4nTQ17h5w5o/preview`);
+      }
+      if (index1==4 && index2==2) {
+        history.push("/theme/video/3-11");
+        // window.open(`https://drive.google.com/file/d/1QeizAnBU8nyPnqKTumyyUW7n5dGkX2r9/preview`);
+      }
+      if (index1==5 && index2==2) {
+        history.push("/theme/video/3-12");
+        // window.open(`https://drive.google.com/file/d/1q9MK3qQcEarpgSHX0DfX-oDQ0uJDSBfU/preview`);
+      }
+      // if (index1==6 && index2==2) {
+      //   history.push("/theme/video/3-1");
+      //   // window.open(``);
+      // }
+
+
+    }
+
+
+  };
+
   const getTime = (timeDa) => {
     let today = new Date(timeDa);
     // let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
@@ -246,13 +449,14 @@ const Colors = () => {
         <CCardBody>
           <CRow>
             <div className="col-lg-12 col-md-12 col-sm-12 text-center">
-              {anggota.simposium != "" ? (
+              {(anggota.simposium != "" && anggota.simposium != null) ? (
                 <>
                   <Button
                     type="primary"
                     size="large"
                     onClick={() => {
                       changeDataSympo(1);
+                      setHarike("1");
                     }}
                     style={{ borderRadius: "10px" }}
                   >
@@ -263,6 +467,7 @@ const Colors = () => {
                     size="large"
                     onClick={() => {
                       changeDataSympo(2, 1);
+                      setHarike("2");
                     }}
                     style={{ marginLeft: "2px", borderRadius: "10px" }}
                   >
@@ -273,6 +478,7 @@ const Colors = () => {
                     size="large"
                     onClick={() => {
                       changeDataSympo(3, 2);
+                      setHarike("3");
                     }}
                     style={{ marginLeft: "2px", borderRadius: "10px" }}
                   >
@@ -383,6 +589,20 @@ const Colors = () => {
                                     position: "absolute",
                                     right: "15px",
                                     bottom: "16px",
+                                    color: "#fff",}}
+                                    onClick={() => {
+                                      WacthZoom1(index2,index1);
+                                    }}
+
+                                >Video On Demand</Button>
+                                <Button
+                                  type="primary"
+                                  style={{
+                                    borderRadius: "10px",
+                                    background: "#2a3d9f",
+                                    position: "absolute",
+                                    right: "15px",
+                                    bottom: "16px",
                                     color: "#fff",
                                     display:
                                       row.status == "Active" ? "block" : "none",
@@ -406,6 +626,18 @@ const Colors = () => {
           </CRow>
         </CCardBody>
       </CCard>
+      {/* <Modal
+        title="Video On Demand"
+        centered
+        visible={visiblevideo}
+        onOk={() => setVisiblevideo(false)}
+        onCancel={() => setVisiblevideo(false)}
+        width={"50%"}
+        height={"80%"}
+      >
+<iframe src="https://drive.google.com/file/d/1aeKgzC-my186-eczKPaXdSqJoOKTam93/preview" width="640" height="480" allow="autoplay"></iframe>
+      </Modal> */}
+
     </>
   );
 };

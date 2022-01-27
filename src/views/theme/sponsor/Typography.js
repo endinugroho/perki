@@ -879,7 +879,7 @@ const columns = [
         <Space>
         <div>Unpaid : {"Rp"+currencyFormat(parseInt(belumterbayar))}</div><Button onClick={() => bulkpay("PERTAMA")} type="primary" disabled={belumterbayar===0} >Pay</Button>
         </Space>
-        <div>Total GP, Nurse or Paramedic, Medical Student (for claim bonus)</div>
+        {/* <div>Total GP, Nurse or Paramedic, Medical Student (for claim bonus)</div>
         <Space style={{marginBottom:"5px"}}>
         <div>Total Simposium: <b>{datas.filter(ch => (ch.pilih == "simposium" || ch.pilih == "simposium,workshop") && (ch.profession=="GP" || ch.profession=="Medical Student" || ch.profession=="Nurse or Paramedics")  && (ch.paymentstatus=="PAY")).length}</b>, claimed : <b>{datas.filter(ch => (ch.pilih == "simposium" || ch.pilih == "simposium,workshop") && (ch.profession=="GP" || ch.profession=="Medical Student" || ch.profession=="Nurse or Paramedics")  && (ch.status=="BONUS")).length}</b></div>{(datas.filter(ch => (ch.pilih == "simposium" || ch.pilih == "simposium,workshop") && (ch.profession=="GP" || ch.profession=="Medical Student" || ch.profession=="Nurse or Paramedics")  && (ch.paymentstatus=="PAY")).length-datas.filter(ch => (ch.pilih == "simposium" || ch.pilih == "simposium,workshop") && (ch.profession=="GP" || ch.profession=="Medical Student" || ch.profession=="Nurse or Paramedics")  && (ch.status=="BONUS")).length)/10-datas.filter(ch => (ch.pilih == "simposium" || ch.pilih == "simposium,workshop") && (ch.profession=="GP" || ch.profession=="Medical Student" || ch.profession=="Nurse or Paramedics")  && (ch.status=="BONUS")).length>=1 ? <a href={"/wp-content/plugins/perki/build/#/theme/perki2/GP-simposium"}><Button type="primary">Claim for free</Button></a>:null }
         </Space>
@@ -900,13 +900,13 @@ datas.filter(ch => ch.pilih == "packagesilver" && (ch.profession=="GP" || ch.pro
         <div></div>
         <Space style={{marginBottom:"5px"}}>
         <div>Total Package Platinum: <b>{datas.filter(ch => ch.pilih == "packageplatinum" && (ch.profession=="GP" || ch.profession=="Medical Student" || ch.profession=="Nurse or Paramedics")  && (ch.paymentstatus=="PAY")).length}</b>, claimed : <b>{datas.filter(ch => ch.pilih == "packageplatinum" && (ch.profession=="GP" || ch.profession=="Medical Student" || ch.profession=="Nurse or Paramedics")  && (ch.status=="BONUS")).length}</b></div>{(datas.filter(ch => ch.pilih == "packageplatinum" && (ch.profession=="GP" || ch.profession=="Medical Student" || ch.profession=="Nurse or Paramedics")  && (ch.paymentstatus=="PAY")).length-datas.filter(ch => ch.pilih == "packageplatinum" && (ch.profession=="GP" || ch.profession=="Medical Student" || ch.profession=="Nurse or Paramedics")  && (ch.status=="BONUS")).length)/5-datas.filter(ch => ch.pilih == "packageplatinum" && (ch.profession=="GP" || ch.profession=="Medical Student" || ch.profession=="Nurse or Paramedics")  && (ch.status=="BONUS")).length>=1 ? <a href="/wp-content/plugins/perki/build/#/theme/perki2/GP-packageplatinum"><Button type="primary">Claim for free</Button></a>:null }
-        </Space>
+        </Space> */}
         </div>
         : null }
 
 {!anggota ?
         <div>
-        <Space>
+        {/* <Space>
         <b>Promo Pembayaran Diskon untuk semua profesi</b>
         </Space>
         <div>Total GP, Nurse or Paramedic, Medical Student (for claim bonus)</div>
@@ -918,7 +918,7 @@ datas.filter(ch => ch.pilih == "packagesilver" && (ch.profession=="GP" || ch.pro
         <div>Total Simposium MS : <b>{jumlahsimpomhs1}</b>, diskon : {diskonsimpomhs}% x Rp{currencyFormat(hargasimpomhs)} = Rp{currencyFormat((100-diskonsimpomhs)*hargasimpomhs/100)} {jumlahsimpomhs1==0 ? <Button disabled type="primary">Pay</Button> : <Button type="primary" onClick={()=>bulkpay("SIMPOMHS",(100-diskonsimpomhs)*hargasimpomhs/100)}>Pay</Button> } </div>
         <div>Total Workshop MS : <b>{jumlahwsmhs1}</b>, diskon : {diskonwsmhs}% x Rp{currencyFormat(hargawsmhs)} = Rp{currencyFormat((100-diskonwsmhs)*hargawsmhs/100)} {jumlahwsmhs1==0 ? <Button disabled type="primary">Pay</Button> : <Button type="primary" onClick={()=>bulkpay("WSMHS",(100-diskonwsmhs)*hargawsmhs/100)}>Pay</Button> } </div>
 
-        </Space>
+        </Space> */}
         </div>
         : null }
 
